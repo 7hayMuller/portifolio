@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect } from "react";
 import "./cube.css";
 
 const RubiksCube = () => {
@@ -12,14 +15,17 @@ const RubiksCube = () => {
     </div>
   ));
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      document?.querySelector(".container")?.classList.add("move-cube-up");
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="justify-center align-middle">
-      <div className="container ">
-        <div className="rubiks-cube rubiks-cube-1">{details}</div>
-        {/* <div className="reflection">
-          <div className="rubiks-cube rubiks-cube-1">{details}</div>
-        </div> */}
-      </div>
+    <div className="container">
+      <div className="rubiks-cube rubiks-cube-1">{details}</div>
     </div>
   );
 };
