@@ -30,34 +30,6 @@ body {
   }
 }
 
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-.animate-blink {
-  animation: blink 1s infinite;
-}
-
-@keyframes move-arrow {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(-10px);
-  }
-}
-
-.animate-move {
-  animation: move-arrow 1s infinite;
-}
-
 @keyframes reveal {
   0% {
     transform: translateX(100%);
@@ -68,14 +40,17 @@ body {
 }
 
 .container.revealed {
+  cursor: grab;
   transform: translateX(-100%);
 }
 
 .container {
+  cursor: grab;
   transition: transform 0.3s ease-out;
 }
 
 .hidden-section {
+  cursor: grab;
   transition: width 0.3s ease-out;
   overflow: hidden;
 }

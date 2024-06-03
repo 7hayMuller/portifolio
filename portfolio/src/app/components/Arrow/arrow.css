@@ -12,25 +12,41 @@
   }
 }
 
-@keyframes page-flip {
-  0% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(-180deg);
-  }
-}
-
-.page-flip {
-  animation: page-flip 1s forwards;
-  transform-origin: left center;
-  backface-visibility: hidden;
-}
-
 .animate-blink {
   animation: blink 1s infinite;
 }
 
-body.page-flip {
-  animation: page-flip 1s forwards;
+@keyframes move-arrow {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+}
+
+.animate-move {
+  animation: move-arrow 1s infinite;
+}
+
+.tooltip {
+  position: absolute;
+  top: -2.5rem;
+  right: 65px;
+  transform: translateX(50%);
+  padding: 0.5rem;
+  background-color: #f3ffb9;
+  color: black;
+  text-align: center;
+  border-radius: 0.25rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  white-space: nowrap;
+}
+
+.fixed:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
 }

@@ -8,7 +8,6 @@ import "./globals.css";
 import Arrow from "./components/Arrow/arrow";
 
 const Page = () => {
-  const [typingVisible, setTypingVisible] = useState<boolean>(false);
   const [revealAmount, setRevealAmount] = useState(0);
 
   const handleReveal = (amount: number) => {
@@ -17,53 +16,45 @@ const Page = () => {
 
   const handleMouseUp = () => {
     setRevealAmount((prevAmount) =>
-      prevAmount > window.innerWidth / 2 ? window.innerWidth : prevAmount
+      prevAmount > window.innerWidth / 3 ? window.innerWidth : 0
     );
   };
-
-  useEffect(() => {
-    setTimeout(() => {
-      setTypingVisible(true);
-    }, 2500);
-  }, []);
 
   return (
     <>
       <div className="flex flex-col justify-center items-center align-middle w-[1000px]">
         <Cube />
-        {typingVisible && (
-          <div className="flex justify-between">
-            <div className="text-[35px] text-[#f3ffb9]">
-              <TypeIt
-                options={{
-                  startDelay: 2000,
-                  strings: ["Hi, I'm Thayná Müller!"],
-                  speed: 100,
-                  waitUntilVisible: true,
-                  cursor: false,
-                }}
-              />
-            </div>
-            <div className="text-[35px] text-[#f3ffb9] font-bold">
-              <TypeIt
-                options={{ startDelay: 5000 }}
-                getBeforeInit={(instance: any) => {
-                  instance
-                    .type(" A Frontend developer.")
-                    .pause(750)
-                    .delete(21)
-                    .type("A UX/UI Designer.")
-                    .pause(750)
-                    .delete(19);
-
-                  instance.options({ loop: true, speed: 100 });
-
-                  return instance;
-                }}
-              />
-            </div>
+        <div className="flex justify-between">
+          <div className="text-[35px] text-[#f3ffb9]">
+            <TypeIt
+              options={{
+                startDelay: 2000,
+                strings: ["Hi, I'm Thayná Müller!"],
+                speed: 100,
+                waitUntilVisible: true,
+                cursor: false,
+              }}
+            />
           </div>
-        )}
+          <div className="text-[35px] text-[#f3ffb9] font-bold">
+            <TypeIt
+              options={{ startDelay: 5000 }}
+              getBeforeInit={(instance: any) => {
+                instance
+                  .type(" A Frontend developer.")
+                  .pause(750)
+                  .delete(21)
+                  .type("A UX/UI Designer.")
+                  .pause(750)
+                  .delete(19);
+
+                instance.options({ loop: true, speed: 100 });
+
+                return instance;
+              }}
+            />
+          </div>
+        </div>
       </div>
       <div
         className="hidden-section fixed top-0 right-0 h-full bg-gray-200"
