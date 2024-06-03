@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import "./cube.css";
-import "./globals.css";
+import "../../globals.css";
 
 const RubiksCube = () => {
   const details = Array.from({ length: 27 }, (_, i) => (

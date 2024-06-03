@@ -3,23 +3,24 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: #6d5959;
-  --background-start-rgb: #6d5959;
-  --background-end-rgb: #6d5959;
+  --foreground: #6d5959;
+  --background-start: #6d5959;
+  --background-end: #6d5959;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: #6d5959;
+    --foreground: #6d5959;
     --background-start: #6d5959;
-    --background-end-rgb: #6d5959;
+    --background-end: #6d5959;
+    --secundary-background: #fff;
   }
 }
 
 body {
   @apply min-h-screen flex items-center justify-center overflow-hidden;
-  color: var(--foreground-rgb);
-  background: var(--background-end-rgb);
+  color: var(--foreground);
+  background: var(--background-end);
   font-family: var(--font-lora);
 }
 
@@ -27,4 +28,54 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
+}
+
+@keyframes move-arrow {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+}
+
+.animate-move {
+  animation: move-arrow 1s infinite;
+}
+
+@keyframes reveal {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.container.revealed {
+  transform: translateX(-100%);
+}
+
+.container {
+  transition: transform 0.3s ease-out;
+}
+
+.hidden-section {
+  transition: width 0.3s ease-out;
+  overflow: hidden;
 }

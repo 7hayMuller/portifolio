@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes page-flip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(-180deg);
+  }
+}
+
+.page-flip {
+  animation: page-flip 1s forwards;
+  transform-origin: left center;
+  backface-visibility: hidden;
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
+}
+
+body.page-flip {
+  animation: page-flip 1s forwards;
+}
