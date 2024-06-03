@@ -1,24 +1,3 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0;
-  overflow: hidden;
-  perspective: 800px;
-}
-
 .container {
   position: relative;
   transform: scale(0.6);
@@ -26,7 +5,7 @@ body {
 }
 
 .move-cube-up {
-  transform: scale(0.4) translateY(-80vh);
+  transform: scale(0.5) translateY(-30vh) translateX(-10vw);
 }
 
 @keyframes rubiks-cube {
@@ -247,139 +226,139 @@ body {
   background: #000;
 }
 .rubiks-cube-1 .detail:nth-child(7) .top {
-  background-color: #386150;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(8) .top {
-  background-color: #386150;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(9) .top {
-  background-color: #386150;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(6) .top {
-  background-color: #386150;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(3) .top {
-  background-color: #386150;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(2) .top {
-  background-color: #386150;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(1) .top {
-  background-color: #386150;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(4) .top {
-  background-color: #386150;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(5) .top {
-  background-color: #386150;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(25) .bottom {
-  background-color: #fe5d26;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(26) .bottom {
-  background-color: #fe5d26;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(27) .bottom {
-  background-color: #fe5d26;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(24) .bottom {
-  background-color: #fe5d26;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(21) .bottom {
-  background-color: #fe5d26;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(20) .bottom {
-  background-color: #fe5d26;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(19) .bottom {
-  background-color: #fe5d26;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(22) .bottom {
-  background-color: #fe5d26;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(23) .bottom {
-  background-color: #fe5d26;
+  background-color: #c42021;
 }
 .rubiks-cube-1 .detail:nth-child(1) .left {
-  background-color: #81b29a;
+  background-color: #ffd400;
 }
 .rubiks-cube-1 .detail:nth-child(4) .left {
-  background-color: #81b29a;
+  background-color: #ffd400;
 }
 .rubiks-cube-1 .detail:nth-child(7) .left {
-  background-color: #81b29a;
+  background-color: #ffd400;
 }
 .rubiks-cube-1 .detail:nth-child(16) .left {
-  background-color: #81b29a;
+  background-color: #ffd400;
 }
 .rubiks-cube-1 .detail:nth-child(25) .left {
-  background-color: #81b29a;
+  background-color: #ffd400;
 }
 .rubiks-cube-1 .detail:nth-child(22) .left {
-  background-color: #81b29a;
+  background-color: #ffd400;
 }
 .rubiks-cube-1 .detail:nth-child(19) .left {
-  background-color: #81b29a;
+  background-color: #ffd400;
 }
 .rubiks-cube-1 .detail:nth-child(10) .left {
-  background-color: #81b29a;
+  background-color: #ffd400;
 }
 .rubiks-cube-1 .detail:nth-child(13) .left {
-  background-color: #81b29a;
+  background-color: #ffd400;
 }
 .rubiks-cube-1 .detail:nth-child(3) .right {
-  background-color: #f2cc8f;
+  background-color: #47a025;
 }
 .rubiks-cube-1 .detail:nth-child(6) .right {
-  background-color: #f2cc8f;
+  background-color: #47a025;
 }
 .rubiks-cube-1 .detail:nth-child(9) .right {
-  background-color: #f2cc8f;
+  background-color: #47a025;
 }
 .rubiks-cube-1 .detail:nth-child(18) .right {
-  background-color: #f2cc8f;
+  background-color: #47a025;
 }
 .rubiks-cube-1 .detail:nth-child(27) .right {
-  background-color: #f2cc8f;
+  background-color: #47a025;
 }
 .rubiks-cube-1 .detail:nth-child(24) .right {
-  background-color: #f2cc8f;
+  background-color: #47a025;
 }
 .rubiks-cube-1 .detail:nth-child(21) .right {
-  background-color: #f2cc8f;
+  background-color: #47a025;
 }
 .rubiks-cube-1 .detail:nth-child(12) .right {
-  background-color: #f2cc8f;
+  background-color: #47a025;
 }
 .rubiks-cube-1 .detail:nth-child(15) .right {
-  background-color: #f2cc8f;
+  background-color: #47a025;
 }
 .rubiks-cube-1 .detail:nth-child(1) .front {
-  background-color: #f76c5e;
+  background-color: #cf5c36;
 }
 .rubiks-cube-1 .detail:nth-child(2) .front {
-  background-color: #f76c5e;
+  background-color: #cf5c36;
 }
 .rubiks-cube-1 .detail:nth-child(3) .front {
-  background-color: #f76c5e;
+  background-color: #cf5c36;
 }
 .rubiks-cube-1 .detail:nth-child(12) .front {
-  background-color: #f76c5e;
+  background-color: #cf5c36;
 }
 .rubiks-cube-1 .detail:nth-child(21) .front {
-  background-color: #f76c5e;
+  background-color: #cf5c36;
 }
 .rubiks-cube-1 .detail:nth-child(20) .front {
-  background-color: #f76c5e;
+  background-color: #cf5c36;
 }
 .rubiks-cube-1 .detail:nth-child(19) .front {
-  background-color: #f76c5e;
+  background-color: #cf5c36;
 }
 .rubiks-cube-1 .detail:nth-child(10) .front {
-  background-color: #f76c5e;
+  background-color: #cf5c36;
 }
 .rubiks-cube-1 .detail:nth-child(11) .front {
-  background-color: #f76c5e;
+  background-color: #cf5c36;
 }
 .rubiks-cube-1 .detail:nth-child(7) .back {
   background-color: #dee5e5;

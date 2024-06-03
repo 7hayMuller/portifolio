@@ -1,33 +1,47 @@
 "use client";
 
-import { useEffect } from "react";
-import "./cube.css";
+import TypeIt from "typeit-react";
+import Cube from "./cube";
 
-const RubiksCube = () => {
-  const details = Array.from({ length: 27 }, (_, i) => (
-    <div key={i} className="detail">
-      <div className="side front"></div>
-      <div className="side back"></div>
-      <div className="side top"></div>
-      <div className="side bottom"></div>
-      <div className="side left"></div>
-      <div className="side right"></div>
-    </div>
-  ));
+import "./globals.css";
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      document?.querySelector(".container")?.classList.add("move-cube-up");
-    }, 1500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
+const Page = () => {
   return (
-    <div className="container">
-      <div className="rubiks-cube rubiks-cube-1">{details}</div>
+    <div className="flex flex-col justify-center items-center align-middle w-[1000px]">
+      <Cube />
+      <div className="flex justify-between">
+        <div className="text-[35px] text-[#f3ffb9]">
+          <TypeIt
+            options={{
+              startDelay: 2000,
+              strings: ["Hi, I'm Thayná Müller!"],
+              speed: 100,
+              waitUntilVisible: true,
+              cursor: false,
+            }}
+          />
+        </div>
+        <div className="text-[35px] text-[#f3ffb9] font-bold">
+          <TypeIt
+            options={{ startDelay: 5000 }}
+            getBeforeInit={(instance: any) => {
+              instance
+                .type(" A Frontend developer.")
+                .pause(750)
+                .delete(21)
+                .type("An UI/UX Designer.")
+                .pause(750)
+                .delete(19);
+
+              instance.options({ loop: true, speed: 100 });
+
+              return instance;
+            }}
+          />
+        </div>
+      </div>
     </div>
   );
 };
 
-export default RubiksCube;
+export default Page;

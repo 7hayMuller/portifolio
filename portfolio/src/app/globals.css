@@ -17,8 +17,10 @@
 }
 
 body {
+  @apply min-h-screen flex items-center justify-center overflow-hidden;
   color: var(--foreground-rgb);
   background: var(--background-end-rgb);
+  font-family: var(--font-lora);
 }
 
 @layer utilities {
