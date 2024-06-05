@@ -1,0 +1,41 @@
+.imageContainer {
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.organicShape {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+  .imageContainer {
+    width: 600px;
+    height: 100vh;
+  }
+}
+
+@keyframes organicMovement {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translate(20px, -20px) rotate(10deg) scale(1.05);
+  }
+  50% {
+    transform: translate(-20px, 20px) rotate(-10deg) scale(1.1);
+  }
+  75% {
+    transform: translate(20px, 20px) rotate(10deg) scale(1.05);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+}
+
+.organicShape {
+  animation: organicMovement 10s infinite alternate;
+}

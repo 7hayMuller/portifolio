@@ -1,0 +1,20 @@
+.letter {
+  display: inline-block;
+  transition: transform 1s, opacity 1s;
+}
+
+.exploded {
+  animation: explode 1s forwards;
+}
+
+@keyframes explode {
+  0% {
+    transform: translate(0, 0) rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--random-x), var(--random-y))
+      rotate(var(--random-rotate));
+    opacity: 0;
+  }
+}
