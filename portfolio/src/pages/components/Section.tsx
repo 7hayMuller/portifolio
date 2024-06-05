@@ -1,9 +1,13 @@
 import Image, { StaticImageData } from "next/image";
 import styles from "../../styles/image.module.css";
+import ContactForm from "./ContactForm";
 
 interface SectionProps {
   id: string;
+  imgClassName?: string;
   title: string;
+  hasAnimation?: boolean;
+  hasForm?: boolean;
   content: string;
   imageSrc?: StaticImageData;
   animation?: React.ReactNode;
@@ -12,8 +16,11 @@ interface SectionProps {
 
 const Section: React.FC<SectionProps> = ({
   id,
+  imgClassName,
   animation,
   title,
+  hasAnimation,
+  hasForm,
   content,
   imageSrc,
   reverse = false,
@@ -29,16 +36,18 @@ const Section: React.FC<SectionProps> = ({
         <div
           className={`${styles.imageContainer} ${
             reverse ? "lg:order-2" : "lg:order-1"
-          }`}
+          } ${imgClassName}`}
         >
           <Image
             src={imageSrc}
             alt="side-image"
-            className={styles.organicShape}
+            className={hasAnimation ? styles.organicShape : ""}
           />
         </div>
-      ) : (
+      ) : animation ? (
         <div>{animation}</div>
+      ) : (
+        hasForm && <ContactForm />
       )}
       <div
         className={`flex flex-1 justify-center items-center p-6 ${

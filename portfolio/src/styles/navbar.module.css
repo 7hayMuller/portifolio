@@ -1,5 +1,5 @@
 .navbar {
-  @apply fixed right-5 top-2 z-50  backdrop-blur-lg;
+  @apply fixed right-5 top-2 z-50  backdrop-blur-lg p-2;
 }
 
 .navbar ul {
@@ -19,8 +19,4 @@
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
-}
-
-.navbar a:hover {
-  text-decoration: underline;
 }

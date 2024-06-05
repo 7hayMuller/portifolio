@@ -38,7 +38,7 @@ const Main = () => {
   return (
     <>
       <div
-        className={`absolute right-[30px] top-[10px] text-[#fff] font-bold font-sans cursor-pointer  text-[20px] border-s border-e border-t border-b pl-3 pr-3 border-purple
+        className={`absolute right-[30px] top-[10px] text-[#fff] font-bold font-sans cursor-pointer  text-[20px] border-s border-e border-t border-b pl-3 pr-3 border-purple overflow-hidden
           ${exploded ? styles.exploded : ""}`}
         onClick={handleClick}
       >
