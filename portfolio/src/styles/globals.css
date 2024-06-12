@@ -2523,3 +2523,46 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: #db324d;
 }
+
+.rotating-text {
+  font-family: var(--font-roboto) !important;
+  transform: translateX(-80px);
+}
+
+.rotating-text p {
+  display: inline-flex;
+  margin: 0;
+  vertical-align: top;
+}
+
+.rotating-text .word {
+  position: absolute;
+  display: flex;
+  opacity: 0.7;
+}
+
+.rotating-text .letter {
+  transform-origin: center center 25px;
+}
+
+.rotating-text .word .letter:first-child {
+  margin-left: 10px;
+}
+
+.rotating-text .letter:last-child {
+  margin-right: 0;
+}
+
+.rotating-text .letter.out {
+  transform: rotateX(90deg);
+  transition: 0.32s cubic-bezier(0.6, 0, 0.7, 0.2);
+}
+
+.rotating-text .letter.in {
+  transform: rotateX(0deg);
+  transition: 0.38s ease;
+}
+
+.rotating-text .letter.behind {
+  transform: rotateX(-90deg);
+}

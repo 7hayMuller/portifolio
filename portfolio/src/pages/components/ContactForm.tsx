@@ -49,80 +49,80 @@ const ContactForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={`backdrop-blur-md bg-white/20 p-8 mt-[100px] rounded-lg shadow-lg max-w-2xl w-full ${
-        isSent || error ? "h-[450px]" : "h-[400px]"
-      }`}
-    >
-      {isSent && (
-        <div className="flex justify-center">
-          <p className="text-[#ffd449] font-bold mb-4 text-center">
-            Message sent successfully!
-          </p>
-          <p className="text-[25px] -mt-2">&#128573;</p>
+    <div className="relative flex items-center justify-center mt-[50px] rounded-lg w-[600px] h-[500px]">
+      <form
+        onSubmit={handleSubmit}
+        className={`shadow-lg backdrop-blur-md bg-white/10 w-[600px] h-[450px] p-[20px] rounded-lg`}
+      >
+        {isSent && (
+          <div className="flex justify-center">
+            <p className="text-[#ffd449] font-bold mb-4 text-center">
+              Message sent successfully!
+            </p>
+            <p className="text-[25px] -mt-2">&#128573;</p>
+          </div>
+        )}
+        {error && (
+          <div className="flex justify-center">
+            <p className="text-[#db324d] font-bold mb-4">{error}</p>
+            <p className="text-[25px] -mt-2">&#128576;</p>
+          </div>
+        )}
+        <div className="mb-4">
+          <label htmlFor="name" className="block text-[#e2e8c0] font-bold">
+            Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="mt-2 p-2 w-full border rounded-lg focus:ring-2 focus:ring-[#ff4a1c] focus:border-transparent"
+            placeholder="Name"
+            required
+          />
         </div>
-      )}
-      {error && (
-        <div className="flex justify-center">
-          <p className="text-[#db324d] font-bold mb-4">{error}</p>
-          <p className="text-[25px] -mt-2">&#128576;</p>
+        <div className="mb-4">
+          <label htmlFor="email" className="block text-[#e2e8c0] font-bold">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="mt-2 p-2 w-full border rounded-lg focus:ring-2 focus:ring-[#ff4a1c] focus:border-transparent"
+            placeholder="Email"
+            required
+          />
         </div>
-      )}
-      <div className="mb-4">
-        <label htmlFor="name" className="block text-[#e2e8c0] font-bold">
-          Name
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          className="mt-2 p-2 w-full border rounded-lg focus:ring-2 focus:ring-[#ff4a1c] focus:border-transparent"
-          placeholder="Name"
-          required
-        />
-      </div>
-      <div className="mb-4">
-        <label htmlFor="email" className="block text-[#e2e8c0] font-bold">
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          className="mt-2 p-2 w-full border rounded-lg focus:ring-2 focus:ring-[#ff4a1c] focus:border-transparent"
-          placeholder="Email"
-          required
-        />
-      </div>
-      <div className="mb-4">
-        <label htmlFor="message" className="block text-[#e2e8c0] font-bold">
-          Message
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          className="mt-2 p-2 w-full border rounded-lg focus:ring-2 focus:ring-[#ff4a1c] focus:border-transparent"
-          placeholder="Message"
-          required
-        />
-      </div>
-      <div className="flex justify-center">
-        <button
-          type="submit"
-          className="mt-4 bg-[#db324d] text-[#e2e8c0] font-bold py-2 px-4 rounded-md hover:bg-teal-600 transition duration-200"
-          disabled={isLoading}
-        >
-          {isLoading ? "Sending..." : "Send Message"}
-        </button>
-      </div>
-    </form>
+        <div className="mb-4">
+          <label htmlFor="message" className="block text-[#e2e8c0] font-bold">
+            Message
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            className="mt-2 p-2 w-full border rounded-lg focus:ring-2 focus:ring-[#ff4a1c] focus:border-transparent"
+            placeholder="Message"
+            required
+          />
+        </div>
+        <div className="flex justify-center">
+          <button
+            type="submit"
+            className="mt-4 bg-[#db324d] text-[#e2e8c0] font-bold py-2 px-4 rounded-md hover:bg-teal-600 transition duration-200"
+            disabled={isLoading}
+          >
+            {isLoading ? "Sending..." : "Send Message"}
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

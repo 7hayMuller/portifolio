@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import TypeIt from "typeit-react";
 
 import { useRouter } from "next/navigation";
 
@@ -35,6 +34,55 @@ const Main = () => {
     }, 800);
   };
 
+  useEffect(() => {
+    const words = document.querySelectorAll(".word");
+    words.forEach((word) => {
+      const letters =
+        word.textContent
+          ?.split("")
+          .map((letter) => (letter === " " ? "\u00A0" : letter)) || [];
+      word.textContent = "";
+      letters.forEach((letter) => {
+        const span = document.createElement("span");
+        span.textContent = letter;
+        span.className = "letter";
+        word.append(span);
+      });
+    });
+
+    let currentWordIndex = 0;
+    const maxWordIndex = words.length - 1;
+
+    const rotateText = () => {
+      const currentWord = words[currentWordIndex];
+      const nextWord =
+        currentWordIndex === maxWordIndex
+          ? words[0]
+          : words[currentWordIndex + 1];
+
+      Array.from(currentWord.children).forEach((letter, i) => {
+        setTimeout(() => {
+          (letter as HTMLElement).className = "letter out";
+        }, i * 80);
+      });
+
+      Array.from(nextWord.children).forEach((letter, i) => {
+        (letter as HTMLElement).className = "letter behind";
+        setTimeout(() => {
+          (letter as HTMLElement).className = "letter in";
+        }, 340 + i * 80);
+      });
+
+      currentWordIndex =
+        currentWordIndex === maxWordIndex ? 0 : currentWordIndex + 1;
+    };
+
+    rotateText();
+    const intervalId = setInterval(rotateText, 4000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <>
       <div
@@ -54,35 +102,29 @@ const Main = () => {
       </div>
       <SineWave />
       <div className="absolute bottom-[100px] w-full flex flex-col items-center">
-        <div className="flex justify-between">
-          <div className="text-[35px] text-[#e2e8c0] mr-[10px]">
-            <TypeIt
-              options={{
-                startDelay: 2000,
-                strings: ["Hi, I'm Thayná Müller."],
-                speed: 100,
-                waitUntilVisible: true,
-                cursor: false,
-              }}
-            />
-          </div>
-          <div className="text-[35px] text-[#e2e8c0] font-bold">
-            <TypeIt
-              options={{ startDelay: 5500 }}
-              getBeforeInit={(instance: any) => {
-                instance
-                  .type("A Frontend developer!")
-                  .pause(750)
-                  .delete(21)
-                  .type("A UX/UI Designer!")
-                  .pause(750)
-                  .delete(19);
-
-                instance.options({ loop: true, speed: 100 });
-
-                return instance;
-              }}
-            />
+        <div className="flex justify-center">
+          <div className="rotating-text">
+            <p className="text-[20px] text-[#e2e8c0] opacity-70">
+              Hi, I&apos;m Thayná Müller.
+            </p>
+            <p>
+              <span
+                className="word text-[20px] text-[#8e44ad] font-bold cursor-pointer"
+                onClick={() => {
+                  router.push("/about/#section2");
+                }}
+              >
+                A Frontend developer.
+              </span>
+              <span
+                onClick={() => {
+                  router.push("/about/#section3");
+                }}
+                className="word text-[20px] text-[#f1c40f] font-bold cursor-pointer"
+              >
+                A UX/UI designer.
+              </span>
+            </p>
           </div>
         </div>
       </div>
