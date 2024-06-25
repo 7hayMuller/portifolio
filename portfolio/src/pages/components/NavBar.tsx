@@ -27,14 +27,12 @@ const Navbar = () => {
     };
   }, [activeSection]);
 
-  console.log("ACTIVE", activeSection);
-
   return (
     <nav className={styles.navbar}>
       <ul>
         <li
           className={`pb-2 ${
-            activeSection === "section1" ? "border-b-4 border-[#db324d]" : ""
+            activeSection === "section1" ? "border-b-4 border-[#ffd131]" : ""
           }`}
         >
           <Link href="#section1" onClick={() => setActiveSection("section1")}>
@@ -43,7 +41,7 @@ const Navbar = () => {
         </li>
         <li
           className={`pb-2 ${
-            activeSection === "section2" ? "border-b-4 border-[#db324d]" : ""
+            activeSection === "section2" ? "border-b-4 border-[#ffd131]" : ""
           }`}
         >
           <Link href="#section2" onClick={() => setActiveSection("section2")}>
@@ -52,7 +50,7 @@ const Navbar = () => {
         </li>
         <li
           className={`pb-2 ${
-            activeSection === "section3" ? "border-b-4 border-[#db324d]" : ""
+            activeSection === "section3" ? "border-b-4 border-[#ffd131]" : ""
           }`}
         >
           <Link href="#section3" onClick={() => setActiveSection("section3")}>
@@ -61,7 +59,7 @@ const Navbar = () => {
         </li>
         <li
           className={`pb-2 ${
-            activeSection === "section4" ? "border-b-4 border-[#db324d]" : ""
+            activeSection === "section4" ? "border-b-4 border-[#ffd131]" : ""
           }`}
         >
           <Link href="#section4" onClick={() => setActiveSection("section4")}>

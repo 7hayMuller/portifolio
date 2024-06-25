@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --foreground: #171123;
-  --background-start: #171123;
-  --background-end: #171123;
+  --foreground: #252323;
+  --background-start: #252323;
+  --background-end: #252323;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground: #171123;
-    --background-start: #171123;
-    --background-end: #171123;
+    --foreground: #252323;
+    --background-start: #252323;
+    --background-end: #252323;
     --secundary-background: #84e296;
   }
 }
@@ -2521,7 +2521,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #db324d;
+  background-color: #ffd131;
 }
 
 .rotating-text {
@@ -2538,7 +2538,6 @@ body {
 .rotating-text .word {
   position: absolute;
   display: flex;
-  opacity: 0.7;
 }
 
 .rotating-text .letter {
@@ -2565,4 +2564,51 @@ body {
 
 .rotating-text .letter.behind {
   transform: rotateX(-90deg);
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+}
+
+#MainContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 800px;
+  width: 950px;
+}
+
+#ProductCard {
+  background: rgba(255, 255, 255, 0.26);
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  box-shadow: 2px 2px 20px 1px rgba(0, 0, 0, 0.548);
+  position: relative;
+  height: calc(var(--cardHeight) * 1px);
+  width: calc(var(--cardWidth) * 1px);
+  margin: 0;
+  display: grid;
+  grid-template-rows: 20% 15% 12% 11% 11% 11% 20%;
+  grid-template-columns: 40px 1fr 40px 40px 40px 40px 40px 1fr 40px;
+  border-radius: 50px;
+}
+
+.glass-card {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px; /* Adjust the width as needed */
+  height: 200px; /* Adjust the height as needed */
 }

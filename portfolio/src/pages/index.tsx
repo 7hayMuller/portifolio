@@ -104,24 +104,14 @@ const Main = () => {
       <div className="absolute bottom-[100px] w-full flex flex-col items-center">
         <div className="flex justify-center">
           <div className="rotating-text">
-            <p className="text-[20px] text-[#e2e8c0] opacity-70">
+            <p className="text-[20px] text-[#e2e8c0]">
               Hi, I&apos;m Thayná Müller.
             </p>
             <p>
-              <span
-                className="word text-[20px] text-[#8e44ad] font-bold cursor-pointer"
-                onClick={() => {
-                  router.push("/about/#section2");
-                }}
-              >
+              <span className="word text-[20px] text-[#8e44ad] font-bold cursor-pointer">
                 A Frontend developer.
               </span>
-              <span
-                onClick={() => {
-                  router.push("/about/#section3");
-                }}
-                className="word text-[20px] text-[#f1c40f] font-bold cursor-pointer"
-              >
+              <span className="word text-[20px] text-[#f1c40f] font-bold cursor-pointer">
                 A UX/UI designer.
               </span>
             </p>

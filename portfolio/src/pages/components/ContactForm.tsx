@@ -8,9 +8,7 @@ const ContactForm = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isSent, setIsSent] = useState(false);
-  const [error, setError] = useState(
-    "Deu erro aqui o arrombada, conserta essa joça"
-  );
+  const [error, setError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -49,10 +47,10 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center mt-[50px] rounded-lg w-[600px] h-[500px]">
+    <div className="relative flex items-center justify-center mt-[50px] rounded-lg w-[500px] h-[500px]">
       <form
         onSubmit={handleSubmit}
-        className={`shadow-lg backdrop-blur-md bg-white/10 w-[600px] h-[450px] p-[20px] rounded-lg`}
+        className="mt-[100px] w-[600px] h-[300px] p-4 "
       >
         {isSent && (
           <div className="flex justify-center">
@@ -69,45 +67,36 @@ const ContactForm = () => {
           </div>
         )}
         <div className="mb-4">
-          <label htmlFor="name" className="block text-[#e2e8c0] font-bold">
-            Name
-          </label>
           <input
             type="text"
             id="name"
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="mt-2 p-2 w-full border rounded-lg focus:ring-2 focus:ring-[#ff4a1c] focus:border-transparent"
+            className="w-full py-3 pl-4 pr-16 bg-black opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-purple-500 transition duration-200 shadow-md"
             placeholder="Name"
             required
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="email" className="block text-[#e2e8c0] font-bold">
-            Email
-          </label>
           <input
             type="email"
             id="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="mt-2 p-2 w-full border rounded-lg focus:ring-2 focus:ring-[#ff4a1c] focus:border-transparent"
+            className="w-full py-3 pl-4 pr-16 bg-black opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-purple-500 transition duration-200 shadow-md"
             placeholder="Email"
             required
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="message" className="block text-[#e2e8c0] font-bold">
-            Message
-          </label>
           <textarea
             id="message"
             name="message"
             value={formData.message}
             onChange={handleChange}
-            className="mt-2 p-2 w-full border rounded-lg focus:ring-2 focus:ring-[#ff4a1c] focus:border-transparent"
+            className="w-full py-3 pl-4 pr-16 bg-black opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-purple-500 transition duration-200 shadow-md"
             placeholder="Message"
             required
           />
@@ -115,7 +104,7 @@ const ContactForm = () => {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="mt-4 bg-[#db324d] text-[#e2e8c0] font-bold py-2 px-4 rounded-md hover:bg-teal-600 transition duration-200"
+            className="px-6 py-3 text-white bg-purple-700 rounded-lg hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-500"
             disabled={isLoading}
           >
             {isLoading ? "Sending..." : "Send Message"}
