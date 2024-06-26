@@ -33,7 +33,7 @@ const Section: React.FC<SectionProps> = ({
       id={id}
       className={`flex flex-col lg:flex-row ${
         reverse ? "lg:flex-row-reverse" : ""
-      } min-h-screen relative`}
+      }  relative h-[600px]`}
     >
       {imageSrc ? (
         <>

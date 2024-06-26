@@ -5,15 +5,9 @@
   position: relative;
 }
 
-.organicShape {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 @media (min-width: 1024px) {
   .imageContainer {
-    width: 500px;
+    width: 600px;
     height: 100vh;
   }
 }

@@ -1,17 +1,17 @@
 // components/Carousel.js
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Css from "../../../public/assets/css3.png";
+import Html from "../../../public/assets/html5.png";
+import ReactLogo from "../../../public/assets/react.png";
+import Next from "../../../public/assets/next.png";
+import Tailwind from "../../../public/assets/tailwind.png";
+import Jest from "../../../public/assets/jest.png";
 
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFastTransition, setIsFastTransition] = useState(false);
-  const images = [
-    "https://cryptologos.cc/logos/1inch-1inch-logo.svg",
-    "https://cryptologos.cc/logos/avalanche-avax-logo.svg",
-    "https://cryptologos.cc/logos/bitcoin-btc-logo.svg",
-    "https://cryptologos.cc/logos/decentraland-mana-logo.svg",
-    "https://cryptologos.cc/logos/dogecoin-doge-logo.svg",
-  ];
+  const images = [Css, Html, ReactLogo, Next, Tailwind, Jest];
 
   useEffect(() => {
     const interval = setInterval(() => {

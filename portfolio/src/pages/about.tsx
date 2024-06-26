@@ -1,5 +1,3 @@
-import Sun from "../../public/assets/sun.png";
-import FrontImage from "../../public/assets/frontImage.png";
 import UxUiImage from "../../public/assets/uxImage.png";
 import Navbar from "./components/NavBar";
 import Section from "./components/Section";
@@ -25,9 +23,10 @@ const About = () => {
           animation={
             <ModelViewer
               src="https://solarsystem.nasa.gov/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBblVRIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--abda6331ea1271cb16bf7b8b08f42b0ad49115b2/Sun_1_1391000.glb?disposition=inline"
-              alt="A 3D model of an astronaut"
+              alt="A 3D model of the sun"
               ar
               autoRotate
+              cameraControls
             />
           }
         />
@@ -66,6 +65,7 @@ const About = () => {
           title="UX/UI Projects"
           content="Here are some of the projects I've worked on, showcasing my skills in frontend development and UX/UI design."
           imageSrc={UxUiImage}
+          imgClassName="mt-[30px]"
         />
         <Section
           id="section4"
