@@ -32,7 +32,7 @@ const Navbar = () => {
       <ul>
         <li
           className={`pb-2 ${
-            activeSection === "section1" ? "border-b-4 border-[#ffd131]" : ""
+            activeSection === "section1" ? "border-b-4 border-[#be1d90]" : ""
           }`}
         >
           <Link href="#section1" onClick={() => setActiveSection("section1")}>
@@ -41,7 +41,7 @@ const Navbar = () => {
         </li>
         <li
           className={`pb-2 ${
-            activeSection === "section2" ? "border-b-4 border-[#ffd131]" : ""
+            activeSection === "section2" ? "border-b-4 border-[#be1d90]" : ""
           }`}
         >
           <Link href="#section2" onClick={() => setActiveSection("section2")}>
@@ -50,7 +50,7 @@ const Navbar = () => {
         </li>
         <li
           className={`pb-2 ${
-            activeSection === "section3" ? "border-b-4 border-[#ffd131]" : ""
+            activeSection === "section3" ? "border-b-4 border-[#be1d90]" : ""
           }`}
         >
           <Link href="#section3" onClick={() => setActiveSection("section3")}>
@@ -59,7 +59,7 @@ const Navbar = () => {
         </li>
         <li
           className={`pb-2 ${
-            activeSection === "section4" ? "border-b-4 border-[#ffd131]" : ""
+            activeSection === "section4" ? "border-b-4 border-[#be1d90]" : ""
           }`}
         >
           <Link href="#section4" onClick={() => setActiveSection("section4")}>

@@ -54,8 +54,8 @@ const Carousel = () => {
               <Image
                 src={src}
                 alt={`Slide ${index}`}
-                width={150}
-                height={150}
+                width={100}
+                height={100}
               />
             </div>
           </div>

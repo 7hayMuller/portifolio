@@ -7,7 +7,7 @@ interface SectionProps {
   id: string;
   imgClassName?: string;
   animationClassName?: string;
-  title: string;
+  title?: React.ReactNode;
   hasAnimation?: boolean;
   hasForm?: boolean;
   content: string;

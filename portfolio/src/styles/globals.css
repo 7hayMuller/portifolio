@@ -2521,7 +2521,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #ffd131;
+  background-color: #be1d90;
 }
 
 .rotating-text {
@@ -2611,4 +2611,27 @@ body {
   justify-content: center;
   width: 200px; /* Adjust the width as needed */
   height: 200px; /* Adjust the height as needed */
+}
+.home-container {
+  padding: 20px;
+}
+
+.section {
+  margin: 50px 0;
+}
+
+.heading {
+  font-size: 2.5em;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.paragraph {
+  font-size: 1.2em;
+  color: #666;
+  transition: color 0.3s;
+}
+
+.active {
+  color: #6e32e1 !important;
 }
