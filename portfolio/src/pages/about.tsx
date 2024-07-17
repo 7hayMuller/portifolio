@@ -111,7 +111,7 @@ const About = () => {
         />
         <div className="relative mt-10">
           <h1 className="absolute inset-0 m-auto text-[#e2e8c0] text-[62px] font-bold text-center">
-            Contact <strong className="text-[#be1d90] underline">me</strong> 💻
+            Contact <strong className="text-[#be1d90]">me</strong> 💻
           </h1>
         </div>
         <Section
