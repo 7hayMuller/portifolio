@@ -171,7 +171,12 @@ const Main = () => {
           height="40"
           className="absolute -bottom-[100px] right-5 cursor-pointer"
         />
-        <audio ref={audioRef} src="/assets/particles.mp3" />
+        <audio
+          ref={audioRef}
+          src="/assets/particles.mp3"
+          autoPlay={true}
+          loop
+        />
       </div>
     </>
   );
