@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 import styles from "../styles/effect.module.css";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import FloatingSpheres from "./components/FloatingSpheres";
 
 const About = () => {
   const router = useRouter();
@@ -103,11 +104,16 @@ const About = () => {
               </p>
             </div>
           }
+          reverse
           id="section3"
           title="UX/UI Projects"
           content="Here are some of the projects I've worked on, showcasing my skills in frontend development and UX/UI design."
-          imageSrc={UxUiImage}
-          imgClassName="mt-[30px]"
+          animationClassName="mt-[50px]"
+          animation={
+            <div className="h-[500px] w-[600px]">
+              <FloatingSpheres />
+            </div>
+          }
         />
         <div className="relative mt-10">
           <h1 className="absolute inset-0 m-auto text-[#e2e8c0] text-[62px] font-bold text-center">
