@@ -1,20 +1,47 @@
 .letter {
   display: inline-block;
-  transition: transform 1s, opacity 1s;
+  transition: transform 0.8s;
 }
 
-.exploded {
-  animation: explode 1s forwards;
+.rotating-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-@keyframes explode {
-  0% {
-    transform: translate(0, 0) rotate(0);
-    opacity: 1;
+.bottomText {
+  position: absolute;
+  bottom: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .letter {
+    font-size: 16px;
   }
-  100% {
-    transform: translate(var(--random-x), var(--random-y))
-      rotate(var(--random-rotate));
-    opacity: 0;
+
+  .exploded {
+    font-size: 14px;
+  }
+
+  .rotating-text p {
+    text-align: center;
+  }
+
+  .absolute {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 18px;
+  }
+
+  .bottomText {
+    bottom: 50px;
+    left: 2px;
   }
 }

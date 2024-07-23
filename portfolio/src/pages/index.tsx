@@ -1,31 +1,25 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-
 import styles from "../styles/effect.module.css";
 import SineWave from "./components/SineWave";
 
 const Main = () => {
   const router = useRouter();
-
   const [exploded, setExploded] = useState(false);
-  // const [isPlaying, setIsPlaying] = useState(true);
-  // const audioRef = useRef<any>(null);
-  // const canvasRef = useRef<any>(null);
-  // const offsetRef = useRef(0);
 
   useEffect(() => {
     if (exploded) {
       const letters = document.querySelectorAll(`.${styles.letter}`);
-      letters.forEach((letter: any) => {
+      letters.forEach((letter) => {
+        const element = letter as HTMLElement;
         const randomX = (Math.random() - 0.5) * 200;
         const randomY = (Math.random() - 0.5) * 200;
         const randomRotate = (Math.random() - 0.5) * 720;
-        letter.style.setProperty("--random-x", `${randomX}px`);
-        letter.style.setProperty("--random-y", `${randomY}px`);
-        letter.style.setProperty("--random-rotate", `${randomRotate}deg`);
+        element.style.setProperty("--random-x", `${randomX}px`);
+        element.style.setProperty("--random-y", `${randomY}px`);
+        element.style.setProperty("--random-rotate", `${randomRotate}deg`);
       });
     }
   }, [exploded]);
@@ -87,52 +81,10 @@ const Main = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  // const togglePlayPause = () => {
-  //   if (isPlaying) {
-  //     audioRef?.current.pause();
-  //   } else {
-  //     audioRef?.current.play();
-  //   }
-  //   setIsPlaying(!isPlaying);
-  // };
-
-  // useEffect(() => {
-  //   const canvas = canvasRef.current;
-  //   const ctx = canvas.getContext("2d");
-  //   let animationFrameId: any;
-
-  //   const drawSineWave = () => {
-  //     ctx.clearRect(0, 0, canvas.width, canvas.height);
-  //     ctx.strokeStyle = "#34D399";
-  //     ctx.lineWidth = 2;
-  //     ctx.beginPath();
-  //     const width = canvas.width;
-  //     const height = canvas.height;
-  //     const amplitude = height / 4;
-  //     const frequency = 0.08;
-  //     const offset = offsetRef.current;
-
-  //     for (let x = 0; x < width; x++) {
-  //       const y = height / 2 + amplitude * Math.sin(frequency * x + offset);
-  //       ctx.lineTo(x, y);
-  //     }
-  //     ctx.stroke();
-
-  //     offsetRef.current += 0.05;
-  //     animationFrameId = requestAnimationFrame(drawSineWave);
-  //   };
-
-  //   if (isPlaying) {
-  //     drawSineWave();
-  //   }
-
-  //   return () => cancelAnimationFrame(animationFrameId);
-  // }, [isPlaying]);
-
   return (
     <>
       <div
-        className={`absolute right-[30px] top-[10px] text-[#fff] font-bold font-sans cursor-pointer  text-[20px] border-s border-e border-t border-b pl-3 pr-3 border-purple overflow-hidden
+        className={`absolute right-[30px] top-[10px] text-[#fff] font-bold font-sans cursor-pointer text-[20px] border-s border-e border-t border-b pl-3 pr-3 border-purple overflow-hidden
           ${exploded ? styles.exploded : ""}`}
         onClick={handleClick}
       >
@@ -147,9 +99,11 @@ const Main = () => {
         ))}
       </div>
       <SineWave />
-      <div className="absolute bottom-[100px] w-full flex flex-col items-center">
+      <div
+        className={`absolute bottom-[100px] w-full flex flex-col items-center ${styles.bottomText}`}
+      >
         <div className="flex justify-center">
-          <div className="rotating-text">
+          <div className={`rotating-text ${styles.rotatingText} text-center`}>
             <p className="text-[20px] text-[#e2e8c0]">
               Hi, I&apos;m Thayná Müller.
             </p>
@@ -163,20 +117,6 @@ const Main = () => {
             </p>
           </div>
         </div>
-
-        {/* <canvas
-          onClick={togglePlayPause}
-          ref={canvasRef}
-          width="40"
-          height="40"
-          className="absolute -bottom-[100px] right-5 cursor-pointer"
-        />
-        <audio
-          ref={audioRef}
-          src="/assets/particles.mp3"
-          autoPlay={true}
-          loop
-        /> */}
       </div>
     </>
   );
