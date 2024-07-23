@@ -50,7 +50,26 @@ const About = () => {
               I
             </p>
           }
-          content="I'm a frontend developer based in Brazil, Rio de Janeiro with 3+ years of experience in development of interfaces, bug resolution, and more..."
+          content={
+            <>
+              <p>
+                Hello! I&apos;m Thayná Müller, a 27-year-old UX/UI designer and
+                frontend developer from Brazil, currently living in the
+                beautiful state of Rio de Janeiro. I have a passion for creating
+                intuitive, responsive, and visually appealing digital
+                experiences. When I&apos;m not designing or coding, I love
+                traveling and exploring new cultures, which inspires my creative
+                process and broadens my perspective.
+              </p>
+              <br />
+
+              <p>
+                Welcome to my portfolio, where you can see some of the projects
+                I&apos;ve worked on. Let&apos;s connect and create something
+                amazing together!
+              </p>
+            </>
+          }
           imageSrc={Me}
         />
         <Section
@@ -78,7 +97,7 @@ const About = () => {
           }
           id="section2"
           title="Frontend Projects"
-          content="Here are some of the projects I've worked on, showcasing my skills in frontend development and UX/UI design."
+          content="Discover the projects I've developed, highlighting my expertise in frontend development. See how I build responsive, efficient, and visually appealing web applications using modern technologies and industry best practices."
           animationClassName="absolute left-[60px] top-[200px]"
           animation={<Carousel />}
           reverse
@@ -107,7 +126,7 @@ const About = () => {
           reverse
           id="section3"
           title="UX/UI Projects"
-          content="Here are some of the projects I've worked on, showcasing my skills in frontend development and UX/UI design."
+          content="Here are some of the projects I've worked on, showcasing my skills in  UX/UI design. Explore how I create intuitive, responsive, and visually appealing user experiences."
           animationClassName="mt-[50px]"
           animation={
             <div className="h-[500px] w-[600px]">

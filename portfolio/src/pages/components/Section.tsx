@@ -10,7 +10,7 @@ interface SectionProps {
   title?: React.ReactNode;
   hasAnimation?: boolean;
   hasForm?: boolean;
-  content: string;
+  content: React.ReactNode | string;
   imageSrc?: StaticImageData;
   animation?: React.ReactNode;
   reverse?: boolean;
