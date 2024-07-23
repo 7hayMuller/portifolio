@@ -155,3 +155,7 @@ body {
 .active {
   color: #6e32e1 !important;
 }
+
+span.emoji-worker {
+  font-size: 40px;
+}

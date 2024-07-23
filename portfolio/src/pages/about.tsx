@@ -62,7 +62,7 @@ const About = () => {
               onClick={() => handleClick("/frontend-projects")}
             >
               <p className="text-[18px] text-[#6ad5cb] hover:text-[#be1d90] font-bold">
-                {"Ver mais".split("").map((char, index) => (
+                {"See more".split("").map((char, index) => (
                   <span
                     key={index}
                     className={`${styles.letter} ${
@@ -90,7 +90,7 @@ const About = () => {
                 className="text-[18px] text-[#6ad5cb] hover:text-[#be1d90] font-bold"
                 onClick={() => handleClick("/uxui-projects")}
               >
-                {"Ver mais".split("").map((char, index) => (
+                {"See more".split("").map((char, index) => (
                   <span
                     key={index}
                     className={`${styles.letter} ${
