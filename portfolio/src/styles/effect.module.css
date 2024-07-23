@@ -3,14 +3,6 @@
   transition: transform 0.8s;
 }
 
-.rotating-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
 .bottomText {
   position: absolute;
   bottom: 100px;
@@ -29,7 +21,7 @@
     font-size: 14px;
   }
 
-  .rotating-text p {
+  .rotatingText p {
     text-align: center;
   }
 
@@ -42,6 +34,5 @@
 
   .bottomText {
     bottom: 50px;
-    left: 2px;
   }
 }
