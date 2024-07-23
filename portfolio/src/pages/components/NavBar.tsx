@@ -2,8 +2,13 @@ import Link from "next/link";
 import styles from "../../styles/navbar.module.css";
 import { useEffect, useState } from "react";
 
-const Navbar = () => {
-  const [activeSection, setActiveSection] = useState<string>("section1");
+type Props = {
+  extern?: boolean;
+  section?: string;
+};
+
+const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
+  const [activeSection, setActiveSection] = useState<string>(section);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,7 +40,10 @@ const Navbar = () => {
             activeSection === "section1" ? "border-b-4 border-[#be1d90]" : ""
           }`}
         >
-          <Link href="#section1" onClick={() => setActiveSection("section1")}>
+          <Link
+            href={extern ? "/about#section1" : "#section1"}
+            onClick={() => setActiveSection("section1")}
+          >
             Me, Myself & I
           </Link>
         </li>
@@ -44,7 +52,10 @@ const Navbar = () => {
             activeSection === "section2" ? "border-b-4 border-[#be1d90]" : ""
           }`}
         >
-          <Link href="#section2" onClick={() => setActiveSection("section2")}>
+          <Link
+            href={extern ? "/frontend-projects" : "#section2"}
+            onClick={() => setActiveSection("section2")}
+          >
             Frontend Projects
           </Link>
         </li>
@@ -53,7 +64,10 @@ const Navbar = () => {
             activeSection === "section3" ? "border-b-4 border-[#be1d90]" : ""
           }`}
         >
-          <Link href="#section3" onClick={() => setActiveSection("section3")}>
+          <Link
+            href={extern ? "/uxui-projects" : "#section3"}
+            onClick={() => setActiveSection("section3")}
+          >
             UX/UI Projects
           </Link>
         </li>
@@ -62,7 +76,10 @@ const Navbar = () => {
             activeSection === "section4" ? "border-b-4 border-[#be1d90]" : ""
           }`}
         >
-          <Link href="#section4" onClick={() => setActiveSection("section4")}>
+          <Link
+            href={extern ? "/about/#section4" : "#section4"}
+            onClick={() => setActiveSection("section4")}
+          >
             Contact
           </Link>
         </li>
