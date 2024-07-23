@@ -47,22 +47,22 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center mt-[50px] rounded-lg w-[500px] h-[500px]">
+    <div className="relative flex items-center justify-center mt-12 sm:mt-16 md:mt-20 lg:mt-24 px-4 w-full max-w-2xl mx-auto">
       <form
         onSubmit={handleSubmit}
-        className="mt-[100px] w-[600px] h-[300px] p-4 "
+        className="w-full max-w-lg bg-black bg-opacity-50 p-6 rounded-lg shadow-lg"
       >
         {isSent && (
-          <div className="flex justify-center">
-            <p className="text-[#ffd449] font-bold mb-4 text-center">
+          <div className="flex justify-center mb-4">
+            <p className="text-[#ffd449] font-bold text-center">
               Message sent successfully!
             </p>
             <p className="text-[25px] -mt-2">&#128573;</p>
           </div>
         )}
         {error && (
-          <div className="flex justify-center">
-            <p className="text-[#db324d] font-bold mb-4">{error}</p>
+          <div className="flex justify-center mb-4">
+            <p className="text-[#db324d] font-bold">{error}</p>
             <p className="text-[25px] -mt-2">&#128576;</p>
           </div>
         )}
@@ -73,7 +73,7 @@ const ContactForm = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full py-3 pl-4 pr-16 bg-black opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#be1d90] transition duration-200 shadow-md"
+            className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#be1d90] transition duration-200 shadow-md"
             placeholder="Name"
             required
           />
@@ -85,7 +85,7 @@ const ContactForm = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full py-3 pl-4 pr-16 bg-black opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#be1d90] transition duration-200 shadow-md"
+            className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#be1d90] transition duration-200 shadow-md"
             placeholder="Email"
             required
           />
@@ -96,7 +96,7 @@ const ContactForm = () => {
             name="message"
             value={formData.message}
             onChange={handleChange}
-            className="w-full py-3 pl-4 pr-16 bg-black opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#be1d90] transition duration-200 shadow-md"
+            className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#be1d90] transition duration-200 shadow-md"
             placeholder="Message"
             required
           />
@@ -107,7 +107,9 @@ const ContactForm = () => {
         >
           <button
             type="submit"
-            className="relative inline-block text-center bg-[#be1d90] text-white font-bold py-4 px-5 rounded-full min-w-[20em] text-lg no-underline before:content-[''] before:w-[4.4em] before:h-[2.95em] before:absolute before:bg-[#be1d90] before:rounded-full before:transition-transform before:duration-1000 before:ease-in-out before:scale-0 before:top-[-25%] before:left-[20%] before:z-[-1] after:content-[''] after:w-[4.4em] after:h-[2.95em] after:absolute after:bg-[#be1d90] after:rounded-full after:transition-transform after:duration-1000 after:ease-in-out after:scale-0 after:bottom-[-25%] after:right-[20%] after:z-[-1] hover:before:scale-100 hover:after:scale-100"
+            className="relative inline-block text-center bg-[#be1d90] text-white font-bold py-3 px-4 sm:py-4 sm:px-5 rounded-full min-w-[10em] sm:min-w-[15em] md:min-w-[20em] text-base sm:text-lg no-underline
+      before:content-[''] before:w-[2.5em] before:h-[2.0em] sm:before:w-[4.4em] sm:before:h-[2.95em] before:absolute before:bg-[#be1d90] before:rounded-full before:transition-transform before:duration-1000 before:ease-in-out before:scale-0 before:top-[-20%] sm:before:top-[-25%] before:left-[20%] before:z-[-1]
+      after:content-[''] after:w-[2.5em] after:h-[2.0em] sm:after:w-[4.4em] sm:after:h-[2.95em] after:absolute after:bg-[#be1d90] after:rounded-full after:transition-transform after:duration-1000 after:ease-in-out after:scale-0 after:bottom-[-20%] sm:after:bottom-[-25%] after:right-[20%] after:z-[-1] hover:before:scale-100 hover:after:scale-100"
             disabled={isLoading}
           >
             {isLoading ? "Sending..." : "Send Message"}

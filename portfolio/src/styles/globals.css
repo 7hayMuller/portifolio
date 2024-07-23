@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
   --foreground: #252323;
   --background-start: #252323;
@@ -18,7 +24,6 @@
 }
 
 body {
-  @apply min-h-screen flex items-center justify-center;
   color: var(--foreground);
   background: var(--background-end);
   font-family: var(--font-lato);
@@ -97,41 +102,39 @@ body {
   }
 }
 
-#MainContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 800px;
-  width: 950px;
-}
-
-#ProductCard {
-  background: rgba(255, 255, 255, 0.26);
-  border: 1px solid rgba(255, 255, 255, 0.62);
-  box-shadow: 2px 2px 20px 1px rgba(0, 0, 0, 0.548);
-  position: relative;
-  height: calc(var(--cardHeight) * 1px);
-  width: calc(var(--cardWidth) * 1px);
-  margin: 0;
-  display: grid;
-  grid-template-rows: 20% 15% 12% 11% 11% 11% 20%;
-  grid-template-columns: 40px 1fr 40px 40px 40px 40px 40px 1fr 40px;
-  border-radius: 50px;
-}
-
 .glass-card {
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 200px; /* Adjust the width as needed */
-  height: 200px; /* Adjust the height as needed */
+  transition: all 0.3s ease;
 }
+
+@media (max-width: 639px) {
+  .glass-card {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+@media (min-width: 640px) {
+  .glass-card {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .glass-card {
+    width: 175px;
+    height: 175px;
+  }
+}
+
 .home-container {
   padding: 20px;
 }

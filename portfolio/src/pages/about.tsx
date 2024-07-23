@@ -1,4 +1,5 @@
-import UxUiImage from "../../public/assets/uxImage.png";
+"use client";
+
 import Navbar from "./components/NavBar";
 import Section from "./components/Section";
 import { useRouter } from "next/router";
@@ -40,12 +41,11 @@ const About = () => {
   return (
     <>
       <Navbar />
-
-      <div className="relative z-10 pt-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <Section
           id="section1"
           title={
-            <p className="flex">
+            <p className="flex justify-center lg:justify-start">
               Me, Myself <strong className="text-[#6ad5cb] ml-1 mr-1">&</strong>{" "}
               I
             </p>
@@ -98,17 +98,19 @@ const About = () => {
           id="section2"
           title="Frontend Projects"
           content="Discover the projects I've developed, highlighting my expertise in frontend development. See how I build responsive, efficient, and visually appealing web applications using modern technologies and industry best practices."
-          animationClassName="absolute left-[60px] top-[200px]"
+          animationClassName="lg:absolute lg:left-[60px] lg:-top-[20px]"
           animation={<Carousel />}
           reverse
         />
         <Section
           action={
-            <div className="flex justify-end items-center mt-8 cursor-pointer">
-              <p
-                className="text-[18px] text-[#6ad5cb] hover:text-[#be1d90] font-bold"
-                onClick={() => handleClick("/uxui-projects")}
-              >
+            <div
+              className={`flex justify-end items-center mt-8 cursor-pointer ${
+                exploded ? styles.exploded : ""
+              }`}
+              onClick={() => handleClick("/ux-ui-projects")}
+            >
+              <p className="text-[18px] text-[#6ad5cb] hover:text-[#be1d90] font-bold">
                 {"See more".split("").map((char, index) => (
                   <span
                     key={index}
@@ -126,30 +128,31 @@ const About = () => {
           reverse
           id="section3"
           title="UX/UI Projects"
-          content="Here are some of the projects I've worked on, showcasing my skills in  UX/UI design. Explore how I create intuitive, responsive, and visually appealing user experiences."
-          animationClassName="mt-[50px]"
+          content="Here are some of the projects I've worked on, showcasing my skills in UX/UI design. Explore how I create intuitive, responsive, and visually appealing user experiences."
+          animationClassName="lg:mt-[50px] flex justify-center"
           animation={
-            <div className="h-[500px] w-[600px]">
+            <div className="lg:h-[500px] h-[200px] lg:w-[600px] w-[400px]">
               <FloatingSpheres />
             </div>
           }
         />
-        <div className="relative mt-10">
-          <h1 className="absolute inset-0 m-auto text-[#e2e8c0] text-[62px] font-bold text-center">
+        <div className="relative mt-10 text-center">
+          <h1 className="inline-block text-[#e2e8c0] text-[36px] sm:text-[48px] lg:text-[62px] font-bold">
             Contact <strong className="text-[#be1d90]">me</strong> 💻
           </h1>
         </div>
         <Section
           action={
-            <div className="flex items-center mt-8 cursor-pointer">
+            <div className="flex items-center mt-8 justify-center sm:justify-center md:justify-start lg:justify-start cursor-pointer">
               <a
                 href="https://github.com/7hayMuller"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="mr-5"
               >
                 <FaGithub
                   fontSize={25}
-                  className="mr-5 text-[#e2e8c0] hover:text-[#be1d90] cursor-pointer"
+                  className="text-[#e2e8c0] hover:text-[#be1d90] cursor-pointer"
                 />
               </a>
               <a
@@ -169,7 +172,7 @@ const About = () => {
           hasForm
         />
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-10">
         <p className="text-[12px] text-[#e2e8c0] font-bold mb-3">
           Made by me with 🩷
         </p>

@@ -1,6 +1,7 @@
 import Link from "next/link";
-import styles from "../../styles/navbar.module.css";
 import { useEffect, useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
+import styles from "../../styles/navbar.module.css";
 
 type Props = {
   extern?: boolean;
@@ -9,6 +10,11 @@ type Props = {
 
 const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
   const [activeSection, setActiveSection] = useState<string>(section);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+
+  const handleToggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,8 +39,31 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
   }, [activeSection]);
 
   return (
-    <nav className={styles.navbar}>
-      <ul>
+    <nav
+      className={`${styles.navbar} ${
+        isMobileMenuOpen && "h-[200px]"
+      } flex justify-between md:justify-end items-center`}
+    >
+      <div className="md:hidden z-50">
+        <button
+          onClick={() => handleToggleMobileMenu()}
+          className="text-[#e2e8c0]"
+        >
+          {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+        </button>
+      </div>
+      <ul
+        className={`fixed top-0 left-0 w-full ${
+          isMobileMenuOpen ? "h-full" : "h-0"
+        } bg-opacity-90 flex flex-col items-center justify-center transform ${
+          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+        } transition-all duration-300 md:relative md:top-auto md:left-auto md:w-auto md:h-auto md:bg-transparent md:flex-row md:items-center md:justify-end md:translate-x-0 overflow-hidden`}
+        style={{
+          backgroundColor: isMobileMenuOpen
+            ? "rgba(0, 0, 0, 0.3)"
+            : "transparent",
+        }}
+      >
         <li
           className={`pb-2 ${
             activeSection === "section1" ? "border-b-4 border-[#be1d90]" : ""
@@ -42,9 +71,14 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
         >
           <Link
             href={extern ? "/about#section1" : "#section1"}
-            onClick={() => setActiveSection("section1")}
+            onClick={() => {
+              setActiveSection("section1");
+              setIsMobileMenuOpen(false);
+            }}
           >
-            Me, Myself & I
+            <span className="text-xs sm:text-sm lg:text-base text-[#e2e8c0]">
+              Me, Myself & I
+            </span>
           </Link>
         </li>
         <li
@@ -54,9 +88,14 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
         >
           <Link
             href={extern ? "/frontend-projects" : "#section2"}
-            onClick={() => setActiveSection("section2")}
+            onClick={() => {
+              setActiveSection("section2");
+              setIsMobileMenuOpen(false);
+            }}
           >
-            Frontend Projects
+            <span className="text-xs sm:text-sm lg:text-base text-[#e2e8c0]">
+              Frontend Projects
+            </span>
           </Link>
         </li>
         <li
@@ -66,9 +105,14 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
         >
           <Link
             href={extern ? "/uxui-projects" : "#section3"}
-            onClick={() => setActiveSection("section3")}
+            onClick={() => {
+              setActiveSection("section3");
+              setIsMobileMenuOpen(false);
+            }}
           >
-            UX/UI Projects
+            <span className="text-xs sm:text-sm lg:text-base text-[#e2e8c0]">
+              UX/UI Projects
+            </span>
           </Link>
         </li>
         <li
@@ -77,10 +121,15 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
           }`}
         >
           <Link
-            href={extern ? "/about/#section4" : "#section4"}
-            onClick={() => setActiveSection("section4")}
+            href={extern ? "/about#section4" : "#section4"}
+            onClick={() => {
+              setActiveSection("section4");
+              setIsMobileMenuOpen(false);
+            }}
           >
-            Contact
+            <span className="text-xs sm:text-sm lg:text-base text-[#e2e8c0]">
+              Contact
+            </span>
           </Link>
         </li>
       </ul>

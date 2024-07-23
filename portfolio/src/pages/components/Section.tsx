@@ -1,3 +1,5 @@
+"use client";
+
 import Image, { StaticImageData } from "next/image";
 import styles from "../../styles/image.module.css";
 import ContactForm from "./ContactForm";
@@ -31,34 +33,40 @@ const Section: React.FC<SectionProps> = ({
   return (
     <div
       id={id}
-      className={`flex flex-col lg:flex-row ${
+      className={`relative flex flex-col lg:flex-row ${
         reverse ? "lg:flex-row-reverse" : ""
-      }  relative h-[600px]`}
+      } h-auto lg:h-[600px] px-4 py-6 lg:py-12 lg:px-8`}
     >
-      {imageSrc ? (
-        <>
-          <div
-            className={`${styles.imageContainer} ${
-              reverse ? "lg:order-2" : "lg:order-1"
-            } ${imgClassName}`}
-          >
-            <Image src={imageSrc} alt="side-image" />
-          </div>
-        </>
-      ) : animation ? (
-        <div className={animationClassName}>{animation}</div>
-      ) : (
-        hasForm && <ContactForm />
+      {imageSrc && (
+        <div
+          className={`order-2 lg:order-1 flex justify-center items-center w-full lg:w-1/2 ${
+            reverse ? "lg:order-2" : "lg:order-1"
+          } ${imgClassName}`}
+        >
+          <Image src={imageSrc} alt="side-image" layout="responsive" />
+        </div>
+      )}
+      {animation && !imageSrc && (
+        <div className={`order-1 lg:order-2 ${animationClassName}`}>
+          {animation}
+        </div>
+      )}
+      {!imageSrc && !animation && hasForm && (
+        <div className="order-1 lg:order-2 w-full lg:w-1/2">
+          <ContactForm />
+        </div>
       )}
       <div
-        className={`flex flex-1 justify-end items-center p-6 ${
-          reverse ? "lg:pr-6" : "lg:pl-[30px]"
+        className={`order-3 lg:order-3 flex flex-1 justify-center lg:justify-end items-center w-full lg:w-1/2 ${
+          reverse ? "lg:pr-6" : "lg:pl-6"
         }`}
       >
-        <div className="w-full lg:w-[500px] flex flex-col items-start">
-          <h1 className="text-[#e2e8c0] font-bold text-3xl mb-4">{title}</h1>
-          <p className="text-[#e2e8c0]">{content}</p>
-          {action && action}
+        <div className="w-full max-w-lg">
+          <h1 className="text-[#e2e8c0] font-bold text-3xl mb-4 text-center lg:text-left">
+            {title}
+          </h1>
+          <p className="text-[#e2e8c0] text-center lg:text-left">{content}</p>
+          {action && <div className="text-center lg:text-right">{action}</div>}
         </div>
       </div>
     </div>
