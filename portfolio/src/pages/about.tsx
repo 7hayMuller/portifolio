@@ -123,23 +123,26 @@ const About = () => {
         <Section
           action={
             <div className="flex items-center mt-8 cursor-pointer">
-              <FaGithub
-                fontSize={25}
-                className="mr-5 text-[#e2e8c0] hover:text-[#be1d90] cursor-pointer"
-                onClick={() =>
-                  window.open("https://github.com/7hayMuller", "_blank")
-                }
-              />
-              <FaLinkedin
-                fontSize={25}
-                className="text-[#e2e8c0] hover:text-[#be1d90] cursor-pointer"
-                onClick={() =>
-                  window.open(
-                    "https://www.linkedin.com/in/thaynamuller/",
-                    "_blank"
-                  )
-                }
-              />
+              <a
+                href="https://github.com/7hayMuller"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaGithub
+                  fontSize={25}
+                  className="mr-5 text-[#e2e8c0] hover:text-[#be1d90] cursor-pointer"
+                />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/thaynamuller/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaLinkedin
+                  fontSize={25}
+                  className="text-[#e2e8c0] hover:text-[#be1d90] cursor-pointer"
+                />
+              </a>
             </div>
           }
           id="section4"
