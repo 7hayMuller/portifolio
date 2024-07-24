@@ -2,15 +2,17 @@ import Navbar from "./components/NavBar";
 
 const FrontEndProjects = () => {
   return (
-    <div>
+    <>
       <Navbar extern section="section2" />
-      <h1 className="text-[#e2e8c0] text-[62px] font-bold text-center">
-        Frontend <strong className="text-[#be1d90]">Projects</strong>
-      </h1>
-      <p className="text-[#e2e8c0] text-[20px] text-center">
-        Building <span className="emoji-worker">👷🏼‍♀️</span>
-      </p>
-    </div>
+      <div className="flex flex-col justify-center items-center min-h-screen px-4">
+        <h1 className="text-[#e2e8c0] text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-4">
+          Frontend <strong className="text-[#be1d90]">Projects</strong>
+        </h1>
+        <p className="text-[#e2e8c0] text-lg sm:text-xl lg:text-2xl text-center">
+          Building <span className="emoji-worker">👷🏼‍♀️</span>
+        </p>
+      </div>
+    </>
   );
 };
 
