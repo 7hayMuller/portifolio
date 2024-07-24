@@ -65,7 +65,7 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
         }}
       >
         <li
-          className={`pb-2 ${
+          className={`pb-3 pt-3 ${
             activeSection === "section1" ? "border-b-4 border-[#be1d90]" : ""
           }`}
         >
@@ -82,7 +82,7 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
           </Link>
         </li>
         <li
-          className={`pb-2 ${
+          className={`pb-3 pt-3 ${
             activeSection === "section2" ? "border-b-4 border-[#be1d90]" : ""
           }`}
         >
@@ -99,7 +99,7 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
           </Link>
         </li>
         <li
-          className={`pb-2 ${
+          className={`pb-3 pt-3 ${
             activeSection === "section3" ? "border-b-4 border-[#be1d90]" : ""
           }`}
         >
@@ -116,7 +116,7 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
           </Link>
         </li>
         <li
-          className={`pb-2 ${
+          className={`pb-3 pt-3 ${
             activeSection === "section4" ? "border-b-4 border-[#be1d90]" : ""
           }`}
         >
