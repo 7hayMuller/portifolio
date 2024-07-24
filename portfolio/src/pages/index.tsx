@@ -26,7 +26,6 @@ const Main = () => {
 
   const handleClick = () => {
     setExploded(true);
-
     setTimeout(() => {
       router.push("/about");
     }, 800);
@@ -82,10 +81,10 @@ const Main = () => {
   }, []);
 
   return (
-    <>
+    <div className="relative flex flex-col items-center lg:w-full w-[500px] h-full">
       <div
-        className={`absolute right-[30px] top-[10px] text-[#fff] font-bold font-sans cursor-pointer text-[20px] border-s border-e border-t border-b pl-3 pr-3 border-purple overflow-hidden
-          ${exploded ? styles.exploded : ""}`}
+        className={`absolute top-2 lg:top-2 right-3 lg:right-8 text-[#fff] font-bold font-sans cursor-pointer text-[20px] border border-purple w-[100px] lg:h-[40px] h-[50px] flex items-center justify-center overflow-hidden
+    ${exploded ? styles.exploded : ""}`}
         onClick={handleClick}
       >
         {"About".split("").map((char, index) => (
@@ -100,7 +99,7 @@ const Main = () => {
       </div>
       <SineWave />
       <div
-        className={`absolute bottom-[100px] w-full flex flex-col items-center ${styles.bottomText}`}
+        className={`lg:mb-0 mb-[100px] w-full flex flex-col items-center ${styles.bottomText}`}
       >
         <div className="flex justify-center">
           <div className={`rotating-text ${styles.rotatingText} text-center`}>
@@ -118,7 +117,7 @@ const Main = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

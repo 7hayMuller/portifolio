@@ -166,7 +166,13 @@ const SineWave: React.FC = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} id="backgroundCanvas" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      id="backgroundCanvas"
+      style={{ minWidth: 500, width: "100%" }}
+    />
+  );
 };
 
 export default SineWave;
