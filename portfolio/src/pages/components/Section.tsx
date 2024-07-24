@@ -39,7 +39,7 @@ const Section: React.FC<SectionProps> = ({
     >
       {imageSrc && (
         <div
-          className={`order-2 lg:order-1 flex justify-center items-center w-full lg:w-1/2 ${
+          className={`order-1 lg:order-1 flex justify-center items-center w-full lg:w-1/2 ${
             reverse ? "lg:order-2" : "lg:order-1"
           } ${imgClassName}`}
         >
@@ -51,17 +51,13 @@ const Section: React.FC<SectionProps> = ({
           {animation}
         </div>
       )}
-      {!imageSrc && !animation && hasForm && (
-        <div className="order-1 lg:order-2 w-full lg:w-1/2">
-          <ContactForm />
-        </div>
-      )}
+
       <div
-        className={`order-3 lg:order-3 flex flex-1 justify-center lg:justify-end items-center w-full lg:w-1/2 ${
+        className={`order-1 lg:order-3 flex flex-1 justify-center lg:justify-end items-center w-full lg:w-1/2 ${
           reverse ? "lg:pr-6" : "lg:pl-6"
         }`}
       >
-        <div className="w-full max-w-lg">
+        <div className="w-full max-w-lg mt-5 lg:mt-0">
           <h1 className="text-[#e2e8c0] font-bold text-3xl mb-4 text-center lg:text-left">
             {title}
           </h1>
@@ -69,6 +65,11 @@ const Section: React.FC<SectionProps> = ({
           {action && <div className="text-center lg:text-right">{action}</div>}
         </div>
       </div>
+      {!imageSrc && !animation && hasForm && (
+        <div className="order-3 lg:order-2 w-full lg:w-1/2">
+          <ContactForm />
+        </div>
+      )}
     </div>
   );
 };

@@ -76,7 +76,7 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
               setIsMobileMenuOpen(false);
             }}
           >
-            <span className="text-xs sm:text-sm lg:text-base text-[#e2e8c0]">
+            <span className="text-sm sm:text-md lg:text-base text-[#e2e8c0]">
               Me, Myself & I
             </span>
           </Link>

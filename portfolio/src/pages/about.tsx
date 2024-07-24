@@ -54,19 +54,23 @@ const About = () => {
             <>
               <p>
                 Hello! I&apos;m Thayná Müller, a 27-year-old UX/UI designer and
-                frontend developer from Brazil, currently living in the
-                beautiful state of Rio de Janeiro. I have a passion for creating
-                intuitive, responsive, and visually appealing digital
-                experiences. When I&apos;m not designing or coding, I love
-                traveling and exploring new cultures, which inspires my creative
-                process and broadens my perspective.
+                frontend developer from <strong>Brazil</strong>, currently
+                living in the beautiful state of Rio de Janeiro.
               </p>
               <br />
 
               <p>
-                Welcome to my portfolio, where you can see some of the projects
-                I&apos;ve worked on. Let&apos;s connect and create something
-                amazing together!
+                When I&apos;m not designing or coding, I love traveling and
+                exploring new cultures, which inspires my{" "}
+                <strong>creative</strong> process and broadens my{" "}
+                <strong>perspective.</strong>
+              </p>
+              <br />
+
+              <p>
+                <strong>Welcome</strong> to my portfolio, where you can see some
+                of the projects I&apos;ve worked on. Let&apos;s connect and
+                create something <strong>amazing</strong> together!
               </p>
             </>
           }
@@ -75,7 +79,7 @@ const About = () => {
         <Section
           action={
             <div
-              className={`flex justify-end items-center mt-8 cursor-pointer ${
+              className={`flex justify-center lg:justify-end items-center mt-8 cursor-pointer ${
                 exploded ? styles.exploded : ""
               }`}
               onClick={() => handleClick("/frontend-projects")}
@@ -105,7 +109,7 @@ const About = () => {
         <Section
           action={
             <div
-              className={`flex justify-end items-center mt-8 cursor-pointer ${
+              className={`flex justify-center lg:justify-end items-center mt-8 cursor-pointer ${
                 exploded ? styles.exploded : ""
               }`}
               onClick={() => handleClick("/ux-ui-projects")}
