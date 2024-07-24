@@ -9,6 +9,13 @@ const Main = () => {
   const router = useRouter();
   const [exploded, setExploded] = useState(false);
 
+  const handleClick = () => {
+    setExploded(true);
+    setTimeout(() => {
+      router.push("/about");
+    }, 800);
+  };
+
   useEffect(() => {
     if (exploded) {
       const letters = document.querySelectorAll(`.${styles.letter}`);
@@ -23,13 +30,6 @@ const Main = () => {
       });
     }
   }, [exploded]);
-
-  const handleClick = () => {
-    setExploded(true);
-    setTimeout(() => {
-      router.push("/about");
-    }, 800);
-  };
 
   useEffect(() => {
     const words = document.querySelectorAll(".word");

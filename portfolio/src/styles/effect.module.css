@@ -1,6 +1,13 @@
 .letter {
   display: inline-block;
-  transition: transform 0.8s;
+  transition: transform 1.5s, opacity 1.5s;
+  transform: translate(0, 0) rotate(0);
+}
+
+.exploded .letter {
+  transform: translate(var(--random-x), var(--random-y))
+    rotate(var(--random-rotate));
+  opacity: 0;
 }
 
 .bottomText {
@@ -18,7 +25,7 @@
   }
 
   .exploded {
-    font-size: 14px;
+    font-size: 14px; /* Certifique-se de que isso não interfira na animação */
   }
 
   .rotatingText p {
