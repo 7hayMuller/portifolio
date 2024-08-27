@@ -1,6 +1,9 @@
 import { useState } from "react";
+type ContactProps = {
+  onClose: () => void;
+};
 
-const ContactForm = () => {
+const ContactForm: React.FC<ContactProps> = ({ onClose }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -101,42 +104,81 @@ const ContactForm = () => {
             required
           />
         </div>
-        <div
-          className="relative flex justify-center py-6"
-          style={{ filter: "url(#goo)" }}
-        >
-          <button
-            type="submit"
-            className="relative inline-block text-center bg-[#be1d90] text-white font-bold py-3 px-4 sm:py-4 sm:px-5 rounded-full min-w-[10em] sm:min-w-[15em] md:min-w-[20em] text-base sm:text-lg no-underline
-      before:content-[''] before:w-[2.5em] before:h-[2.0em] sm:before:w-[4.4em] sm:before:h-[2.95em] before:absolute before:bg-[#be1d90] before:rounded-full before:transition-transform before:duration-1000 before:ease-in-out before:scale-0 before:top-[-20%] sm:before:top-[-25%] before:left-[20%] before:z-[-1]
-      after:content-[''] after:w-[2.5em] after:h-[2.0em] sm:after:w-[4.4em] sm:after:h-[2.95em] after:absolute after:bg-[#be1d90] after:rounded-full after:transition-transform after:duration-1000 after:ease-in-out after:scale-0 after:bottom-[-20%] sm:after:bottom-[-25%] after:right-[20%] after:z-[-1] hover:before:scale-100 hover:after:scale-100"
-            disabled={isLoading}
+        <div className="flex flex-col lg:flex-row justify-around items-center">
+          <div
+            className="relative flex justify-center py-6"
+            style={{ filter: "url(#goo)" }}
           >
-            {isLoading ? "Sending..." : "Send Message"}
-          </button>
+            <button
+              type="submit"
+              className="relative inline-block text-center bg-[#be1d90] text-white font-bold py-3 px-4 sm:py-4 sm:px-5 rounded-full min-w-[10em] sm:min-w-[15em] md:min-w-[10em] text-base sm:text-lg no-underline
+        before:content-[''] before:w-[2.5em] before:h-[2.0em] sm:before:w-[4.4em] sm:before:h-[2.95em] before:absolute before:bg-[#be1d90] before:rounded-full before:transition-transform before:duration-1000 before:ease-in-out before:scale-0 before:top-[-20%] sm:before:top-[-25%] before:left-[20%] before:z-[-1]
+        after:content-[''] after:w-[2.5em] after:h-[2.0em] sm:after:w-[4.4em] sm:after:h-[2.95em] after:absolute after:bg-[#be1d90] after:rounded-full after:transition-transform after:duration-1000 after:ease-in-out after:scale-0 after:bottom-[-20%] sm:after:bottom-[-25%] after:right-[20%] after:z-[-1] hover:before:scale-100 hover:after:scale-100"
+              disabled={isLoading}
+            >
+              {isLoading ? "Sending..." : "Send Message"}
+            </button>
 
-          <svg
-            className="absolute inset-0 w-0 h-0"
-            xmlns="http://www.w3.org/2000/svg"
-            version="1.1"
+            <svg
+              className="absolute inset-0 w-0 h-0"
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+            >
+              <defs>
+                <filter id="goo">
+                  <feGaussianBlur
+                    in="SourceGraphic"
+                    stdDeviation="10"
+                    result="blur"
+                  />
+                  <feColorMatrix
+                    in="blur"
+                    mode="matrix"
+                    values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                    result="goo"
+                  />
+                  <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+                </filter>
+              </defs>
+            </svg>
+          </div>
+
+          <div
+            className="relative flex justify-center py-6"
+            style={{ filter: "url(#goo)" }}
           >
-            <defs>
-              <filter id="goo">
-                <feGaussianBlur
-                  in="SourceGraphic"
-                  stdDeviation="10"
-                  result="blur"
-                />
-                <feColorMatrix
-                  in="blur"
-                  mode="matrix"
-                  values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-                  result="goo"
-                />
-                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
-              </filter>
-            </defs>
-          </svg>
+            <button
+              className="relative inline-block text-center bg-[#6AD5CB] text-white font-bold py-3 px-4 sm:py-4 sm:px-5 rounded-full min-w-[10em] sm:min-w-[15em] md:min-w-[10em] text-base sm:text-lg no-underline
+        before:content-[''] before:w-[2.5em] before:h-[2.0em] sm:before:w-[4.4em] sm:before:h-[2.95em] before:absolute before:bg-[#6AD5CB] before:rounded-full before:transition-transform before:duration-1000 before:ease-in-out before:scale-0 before:top-[-20%] sm:before:top-[-25%] before:left-[20%] before:z-[-1]
+        after:content-[''] after:w-[2.5em] after:h-[2.0em] sm:after:w-[4.4em] sm:after:h-[2.95em] after:absolute after:bg-[#6AD5CB] after:rounded-full after:transition-transform after:duration-1000 after:ease-in-out after:scale-0 after:bottom-[-20%] sm:after:bottom-[-25%] after:right-[20%] after:z-[-1] hover:before:scale-100 hover:after:scale-100"
+              onClick={onClose}
+            >
+              Back
+            </button>
+
+            <svg
+              className="absolute inset-0 w-0 h-0"
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+            >
+              <defs>
+                <filter id="goo">
+                  <feGaussianBlur
+                    in="SourceGraphic"
+                    stdDeviation="10"
+                    result="blur"
+                  />
+                  <feColorMatrix
+                    in="blur"
+                    mode="matrix"
+                    values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                    result="goo"
+                  />
+                  <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+                </filter>
+              </defs>
+            </svg>
+          </div>
         </div>
       </form>
     </div>

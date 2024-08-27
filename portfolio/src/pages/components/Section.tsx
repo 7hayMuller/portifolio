@@ -11,7 +11,7 @@ interface SectionProps {
   animationClassName?: string;
   title?: React.ReactNode;
   hasAnimation?: boolean;
-  hasForm?: boolean;
+  hasForm?: React.ReactNode;
   content: React.ReactNode | string;
   imageSrc?: StaticImageData;
   animation?: React.ReactNode;
@@ -65,11 +65,7 @@ const Section: React.FC<SectionProps> = ({
           {action && <div className="text-center lg:text-right">{action}</div>}
         </div>
       </div>
-      {!imageSrc && !animation && hasForm && (
-        <div className="order-3 lg:order-2 w-full lg:w-1/2">
-          <ContactForm />
-        </div>
-      )}
+      {!imageSrc && !animation && hasForm}
     </div>
   );
 };

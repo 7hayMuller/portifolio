@@ -42,13 +42,10 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
     <nav
       className={`${styles.navbar} ${
         isMobileMenuOpen && "h-[200px]"
-      } flex justify-between md:justify-end items-center`}
+      } w-full flex justify-between md:justify-center items-center`}
     >
       <div className="md:hidden z-50">
-        <button
-          onClick={() => handleToggleMobileMenu()}
-          className="text-[#e2e8c0]"
-        >
+        <button onClick={handleToggleMobileMenu} className="text-[#e2e8c0]">
           {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </button>
       </div>
@@ -57,7 +54,7 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
           isMobileMenuOpen ? "h-full" : "h-0"
         } bg-opacity-90 flex flex-col items-center justify-center transform ${
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-all duration-300 md:relative md:top-auto md:left-auto md:w-auto md:h-auto md:bg-transparent md:flex-row md:items-center md:justify-end md:translate-x-0 overflow-hidden`}
+        } transition-all duration-300 md:relative md:top-auto md:left-auto md:w-auto md:h-auto md:bg-transparent md:flex-row md:items-center md:justify-center md:translate-x-0 overflow-hidden`}
         style={{
           backgroundColor: isMobileMenuOpen
             ? "rgba(0, 0, 0, 0.3)"
@@ -112,23 +109,6 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
           >
             <span className="text-base lg:text-base text-[#e2e8c0]">
               UX/UI Projects
-            </span>
-          </Link>
-        </li>
-        <li
-          className={`pb-3 pt-3 ${
-            activeSection === "section4" ? "border-b-4 border-[#be1d90]" : ""
-          }`}
-        >
-          <Link
-            href={extern ? "/about#section4" : "#section4"}
-            onClick={() => {
-              setActiveSection("section4");
-              setIsMobileMenuOpen(false);
-            }}
-          >
-            <span className="text-base lg:text-base text-[#e2e8c0]">
-              Contact
             </span>
           </Link>
         </li>
