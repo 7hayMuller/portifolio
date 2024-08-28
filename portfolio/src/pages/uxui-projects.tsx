@@ -34,15 +34,8 @@ const FrontEndProjects = () => {
           modules={[Pagination]}
           className="mySwiper -mt-[200px]"
         >
-          <SwiperSlide>Slide 1</SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
-          <SwiperSlide>Slide 5</SwiperSlide>
-          <SwiperSlide>Slide 6</SwiperSlide>
-          <SwiperSlide>Slide 7</SwiperSlide>
-          <SwiperSlide>Slide 8</SwiperSlide>
-          <SwiperSlide>Slide 9</SwiperSlide>
+          <SwiperSlide className="w-[80%]"></SwiperSlide>
+          <SwiperSlide className="w-[20%]"></SwiperSlide>
         </Swiper>
         <Image
           className="-mt-[150px] z-20"
@@ -60,15 +53,8 @@ const FrontEndProjects = () => {
           modules={[Pagination]}
           className="mySwiper -mt-[200px]"
         >
-          <SwiperSlide>Slide 1</SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
-          <SwiperSlide>Slide 5</SwiperSlide>
-          <SwiperSlide>Slide 6</SwiperSlide>
-          <SwiperSlide>Slide 7</SwiperSlide>
-          <SwiperSlide>Slide 8</SwiperSlide>
-          <SwiperSlide>Slide 9</SwiperSlide>
+          <SwiperSlide className="w-[20%]"></SwiperSlide>
+          <SwiperSlide className="w-[80%]"></SwiperSlide>
         </Swiper>
         <Image
           className="-mt-[200px] z-20"

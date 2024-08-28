@@ -18,7 +18,7 @@ const FrontEndProjects = () => {
         </h1>
 
         <Image
-          className="-mt-10 z-20"
+          className="-mt-20 -z-20"
           src="/assets/frontupperwave.png"
           width={2000}
           height={500}
@@ -32,22 +32,15 @@ const FrontEndProjects = () => {
             clickable: true,
           }}
           modules={[Pagination]}
-          className="mySwiper -mt-[200px]"
+          className="mySwiper -mt-[50px]"
         >
-          <SwiperSlide>Slide 1</SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
-          <SwiperSlide>Slide 5</SwiperSlide>
-          <SwiperSlide>Slide 6</SwiperSlide>
-          <SwiperSlide>Slide 7</SwiperSlide>
-          <SwiperSlide>Slide 8</SwiperSlide>
-          <SwiperSlide>Slide 9</SwiperSlide>
+          <SwiperSlide className="w-[80%]"></SwiperSlide>
+          <SwiperSlide className="w-[20%]"></SwiperSlide>
         </Swiper>
         <Image
-          className="-mt-[100px] z-20"
+          className="absolute -mt-[250px] right-0 z-20"
           src="/assets/frontmiddlewave.png"
-          width={2000}
+          width={1000}
           height={500}
           alt="Picture of the author"
         />
@@ -58,17 +51,10 @@ const FrontEndProjects = () => {
             clickable: true,
           }}
           modules={[Pagination]}
-          className="mySwiper -mt-[200px]"
+          className="mySwiper mt-[20px] "
         >
-          <SwiperSlide>Slide 1</SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
-          <SwiperSlide>Slide 5</SwiperSlide>
-          <SwiperSlide>Slide 6</SwiperSlide>
-          <SwiperSlide>Slide 7</SwiperSlide>
-          <SwiperSlide>Slide 8</SwiperSlide>
-          <SwiperSlide>Slide 9</SwiperSlide>
+          <SwiperSlide className="w-[20%]"></SwiperSlide>
+          <SwiperSlide className="w-[80%]"></SwiperSlide>
         </Swiper>
         <Image
           className="-mt-[100px] z-20"

@@ -196,15 +196,3 @@ span.emoji-worker {
   height: 100%;
   object-fit: cover;
 }
-
-.swiper-slide {
-  width: 80%;
-}
-
-.swiper-slide:nth-child(2n) {
-  width: 60%;
-}
-
-.swiper-slide:nth-child(3n) {
-  width: 40%;
-}
