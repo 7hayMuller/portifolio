@@ -40,7 +40,7 @@ const FrontEndProjects = () => {
           <SwiperSlide className="swiper-upper-right"></SwiperSlide>
         </Swiper>
         <Image
-          className="absolute -mt-[120px] left-0 z-20"
+          className="absolute -mt-[90px] left-0 z-20"
           src="/assets/uxuimiddlewave.png"
           width={1000}
           height={500}
