@@ -46,7 +46,7 @@ const FrontEndProjects = () => {
           <SwiperSlide className="swiper-upper-right"></SwiperSlide>
         </Swiper>
         <Image
-          className="absolute -mt-[250px] right-0 z-20"
+          className="absolute -mt-[220px] right-0 z-20"
           src="/assets/frontmiddlewave.png"
           width={1000}
           height={500}
