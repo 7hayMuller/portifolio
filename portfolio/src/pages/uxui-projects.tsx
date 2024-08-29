@@ -3,7 +3,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 import Navbar from "./components/NavBar";
-import { Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -11,14 +10,21 @@ import "swiper/css/pagination";
 const FrontEndProjects = () => {
   return (
     <>
-      <Navbar extern section="section2" />
+      <Navbar extern section="section3" />
       <div className="flex flex-col mt-[100px] items-center justify-center">
-        <h1 className="text-[#e2e8c0] text-4xl sm:text-5xl lg:text-6xl font-bold text-center">
-          UX/UI <strong className="text-[#6AD5CB]">Projects</strong>
-        </h1>
-
+        <div className="flex flex-col w-[600px] justify-center items-center">
+          <h1 className="text-[#e2e8c0] text-4xl sm:text-5xl lg:text-6xl font-bold text-center">
+            UX/UI <strong className="text-[#6AD5CB]">Projects</strong>
+          </h1>
+          <p className="text-[#e2e8c0] text-xl sm:text-2xl lg:text-xl text-center mt-10">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </p>
+        </div>
         <Image
-          className="-mt-40 z-20"
+          className="-mt-[200px] -z-20"
           src="/assets/uxuiupperwave.png"
           width={2000}
           height={500}
@@ -28,33 +34,25 @@ const FrontEndProjects = () => {
         <Swiper
           slidesPerView={"auto"}
           spaceBetween={30}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Pagination]}
-          className="mySwiper -mt-[200px]"
+          className="mySwiper -mt-[50px]"
         >
-          <SwiperSlide className="w-[80%]"></SwiperSlide>
-          <SwiperSlide className="w-[20%]"></SwiperSlide>
+          <SwiperSlide className="swiper-upper-left"></SwiperSlide>
+          <SwiperSlide className="swiper-upper-right"></SwiperSlide>
         </Swiper>
         <Image
-          className="-mt-[150px] z-20"
+          className="absolute -mt-[120px] left-0 z-20"
           src="/assets/uxuimiddlewave.png"
-          width={2000}
+          width={1000}
           height={500}
           alt="Picture of the author"
         />
         <Swiper
           slidesPerView={"auto"}
           spaceBetween={30}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Pagination]}
-          className="mySwiper -mt-[200px]"
+          className="mySwiper mt-[40px]"
         >
-          <SwiperSlide className="w-[20%]"></SwiperSlide>
-          <SwiperSlide className="w-[80%]"></SwiperSlide>
+          <SwiperSlide className="swiper-bottom-left"></SwiperSlide>
+          <SwiperSlide className="swiper-bottom-right"></SwiperSlide>
         </Swiper>
         <Image
           className="-mt-[200px] z-20"
