@@ -207,7 +207,7 @@ const About = () => {
               className={`flex justify-center lg:justify-end items-center mt-8 cursor-pointer ${
                 exploded ? styles.exploded : ""
               }`}
-              onClick={() => handleClick("/ux-ui-projects")}
+              onClick={() => handleClick("/uxui-projects")}
             >
               <p className="text-[18px] text-[#6ad5cb] hover:text-[#be1d90] font-bold">
                 {"See more".split("").map((char, index) => (
