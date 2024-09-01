@@ -8,6 +8,9 @@ export const theme = {
     animation: {
       spin: "spin 100s linear infinite",
     },
+    backgroundImage: {
+      "e-gradient": "linear-gradient(90deg, #BE1D90 0%, #6AD5CB 100%)",
+    },
     colors: {
       "yellow-translucent": "rgba(255, 255, 0, 0.1)",
       blurColors: {
@@ -19,6 +22,9 @@ export const theme = {
         6: "#84fab0",
         7: "#8fd3f4",
       },
+    },
+    boxShadow: {
+      custom: "2px 4px 5px 0px rgba(0, 0, 0, 0.25)",
     },
   },
 };

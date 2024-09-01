@@ -5,7 +5,7 @@ import "./styles/globals.css";
 const lato = Lato({
   subsets: ["latin"],
   variable: "--font-lato",
-  weight: "400",
+  weight: ["400", "300"],
 });
 
 const roboto = Roboto({

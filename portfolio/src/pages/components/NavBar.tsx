@@ -62,7 +62,7 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
         }}
       >
         <li
-          className={`pb-3 pt-3 ${
+          className={`pb-3 pt-3 pr-6 ${
             activeSection === "section1" ? "border-b-4 border-[#be1d90]" : ""
           }`}
         >
@@ -79,19 +79,19 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
           </Link>
         </li>
         <li
-          className={`pb-3 pt-3 ${
+          className={`pb-3 pt-3 pr-6 ${
             activeSection === "section2" ? "border-b-4 border-[#be1d90]" : ""
           }`}
         >
           <Link
-            href={extern ? "/frontend-projects" : "#section2"}
+            href={extern ? "/projects" : "#section2"}
             onClick={() => {
               setActiveSection("section2");
               setIsMobileMenuOpen(false);
             }}
           >
             <span className="text-base lg:text-base text-[#e2e8c0]">
-              Frontend Projects
+              My Projects
             </span>
           </Link>
         </li>
@@ -101,14 +101,14 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
           }`}
         >
           <Link
-            href={extern ? "/uxui-projects" : "#section3"}
+            href="/contacts"
             onClick={() => {
               setActiveSection("section3");
               setIsMobileMenuOpen(false);
             }}
           >
             <span className="text-base lg:text-base text-[#e2e8c0]">
-              UX/UI Projects
+              Contacts
             </span>
           </Link>
         </li>
