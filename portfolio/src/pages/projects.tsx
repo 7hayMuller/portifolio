@@ -48,40 +48,40 @@ const MyProjects = () => {
           spaceBetween={30}
           modules={[Pagination]}
           autoplay
-          className="mySwiper -mt-[20px] sm:-mt-[50px]"
+          className="mySwiper -mt-[10px] sm:-mt-[100px]"
         >
           <SwiperSlide className="swiper-upper-left w-full h-[100vh] flex flex-col justify-start md:justify-between items-center px-4 py-8">
             <p className="text-3xl sm:text-4xl text-[#e2e8c0] font-[700] text-center">
               waves
             </p>
-            <div className="flex flex-wrap justify-evenly w-full mt-4 md:mt-0">
+            <div className="flex flex-wrap justify-evenly w-full mt-0 md:mt-4">
               <Image
                 src="/assets/waves.png"
                 alt="waves"
                 width={243}
-                height={169}
-                className="w-[100px] sm:w-[150px] md:w-[200px] lg:w-[243px] h-auto"
+                height={150}
+                className="w-[100px] sm:w-[150px] md:w-[200px] lg:w-[243px] h-auto sm:h-[150px]"
               />
               <Image
                 src="/assets/waves_library.png"
                 alt="waves"
                 width={243}
-                height={169}
-                className="w-[100px] sm:w-[150px] md:w-[200px] lg:w-[243px] h-auto"
+                height={150}
+                className="w-[100px] sm:w-[150px] md:w-[200px] lg:w-[243px] h-auto sm:h-[150px]"
               />
               <Image
                 src="/assets/waves_mobile.png"
                 alt="waves"
                 width={116}
                 height={184}
-                className="w-[50px] sm:w-[75px] md:w-[100px] lg:w-[116px] h-auto"
+                className="w-[50px] sm:w-[75px] md:w-[100px] lg:w-[116px] h-auto sm:h-[180px]"
               />
               <Image
                 src="/assets/waves_mobile_portrait.png"
                 alt="waves"
                 width={89}
                 height={175}
-                className="w-[40px] sm:w-[60px] md:w-[75px] lg:w-[89px] h-auto"
+                className="w-[40px] sm:w-[60px] md:w-[75px] lg:w-[89px] h-auto sm:h-[165px]"
               />
             </div>
             <div className="flex flex-wrap justify-evenly w-full text-[#e2e8c0] font-[300] mt-4 md:mt-0">
