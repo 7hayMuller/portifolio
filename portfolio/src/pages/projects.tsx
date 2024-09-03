@@ -36,7 +36,7 @@ const MyProjects = () => {
           </p>
         </div>
         <Image
-          className="-mt-[100px] sm:-mt-[150px] md:-mt-[200px] -z-20"
+          className="-mt-[100px] sm:-mt-[150px] md:-mt-[300px] -z-20"
           src="/assets/frontupperwave.png"
           width={2000}
           height={500}
@@ -48,7 +48,7 @@ const MyProjects = () => {
           spaceBetween={30}
           modules={[Pagination]}
           autoplay
-          className="mySwiper -mt-[10px] sm:-mt-[100px]"
+          className="mySwiper -mt-[10px] sm:-mt-[30px]"
         >
           <SwiperSlide className="swiper-upper-left w-full h-[100vh] flex flex-col justify-start md:justify-between items-center px-4 py-8">
             <p className="text-3xl sm:text-4xl text-[#e2e8c0] font-[700] text-center">
@@ -132,13 +132,13 @@ const MyProjects = () => {
           </SwiperSlide>
           <SwiperSlide className="swiper-upper-right w-full h-[100vh]"></SwiperSlide>
         </Swiper>
-        <Image
-          className="absolute mt-[100px] sm:-mt-[130px] md:-mt-[160px] right-0 z-20"
+        {/* <Image
+          className="absolute sm:top-[535px] md:top-[550px] top-[610px]  right-0 z-20"
           src="/assets/frontmiddlewave.png"
           width={1000}
           height={500}
           alt="Picture of the author"
-        />
+        /> */}
         <Swiper
           slidesPerView={"auto"}
           spaceBetween={30}
