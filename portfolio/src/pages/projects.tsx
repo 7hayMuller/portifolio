@@ -1,9 +1,9 @@
 "use client";
 
-import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
+import { Autoplay, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import Navbar from "./components/NavBar";
-import { Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -43,14 +43,23 @@ const MyProjects = () => {
           alt="Picture of the author"
         />
 
-        <Swiper
-          slidesPerView={"auto"}
+<Swiper
+          loop={true}
+          slidesPerView={1.33}  
           spaceBetween={30}
-          modules={[Pagination]}
-          autoplay
+          modules={[Pagination, Autoplay]}
+          pagination={{ clickable: true }}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
           className="mySwiper -mt-[10px] sm:-mt-[30px]"
+          style={{
+            paddingRight: '0',  
+            overflow: 'visible' 
+          }}
         >
-          <SwiperSlide className="swiper-upper-left w-full h-[100vh] flex flex-col justify-start md:justify-between items-center px-4 py-8">
+          <SwiperSlide className="swiper-upper-left w-full h-[100vh] flex flex-col justify-start md:justify-between items-center px-4 py-8 rounded-[20px]">
             <p className="text-3xl sm:text-4xl text-[#e2e8c0] font-[700] text-center">
               waves
             </p>
@@ -130,7 +139,7 @@ const MyProjects = () => {
               </div>
             </div>
           </SwiperSlide>
-          <SwiperSlide className="swiper-upper-right w-full h-[100vh]"></SwiperSlide>
+          <SwiperSlide className="swiper-upper-right w-full h-[100vh] rounded-[20px]" />
         </Swiper>
         {/* <Image
           className="absolute sm:top-[535px] md:top-[550px] top-[610px]  right-0 z-20"
@@ -140,13 +149,15 @@ const MyProjects = () => {
           alt="Picture of the author"
         /> */}
         <Swiper
+          autoplay
+          loop
           slidesPerView={"auto"}
           spaceBetween={30}
           modules={[Pagination]}
           className="mySwiper mt-[20px]"
         >
-          <SwiperSlide className="swiper-bottom-left w-full h-[100vh]"></SwiperSlide>
-          <SwiperSlide className="swiper-bottom-right w-full h-[100vh]"></SwiperSlide>
+          <SwiperSlide className="swiper-bottom-left w-full h-[100vh]" />
+          <SwiperSlide className="swiper-bottom-right w-full h-[100vh]" />
         </Swiper>
         <Image
           className="-mt-[60px] sm:-mt-[80px] md:-mt-[100px] z-20"

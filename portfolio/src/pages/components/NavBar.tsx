@@ -101,9 +101,9 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
           }`}
         >
           <Link
-            href="/contacts"
+            href={extern ? "/about?show=true#section1" : "#section1?show=true"}
             onClick={() => {
-              setActiveSection("section3");
+              setActiveSection("section1");
               setIsMobileMenuOpen(false);
             }}
           >

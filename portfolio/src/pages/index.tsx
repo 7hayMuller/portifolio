@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import styles from "../styles/effect.module.css";
 import SineWave from "./components/SineWave";
 
@@ -9,6 +9,10 @@ const Main = () => {
   const router = useRouter();
   const [exploded, setExploded] = useState(false);
 
+  const searchParams = useSearchParams();
+  const parameter = searchParams.get('parameter');
+
+ console.log('show?', parameter)
   const handleClick = () => {
     setExploded(true);
     setTimeout(() => {
