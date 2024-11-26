@@ -1,18 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import styles from "../styles/effect.module.css";
-import SineWave from "./components/SineWave";
+import dynamic from "next/dynamic";
+
+
+const SineWave = dynamic(() => import("./components/SineWave"), { ssr: false });
 
 const Main = () => {
   const router = useRouter();
   const [exploded, setExploded] = useState(false);
-
-  const searchParams = useSearchParams();
-  const parameter = searchParams.get('parameter');
-
- console.log('show?', parameter)
+  
+  
+  
   const handleClick = () => {
     setExploded(true);
     setTimeout(() => {
@@ -20,23 +21,26 @@ const Main = () => {
     }, 800);
   };
 
+  
   useEffect(() => {
     if (exploded) {
-      const letters = document.querySelectorAll(`.${styles.letter}`);
-      letters.forEach((letter) => {
-        const element = letter as HTMLElement;
+      const letters = Array.from(document.querySelectorAll(`.${styles.letter}`));
+      letters.forEach((letter, index) => {
         const randomX = (Math.random() - 0.5) * 200;
         const randomY = (Math.random() - 0.5) * 200;
         const randomRotate = (Math.random() - 0.5) * 720;
-        element.style.setProperty("--random-x", `${randomX}px`);
-        element.style.setProperty("--random-y", `${randomY}px`);
-        element.style.setProperty("--random-rotate", `${randomRotate}deg`);
+        letter.setAttribute("style", `
+          --random-x: ${randomX}px;
+          --random-y: ${randomY}px;
+          --random-rotate: ${randomRotate}deg;
+        `);
       });
     }
   }, [exploded]);
 
+
   useEffect(() => {
-    const words = document.querySelectorAll(".word");
+    const words = Array.from(document.querySelectorAll(".word"));
     words.forEach((word) => {
       const letters =
         word.textContent
@@ -87,8 +91,9 @@ const Main = () => {
   return (
     <div className="relative flex flex-col items-center lg:w-full w-[500px] h-full">
       <div
-        className={`absolute top-2 lg:top-2 right-3 lg:right-8 text-[#fff] font-bold font-sans cursor-pointer text-[20px] border border-purple w-[100px] lg:h-[40px] h-[50px] flex items-center justify-center overflow-hidden
-    ${exploded ? styles.exploded : ""}`}
+        className={`absolute top-2 lg:top-2 right-3 lg:right-8 text-[#fff] font-bold font-sans cursor-pointer text-[20px] border border-purple w-[100px] lg:h-[40px] h-[50px] flex items-center justify-center overflow-hidden ${
+          exploded ? styles.exploded : ""
+        }`}
         onClick={handleClick}
       >
         {"About".split("").map((char, index) => (

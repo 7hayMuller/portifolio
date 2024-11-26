@@ -9,14 +9,12 @@ import { useEffect, useState } from "react";
 
 import styles from "../styles/effect.module.css";
 import Sphere from "../../public/assets/uxImage.png";
-import { FaGithub, FaLinkedin } from "react-icons/fa6";
-import ContactForm from "./components/ContactForm";
+
 
 const About = () => {
   const router = useRouter();
 
-  const [exploded, setExploded] = useState<boolean>(false);
-  const [chatting, setChatting] = useState<boolean>(false);
+  const [exploded, setExploded] = useState<boolean>(false); 
 
   useEffect(() => {
     if (exploded) {
@@ -43,56 +41,7 @@ const About = () => {
   return (
     <>
       <Navbar />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 ">
-        {chatting ? (
-          <Section
-            action={
-              <div className="flex items-center mt-8 justify-center sm:justify-center md:justify-start lg:justify-start cursor-pointer">
-                <a
-                  href="https://github.com/7hayMuller"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mr-5"
-                >
-                  <FaGithub
-                    fontSize={25}
-                    className="text-[#e2e8c0] hover:text-[#be1d90] cursor-pointer"
-                  />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/thaynamuller/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaLinkedin
-                    fontSize={25}
-                    className="text-[#e2e8c0] hover:text-[#be1d90] cursor-pointer"
-                  />
-                </a>
-              </div>
-            }
-            reverse
-            id="section4"
-            content={
-              <>
-                <div className="relative mt-10 lg:text-start text-center">
-                  <h1 className="inline-block text-[#e2e8c0] text-[36px] sm:text-[48px] lg:text-[50px] font-bold lg:mb-[60px]">
-                    Contact <strong className="text-[#be1d90]">me</strong> 💻
-                  </h1>
-                </div>
-                <p>
-                  Feel free to reach out to me for any project collaborations or
-                  inquiries. Let&apos;s build something amazing together!
-                </p>
-              </>
-            }
-            hasForm={
-              <div className="order-3 lg:order-2 w-full lg:w-1/2">
-                <ContactForm onClose={() => setChatting(false)} />
-              </div>
-            }
-          />
-        ) : (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 ">        
           <Section
             id="section1"
             title={
@@ -136,7 +85,7 @@ const About = () => {
                   className="relative inline-block text-center bg-[#be1d90] text-white font-bold py-3 px-4 sm:py-4 sm:px-5 rounded-full min-w-[10em] sm:min-w-[15em] md:min-w-[10em] text-base sm:text-lg no-underline
               before:content-[''] before:w-[2.5em] before:h-[2.0em] sm:before:w-[4.4em] sm:before:h-[2.95em] before:absolute before:bg-[#be1d90] before:rounded-full before:transition-transform before:duration-1000 before:ease-in-out before:scale-0 before:top-[-20%] sm:before:top-[-25%] before:left-[20%] before:z-[-1]
               after:content-[''] after:w-[2.5em] after:h-[2.0em] sm:after:w-[4.4em] sm:after:h-[2.95em] after:absolute after:bg-[#be1d90] after:rounded-full after:transition-transform after:duration-1000 after:ease-in-out after:scale-0 after:bottom-[-20%] sm:after:bottom-[-25%] after:right-[20%] after:z-[-1] hover:before:scale-100 hover:after:scale-100"
-                  onClick={() => setChatting(true)}
+                  onClick={() => router.push('/contact')}
                 >
                   Let&apos;s chat
                 </button>
@@ -169,8 +118,7 @@ const About = () => {
                 </svg>
               </div>
             }
-          />
-        )}
+          />        
         <Section
           action={
             <div

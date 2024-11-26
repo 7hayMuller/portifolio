@@ -8,7 +8,7 @@
 }
 
 .navbar li {
-  @apply sm:m-0 lg:m-[5px];
+  @apply sm:m-0 lg:ml-[20px] lg:mr-[20px] lg:mt-[5px] lg:mb-[5px];
 }
 
 .navbar a {
@@ -20,3 +20,5 @@
     @apply flex-row bg-transparent justify-center relative w-auto h-auto transform-none;
   }
 }
+
+

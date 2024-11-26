@@ -1,42 +1,30 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { FaBars, FaTimes } from "react-icons/fa";
 import styles from "../../styles/navbar.module.css";
 
-type Props = {
-  extern?: boolean;
-  section?: string;
-};
-
-const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
-  const [activeSection, setActiveSection] = useState<string>(section);
+const Navbar: React.FC = () => {
+  const [activeSection, setActiveSection] = useState<string>("introduction");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+
+  const router = useRouter();
+
+  
+  useEffect(() => {
+    const path = router.pathname;
+    if (path === "/about") {
+      setActiveSection("introduction");
+    } else if (path === "/projects") {
+      setActiveSection("projects");
+    } else if (path === "/contact") {
+      setActiveSection("contact");
+    }
+  }, [router.pathname]);
 
   const handleToggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = document.querySelectorAll("section");
-      let currentSection = activeSection;
-
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.scrollY >= sectionTop - sectionHeight / 3) {
-          currentSection = section.getAttribute("id") || activeSection;
-        }
-      });
-
-      setActiveSection(currentSection);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [activeSection]);
 
   return (
     <nav
@@ -61,55 +49,43 @@ const Navbar: React.FC<Props> = ({ extern, section = "section1" }) => {
             : "transparent",
         }}
       >
-        <li
-          className={`pb-3 pt-3 pr-6 ${
-            activeSection === "section1" ? "border-b-4 border-[#be1d90]" : ""
-          }`}
-        >
+        <li className="pb-3 pt-3 pr-6 flex justify-center">
           <Link
-            href={extern ? "/about#section1" : "#section1"}
-            onClick={() => {
-              setActiveSection("section1");
-              setIsMobileMenuOpen(false);
-            }}
+            href={"/about"}
+            onClick={() => setIsMobileMenuOpen(false)}
+            className={`text-base lg:text-base text-[#e2e8c0] ${
+              activeSection === "introduction"
+                ? "border-b-4 border-[#be1d90] pb-1 inline-block"
+                : ""
+            }`}
           >
-            <span className="text-base lg:text-base text-[#e2e8c0]">
-              Me, Myself & I
-            </span>
+            Me, Myself & I
           </Link>
         </li>
-        <li
-          className={`pb-3 pt-3 pr-6 ${
-            activeSection === "section2" ? "border-b-4 border-[#be1d90]" : ""
-          }`}
-        >
+        <li className="pb-3 pt-3 pr-6 flex justify-center">
           <Link
-            href={extern ? "/projects" : "#section2"}
-            onClick={() => {
-              setActiveSection("section2");
-              setIsMobileMenuOpen(false);
-            }}
+            href={"/projects"}
+            onClick={() => setIsMobileMenuOpen(false)}
+            className={`text-base lg:text-base text-[#e2e8c0] ${
+              activeSection === "projects"
+                ? "border-b-4 border-[#be1d90] pb-1 inline-block"
+                : ""
+            }`}
           >
-            <span className="text-base lg:text-base text-[#e2e8c0]">
-              My Projects
-            </span>
+            My Projects
           </Link>
         </li>
-        <li
-          className={`pb-3 pt-3 ${
-            activeSection === "section3" ? "border-b-4 border-[#be1d90]" : ""
-          }`}
-        >
+        <li className="pb-3 pt-3 flex justify-center">
           <Link
-            href={extern ? "/about?show=true#section1" : "#section1?show=true"}
-            onClick={() => {
-              setActiveSection("section1");
-              setIsMobileMenuOpen(false);
-            }}
+            href={"/contact"}
+            onClick={() => setIsMobileMenuOpen(false)}
+            className={`text-base lg:text-base text-[#e2e8c0] ${
+              activeSection === "contact"
+                ? "border-b-4 border-[#be1d90] pb-1 inline-block"
+                : ""
+            }`}
           >
-            <span className="text-base lg:text-base text-[#e2e8c0]">
-              Contacts
-            </span>
+            Contacts
           </Link>
         </li>
       </ul>
