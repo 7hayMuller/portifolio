@@ -188,6 +188,7 @@ const MyProjects = () => {
             disableOnInteraction: false,
             reverseDirection: true,
           }}
+          pagination
           className="mySwiper -mt-[10px] sm:-mt-[70px]"
         >
           <SwiperSlide className="swiper-upper-left w-full h-[100vh] flex flex-col justify-start md:justify-between items-center px-4 py-8">
@@ -360,6 +361,54 @@ const MyProjects = () => {
                       links: [
                         {
                           github: "https://github.com/7hayMuller/nlw-nearby",
+                        },
+                      ],
+                    });
+                    setIsModalOpen(true);
+                  }}
+                />
+              ))}
+            </div>
+          </SwiperSlide>
+          <SwiperSlide className="swiper-bottom-left w-full h-[100vh] flex flex-col justify-start md:justify-between items-center px-4 py-8">
+            <p className="text-xl sm:text-2xl text-[#e2e8c0] font-[700] text-center">
+              Itaú- Digital Ecosystem
+            </p>
+            <div className="flex flex-wrap justify-evenly w-full mt-0 md:mt-[50px]">
+              {[
+                {
+                  src: "/assets/desktop_itau-front.png",
+                  width: 243,
+                  height: 150,
+                },
+                {
+                  src: "/assets/smartphone_itau-portrait.png",
+                  width: 243,
+                  height: 0,
+                },
+                {
+                  src: "/assets/smartwatch_itau-portrait.png",
+                  width: 243,
+                  height: 150,
+                },
+              ].map((image, index) => (
+                <Image
+                  key={index}
+                  src={image.src}
+                  alt="itau"
+                  width={image.width}
+                  height={image.height}
+                  className="w-auto h-[200px] sm:h-[150px] transition-transform duration-300 ease-in-out hover:scale-110"
+                  onClick={() => {
+                    setModalInfo({
+                      image: image.src,
+                      description: `Development of an integrated digital ecosystem covering channels such as mobile app, desktop, smartwatch, and ATMs. The project included the creation of wireframes, usability flows, and financial charts optimized for both mobile and desktop devices. The goal was to enhance user experience with a focus on financial organization, accessibility, and consistency with Itaú's visual identity.`,
+                      mobile: image.src.includes("mobile") ? true : false,
+                      tecnologies: [],
+                      links: [
+                        {
+                          figma:
+                            "https://www.figma.com/design/bWyeFyFptVlKsvX6pFO3IC/Ita%C3%BA---Prot%C3%B3tipo%2FCanais?node-id=0-1&t=unC2xG6NJUy8NBRJ-1",
                         },
                       ],
                     });
