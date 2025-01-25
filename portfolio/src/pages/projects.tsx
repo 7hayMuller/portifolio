@@ -188,7 +188,6 @@ const MyProjects = () => {
             disableOnInteraction: false,
             reverseDirection: true,
           }}
-          pagination
           className="mySwiper -mt-[10px] sm:-mt-[70px]"
         >
           <SwiperSlide className="swiper-upper-left w-full h-[100vh] flex flex-col justify-start md:justify-between items-center px-4 py-8">
