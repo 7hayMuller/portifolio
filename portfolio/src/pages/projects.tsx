@@ -51,13 +51,15 @@ const Modal = ({ modalInfo, onClose }: ModalProps) => {
             ></iframe>
           </div>
         ) : (
-          <div className="w-full h-auto md:w-1/2 mb-4 md:mb-0 md:mr-6">
+          <div className="w-full md:w-1/2 mb-4 md:mb-0 md:mr-6">
             <Image
               src={modalInfo.image ?? ""}
               alt="Modal"
               width={modalInfo.mobile ? 250 : 300}
-              height={modalInfo.mobile ? 100 : 300}
-              className="rounded-md"
+              height={modalInfo.mobile ? 150 : 300}
+              className={`rounded-md ${
+                modalInfo.mobile ? "h-auto" : "h-[300px]"
+              } ${modalInfo.mobile ? "w-[250px]" : "w-[300px]"} `}
             />
           </div>
         )}
