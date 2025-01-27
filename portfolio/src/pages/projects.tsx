@@ -7,7 +7,7 @@ import Navbar from "./components/NavBar";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaGithub, FaReact, FaSass } from "react-icons/fa";
 import { SiExpo, SiNextdotjs, SiTailwindcss } from "react-icons/si";
 import { IoLogoBehance, IoLogoFigma } from "react-icons/io5";
@@ -30,8 +30,15 @@ type ModalProps = {
 };
 
 const Modal = ({ modalInfo, onClose }: ModalProps) => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
   return (
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex justify-center items-center p-4">
+    <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex justify-center items-center p-4 overflow-y-auto">
       <div className="relative bg-black bg-opacity-50 p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center max-w-4xl w-full">
         <button
           onClick={onClose}
@@ -51,20 +58,18 @@ const Modal = ({ modalInfo, onClose }: ModalProps) => {
             ></iframe>
           </div>
         ) : (
-          <div className="w-full md:w-1/2 mb-4 md:mb-0 md:mr-6">
+          <div className="w-full md:w-1/2 mb-4 md:mb-0 md:mr-6 flex justify-center">
             <Image
               src={modalInfo.image ?? ""}
               alt="Modal"
-              width={modalInfo.mobile ? 250 : 300}
-              height={modalInfo.mobile ? 150 : 300}
-              className={`rounded-md ${
-                modalInfo.mobile ? "h-auto" : "h-[300px]"
-              } ${modalInfo.mobile ? "w-[250px]" : "w-[300px]"} `}
+              width={300}
+              height={300}
+              className="rounded-md object-contain max-h-[500px]"
             />
           </div>
         )}
 
-        <div className="flex flex-col flex-1 text-center md:text-left">
+        <div className="flex flex-col flex-1 text-center md:text-left overflow-y-auto max-h-[80vh]">
           <p className="text-white text-sm md:text-base mb-4">
             {modalInfo.description}
           </p>
