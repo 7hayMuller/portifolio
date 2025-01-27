@@ -51,12 +51,12 @@ const Modal = ({ modalInfo, onClose }: ModalProps) => {
             ></iframe>
           </div>
         ) : (
-          <div className="w-full md:w-1/2 mb-4 md:mb-0 md:mr-6">
+          <div className="w-full h-auto md:w-1/2 mb-4 md:mb-0 md:mr-6">
             <Image
               src={modalInfo.image ?? ""}
               alt="Modal"
               width={modalInfo.mobile ? 250 : 300}
-              height={modalInfo.mobile ? 150 : 300}
+              height={modalInfo.mobile ? 100 : 300}
               className="rounded-md"
             />
           </div>
@@ -245,7 +245,7 @@ const MyProjects = () => {
                 ))}
               </div>
             </SwiperSlide>
-            <SwiperSlide className="w-full  justify-start md:justify-between items-center px-4 py-8">
+            <SwiperSlide className="w-full justify-start md:justify-between items-center px-4 py-8">
               <p className="text-xl sm:text-2xl text-[#e2e8c0] font-[700] text-center">
                 Landing page and E-mail marketing - SumUP/Pix
               </p>
