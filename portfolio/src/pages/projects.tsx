@@ -80,27 +80,31 @@ const Modal = ({ modalInfo, onClose }: ModalProps) => {
                 Technologies utilized:
               </p>
               <div className="flex flex-wrap justify-center md:justify-start gap-4">
-                {modalInfo.tecnologies?.map((tech: string) => {
-                  const techMap: Record<string, JSX.Element> = {
-                    next: <SiNextdotjs size={25} />,
-                    sass: <FaSass size={25} />,
-                    react: <FaReact size={25} />,
-                    tailwind: <SiTailwindcss size={25} />,
-                    figma: <IoLogoFigma size={25} />,
-                    behance: <IoLogoBehance size={25} />,
-                    "React Native": <TbBrandReactNative size={25} />,
-                    Expo: <SiExpo size={25} />,
-                  };
+                {modalInfo.tecnologies ? (
+                  modalInfo.tecnologies?.map((tech: string) => {
+                    const techMap: Record<string, JSX.Element> = {
+                      next: <SiNextdotjs size={25} />,
+                      sass: <FaSass size={25} />,
+                      react: <FaReact size={25} />,
+                      tailwind: <SiTailwindcss size={25} />,
+                      figma: <IoLogoFigma size={25} />,
+                      behance: <IoLogoBehance size={25} />,
+                      "React Native": <TbBrandReactNative size={25} />,
+                      Expo: <SiExpo size={25} />,
+                    };
 
-                  return (
-                    <div
-                      key={tech}
-                      className="flex flex-col items-center text-center text-white"
-                    >
-                      {techMap[tech] || null}
-                    </div>
-                  );
-                })}
+                    return (
+                      <div
+                        key={tech}
+                        className="flex flex-col items-center text-center text-white"
+                      >
+                        {techMap[tech] || null}
+                      </div>
+                    );
+                  })
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
           )}
