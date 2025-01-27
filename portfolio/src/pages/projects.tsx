@@ -64,7 +64,7 @@ const Modal = ({ modalInfo, onClose }: ModalProps) => {
               alt="Modal"
               width={300}
               height={300}
-              className="rounded-md object-contain max-h-[400px]"
+              className="rounded-md object-contain max-h-[350px]"
             />
           </div>
         )}
