@@ -12,6 +12,7 @@ import { FaGithub, FaReact, FaSass } from "react-icons/fa";
 import { SiExpo, SiNextdotjs, SiTailwindcss } from "react-icons/si";
 import { IoLogoBehance, IoLogoFigma } from "react-icons/io5";
 import { TbBrandReactNative } from "react-icons/tb";
+import { TiArrowRightOutline } from "react-icons/ti";
 
 export type ModalInfoProps = {
   description: string;
@@ -171,253 +172,267 @@ const MyProjects = () => {
             appealing solutions.
           </p>
         </div>
-        <Image
-          className="-mt-[100px] sm:-mt-[150px] md:-mt-[300px] -z-20"
-          src="/assets/frontupperwave.png"
-          width={2000}
-          height={500}
-          alt="Upper Wave"
-        />
-        <Swiper
-          loop
-          slidesPerView={1.33}
-          spaceBetween={30}
-          modules={[Pagination, Autoplay]}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-            reverseDirection: true,
-          }}
-          className="mySwiper -mt-[10px] sm:-mt-[70px]"
-        >
-          <SwiperSlide className="swiper-upper-left w-full h-[100vh] flex flex-col justify-start md:justify-between items-center px-4 py-8">
-            <p className="text-2xl sm:text-3xl text-[#e2e8c0] font-[700] text-center">
-              waves
+        <div className="relative w-full mt-[50px]">
+          <div className="absolute top-0 right-2 transform -translate-x-1/2 z-10 hidden sm:flex sm:flex-col items-right">
+            <p className="text-white text-sm animate-bounce">
+              Arraste para ver mais
+              <TiArrowRightOutline size={20} />
             </p>
-            <div className="flex flex-wrap justify-evenly w-full mt-0 md:mt-[50px]">
-              {[
-                { src: "/assets/waves.png", width: 243, height: 150 },
-                { src: "/assets/waves_library.png", width: 243, height: 150 },
-                {
-                  src: "/assets/waves_mobile_portrait.png",
-                  width: 89,
-                  height: 175,
-                },
-              ].map((image, index) => (
-                <Image
-                  key={index}
-                  src={image.src}
-                  alt="waves"
-                  width={image.width}
-                  height={image.height}
-                  className="w-auto h-auto sm:h-[150px] transition-transform duration-300 ease-in-out hover:scale-110"
-                  onClick={() => {
-                    setModalInfo({
-                      image: image.src,
-                      mobile: image.src.includes("mobile") ? true : false,
-                      description: `A sleek music player built with Next.js and SASS, featuring
+          </div>
+          <Image
+            className="-mt-[100px] sm:-mt-[150px] md:-mt-[300px] -z-20"
+            src="/assets/frontupperwave.png"
+            width={2000}
+            height={500}
+            alt="Upper Wave"
+          />
+          <Swiper
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+              reverseDirection: true,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+              },
+              1024: {
+                slidesPerView: 1.33,
+              },
+            }}
+            className="mySwiper -mt-[10px] sm:-mt-[70px]"
+            loop
+            spaceBetween={30}
+            modules={[Pagination, Autoplay]}
+          >
+            <SwiperSlide className="w-full flex flex-col justify-start md:justify-between items-center px-4 py-8">
+              <p className="text-2xl sm:text-3xl text-[#e2e8c0] font-[700] text-center">
+                waves
+              </p>
+              <div className="flex flex-wrap justify-evenly w-full mt-0 md:mt-[50px]">
+                {[
+                  { src: "/assets/waves_library.png", width: 243, height: 150 },
+                  {
+                    src: "/assets/waves_mobile_portrait.png",
+                    width: 243,
+                    height: 150,
+                  },
+                ].map((image, index) => (
+                  <Image
+                    key={index}
+                    src={image.src}
+                    alt="waves"
+                    width={image.width}
+                    height={image.height}
+                    className="w-auto  h-[200px] sm:h-[150px] transition-transform duration-300 ease-in-out hover:scale-110 hover:cursor-pointer"
+                    onClick={() => {
+                      setModalInfo({
+                        image: image.src,
+                        mobile: image.src.includes("mobile") ? true : false,
+                        description: `A sleek music player built with Next.js and SASS, featuring
                   seamless integration with the Jamendo API to stream free music
                   effortlessly.`,
-                      tecnologies: ["next", "sass"],
-                      links: [
-                        {
-                          github: "https://github.com/7hayMuller/waves-music",
-                        },
-                      ],
-                    });
-                    setIsModalOpen(true);
-                  }}
-                />
-              ))}
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="swiper-upper-left w-full h-[100vh] flex flex-col justify-start md:justify-between items-center px-4 py-8">
-            <p className="text-xl sm:text-2xl text-[#e2e8c0] font-[700] text-center">
-              Landing page and E-mail marketing - SumUP/Pix
-            </p>
-            <div className="flex flex-wrap justify-evenly w-full mt-0 md:mt-[50px]">
-              {[
-                { src: "/assets/sumup_mobile.png", width: 243, height: 150 },
-                { src: "/assets/sumup_desktop.png", width: 243, height: 150 },
-              ].map((image, index) => (
-                <Image
-                  key={index}
-                  src={image.src}
-                  alt="sumup"
-                  width={image.width}
-                  height={image.height}
-                  className="w-auto h-[200px] sm:h-[150px] transition-transform duration-300 ease-in-out hover:scale-110"
-                  onClick={() => {
-                    setModalInfo({
-                      image: image.src,
-                      mobile: image.src.includes("mobile") ? true : false,
-                      description: `A landing page and an email marketing campaign with visuals and text tailored to the target audience to explain the benefits and functionality of Pix. The landing page highlights key advantages, such as no fees, 24/7 availability, and instant payment processing. The emails deliver clear and concise messages, simplifying the onboarding process and offering practical tips for integrating Pix into businesses.`,
-                      links: [
-                        {
-                          figma:
-                            "https://www.figma.com/design/5pQefnNNihalABA1mlfKVx/Landing-page---SumUP%2FPIX?node-id=0-1&t=LW78jJBOIhacNIwv-1",
-                          behance:
-                            "https://www.behance.net/gallery/212520691/Landing-page-e-E-mail-marketing-para-SumUPPIX",
-                        },
-                      ],
-                    });
-                    setIsModalOpen(true);
-                  }}
-                />
-              ))}
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="swiper-bottom-left w-full h-[100vh] flex flex-col justify-start md:justify-between items-center px-4 py-8">
-            <p className="text-xl sm:text-2xl text-[#e2e8c0] font-[700] text-center">
-              This Portifolio
-            </p>
-            <div className="flex flex-wrap justify-evenly w-full mt-0 md:mt-[50px]">
-              {[
-                {
-                  src: "/assets/mockup-desk-portifolio.png",
-                  width: 243,
-                  height: 150,
-                },
-                {
-                  src: "/assets/mockup-mobile-portifolio.png",
-                  width: 243,
-                  height: 150,
-                },
-              ].map((image, index) => (
-                <Image
-                  key={index}
-                  src={image.src}
-                  alt="portifolio"
-                  width={image.width}
-                  height={image.height}
-                  className="w-auto h-[200px] sm:h-[150px] transition-transform duration-300 ease-in-out hover:scale-110"
-                  onClick={() => {
-                    setModalInfo({
-                      image: image.src,
-                      description: `I built this personal portfolio to showcase my skills as a Frontend Developer and UX/UI Designer. My main goal was to create a clean, modern, and easy-to-navigate website that reflects who I am as a professional and highlights my passion for impactful design and intuitive user experiences.`,
-                      mobile: image.src.includes("mobile") ? true : false,
-                      tecnologies: ["next", "tailwind"],
-                      links: [
-                        {
-                          github:
-                            "https://github.com/7hayMuller/portifolio/tree/main/portfolio",
-                          figma:
-                            "https://www.figma.com/design/Z7KASeUUwpKMUhw2W1jLIO/Portif%C3%B3lio?node-id=0-1&t=3GVfwI3XxcUp6aiQ-1",
-                        },
-                      ],
-                    });
-                    setIsModalOpen(true);
-                  }}
-                />
-              ))}
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="swiper-bottom-left w-full h-[100vh] flex flex-col justify-start md:justify-between items-center px-4 py-8">
-            <p className="text-xl sm:text-2xl text-[#e2e8c0] font-[700] text-center">
-              Nearby
-            </p>
-            <div className="flex flex-wrap justify-evenly w-full mt-0 md:mt-[50px]">
-              {[
-                {
-                  src: "/assets/nearby-splash-mobile.png",
-                  width: 243,
-                  height: 150,
-                },
-                {
-                  src: "/assets/nearby-start-mobile.png",
-                  width: 243,
-                  height: 150,
-                },
-                {
-                  src: "/assets/nearby-home-mobile.png",
-                  width: 243,
-                  height: 150,
-                },
-                {
-                  src: "/assets/nearby-homelist-mobile.png",
-                  width: 243,
-                  height: 150,
-                },
-                {
-                  src: "/assets/nearby-details-mobile.png",
-                  width: 243,
-                  height: 150,
-                },
-              ].map((image, index) => (
-                <Image
-                  key={index}
-                  src={image.src}
-                  alt="nearby"
-                  width={image.width}
-                  height={image.height}
-                  className="w-auto h-[200px] sm:h-[150px] transition-transform duration-300 ease-in-out hover:scale-110"
-                  onClick={() => {
-                    setModalInfo({
-                      image: image.src,
-                      description: `A highly functional mobile app: a benefits club with QR Code scanning via camera, an interactive map to locate nearby establishments, and integration with Node.js APIs.`,
-                      mobile: image.src.includes("mobile") ? true : false,
-                      tecnologies: ["React Native", "Expo"],
-                      links: [
-                        {
-                          github: "https://github.com/7hayMuller/nlw-nearby",
-                        },
-                      ],
-                    });
-                    setIsModalOpen(true);
-                  }}
-                />
-              ))}
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="swiper-bottom-left w-full h-[100vh] flex flex-col justify-start md:justify-between items-center px-4 py-8">
-            <p className="text-xl sm:text-2xl text-[#e2e8c0] font-[700] text-center">
-              Itaú- Digital Ecosystem
-            </p>
-            <div className="flex flex-wrap justify-evenly w-full mt-0 md:mt-[50px]">
-              {[
-                {
-                  src: "/assets/desktop_itau-front.png",
-                  width: 243,
-                  height: 150,
-                },
-                {
-                  src: "/assets/smartphone_itau-portrait.png",
-                  width: 243,
-                  height: 0,
-                },
-                {
-                  src: "/assets/smartwatch_itau-portrait.png",
-                  width: 243,
-                  height: 150,
-                },
-              ].map((image, index) => (
-                <Image
-                  key={index}
-                  src={image.src}
-                  alt="itau"
-                  width={image.width}
-                  height={image.height}
-                  className="w-auto h-[200px] sm:h-[150px] transition-transform duration-300 ease-in-out hover:scale-110"
-                  onClick={() => {
-                    setModalInfo({
-                      image: image.src,
-                      description: `Development of an integrated digital ecosystem covering channels such as mobile app, desktop, smartwatch, and ATMs. The project included the creation of wireframes, usability flows, and financial charts optimized for both mobile and desktop devices. The goal was to enhance user experience with a focus on financial organization, accessibility, and consistency with Itaú's visual identity.`,
-                      mobile: image.src.includes("mobile") ? true : false,
-                      tecnologies: [],
-                      links: [
-                        {
-                          figma:
-                            "https://www.figma.com/design/bWyeFyFptVlKsvX6pFO3IC/Ita%C3%BA---Prot%C3%B3tipo%2FCanais?node-id=0-1&t=unC2xG6NJUy8NBRJ-1",
-                        },
-                      ],
-                    });
-                    setIsModalOpen(true);
-                  }}
-                />
-              ))}
-            </div>
-          </SwiperSlide>
-        </Swiper>
+                        tecnologies: ["next", "sass"],
+                        links: [
+                          {
+                            github: "https://github.com/7hayMuller/waves-music",
+                          },
+                        ],
+                      });
+                      setIsModalOpen(true);
+                    }}
+                  />
+                ))}
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="w-full  justify-start md:justify-between items-center px-4 py-8">
+              <p className="text-xl sm:text-2xl text-[#e2e8c0] font-[700] text-center">
+                Landing page and E-mail marketing - SumUP/Pix
+              </p>
+              <div className="flex flex-wrap justify-evenly w-full mt-0 md:mt-[50px]">
+                {[
+                  { src: "/assets/sumup_mobile.png", width: 243, height: 150 },
+                  { src: "/assets/sumup_desktop.png", width: 243, height: 150 },
+                ].map((image, index) => (
+                  <Image
+                    key={index}
+                    src={image.src}
+                    alt="sumup"
+                    width={image.width}
+                    height={image.height}
+                    className="w-auto h-[200px] sm:h-[150px] transition-transform duration-300 ease-in-out hover:scale-110 hover:cursor-pointer"
+                    onClick={() => {
+                      setModalInfo({
+                        image: image.src,
+                        mobile: image.src.includes("mobile") ? true : false,
+                        description: `A landing page and an email marketing campaign with visuals and text tailored to the target audience to explain the benefits and functionality of Pix. The landing page highlights key advantages, such as no fees, 24/7 availability, and instant payment processing. The emails deliver clear and concise messages, simplifying the onboarding process and offering practical tips for integrating Pix into businesses.`,
+                        links: [
+                          {
+                            figma:
+                              "https://www.figma.com/design/5pQefnNNihalABA1mlfKVx/Landing-page---SumUP%2FPIX?node-id=0-1&t=LW78jJBOIhacNIwv-1",
+                            behance:
+                              "https://www.behance.net/gallery/212520691/Landing-page-e-E-mail-marketing-para-SumUPPIX",
+                          },
+                        ],
+                      });
+                      setIsModalOpen(true);
+                    }}
+                  />
+                ))}
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="w-full  justify-start md:justify-between items-center px-4 py-8">
+              <p className="text-xl sm:text-2xl text-[#e2e8c0] font-[700] text-center">
+                This Portifolio
+              </p>
+              <div className="flex flex-wrap justify-evenly w-full mt-0 md:mt-[50px]">
+                {[
+                  {
+                    src: "/assets/mockup-desk-portifolio.png",
+                    width: 243,
+                    height: 150,
+                  },
+                  {
+                    src: "/assets/mockup-mobile-portifolio.png",
+                    width: 243,
+                    height: 150,
+                  },
+                ].map((image, index) => (
+                  <Image
+                    key={index}
+                    src={image.src}
+                    alt="portifolio"
+                    width={image.width}
+                    height={image.height}
+                    className="w-auto h-[200px] sm:h-[150px] transition-transform duration-300 ease-in-out hover:scale-110 hover:cursor-pointer"
+                    onClick={() => {
+                      setModalInfo({
+                        image: image.src,
+                        description: `I built this personal portfolio to showcase my skills as a Frontend Developer and UX/UI Designer. My main goal was to create a clean, modern, and easy-to-navigate website that reflects who I am as a professional and highlights my passion for impactful design and intuitive user experiences.`,
+                        mobile: image.src.includes("mobile") ? true : false,
+                        tecnologies: ["next", "tailwind"],
+                        links: [
+                          {
+                            github:
+                              "https://github.com/7hayMuller/portifolio/tree/main/portfolio",
+                            figma:
+                              "https://www.figma.com/design/Z7KASeUUwpKMUhw2W1jLIO/Portif%C3%B3lio?node-id=0-1&t=3GVfwI3XxcUp6aiQ-1",
+                          },
+                        ],
+                      });
+                      setIsModalOpen(true);
+                    }}
+                  />
+                ))}
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="w-full  justify-start md:justify-between items-center px-4 py-8">
+              <p className="text-xl sm:text-2xl text-[#e2e8c0] font-[700] text-center">
+                Nearby
+              </p>
+              <div className="flex flex-wrap justify-evenly w-full mt-0 md:mt-[50px]">
+                {[
+                  {
+                    src: "/assets/nearby-splash-mobile.png",
+                    width: 243,
+                    height: 150,
+                  },
+                  {
+                    src: "/assets/nearby-start-mobile.png",
+                    width: 243,
+                    height: 150,
+                  },
+                  {
+                    src: "/assets/nearby-home-mobile.png",
+                    width: 243,
+                    height: 150,
+                  },
+                  {
+                    src: "/assets/nearby-homelist-mobile.png",
+                    width: 243,
+                    height: 150,
+                  },
+                  {
+                    src: "/assets/nearby-details-mobile.png",
+                    width: 243,
+                    height: 150,
+                  },
+                ].map((image, index) => (
+                  <Image
+                    key={index}
+                    src={image.src}
+                    alt="nearby"
+                    width={image.width}
+                    height={image.height}
+                    className="w-auto h-[200px] sm:h-[150px] transition-transform duration-300 ease-in-out hover:scale-110 hover:cursor-pointer"
+                    onClick={() => {
+                      setModalInfo({
+                        image: image.src,
+                        description: `A highly functional mobile app: a benefits club with QR Code scanning via camera, an interactive map to locate nearby establishments, and integration with Node.js APIs.`,
+                        mobile: image.src.includes("mobile") ? true : false,
+                        tecnologies: ["React Native", "Expo"],
+                        links: [
+                          {
+                            github: "https://github.com/7hayMuller/nlw-nearby",
+                          },
+                        ],
+                      });
+                      setIsModalOpen(true);
+                    }}
+                  />
+                ))}
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="w-full justify-start md:justify-between items-center px-4 py-8">
+              <p className="text-xl sm:text-2xl text-[#e2e8c0] font-[700] text-center">
+                Itaú - Digital Ecosystem
+              </p>
+              <div className="flex flex-wrap justify-evenly w-full mt-0 md:mt-[50px]">
+                {[
+                  {
+                    src: "/assets/desktop_itau-front.png",
+                    width: 243,
+                    height: 150,
+                  },
+                  {
+                    src: "/assets/smartphone_itau-portrait.png",
+                    width: 243,
+                    height: 0,
+                  },
+                  {
+                    src: "/assets/smartwatch_itau-portrait.png",
+                    width: 243,
+                    height: 150,
+                  },
+                ].map((image, index) => (
+                  <Image
+                    key={index}
+                    src={image.src}
+                    alt="itau"
+                    width={image.width}
+                    height={image.height}
+                    className="w-auto h-[200px] sm:h-[150px] transition-transform duration-300 ease-in-out hover:scale-110 hover:cursor-pointer"
+                    onClick={() => {
+                      setModalInfo({
+                        image: image.src,
+                        description: `Development of an integrated digital ecosystem covering channels such as mobile app, desktop, smartwatch, and ATMs. The project included the creation of wireframes, usability flows, and financial charts optimized for both mobile and desktop devices. The goal was to enhance user experience with a focus on financial organization, accessibility, and consistency with Itaú's visual identity.`,
+                        mobile: image.src.includes("mobile") ? true : false,
+                        tecnologies: [],
+                        links: [
+                          {
+                            figma:
+                              "https://www.figma.com/design/bWyeFyFptVlKsvX6pFO3IC/Ita%C3%BA---Prot%C3%B3tipo%2FCanais?node-id=0-1&t=unC2xG6NJUy8NBRJ-1",
+                          },
+                        ],
+                      });
+                      setIsModalOpen(true);
+                    }}
+                  />
+                ))}
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        </div>
         <Image
           className="-mt-[60px] sm:-mt-[50px] md:-mt-[80px] z-20"
           src="/assets/frontbottomwave.png"
