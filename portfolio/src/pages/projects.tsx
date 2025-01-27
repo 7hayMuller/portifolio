@@ -38,8 +38,8 @@ const Modal = ({ modalInfo, onClose }: ModalProps) => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex justify-center items-center p-4 overflow-y-auto">
-      <div className="relative bg-black bg-opacity-50 p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center max-w-4xl w-full">
+    <div className="fixed inset-0 z-50 bg-black bg-opacity-90 h-full flex justify-center items-center p-4 overflow-y-auto">
+      <div className="relative p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center max-w-4xl w-full">
         <button
           onClick={onClose}
           className="absolute top-2 right-2 bg-gray-200 text-black rounded-full w-5 h-5 flex items-center justify-center font-bold hover:bg-gray-300 transition"

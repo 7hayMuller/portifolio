@@ -10,7 +10,6 @@ const Navbar: React.FC = () => {
 
   const router = useRouter();
 
-  
   useEffect(() => {
     const path = router.pathname;
     if (path === "/about") {
@@ -32,24 +31,26 @@ const Navbar: React.FC = () => {
         isMobileMenuOpen && "h-[200px]"
       } w-full flex justify-between md:justify-center items-center`}
     >
+      {/* Botão do Menu Mobile */}
       <div className="md:hidden z-50">
         <button onClick={handleToggleMobileMenu} className="text-[#e2e8c0]">
           {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </button>
       </div>
+      {/* Itens do Menu */}
       <ul
         className={`fixed top-0 left-0 w-full ${
           isMobileMenuOpen ? "h-full" : "h-0"
         } bg-opacity-90 flex flex-col items-center justify-center transform ${
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-all duration-300 md:relative md:top-auto md:left-auto md:w-auto md:h-auto md:bg-transparent md:flex-row md:items-center md:justify-center md:translate-x-0 overflow-hidden`}
+        } transition-all duration-300 md:relative md:top-auto md:left-auto md:w-auto md:h-auto md:bg-transparent md:flex-row md:items-center md:justify-center md:translate-x-0`}
         style={{
           backgroundColor: isMobileMenuOpen
             ? "rgba(0, 0, 0, 0.3)"
             : "transparent",
         }}
       >
-        <li className="pb-3 pt-3 pr-6 flex justify-center">
+        <li className="pb-3 pt-3 md:pr-6">
           <Link
             href={"/about"}
             onClick={() => setIsMobileMenuOpen(false)}
@@ -62,7 +63,7 @@ const Navbar: React.FC = () => {
             Me, Myself & I
           </Link>
         </li>
-        <li className="pb-3 pt-3 pr-6 flex justify-center">
+        <li className="pb-3 pt-3 md:pr-6">
           <Link
             href={"/projects"}
             onClick={() => setIsMobileMenuOpen(false)}
@@ -75,7 +76,7 @@ const Navbar: React.FC = () => {
             My Projects
           </Link>
         </li>
-        <li className="pb-3 pt-3 flex justify-center">
+        <li className="pb-3 pt-3">
           <Link
             href={"/contact"}
             onClick={() => setIsMobileMenuOpen(false)}
