@@ -2,18 +2,18 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Css from "../../../public/assets/css3.png";
-import Html from "../../../public/assets/html5.png";
 import ReactLogo from "../../../public/assets/react.png";
 import Next from "../../../public/assets/next.png";
 import Tailwind from "../../../public/assets/tailwind.png";
-import Jest from "../../../public/assets/jest.png";
+import Typescript from "../../../public/assets/typescript.png";
+import Javascript from "../../../public/assets/javascript.png";
+import Sass from "../../../public/assets/sass-logo.png";
 
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFastTransition, setIsFastTransition] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const images = [Css, Html, ReactLogo, Next, Tailwind, Jest];
+  const images = [ReactLogo, Next, Tailwind, Typescript, Javascript, Sass];
 
   useEffect(() => {
     const handleResize = () => {
@@ -48,8 +48,8 @@ const Carousel = () => {
         const angle = position * (360 / images.length);
         const zIndex = images.length - position;
         const opacity = 1 - position / (images.length - 1);
-        const translateYValue = isMobile ? -120 : -210; // Ajuste de espaçamento dinâmico para telas maiores
-        const size = isMobile ? 50 : 120; // Ajuste do tamanho dos cards
+        const translateYValue = isMobile ? -120 : -210;
+        const size = isMobile ? 50 : 120;
         const transformStyle = `rotate(${angle}deg) translateY(${translateYValue}px) rotate(-${angle}deg)`;
 
         return (

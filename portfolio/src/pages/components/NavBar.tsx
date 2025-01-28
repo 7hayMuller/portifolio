@@ -3,11 +3,12 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { FaBars, FaTimes } from "react-icons/fa";
 import styles from "../../styles/navbar.module.css";
+import { useTranslation } from "react-i18next";
 
 const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>("introduction");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-
+  const { t } = useTranslation();
   const router = useRouter();
 
   useEffect(() => {
@@ -31,13 +32,12 @@ const Navbar: React.FC = () => {
         isMobileMenuOpen && "h-[200px]"
       } w-full flex justify-between md:justify-center items-center`}
     >
-      {/* Botão do Menu Mobile */}
       <div className="md:hidden z-50">
         <button onClick={handleToggleMobileMenu} className="text-[#e2e8c0]">
           {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </button>
       </div>
-      {/* Itens do Menu */}
+
       <ul
         className={`fixed top-0 left-0 w-full ${
           isMobileMenuOpen ? "h-full" : "h-0"
@@ -73,7 +73,7 @@ const Navbar: React.FC = () => {
                 : ""
             }`}
           >
-            My Projects
+            {t("my_projects")}
           </Link>
         </li>
         <li className="pb-3 pt-3">
@@ -86,7 +86,7 @@ const Navbar: React.FC = () => {
                 : ""
             }`}
           >
-            Contacts
+            {t("contact")}
           </Link>
         </li>
       </ul>

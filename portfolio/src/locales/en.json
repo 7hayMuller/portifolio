@@ -1,0 +1,16 @@
+{
+  "introduction": {
+    "greeting": "Hello! I'm Thayná Müller, a UX/UI designer and frontend developer from <strong>Brazil</strong>, currently living in the beautiful state of Rio de Janeiro.",
+    "hobbies": "When I'm not designing or coding, I love traveling and exploring new cultures, which inspires my <strong>creative</strong> process and broadens my <strong>perspective</strong>.",
+    "welcome": "<strong>Welcome</strong> to my portfolio, where you can see some of the projects I've worked on. Let's connect and create something <strong>amazing</strong> together!"
+  },
+  "see_more": "See more",
+  "frontend_projects": "Discover the projects I've developed, highlighting my expertise in frontend development. See how I build responsive, efficient, and visually appealing web applications using modern technologies and industry best practices.",
+  "uxui_projects": "Here are some of the projects I've worked on, showcasing my skills in UX/UI design. Explore how I create intuitive, responsive, and visually appealing user experiences.",
+  "say_hi": "Let&apos; Chat",
+  "frontend": "Frontend projects",
+  "uxui": "UX/UI projects",
+  "made_by_me": "Made by me with",
+  "my_projects": "My projects",
+  "contact": "Contact"
+}

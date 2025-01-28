@@ -47,7 +47,9 @@ const Section: React.FC<SectionProps> = ({
         </div>
       )}
       {animation && !imageSrc && (
-        <div className={`order-1 lg:order-2 ${animationClassName}`}>
+        <div
+          className={`order-1 lg:order-2 sm:ml-[120px] sm:-mt-[50px] ${animationClassName}`}
+        >
           {animation}
         </div>
       )}
