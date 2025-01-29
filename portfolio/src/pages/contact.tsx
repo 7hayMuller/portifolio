@@ -73,7 +73,7 @@ const Contact = () => {
           </div>
         }
       />
-      <div className="flex justify-center mt-10">
+      <div className="absolute bottom-0 left-1/2">
         <p className="text-[12px] text-[#e2e8c0] font-bold mb-3">
           {t("made_by_me")} 🩷
         </p>
