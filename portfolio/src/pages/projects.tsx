@@ -15,6 +15,7 @@ import { TbBrandReactNative } from "react-icons/tb";
 import { TiArrowRightOutline } from "react-icons/ti";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
+import Loading from "./components/Loading";
 
 export type ModalInfoProps = {
   description: string;
@@ -158,6 +159,7 @@ const MyProjects = () => {
 
   return (
     <>
+      <Loading />
       <Navbar />
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)} modalInfo={modalInfo} />
