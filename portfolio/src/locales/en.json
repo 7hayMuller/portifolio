@@ -29,7 +29,7 @@
   "itau_description": "Development of an integrated digital ecosystem covering channels such as mobile app, desktop, smartwatch, and ATMs. The project included the creation of wireframes, usability flows, and financial charts optimized for both mobile and desktop devices. The goal was to enhance user experience with a focus on financial organization, accessibility, and consistency with Itaú's visual identity.",
   "tecnologies_utilized": "Technologies utilized:",
   "contact_error_message": "Uhh , something got wrong. Try later please!",
-  "contact_success_message": "Great, it was sent. I'll answer soon.",
+  "contact_success_message": "Great, it's sent! I'll reply soon.",
   "name": "Name",
   "email": "E-mail",
   "message": "Message",
