@@ -13,6 +13,8 @@ import { SiExpo, SiNextdotjs, SiTailwindcss } from "react-icons/si";
 import { IoLogoBehance, IoLogoFigma } from "react-icons/io5";
 import { TbBrandReactNative } from "react-icons/tb";
 import { TiArrowRightOutline } from "react-icons/ti";
+import { useTranslation } from "react-i18next";
+import { t } from "i18next";
 
 export type ModalInfoProps = {
   description: string;
@@ -77,7 +79,7 @@ const Modal = ({ modalInfo, onClose }: ModalProps) => {
           {modalInfo?.tecnologies && modalInfo?.tecnologies.length && (
             <div className="mt-4">
               <p className="font-bold text-white mb-2">
-                Technologies utilized:
+                {t("tecnologies_utilized")}
               </p>
               <div className="flex flex-wrap justify-center md:justify-start gap-4">
                 {modalInfo.tecnologies ? (
@@ -162,7 +164,7 @@ const MyProjects = () => {
       )}
       <div className="flex flex-col mt-[50px] md:mt-[100px] items-center justify-center">
         <div className="flex flex-col w-[90%] sm:w-[600px] justify-center items-center">
-          <div className="flex flex-col justify-between text-[#e2e8c0] text-2xl sm:text-3xl lg:text-4xl font-bold text-center sm:text-left">
+          <div className="flex flex-col justify-between text-[#e2e8c0] text-3xl sm:text-3xl lg:text-4xl font-bold text-center sm:text-left">
             <h1 className="flex justify-center sm:justify-start">
               Front<div className="text-[#be1d90]">en</div>d{" "}
               <div className="ml-2 bg-clip-text text-transparent bg-e-gradient">
@@ -172,26 +174,23 @@ const MyProjects = () => {
             <div className="flex justify-center sm:justify-start sm:ml-[50px]">
               <h1 className="mr-2">UX/UI</h1>
               <h1 className="flex">
-                proje<div className="text-[#6AD5CB]">ct</div>s
+                proje<div className="text-[#6AD5CB]">{t("ct")}</div>s
               </h1>
             </div>
           </div>
           <p className="text-[#e2e8c0] text-center mt-6 sm:mt-10">
-            Here are some of my frontend and UX/UI projects, focusing on
-            responsive designs and user-friendly interfaces. Each project
-            reflects my growth and dedication to creating practical and visually
-            appealing solutions.
+            {t("project_introduction")}
           </p>
         </div>
         <div className="relative w-full mt-[50px]">
           <div className="absolute top-0 right-2 transform -translate-x-1/2 z-10 hidden sm:flex sm:flex-col items-right">
             <p className="text-white text-sm animate-bounce">
-              Arraste para ver mais
+              {t("drag_to_see_more")}
               <TiArrowRightOutline size={20} />
             </p>
           </div>
           <Image
-            className="-mt-[100px] sm:-mt-[150px] md:-mt-[300px] -z-20"
+            className="-mt-[100px] sm:-mt-[150px] md:-mt-[300px] -z-20 opacity-50"
             src="/assets/frontupperwave.png"
             width={2000}
             height={500}
@@ -240,9 +239,7 @@ const MyProjects = () => {
                       setModalInfo({
                         image: image.src,
                         mobile: image.src.includes("mobile") ? true : false,
-                        description: `A sleek music player built with Next.js and SASS, featuring
-                  seamless integration with the Jamendo API to stream free music
-                  effortlessly.`,
+                        description: t("waves"),
                         tecnologies: ["next", "sass"],
                         links: [
                           {
@@ -258,7 +255,7 @@ const MyProjects = () => {
             </SwiperSlide>
             <SwiperSlide className="w-full justify-start md:justify-between items-center px-4 py-8">
               <p className="text-xl sm:text-2xl text-[#e2e8c0] font-[700] text-center">
-                Landing page and E-mail marketing - SumUP/Pix
+                {t("landing_page_title")}
               </p>
               <div className="flex flex-wrap justify-evenly w-full mt-0 md:mt-[50px]">
                 {[
@@ -276,7 +273,7 @@ const MyProjects = () => {
                       setModalInfo({
                         image: image.src,
                         mobile: image.src.includes("mobile") ? true : false,
-                        description: `A landing page and an email marketing campaign with visuals and text tailored to the target audience to explain the benefits and functionality of Pix. The landing page highlights key advantages, such as no fees, 24/7 availability, and instant payment processing. The emails deliver clear and concise messages, simplifying the onboarding process and offering practical tips for integrating Pix into businesses.`,
+                        description: t("landing_page_description"),
                         links: [
                           {
                             figma:
@@ -294,7 +291,7 @@ const MyProjects = () => {
             </SwiperSlide>
             <SwiperSlide className="w-full  justify-start md:justify-between items-center px-4 py-8">
               <p className="text-xl sm:text-2xl text-[#e2e8c0] font-[700] text-center">
-                This Portifolio
+                {t("this_portfolio")}
               </p>
               <div className="flex flex-wrap justify-evenly w-full mt-0 md:mt-[50px]">
                 {[
@@ -319,7 +316,7 @@ const MyProjects = () => {
                     onClick={() => {
                       setModalInfo({
                         image: image.src,
-                        description: `I built this personal portfolio to showcase my skills as a Frontend Developer and UX/UI Designer. My main goal was to create a clean, modern, and easy-to-navigate website that reflects who I am as a professional and highlights my passion for impactful design and intuitive user experiences.`,
+                        description: t("this_portfolio_description"),
                         mobile: image.src.includes("mobile") ? true : false,
                         tecnologies: ["next", "tailwind"],
                         links: [
@@ -379,7 +376,7 @@ const MyProjects = () => {
                     onClick={() => {
                       setModalInfo({
                         image: image.src,
-                        description: `A highly functional mobile app: a benefits club with QR Code scanning via camera, an interactive map to locate nearby establishments, and integration with Node.js APIs.`,
+                        description: t("nearby"),
                         mobile: image.src.includes("mobile") ? true : false,
                         tecnologies: ["React Native", "Expo"],
                         links: [
@@ -396,7 +393,7 @@ const MyProjects = () => {
             </SwiperSlide>
             <SwiperSlide className="w-full justify-start md:justify-between items-center px-4 py-8">
               <p className="text-xl sm:text-2xl text-[#e2e8c0] font-[700] text-center">
-                Itaú - Digital Ecosystem
+                {t("itau_title")}
               </p>
               <div className="flex flex-wrap justify-evenly w-full mt-0 md:mt-[50px]">
                 {[
@@ -426,13 +423,15 @@ const MyProjects = () => {
                     onClick={() => {
                       setModalInfo({
                         image: image.src,
-                        description: `Development of an integrated digital ecosystem covering channels such as mobile app, desktop, smartwatch, and ATMs. The project included the creation of wireframes, usability flows, and financial charts optimized for both mobile and desktop devices. The goal was to enhance user experience with a focus on financial organization, accessibility, and consistency with Itaú's visual identity.`,
+                        description: t("itau_description"),
                         mobile: image.src.includes("mobile") ? true : false,
                         tecnologies: [],
                         links: [
                           {
                             figma:
                               "https://www.figma.com/design/bWyeFyFptVlKsvX6pFO3IC/Ita%C3%BA---Prot%C3%B3tipo%2FCanais?node-id=0-1&t=unC2xG6NJUy8NBRJ-1",
+                            behance:
+                              "https://www.behance.net/gallery/218042201/Ecossistema-digital-Itau",
                           },
                         ],
                       });
@@ -454,7 +453,7 @@ const MyProjects = () => {
       </div>
       <div className="flex justify-center mt-10">
         <p className="text-[12px] text-[#e2e8c0] font-bold mb-3">
-          Made by me with 🩷
+          {t("made_by_me")} 🩷
         </p>
       </div>
     </>

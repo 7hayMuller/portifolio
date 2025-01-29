@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import { useState } from "react";
 type ContactProps = {
   onClose: () => void;
@@ -39,11 +40,11 @@ const ContactForm: React.FC<ContactProps> = ({ onClose }) => {
         setIsSent(true);
         setFormData({ name: "", email: "", message: "" });
       } else {
-        setError("Failed to send message. Please try again later.");
+        setError(t("contact_error_message"));
       }
     } catch (err) {
       console.error(err);
-      setError("Failed to send message. Please try again later.");
+      setError(t("contact_error_message"));
     } finally {
       setIsLoading(false);
     }
@@ -58,7 +59,7 @@ const ContactForm: React.FC<ContactProps> = ({ onClose }) => {
         {isSent && (
           <div className="flex justify-center mb-4">
             <p className="text-[#ffd449] font-bold text-center">
-              Message sent successfully!
+              {t("contact_success_message")}
             </p>
             <p className="text-[25px] -mt-2">&#128573;</p>
           </div>
@@ -77,7 +78,7 @@ const ContactForm: React.FC<ContactProps> = ({ onClose }) => {
             value={formData.name}
             onChange={handleChange}
             className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#be1d90] transition duration-200 shadow-md"
-            placeholder="Name"
+            placeholder={t("name")}
             required
           />
         </div>
@@ -89,7 +90,7 @@ const ContactForm: React.FC<ContactProps> = ({ onClose }) => {
             value={formData.email}
             onChange={handleChange}
             className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#be1d90] transition duration-200 shadow-md"
-            placeholder="Email"
+            placeholder={t("email")}
             required
           />
         </div>
@@ -100,7 +101,7 @@ const ContactForm: React.FC<ContactProps> = ({ onClose }) => {
             value={formData.message}
             onChange={handleChange}
             className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#be1d90] transition duration-200 shadow-md"
-            placeholder="Message"
+            placeholder={t("message")}
             required
           />
         </div>
@@ -116,7 +117,7 @@ const ContactForm: React.FC<ContactProps> = ({ onClose }) => {
         after:content-[''] after:w-[2.5em] after:h-[2.0em] sm:after:w-[4.4em] sm:after:h-[2.95em] after:absolute after:bg-[#be1d90] after:rounded-full after:transition-transform after:duration-1000 after:ease-in-out after:scale-0 after:bottom-[-20%] sm:after:bottom-[-25%] after:right-[20%] after:z-[-1] hover:before:scale-100 hover:after:scale-100"
               disabled={isLoading}
             >
-              {isLoading ? "Sending..." : "Send Message"}
+              {isLoading ? t("sending") : t("send_message")}
             </button>
 
             <svg
@@ -153,7 +154,7 @@ const ContactForm: React.FC<ContactProps> = ({ onClose }) => {
         after:content-[''] after:w-[2.5em] after:h-[2.0em] sm:after:w-[4.4em] sm:after:h-[2.95em] after:absolute after:bg-[#6AD5CB] after:rounded-full after:transition-transform after:duration-1000 after:ease-in-out after:scale-0 after:bottom-[-20%] sm:after:bottom-[-25%] after:right-[20%] after:z-[-1] hover:before:scale-100 hover:after:scale-100"
               onClick={onClose}
             >
-              Back
+              {t("back")}
             </button>
 
             <svg
