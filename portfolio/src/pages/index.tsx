@@ -4,16 +4,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "../styles/effect.module.css";
 import dynamic from "next/dynamic";
-
+import { t } from "i18next";
 
 const SineWave = dynamic(() => import("./components/SineWave"), { ssr: false });
 
 const Main = () => {
   const router = useRouter();
   const [exploded, setExploded] = useState(false);
-  
-  
-  
+
   const handleClick = () => {
     setExploded(true);
     setTimeout(() => {
@@ -21,23 +19,26 @@ const Main = () => {
     }, 800);
   };
 
-  
   useEffect(() => {
     if (exploded) {
-      const letters = Array.from(document.querySelectorAll(`.${styles.letter}`));
+      const letters = Array.from(
+        document.querySelectorAll(`.${styles.letter}`)
+      );
       letters.forEach((letter, index) => {
         const randomX = (Math.random() - 0.5) * 200;
         const randomY = (Math.random() - 0.5) * 200;
         const randomRotate = (Math.random() - 0.5) * 720;
-        letter.setAttribute("style", `
+        letter.setAttribute(
+          "style",
+          `
           --random-x: ${randomX}px;
           --random-y: ${randomY}px;
           --random-rotate: ${randomRotate}deg;
-        `);
+        `
+        );
       });
     }
   }, [exploded]);
-
 
   useEffect(() => {
     const words = Array.from(document.querySelectorAll(".word"));
@@ -96,15 +97,17 @@ const Main = () => {
         }`}
         onClick={handleClick}
       >
-        {"About".split("").map((char, index) => (
-          <span
-            key={index}
-            className={`${styles.letter} ${exploded ? styles.exploded : ""}`}
-            style={{ animationDelay: `${index * 0.1}s` }}
-          >
-            {char}
-          </span>
-        ))}
+        {t("about")
+          .split("")
+          .map((char, index) => (
+            <span
+              key={index}
+              className={`${styles.letter} ${exploded ? styles.exploded : ""}`}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              {char}
+            </span>
+          ))}
       </div>
       <SineWave />
       <div
@@ -112,15 +115,13 @@ const Main = () => {
       >
         <div className="flex justify-center">
           <div className={`rotating-text ${styles.rotatingText} text-center`}>
-            <p className="text-[20px] text-[#e2e8c0]">
-              Hi, I&apos;m Thayná Müller.
-            </p>
+            <p className="text-[20px] text-[#e2e8c0]">{t("hi_im")}</p>
             <p>
               <span className="word text-[20px] text-[#8e44ad] font-bold cursor-pointer">
-                A Frontend developer.
+                {t("frontend_developer")}
               </span>
               <span className="word text-[20px] text-[#f1c40f] font-bold cursor-pointer">
-                A UX/UI designer.
+                {t("designer")}
               </span>
             </p>
           </div>
