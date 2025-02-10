@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import styles from "../styles/effect.module.css";
 import dynamic from "next/dynamic";
 import { t } from "i18next";
+import Head from "next/head";
 
 const SineWave = dynamic(() => import("./components/SineWave"), { ssr: false });
 
@@ -90,44 +91,51 @@ const Main = () => {
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center lg:w-full w-[500px] h-full">
-      <div
-        className={`absolute top-2 lg:top-2 right-3 lg:right-8 text-[#fff] font-bold font-sans cursor-pointer text-[20px] border border-purple w-[100px] lg:h-[40px] h-[50px] flex items-center justify-center overflow-hidden ${
-          exploded ? styles.exploded : ""
-        }`}
-        onClick={handleClick}
-      >
-        {t("about")
-          .split("")
-          .map((char, index) => (
-            <span
-              key={index}
-              className={`${styles.letter} ${exploded ? styles.exploded : ""}`}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {char}
-            </span>
-          ))}
-      </div>
-      <SineWave />
-      <div
-        className={`lg:mb-0 mb-[100px] w-full flex flex-col items-center ${styles.bottomText}`}
-      >
-        <div className="flex justify-center">
-          <div className={`rotating-text ${styles.rotatingText} text-center`}>
-            <p className="text-[20px] text-[#e2e8c0]">{t("hi_im")}</p>
-            <p>
-              <span className="word text-[20px] text-[#8e44ad] font-bold cursor-pointer">
-                {t("frontend_developer")}
+    <>
+      <Head>
+        <title>Thayná Müller</title>
+      </Head>
+      <div className="relative flex flex-col items-center lg:w-full w-[700px] h-full">
+        <div
+          className={`absolute top-[50px] lg:top-2 right-[20px] lg:right-8 text-[#fff] font-bold font-sans cursor-pointer text-[20px] border border-purple w-[100px] lg:h-[40px] h-[50px] flex items-center justify-center overflow-hidden ${
+            exploded ? styles.exploded : ""
+          }`}
+          onClick={handleClick}
+        >
+          {t("about")
+            .split("")
+            .map((char, index) => (
+              <span
+                key={index}
+                className={`${styles.letter} ${
+                  exploded ? styles.exploded : ""
+                }`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {char}
               </span>
-              <span className="word text-[20px] text-[#f1c40f] font-bold cursor-pointer">
-                {t("designer")}
-              </span>
-            </p>
+            ))}
+        </div>
+        <SineWave />
+        <div
+          className={`lg:mb-0 mb-[100px] w-full flex flex-col items-center ${styles.bottomText}`}
+        >
+          <div className="flex justify-center ">
+            <div className={`rotating-text ${styles.rotatingText} text-center`}>
+              <p className="text-[20px] text-[#e2e8c0]">{t("hi_im")}</p>
+              <p className="w-[100px] lg:w-full">
+                <span className="word text-[20px] text-[#8e44ad] font-bold cursor-pointer">
+                  {t("frontend_developer")}
+                </span>
+                <span className="word text-[20px] text-[#f1c40f] font-bold cursor-pointer">
+                  {t("designer")}
+                </span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

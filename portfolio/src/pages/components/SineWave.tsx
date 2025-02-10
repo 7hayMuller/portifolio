@@ -170,7 +170,7 @@ const SineWave: React.FC = () => {
     <canvas
       ref={canvasRef}
       id="backgroundCanvas"
-      style={{ minWidth: 500, width: "100%" }}
+      //style={{ width: "100vw", height: "100vh" }}
     />
   );
 };
