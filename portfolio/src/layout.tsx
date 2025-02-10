@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Lato, Roboto } from "next/font/google";
 import "./styles/globals.css";
+import Head from "next/head";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -26,6 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <title>Thayná Müller</title>
+      </Head>
       <body className={(lato.className, roboto.className)}>{children}</body>
     </html>
   );
