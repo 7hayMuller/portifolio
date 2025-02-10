@@ -6,6 +6,7 @@ import Navbar from "./components/NavBar";
 import { FaBehance } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import Loading from "./components/Loading";
+import Head from "next/head";
 
 const Contact = () => {
   const router = useRouter();
@@ -13,6 +14,9 @@ const Contact = () => {
 
   return (
     <>
+      <Head>
+        <title>{t("contact")}</title>
+      </Head>
       <Loading />
       <Navbar />
       <Section

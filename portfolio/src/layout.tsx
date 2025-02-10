@@ -27,9 +27,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        <title>Thayná Müller</title>
-      </Head>
       <body className={(lato.className, roboto.className)}>{children}</body>
     </html>
   );

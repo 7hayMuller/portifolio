@@ -16,6 +16,7 @@ import { TiArrowRightOutline } from "react-icons/ti";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 import Loading from "./components/Loading";
+import Head from "next/head";
 
 export type ModalInfoProps = {
   description: string;
@@ -159,7 +160,11 @@ const MyProjects = () => {
 
   return (
     <>
+      <Head>
+        <title>{t("my_projects")}</title>
+      </Head>
       <Loading />
+
       <Navbar />
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)} modalInfo={modalInfo} />

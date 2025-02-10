@@ -11,6 +11,7 @@ import styles from "../styles/effect.module.css";
 import Sphere from "../../public/assets/uxImage.png";
 import { Trans, useTranslation } from "react-i18next";
 import Loading from "./components/Loading";
+import Head from "next/head";
 
 const About = () => {
   const router = useRouter();
@@ -41,6 +42,9 @@ const About = () => {
 
   return (
     <>
+      <Head>
+        <title>{t("about")}</title>
+      </Head>
       <Loading />
       <Navbar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 ">
