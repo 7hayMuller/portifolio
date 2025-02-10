@@ -123,7 +123,7 @@ const Main = () => {
           <div className="flex justify-center ">
             <div className={`rotating-text ${styles.rotatingText} text-center`}>
               <p className="text-[20px] text-[#e2e8c0]">{t("hi_im")}</p>
-              <p className="w-[100px] lg:w-full">
+              <p className="flex w-[100px] lg:w-[200px]">
                 <span className="word text-[20px] text-[#8e44ad] font-bold cursor-pointer">
                   {t("frontend_developer")}
                 </span>
