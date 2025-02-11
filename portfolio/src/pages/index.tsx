@@ -93,7 +93,7 @@ const Main = () => {
   return (
     <>
       <Head>
-        <title>Thayná Müller</title>
+        <title>Thayná Müller | Dev | UI Design</title>
       </Head>
       <div className="relative flex flex-col items-center lg:w-full w-[700px] h-full">
         <div
