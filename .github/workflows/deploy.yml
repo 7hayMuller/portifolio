@@ -1,17 +1,12 @@
 name: Deploy to AWS S3 & CloudFront
 
-
 on:
   push:
     branches:
       - main
 
 jobs:
-- name: Debug Bucket Name
-  run: echo "Bucket Name is $S3_BUCKET_NAME"
-  env:
-    S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
-  deploy:
+  deploy:  # Corrigido para ser um job válido
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -27,12 +22,19 @@ jobs:
 
       - name: Build Project
         run: npm run build
+
+      - name: Debug Bucket Name  
+        run: echo "Bucket Name is $S3_BUCKET_NAME"
+        env:
+          S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+
       - name: Deploy to S3
         run: aws s3 sync out/ s3://$S3_BUCKET_NAME --delete
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
+          S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
 
       - name: Invalidate CloudFront Cache
         run: aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
@@ -40,3 +42,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
+          CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
