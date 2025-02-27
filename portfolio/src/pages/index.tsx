@@ -97,7 +97,7 @@ const Main = () => {
       </Head>
       <div className="relative flex flex-col items-center lg:w-full w-[700px] h-full">
         <div
-          className={`absolute top-[50px] lg:top-2 right-[20px] lg:right-8 text-[#bdf328] font-bold font-sans cursor-pointer text-[20px] border border-purple w-[100px] lg:h-[40px] h-[50px] flex items-center justify-center overflow-hidden ${
+          className={`absolute top-[50px] lg:top-2 right-[20px] lg:right-8 text-[#f32828] font-bold font-sans cursor-pointer text-[20px] border border-purple w-[100px] lg:h-[40px] h-[50px] flex items-center justify-center overflow-hidden ${
             exploded ? styles.exploded : ""
           }`}
           onClick={handleClick}
