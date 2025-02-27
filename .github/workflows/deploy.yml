@@ -1,11 +1,16 @@
 name: Deploy to AWS S3 & CloudFront
 
+
 on:
   push:
     branches:
       - main
 
 jobs:
+- name: Debug Bucket Name
+  run: echo "Bucket Name is $S3_BUCKET_NAME"
+  env:
+    S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
   deploy:
     runs-on: ubuntu-latest
     steps:
