@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://thaynamuller.com
+
+# Sitemaps
+Sitemap: https://thaynamuller.com/sitemap.xml
