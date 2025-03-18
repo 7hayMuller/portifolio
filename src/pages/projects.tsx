@@ -172,17 +172,17 @@ const MyProjects = () => {
       <div className="flex flex-col mt-[50px] md:mt-[100px] items-center justify-center">
         <div className="flex flex-col w-[90%] sm:w-[600px] justify-center items-center">
           <div className="flex flex-col justify-between text-[#e2e8c0] text-3xl sm:text-3xl lg:text-4xl font-bold text-center sm:text-left">
-            <h1 className="flex justify-center sm:justify-start">
+            <h2 className="flex justify-center sm:justify-start">
               Front<div className="text-[#be1d90]">en</div>d{" "}
               <div className="ml-2 bg-clip-text text-transparent bg-e-gradient">
                 &
               </div>
-            </h1>
+            </h2>
             <div className="flex justify-center sm:justify-start sm:ml-[50px]">
-              <h1 className="mr-2">UX/UI</h1>
-              <h1 className="flex">
+              <h2 className="mr-2">UX/UI</h2>
+              <h2 className="flex">
                 proje<div className="text-[#6AD5CB]">{t("ct")}</div>s
-              </h1>
+              </h2>
             </div>
           </div>
           <p className="text-[#e2e8c0] text-center mt-6 sm:mt-10">

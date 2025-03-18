@@ -1,8 +1,7 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import styles from "../../styles/image.module.css";
-import ContactForm from "./ContactForm";
+
 
 interface SectionProps {
   action?: React.ReactNode;
@@ -60,9 +59,9 @@ const Section: React.FC<SectionProps> = ({
         }`}
       >
         <div className="w-full max-w-lg mt-5 lg:mt-0">
-          <h1 className="text-[#e2e8c0] font-bold text-3xl mb-4 text-center lg:text-left">
+          <h2 className="text-[#e2e8c0] font-bold text-3xl mb-4 text-center lg:text-left">
             {title}
-          </h1>
+          </h2>
           <p className="text-[#e2e8c0] text-center lg:text-left">{content}</p>
           {action && <div className="text-center lg:text-right">{action}</div>}
         </div>
