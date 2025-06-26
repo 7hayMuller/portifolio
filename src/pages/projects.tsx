@@ -121,7 +121,7 @@ const Modal = ({ modalInfo, onClose }: ModalProps) => {
                   href={modalInfo?.links[0].figma ?? ""}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-[#be1d90]"
+                  className="text-white hover:text-[#F25D76]"
                 >
                   <IoLogoFigma size={30} />
                 </a>
@@ -131,7 +131,7 @@ const Modal = ({ modalInfo, onClose }: ModalProps) => {
                   href={modalInfo?.links[0].behance ?? ""}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-[#be1d90]"
+                  className="text-white hover:text-[#F25D76]"
                 >
                   <IoLogoBehance size={30} />
                 </a>
@@ -141,7 +141,7 @@ const Modal = ({ modalInfo, onClose }: ModalProps) => {
                   href={modalInfo?.links[0].github ?? ""}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-[#be1d90]"
+                  className="text-white hover:text-[#F25D76]"
                 >
                   <FaGithub size={30} />
                 </a>
@@ -173,7 +173,7 @@ const MyProjects = () => {
         <div className="flex flex-col w-[90%] sm:w-[600px] justify-center items-center">
           <div className="flex flex-col justify-between text-[#e2e8c0] text-3xl sm:text-3xl lg:text-4xl font-bold text-center sm:text-left">
             <h2 className="flex justify-center sm:justify-start">
-              Front<div className="text-[#be1d90]">en</div>d{" "}
+              Front<div className="text-[#F25D76]">en</div>d{" "}
               <div className="ml-2 bg-clip-text text-transparent bg-e-gradient">
                 &
               </div>
@@ -260,7 +260,7 @@ const MyProjects = () => {
                 ))}
               </div>
             </SwiperSlide>
-            <SwiperSlide className="w-full justify-start md:justify-between items-center px-4 py-8">
+            {/* <SwiperSlide className="w-full justify-start md:justify-between items-center px-4 py-8">
               <p className="text-xl sm:text-2xl text-[#e2e8c0] font-[700] text-center">
                 {t("landing_page_title")}
               </p>
@@ -295,7 +295,7 @@ const MyProjects = () => {
                   />
                 ))}
               </div>
-            </SwiperSlide>
+            </SwiperSlide> */}
             <SwiperSlide className="w-full  justify-start md:justify-between items-center px-4 py-8">
               <p className="text-xl sm:text-2xl text-[#e2e8c0] font-[700] text-center">
                 {t("this_portfolio")}

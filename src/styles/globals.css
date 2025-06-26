@@ -57,7 +57,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #be1d90;
+  background-color: #f25d76;
 }
 
 .rotating-text {
@@ -134,15 +134,15 @@ body {
 
 @media (min-width: 640px) {
   .glass-card {
-    width: 150px;
-    height: 150px;
+    width: 80px;
+    height: 80px;
   }
 }
 
 @media (min-width: 1024px) {
   .glass-card {
-    width: 175px;
-    height: 175px;
+    width: 150px;
+    height: 150px;
   }
 }
 

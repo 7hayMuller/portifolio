@@ -21,7 +21,7 @@ const Loading = () => {
   }, [router]);
 
   return loading ? (
-    <div className="fixed top-0 left-0 w-full h-1 bg-[#be1d90] animate-pulse" />
+    <div className="fixed top-0 left-0 w-full h-1 bg-[#F25D76] animate-pulse" />
   ) : null;
 };
 

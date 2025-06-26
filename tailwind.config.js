@@ -9,7 +9,7 @@ export const theme = {
       spin: "spin 100s linear infinite",
     },
     backgroundImage: {
-      "e-gradient": "linear-gradient(90deg, #BE1D90 0%, #6AD5CB 100%)",
+      "e-gradient": "linear-gradient(90deg, #F25D76 0%, #6AD5CB 100%)",
     },
     colors: {
       "yellow-translucent": "rgba(255, 255, 0, 0.1)",

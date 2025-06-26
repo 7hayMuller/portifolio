@@ -1,10 +1,7 @@
 import { t } from "i18next";
 import { useState } from "react";
-type ContactProps = {
-  onClose: () => void;
-};
 
-const ContactForm: React.FC<ContactProps> = ({ onClose }) => {
+const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -54,7 +51,7 @@ const ContactForm: React.FC<ContactProps> = ({ onClose }) => {
     <div className="relative flex items-center justify-center mt-12 sm:mt-16 md:mt-20 lg:mt-24 px-4 w-full max-w-2xl mx-auto">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-black bg-opacity-50 p-6 rounded-lg shadow-lg"
+        className="w-full max-w-lg bg-[#101524] bg-opacity-50 p-6 rounded-lg shadow-lg"
       >
         {isSent && (
           <div className="flex justify-center mb-4">
@@ -77,7 +74,7 @@ const ContactForm: React.FC<ContactProps> = ({ onClose }) => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#be1d90] transition duration-200 shadow-md"
+            className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#F25D76] transition duration-200 shadow-md"
             placeholder={t("name")}
             required
           />
@@ -89,7 +86,7 @@ const ContactForm: React.FC<ContactProps> = ({ onClose }) => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#be1d90] transition duration-200 shadow-md"
+            className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#F25D76] transition duration-200 shadow-md"
             placeholder={t("email")}
             required
           />
@@ -100,7 +97,7 @@ const ContactForm: React.FC<ContactProps> = ({ onClose }) => {
             name="message"
             value={formData.message}
             onChange={handleChange}
-            className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#be1d90] transition duration-200 shadow-md"
+            className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#F25D76] transition duration-200 shadow-md"
             placeholder={t("message")}
             required
           />
@@ -112,49 +109,12 @@ const ContactForm: React.FC<ContactProps> = ({ onClose }) => {
           >
             <button
               type="submit"
-              className="relative inline-block text-center bg-[#be1d90] text-white font-bold py-3 px-4 sm:py-4 sm:px-5 rounded-full min-w-[10em] sm:min-w-[15em] md:min-w-[10em] text-base sm:text-lg no-underline
-        before:content-[''] before:w-[2.5em] before:h-[2.0em] sm:before:w-[4.4em] sm:before:h-[2.95em] before:absolute before:bg-[#be1d90] before:rounded-full before:transition-transform before:duration-1000 before:ease-in-out before:scale-0 before:top-[-20%] sm:before:top-[-25%] before:left-[20%] before:z-[-1]
-        after:content-[''] after:w-[2.5em] after:h-[2.0em] sm:after:w-[4.4em] sm:after:h-[2.95em] after:absolute after:bg-[#be1d90] after:rounded-full after:transition-transform after:duration-1000 after:ease-in-out after:scale-0 after:bottom-[-20%] sm:after:bottom-[-25%] after:right-[20%] after:z-[-1] hover:before:scale-100 hover:after:scale-100"
+              className="relative inline-block text-center bg-[#F25D76] text-white font-bold py-3 px-4 sm:py-4 sm:px-5 rounded-full min-w-[10em] sm:min-w-[15em] md:min-w-[10em] text-base sm:text-lg no-underline
+        before:content-[''] before:w-[2.5em] before:h-[2.0em] sm:before:w-[4.4em] sm:before:h-[2.95em] before:absolute before:bg-[#F25D76]  before:rounded-full before:transition-transform before:duration-1000 before:ease-in-out before:scale-0 before:top-[-20%] sm:before:top-[-25%] before:left-[20%] before:z-[-1]
+        after:content-[''] after:w-[2.5em] after:h-[2.0em] sm:after:w-[4.4em] sm:after:h-[2.95em] after:absolute after:bg-[#F25D76] after:rounded-full after:transition-transform after:duration-1000 after:ease-in-out after:scale-0 after:bottom-[-20%] sm:after:bottom-[-25%] after:right-[20%] after:z-[-1] hover:before:scale-100 hover:after:scale-100"
               disabled={isLoading}
             >
               {isLoading ? t("sending") : t("send_message")}
-            </button>
-
-            <svg
-              className="absolute inset-0 w-0 h-0"
-              xmlns="http://www.w3.org/2000/svg"
-              version="1.1"
-            >
-              <defs>
-                <filter id="goo">
-                  <feGaussianBlur
-                    in="SourceGraphic"
-                    stdDeviation="10"
-                    result="blur"
-                  />
-                  <feColorMatrix
-                    in="blur"
-                    mode="matrix"
-                    values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-                    result="goo"
-                  />
-                  <feComposite in="SourceGraphic" in2="goo" operator="atop" />
-                </filter>
-              </defs>
-            </svg>
-          </div>
-
-          <div
-            className="relative flex justify-center py-6"
-            style={{ filter: "url(#goo)" }}
-          >
-            <button
-              className="relative inline-block text-center bg-[#6AD5CB] text-white font-bold py-3 px-4 sm:py-4 sm:px-5 rounded-full min-w-[10em] sm:min-w-[15em] md:min-w-[10em] text-base sm:text-lg no-underline
-        before:content-[''] before:w-[2.5em] before:h-[2.0em] sm:before:w-[4.4em] sm:before:h-[2.95em] before:absolute before:bg-[#6AD5CB] before:rounded-full before:transition-transform before:duration-1000 before:ease-in-out before:scale-0 before:top-[-20%] sm:before:top-[-25%] before:left-[20%] before:z-[-1]
-        after:content-[''] after:w-[2.5em] after:h-[2.0em] sm:after:w-[4.4em] sm:after:h-[2.95em] after:absolute after:bg-[#6AD5CB] after:rounded-full after:transition-transform after:duration-1000 after:ease-in-out after:scale-0 after:bottom-[-20%] sm:after:bottom-[-25%] after:right-[20%] after:z-[-1] hover:before:scale-100 hover:after:scale-100"
-              onClick={onClose}
-            >
-              {t("back")}
             </button>
 
             <svg

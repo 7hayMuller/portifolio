@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
             onClick={() => setIsMobileMenuOpen(false)}
             className={`text-base lg:text-base text-[#e2e8c0] ${
               activeSection === "introduction"
-                ? "border-b-4 border-[#be1d90] pb-1 inline-block"
+                ? "border-b-4 border-[#F25D76] pb-1 inline-block"
                 : ""
             }`}
           >
@@ -69,7 +69,7 @@ const Navbar: React.FC = () => {
             onClick={() => setIsMobileMenuOpen(false)}
             className={`text-base lg:text-base text-[#e2e8c0] ${
               activeSection === "projects"
-                ? "border-b-4 border-[#be1d90] pb-1 inline-block"
+                ? "border-b-4 border-[#F25D76] pb-1 inline-block"
                 : ""
             }`}
           >
@@ -82,7 +82,7 @@ const Navbar: React.FC = () => {
             onClick={() => setIsMobileMenuOpen(false)}
             className={`text-base lg:text-base text-[#e2e8c0] ${
               activeSection === "contact"
-                ? "border-b-4 border-[#be1d90] pb-1 inline-block"
+                ? "border-b-4 border-[#F25D76] pb-1 inline-block"
                 : ""
             }`}
           >
