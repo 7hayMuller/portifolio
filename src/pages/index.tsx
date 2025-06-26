@@ -8,7 +8,7 @@ import Me from "../../public/assets/me2.png";
 import { useEffect, useState } from "react";
 
 import styles from "../styles/effect.module.css";
-import Sphere from "../../public/assets/uxImage.png";
+
 import { Trans, useTranslation } from "react-i18next";
 import Loading from "./components/Loading";
 import Head from "next/head";
