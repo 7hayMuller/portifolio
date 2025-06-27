@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
-import { Lato, Roboto } from "next/font/google";
+import { Lato, Roboto, Poppins } from "next/font/google";
 import "./styles/globals.css";
 import Head from "next/head";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  variable: "--font-poppins",
+  weight: ["400", "600", "700"],
+});
 
 const lato = Lato({
   subsets: ["latin"],
@@ -17,14 +23,17 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title: "Thayná Müller | Frontend Developer & UI Designer",
-  description: "Portfólio de Thayná Müller, desenvolvedora frontend e UI designer.",
-  keywords: "frontend, desenvolvedora, UI, UX, React, Next.js, JavaScript, Typescript",
+  description:
+    "Portfólio de Thayná Müller, desenvolvedora frontend e UI designer.",
+  keywords:
+    "frontend, desenvolvedora, UI, UX, React, Next.js, JavaScript, Typescript",
   authors: [{ name: "Thayná Müller", url: "https://thaynamuller.com" }],
   creator: "Thayná Müller",
   metadataBase: new URL("https://thaynamuller.com"),
   openGraph: {
     title: "Thayná Müller | Frontend Developer & UI Designer",
-    description: "Conheça o trabalho de Thayná Müller, desenvolvedora frontend e UI designer.",
+    description:
+      "Conheça o trabalho de Thayná Müller, desenvolvedora frontend e UI designer.",
     url: "https://thaynamuller.com",
     siteName: "Thayná Müller",
     images: [
@@ -36,7 +45,7 @@ export const metadata: Metadata = {
       },
     ],
     type: "website",
-  }, 
+  },
   robots: {
     index: true,
     follow: true,

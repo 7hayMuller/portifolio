@@ -37,7 +37,7 @@ body {
 body {
   color: var(--foreground);
   background: var(--background-end);
-  font-family: var(--font-lato);
+  font-family: var(--font-poppins);
 }
 
 @layer utilities {
@@ -61,7 +61,7 @@ body {
 }
 
 .rotating-text {
-  font-family: var(--font-roboto) !important;
+  font-family: var(--font-poppins) !important;
   transform: translateX(-80px);
 }
 
@@ -127,8 +127,8 @@ body {
 
 @media (max-width: 639px) {
   .glass-card {
-    width: 75px;
-    height: 75px;
+    width: 80px;
+    height: 80px;
   }
 }
 

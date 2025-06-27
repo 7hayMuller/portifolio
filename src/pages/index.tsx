@@ -2,12 +2,10 @@
 
 import Navbar from "./components/NavBar";
 import Section from "./components/Section";
-import { useRouter } from "next/router";
 import Carousel from "./components/Carousel";
 import Me from "../../public/assets/me2.png";
-import { useEffect, useState } from "react";
-
-import styles from "../styles/effect.module.css";
+import ShapeAbstract from "../../public/assets/shapeAbstract.png";
+import Shape from "../../public/assets/shapes.png";
 
 import { Trans, useTranslation } from "react-i18next";
 import Loading from "./components/Loading";
@@ -19,31 +17,7 @@ import Card from "./components/Card";
 import Image from "next/image";
 
 const About = () => {
-  const router = useRouter();
   const { t } = useTranslation();
-
-  const [exploded, setExploded] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (exploded) {
-      const letters = document.querySelectorAll(`.${styles.letter}`);
-      letters.forEach((letter: any) => {
-        const randomX = (Math.random() - 0.5) * 200;
-        const randomY = (Math.random() - 0.5) * 200;
-        const randomRotate = (Math.random() - 0.5) * 720;
-        letter.style.setProperty("--random-x", `${randomX}px`);
-        letter.style.setProperty("--random-y", `${randomY}px`);
-        letter.style.setProperty("--random-rotate", `${randomRotate}deg`);
-      });
-    }
-  }, [exploded]);
-
-  const handleClick = (route: string) => {
-    setExploded(true);
-    setTimeout(() => {
-      router.push(route);
-    }, 800);
-  };
 
   return (
     <>
@@ -53,14 +27,26 @@ const About = () => {
       <Loading />
       <Navbar />
       <div className="bg-[#2A235C]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <section
+          id="introduction"
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10"
+        >
           <div
             className={`relative flex flex-col  lg:flex-row-reverse h-auto lg:h-[600px] px-4 py-6 lg:py-12 lg:px-8`}
           >
+            <Image
+              src={ShapeAbstract}
+              alt="side-image"
+              className="absolute left-0 w-[100px] h-[100px] -z-1"
+            />
             <div
               className={`order-1 flex justify-center items-center w-full lg:w-1/2 lg:order-2  relative`}
             >
-              <Image src={Me} alt="side-image" className="w-full h-auto" />
+              <Image
+                src={Me}
+                alt="side-image"
+                className="w-full h-auto max-w-[600px]"
+              />
             </div>
 
             <div
@@ -74,7 +60,6 @@ const About = () => {
                   </p>
                 </h2>
                 <div className="text-[#e2e8c0] text-center lg:text-left">
-                  {" "}
                   <p>
                     <Trans i18nKey="introduction.greeting" t={t}>
                       Hello! I&apos;m Thayná Müller, a UX/UI designer and
@@ -100,7 +85,7 @@ const About = () => {
                     </Trans>
                   </p>
                   <div
-                    className="relative flex justify-center md:justify-start py-6"
+                    className="relative flex justify-center md:justify-start py-6 "
                     style={{ filter: "url(#goo)" }}
                   >
                     <div
@@ -108,10 +93,13 @@ const About = () => {
                       style={{ filter: "url(#goo)" }}
                     >
                       <button
-                        type="submit"
                         className="relative inline-block text-center bg-[#F25D76] text-white font-bold py-3 px-4 sm:py-4 sm:px-5 rounded-full min-w-[10em] sm:min-w-[15em] md:min-w-[10em] text-base sm:text-lg no-underline
                            before:content-[''] before:w-[2.5em] before:h-[2.0em] sm:before:w-[4.4em] sm:before:h-[2.95em] before:absolute before:bg-[#F25D76] before:rounded-full before:transition-transform before:duration-1000 before:ease-in-out before:scale-0 before:top-[-20%] sm:before:top-[-25%] before:left-[20%] before:z-[-1]
                            after:content-[''] after:w-[2.5em] after:h-[2.0em] sm:after:w-[4.4em] sm:after:h-[2.95em] after:absolute after:bg-[#F25D76] after:rounded-full after:transition-transform after:duration-1000 after:ease-in-out after:scale-0 after:bottom-[-20%] sm:after:bottom-[-25%] after:right-[20%] after:z-[-1] hover:before:scale-100 hover:after:scale-100"
+                        onClick={() => {
+                          const section = document.getElementById("contact");
+                          section?.scrollIntoView({ behavior: "smooth" });
+                        }}
                       >
                         {t("say_hi")}
                       </button>
@@ -148,10 +136,10 @@ const About = () => {
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </div>
 
-      <div className="relative z-0 -mt-[150px]">
+      <div id="projects" className="relative z-0 md:-mt-[150px] -mt-[100px]">
         <Image
           src="/assets/separator.png"
           alt="Divisão em forma de onda"
@@ -161,8 +149,14 @@ const About = () => {
         />
       </div>
       <div className="bg-[#181629]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="flex items-start justify-center gap-4">
+        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <Image
+            src={ShapeAbstract}
+            alt="side-image"
+            className="absolute -top-20 right-0 w-[100px] h-[100px] -z-1 outline-none border-none shadow-none"
+          />
+
+          <div className="grid grid-cols-2 md:grid-cols-4 md:items-start md:justify-center gap-4">
             <Card
               type={t("Frontend")}
               title={t("Frontend projects")}
@@ -185,15 +179,19 @@ const About = () => {
               stack="ReactJs, Sass, Figma"
             />
           </div>
-          <div className="flex justify-end items-center -mt-[100px]">
-            <div>
-              <h2 className="text-[#e2e8c0] font-bold text-3xl mb-4 text-center lg:text-left">
-                <p className="flex justify-center lg:justify-start">
+
+          <div
+            id="skills"
+            className="flex flex-col lg:flex-row justify-center lg:justify-around items-center md:-mt-[100px] mt-[100px] gap-6"
+          >
+            <div className="relative text-center lg:text-left max-w-lg w-full">
+              <h2 className="text-[#e2e8c0] font-bold text-3xl mb-4">
+                <span className="flex justify-center lg:justify-start">
                   Skills
                   <strong className="text-[#6ad5cb] ml-1 mr-1">&</strong> Tools
-                </p>
+                </span>
               </h2>
-              <p className="text-[#e2e8c0] text-center lg:text-left">
+              <p className="text-[#e2e8c0]">
                 <Trans i18nKey="introduction.hobbies" t={t}>
                   When I&apos;m not designing or coding, I love traveling and
                   exploring new cultures, which inspires my{" "}
@@ -201,10 +199,15 @@ const About = () => {
                   <strong>perspective</strong>.
                 </Trans>
               </p>
+              <Image
+                src={Shape}
+                alt="side-image"
+                className="absolute hidden md:block lg:block top-[200px] left-10 w-[200px] h-[200px] -z-1 outline-none border-none shadow-none"
+              />
             </div>
+
             <Carousel />
           </div>
-
           <Section
             action={
               <div className="flex items-center mt-8 justify-center sm:justify-center md:justify-start lg:justify-start cursor-pointer">
@@ -243,7 +246,7 @@ const About = () => {
               </div>
             }
             reverse
-            id="section4"
+            id="contact"
             content={
               <>
                 <div className="relative mt-10 lg:text-start text-center">
@@ -261,7 +264,7 @@ const About = () => {
               </div>
             }
           />
-        </div>
+        </section>
 
         <div className="flex justify-center mt-10">
           <p className="text-[12px] text-[#e2e8c0] font-bold mb-3">

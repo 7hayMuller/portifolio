@@ -1,30 +1,51 @@
-import Link from "next/link";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import { FaBars, FaTimes } from "react-icons/fa";
 import styles from "../../styles/navbar.module.css";
 import { useTranslation } from "react-i18next";
 
 const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>("introduction");
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { t } = useTranslation();
-  const router = useRouter();
-
-  useEffect(() => {
-    const path = router.pathname;
-    if (path === "/about") {
-      setActiveSection("introduction");
-    } else if (path === "/projects") {
-      setActiveSection("projects");
-    } else if (path === "/contact") {
-      setActiveSection("contact");
-    }
-  }, [router.pathname]);
 
   const handleToggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  const handleLinkClick = (id: string) => {
+    setIsMobileMenuOpen(false);
+    const section = document.getElementById(id);
+    section?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    const sections = ["introduction", "projects", "skills", "contact"];
+    const observers: IntersectionObserver[] = [];
+
+    sections.forEach((id) => {
+      const section = document.getElementById(id);
+      if (!section) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(id);
+          }
+        },
+        {
+          rootMargin: "-50% 0px -50% 0px",
+          threshold: 0,
+        }
+      );
+
+      observer.observe(section);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    };
+  }, []);
 
   return (
     <nav
@@ -51,43 +72,52 @@ const Navbar: React.FC = () => {
         }}
       >
         <li className="pb-3 pt-3 md:pr-6">
-          <Link
-            href={"/about"}
-            onClick={() => setIsMobileMenuOpen(false)}
+          <button
+            onClick={() => handleLinkClick("introduction")}
             className={`text-base lg:text-base text-[#e2e8c0] ${
               activeSection === "introduction"
-                ? "border-b-4 border-[#F25D76] pb-1 inline-block"
+                ? "border-b-4 border-[#F25D76] pb-1 inline-block font-bold"
                 : ""
             }`}
           >
             Me, Myself & I
-          </Link>
+          </button>
         </li>
         <li className="pb-3 pt-3 md:pr-6">
-          <Link
-            href={"/projects"}
-            onClick={() => setIsMobileMenuOpen(false)}
+          <button
+            onClick={() => handleLinkClick("projects")}
             className={`text-base lg:text-base text-[#e2e8c0] ${
               activeSection === "projects"
-                ? "border-b-4 border-[#F25D76] pb-1 inline-block"
+                ? "border-b-4 border-[#F25D76] pb-1 inline-block font-bold"
                 : ""
             }`}
           >
             {t("my_projects")}
-          </Link>
+          </button>
+        </li>
+        <li className="pb-3 pt-3 md:pr-6">
+          <button
+            onClick={() => handleLinkClick("skills")}
+            className={`text-base lg:text-base text-[#e2e8c0] ${
+              activeSection === "skills"
+                ? "border-b-4 border-[#F25D76] pb-1 inline-block font-bold"
+                : ""
+            }`}
+          >
+            {t("skills_and_tools")}
+          </button>
         </li>
         <li className="pb-3 pt-3">
-          <Link
-            href={"/contact"}
-            onClick={() => setIsMobileMenuOpen(false)}
+          <button
+            onClick={() => handleLinkClick("contact")}
             className={`text-base lg:text-base text-[#e2e8c0] ${
               activeSection === "contact"
-                ? "border-b-4 border-[#F25D76] pb-1 inline-block"
+                ? "border-b-4 border-[#F25D76] pb-1 inline-block font-bold"
                 : ""
             }`}
           >
             {t("contact")}
-          </Link>
+          </button>
         </li>
       </ul>
     </nav>

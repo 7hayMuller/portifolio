@@ -1,5 +1,7 @@
 import { t } from "i18next";
 import { useState } from "react";
+import Shape from "../../../public/assets/shapes.png";
+import Image from "next/image";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -53,6 +55,11 @@ const ContactForm = () => {
         onSubmit={handleSubmit}
         className="w-full max-w-lg bg-[#101524] bg-opacity-50 p-6 rounded-lg shadow-lg"
       >
+        <Image
+          src={Shape}
+          alt="side-image"
+          className="absolute right-10 w-[100px] h-[100px] -z-1 outline-none border-none shadow-none"
+        />
         {isSent && (
           <div className="flex justify-center mb-4">
             <p className="text-[#ffd449] font-bold text-center">
@@ -102,6 +109,11 @@ const ContactForm = () => {
             required
           />
         </div>
+        <Image
+          src={Shape}
+          alt="side-image"
+          className="absolute left-10 w-[100px] h-[100px] -z-1 outline-none border-none shadow-none"
+        />
         <div className="flex flex-col lg:flex-row justify-around items-center">
           <div
             className="relative flex justify-center py-6"

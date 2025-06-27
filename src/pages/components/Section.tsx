@@ -2,7 +2,6 @@
 
 import Image, { StaticImageData } from "next/image";
 
-
 interface SectionProps {
   action?: React.ReactNode;
   id: string;
@@ -62,7 +61,9 @@ const Section: React.FC<SectionProps> = ({
           <h2 className="text-[#e2e8c0] font-bold text-3xl mb-4 text-center lg:text-left">
             {title}
           </h2>
-          <p className="text-[#e2e8c0] text-center lg:text-left">{content}</p>
+          <div className="text-[#e2e8c0] text-center lg:text-left">
+            {content}
+          </div>
           {action && <div className="text-center lg:text-right">{action}</div>}
         </div>
       </div>
