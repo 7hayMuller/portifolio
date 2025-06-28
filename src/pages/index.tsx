@@ -320,7 +320,7 @@ const About = () => {
               <Image
                 src={Shape}
                 alt="side-image"
-                className="absolute hidden md:block lg:block top-[200px] left-10 w-[200px] h-[200px] -z-1 outline-none border-none shadow-none"
+                className="absolute hidden md:block lg:block top-[200px] left-10 w-[150px] h-[150px] -z-1 outline-none border-none shadow-none"
               />
             </div>
 
