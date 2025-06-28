@@ -15,9 +15,63 @@ import ContactForm from "./components/ContactForm";
 import Card from "./components/Card";
 
 import Image from "next/image";
+import ProjectModal from "./components/ProjectModal";
+import { useState } from "react";
 
 const About = () => {
   const { t } = useTranslation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalInfo, setModalInfo] = useState<any>(null);
+
+  const nearbyImages = [
+    {
+      src: "/assets/nearby-splash-mobile.png",
+      width: 243,
+      height: 150,
+    },
+    {
+      src: "/assets/nearby-start-mobile.png",
+      width: 243,
+      height: 150,
+    },
+    {
+      src: "/assets/nearby-home-mobile.png",
+      width: 243,
+      height: 150,
+    },
+    {
+      src: "/assets/nearby-homelist-mobile.png",
+      width: 243,
+      height: 150,
+    },
+    {
+      src: "/assets/nearby-details-mobile.png",
+      width: 243,
+      height: 150,
+    },
+  ];
+
+  const itauImages = [
+    {
+      src: "/assets/desktop_itau-front.png",
+      width: 243,
+      height: 150,
+    },
+    {
+      src: "/assets/smartphone_itau-portrait.png",
+      width: 243,
+      height: 0,
+    },
+    {
+      src: "/assets/smartwatch_itau-portrait.png",
+      width: 243,
+      height: 150,
+    },
+  ];
+
+  //Finny
+
+  //Portifolio
 
   return (
     <>
@@ -26,6 +80,12 @@ const About = () => {
       </Head>
       <Loading />
       <Navbar />
+      {isModalOpen && (
+        <ProjectModal
+          onClose={() => setIsModalOpen(false)}
+          modalInfo={modalInfo}
+        />
+      )}
       <div className="bg-[#2A235C]">
         <section
           id="introduction"
@@ -158,25 +218,83 @@ const About = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 md:items-start md:justify-center gap-4">
             <Card
-              type={t("Frontend")}
-              title={t("Frontend projects")}
-              stack="ReactJs, Sass, Figma"
+              buttonTitle={t("Ver estudo de caso")}
+              type="UX/UI"
+              title={t("Finny Cashback Goals")}
+              stack="Figma"
               highlight
+              // onClick={() => {
+              //   setModalInfo({
+              //     image: image.src,
+              //     description: t("nearby"),
+              //     mobile: image.src.includes("mobile") ? true : false,
+              //     tecnologies: ["React Native", "Expo"],
+              //     links: [
+              //       {
+              //         github: "https://github.com/7hayMuller/nlw-nearby",
+              //       },
+              //     ],
+              //   });
+              //   setIsModalOpen(true);
+              // }}
             />
             <Card
-              type={t("UX/UI")}
-              title={t("Frontend projects")}
-              stack="ReactJs, Sass, Figma"
+              type="Front-end"
+              title={t("Nearby")}
+              stack="React Native, Expo , CSS"
+              onClick={() => {
+                setModalInfo({
+                  images: nearbyImages,
+                  description: t("nearby"),
+                  tecnologies: ["React Native", "Expo", "CSS"],
+                  links: [
+                    {
+                      github: "https://github.com/7hayMuller/nlw-nearby",
+                    },
+                  ],
+                });
+                setIsModalOpen(true);
+              }}
             />
             <Card
-              type={t("Frontend")}
-              title={t("Frontend projects")}
+              type="UX/UI"
+              title={t("itau_title")}
               stack="ReactJs, Sass, Figma"
+              onClick={() => {
+                setModalInfo({
+                  images: itauImages,
+                  description: t("itau_description"),
+                  tecnologies: ["figma"],
+                  links: [
+                    {
+                      figma:
+                        "https://www.figma.com/design/bWyeFyFptVlKsvX6pFO3IC/Ita%C3%BA---Prot%C3%B3tipo%2FCanais?node-id=0-1&t=unC2xG6NJUy8NBRJ-1",
+                      behance:
+                        "https://www.behance.net/gallery/218042201/Ecossistema-digital-Itau",
+                    },
+                  ],
+                });
+                setIsModalOpen(true);
+              }}
             />
             <Card
-              type={t("Frontend")}
-              title={t("Frontend projects")}
+              type="UX/UI + Front-end"
+              title={t("this_portfolio")}
               stack="ReactJs, Sass, Figma"
+              // onClick={() => {
+              //   setModalInfo({
+              //     image: image.src,
+              //     description: t("nearby"),
+              //     mobile: image.src.includes("mobile") ? true : false,
+              //     tecnologies: ["React Native", "Expo"],
+              //     links: [
+              //       {
+              //         github: "https://github.com/7hayMuller/nlw-nearby",
+              //       },
+              //     ],
+              //   });
+              //   setIsModalOpen(true);
+              // }}
             />
           </div>
 

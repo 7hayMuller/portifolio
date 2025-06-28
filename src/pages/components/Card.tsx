@@ -6,9 +6,18 @@ type CardProps = {
   title: string;
   stack: string;
   highlight?: boolean;
+  onClick?: () => void;
+  buttonTitle?: string;
 };
 
-const Card: React.FC<CardProps> = ({ type, title, stack, highlight }) => {
+const Card: React.FC<CardProps> = ({
+  buttonTitle = t("Ver mais"),
+  type,
+  title,
+  stack,
+  highlight,
+  onClick,
+}) => {
   return (
     <div className="bg-[#101524]/60 backdrop-blur-md rounded-xl overflow-hidden shadow-lg w-full max-w-sm">
       {highlight && (
@@ -43,8 +52,9 @@ const Card: React.FC<CardProps> = ({ type, title, stack, highlight }) => {
         <a
           href="#"
           className="bg-gradient-to-r from-[#A27DFB] to-[#6E8CFA] text-white text-sm font-medium px-4 py-2 rounded-md w-fit mt-2 hover:opacity-90 transition"
+          onClick={onClick}
         >
-          Ver estudo de caso
+          {buttonTitle}
         </a>
       </div>
     </div>
