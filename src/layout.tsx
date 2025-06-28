@@ -22,18 +22,18 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Thayná Müller | Frontend Developer & UI Designer",
+  title: "Thayná Müller | Frontend Developer & UX/UI Designer",
   description:
-    "Portfólio de Thayná Müller, desenvolvedora frontend e UI designer.",
+    "Portfólio de Thayná Müller, desenvolvedora frontend e UX/UI designer.",
   keywords:
     "frontend, desenvolvedora, UI, UX, React, Next.js, JavaScript, Typescript",
   authors: [{ name: "Thayná Müller", url: "https://thaynamuller.com" }],
   creator: "Thayná Müller",
   metadataBase: new URL("https://thaynamuller.com"),
   openGraph: {
-    title: "Thayná Müller | Frontend Developer & UI Designer",
+    title: "Thayná Müller | Frontend Developer & UX/UI Designer",
     description:
-      "Conheça o trabalho de Thayná Müller, desenvolvedora frontend e UI designer.",
+      "Conheça o trabalho de Thayná Müller, desenvolvedora frontend e UX/UI designer.",
     url: "https://thaynamuller.com",
     siteName: "Thayná Müller",
     images: [

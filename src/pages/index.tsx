@@ -76,7 +76,7 @@ const About = () => {
   return (
     <>
       <Head>
-        <title>Thayná Müller | Dev | UX / UI</title>
+        <title>Frontend Developer | UX/UI</title>
       </Head>
       <Loading />
       <Navbar />
