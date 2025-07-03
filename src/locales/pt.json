@@ -4,9 +4,10 @@
   "designer": "Uma UX/UI designer",
   "about": "Sobre",
   "introduction": {
-    "greeting": "Olá! Eu sou Thayná Müller, uma UX/UI designer e desenvolvedora frontend do <strong>Brasil</strong>, atualmente morando no lindo estado do Rio de Janeiro.",
-    "hobbies": "Quando não estou projetando ou codificando, adoro viajar e explorar novas culturas. Isso inspira meu <strong>processo criativo</strong> e amplia minha <strong>perspectiva</strong>.",
-    "welcome": "<strong>Bem-vindo</strong> ao meu portifólio, onde você pode ver alguns dos projetos nos quais trabalhei. Vamos nos conectar e criar algo <strong>incrível</strong> juntos?!"
+    "greeting": "Olá! Eu sou Thayná Müller, UX/UI designer e desenvolvedora frontend.",
+    "hobbies": "Sou movida por curiosidade: adoro viajar, descobrir novos lugares e me perder em outras culturas. Tudo isso vai direto para o meu repertório criativo — porque acredito que boas ideias nascem do olhar atento e de referências vividas.",
+    "welcome": "Aqui no meu portfólio você vai encontrar projetos que unem pesquisa, design centrado no usuário e interfaces feitas para encantar e engajar.",
+    "finish": " Dá uma olhada no que já criei... quem sabe a próxima grande ideia a gente não constrói juntos?"
   },
   "see_more": "Veja mais",
   "frontend_projects": "Descubra os projetos que desenvolvi, destacando minha experiência em desenvolvimento frontend. Veja como construo aplicações web responsivas, eficientes e visualmente atraentes, utilizando tecnologias modernas e as melhores práticas do mercado.",

@@ -5,8 +5,6 @@ import { SiExpo, SiNextdotjs, SiTailwindcss } from "react-icons/si";
 import { TbBrandReactNative } from "react-icons/tb";
 
 import Image from "next/image";
-import ShapeAbstract from "../../../public/assets/shapeAbstract.png";
-import Shape from "../../../public/assets/shapes.png";
 import { t } from "i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -41,7 +39,7 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    setTimeout(() => setShow(true), 50); // inicia animação
+    setTimeout(() => setShow(true), 50);
     return () => {
       document.body.style.overflow = "";
     };
@@ -100,11 +98,6 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
           <p className="text-white text-sm md:text-base mb-4">
             {modalInfo.description}
           </p>
-          <Image
-            src={Shape}
-            alt="side-image"
-            className="absolute opacity-25 left-[280px] top-10 w-[100px] h-[100px] -z-1"
-          />
           {modalInfo?.tecnologies && modalInfo?.tecnologies.length > 0 && (
             <div className="mt-4">
               <p className="font-bold text-white mb-2">
@@ -135,11 +128,6 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
               </div>
             </div>
           )}{" "}
-          <Image
-            src={ShapeAbstract}
-            alt="side-image"
-            className="absolute opacity-25 right-10 top-0 w-[100px] h-[100px] -z-1"
-          />
           <div className="mt-4">
             <p className="font-bold text-white mb-2">Links:</p>
             <div className="mt-6 flex justify-center md:justify-start gap-4">
@@ -175,11 +163,6 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
               )}
             </div>
           </div>
-          <Image
-            src={Shape}
-            alt="side-image"
-            className="absolute opacity-25 right-10 bottom-10 w-[100px] h-[100px] -z-1"
-          />
         </div>
       </div>
     </div>

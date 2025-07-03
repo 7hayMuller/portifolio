@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lato, Roboto, Poppins } from "next/font/google";
+import { Lato, Roboto, Poppins, Michroma } from "next/font/google";
 import "./styles/globals.css";
 import Head from "next/head";
 
@@ -7,6 +7,11 @@ const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-poppins",
   weight: ["400", "600", "700"],
+});
+
+const michroma = Michroma({
+  variable: "--font-michroma",
+  weight: ["400"],
 });
 
 const lato = Lato({
@@ -67,7 +72,9 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <body className={`${lato.className} ${roboto.className}`}>
+      <body
+        className={`${lato.className} ${roboto.className} ${poppins.className} ${michroma.className}`}
+      >
         {children}
       </body>
     </html>

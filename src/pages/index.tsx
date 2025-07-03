@@ -4,13 +4,11 @@ import Navbar from "./components/NavBar";
 import Section from "./components/Section";
 import Carousel from "./components/Carousel";
 import Me from "../../public/assets/me2.png";
-import ShapeAbstract from "../../public/assets/shapeAbstract.png";
-import Shape from "../../public/assets/shapes.png";
 
 import { Trans, useTranslation } from "react-i18next";
 import Loading from "./components/Loading";
 import Head from "next/head";
-import { FaBehance, FaGithub, FaLinkedin } from "react-icons/fa6";
+import { FaBehance, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa6";
 import ContactForm from "./components/ContactForm";
 import Card from "./components/Card";
 
@@ -80,6 +78,7 @@ const About = () => {
       </Head>
       <Loading />
       <Navbar />
+
       {isModalOpen && (
         <ProjectModal
           onClose={() => setIsModalOpen(false)}
@@ -89,30 +88,26 @@ const About = () => {
       <div className="bg-[#2A235C]">
         <section
           id="introduction"
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10"
+          className={`relative flex flex-col  lg:flex-row-reverse
+       h-auto lg:h-[600px] px-4 py-6 lg:py-12 lg:px-8`}
         >
           <div
-            className={`relative flex flex-col  lg:flex-row-reverse h-auto lg:h-[600px] px-4 py-6 lg:py-12 lg:px-8`}
+            className={`relative flex flex-col  lg:flex-row-reverse h-auto lg:h-[600px] px-4 py-6 lg:py-12 lg:px-6`}
           >
-            <Image
-              src={ShapeAbstract}
-              alt="side-image"
-              className="absolute left-0 w-[100px] h-[100px] -z-1"
-            />
             <div
-              className={`order-1 flex justify-center items-center w-full lg:w-1/2 lg:order-2  relative`}
+              className={`order-1 lg:order-1 flex justify-center items-center lg:justify-between w-full lg:w-1/2 `}
             >
               <Image
                 src={Me}
                 alt="side-image"
-                className="w-full h-auto max-w-[600px]"
+                className="w-full h-auto max-w-[500px]"
               />
             </div>
 
             <div
-              className={`order-1 lg:order-3 flex flex-1 justify-center lg:justify-end items-center w-full lg:w-1/2 "lg:pr-6"`}
+              className={`order-1 lg:order-3 flex flex-1 justify-center lg:justify-between items-center w-full `}
             >
-              <div className="w-full max-w-lg mt-5 lg:mt-0">
+              <div className="w-full max-w-lg mt-5 lg:mt-8">
                 <h2 className="text-[#e2e8c0] font-bold text-3xl mb-4 text-center lg:text-left">
                   <p className="flex justify-center lg:justify-start">
                     Me, Myself{" "}
@@ -122,26 +117,34 @@ const About = () => {
                 <div className="text-[#e2e8c0] text-center lg:text-left">
                   <p>
                     <Trans i18nKey="introduction.greeting" t={t}>
-                      Hello! I&apos;m Thayná Müller, a UX/UI designer and
-                      frontend developer from <strong>Brazil</strong>, currently
-                      living in the beautiful state of Rio de Janeiro.
+                      Hi there! I’m Thayná Müller, a UX/UI designer and frontend
+                      developer from Brazil, currently living in the beautiful
+                      state of Rio de Janeiro.
                     </Trans>
                   </p>
                   <br />
                   <p>
                     <Trans i18nKey="introduction.hobbies" t={t}>
-                      When I&apos;m not designing or coding, I love traveling
-                      and exploring new cultures, which inspires my{" "}
-                      <strong>creative</strong> process and broadens my{" "}
-                      <strong>perspective</strong>.
+                      I’m driven by curiosity — I love traveling, discovering
+                      new places, and immersing myself in different cultures.
+                      All of that finds its way into my creative process because
+                      I believe great ideas come from paying attention and
+                      drawing on real-life experiences.
                     </Trans>
                   </p>
                   <br />
                   <p>
                     <Trans i18nKey="introduction.welcome" t={t}>
-                      Welcome to my portfolio, where you can see some of the
-                      projects I&apos;ve worked on. Let&apos;s connect and
-                      create something <strong>amazing</strong> together!
+                      Here in my portfolio, you’ll find projects built on
+                      research, user-centered design, and interfaces crafted to
+                      delight and engage.
+                    </Trans>
+                  </p>
+                  <br />
+                  <p>
+                    <Trans i18nKey="introduction.finish" t={t}>
+                      Take a look at what I’ve created so far… maybe the next
+                      big idea is something we’ll bring to life together!
                     </Trans>
                   </p>
                   <div
@@ -199,7 +202,7 @@ const About = () => {
         </section>
       </div>
 
-      <div id="projects" className="relative z-0 md:-mt-[150px] -mt-[100px]">
+      <div id="projects" className="relative z-0 md:-mt-[130px] -mt-[100px]">
         <Image
           src="/assets/separator.png"
           alt="Divisão em forma de onda"
@@ -209,18 +212,13 @@ const About = () => {
         />
       </div>
       <div className="bg-[#181629]">
-        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <Image
-            src={ShapeAbstract}
-            alt="side-image"
-            className="absolute -top-20 right-0 w-[100px] h-[100px] -z-1 outline-none border-none shadow-none"
-          />
-
+        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 -mt-[50px]">
           <div className="grid grid-cols-2 md:grid-cols-4 md:items-start md:justify-center gap-4">
             <Card
               buttonTitle={t("Ver estudo de caso")}
               type="UX/UI"
               title={t("Finny Cashback Goals")}
+              previewVideo="/assets/finny_prev.webm"
               stack="Figma"
               highlight
               // onClick={() => {
@@ -242,6 +240,7 @@ const About = () => {
               type="Front-end"
               title={t("Nearby")}
               stack="React Native, Expo , CSS"
+              previewVideo="/assets/nearby_prev.webm"
               onClick={() => {
                 setModalInfo({
                   images: nearbyImages,
@@ -260,6 +259,7 @@ const About = () => {
               type="UX/UI"
               title={t("itau_title")}
               stack="ReactJs, Sass, Figma"
+              previewVideo="/assets/itau_prev.webm"
               onClick={() => {
                 setModalInfo({
                   images: itauImages,
@@ -300,30 +300,56 @@ const About = () => {
 
           <div
             id="skills"
-            className="flex flex-col lg:flex-row justify-center lg:justify-around items-center md:-mt-[100px] mt-[100px] gap-6"
+            className="flex flex-col lg:flex-row justify-center lg:justify-around items-center md:-mt-[20px] mt-[200px] gap-6"
           >
-            <div className="relative text-center lg:text-left max-w-lg w-full">
-              <h2 className="text-[#e2e8c0] font-bold text-3xl mb-4">
+            <div className="relative text-center lg:text-left max-w-lg w-full mt-[100px]">
+              <h2 className="text-[#e2e8c0] font-bold text-4xl mb-4">
                 <span className="flex justify-center lg:justify-start">
                   Skills
                   <strong className="text-[#6ad5cb] ml-1 mr-1">&</strong> Tools
                 </span>
               </h2>
-              <p className="text-[#e2e8c0]">
-                <Trans i18nKey="introduction.hobbies" t={t}>
-                  When I&apos;m not designing or coding, I love traveling and
-                  exploring new cultures, which inspires my{" "}
-                  <strong>creative</strong> process and broadens my{" "}
-                  <strong>perspective</strong>.
+              <p className="text-[#e2e8c0] mt-[20px]">
+                <Trans i18nKey="skills" t={t}>
+                  Essas são as ferramentas que uso para transformar{" "}
+                  <strong>boas ideias</strong> em experiências digitais que
+                  realmente contam histórias.
                 </Trans>
               </p>
-              <Image
-                src={Shape}
-                alt="side-image"
-                className="absolute hidden md:block lg:block top-[200px] left-10 w-[150px] h-[150px] -z-1 outline-none border-none shadow-none"
-              />
+              <br />
+              <p className="text-[#e2e8c0]">
+                <Trans>
+                  Com <strong>React, Next.js e TypeScript</strong>, construo a
+                  estrutura e a inteligência que fazem um projeto ganhar vida.
+                </Trans>
+              </p>
+              <br />
+              <p className="text-[#e2e8c0]">
+                {" "}
+                <Trans>
+                  No <strong>Figma</strong>, experimento, pesquiso e penso em
+                  cada interação para que tudo faça sentido para quem está do
+                  outro lado da tela.
+                </Trans>
+              </p>
+              <br />
+              <p className="text-[#e2e8c0]">
+                <Trans>
+                  {" "}
+                  <strong>Tailwind e SCSS</strong> entram como meus pincéis para
+                  dar cor, forma e personalidade, criando interfaces que não só
+                  funcionam, mas encantam.
+                </Trans>
+              </p>
+              <br />
+              <p className="text-[#e2e8c0]">
+                <Trans i18nKey="skills_conclusion" t={t}>
+                  <strong>Tudo isso com um propósito:</strong> desenvolver
+                  projetos guiados por pesquisa, voltados para o usuário, que
+                  criem conexões e gerem engajamento de verdade.
+                </Trans>
+              </p>
             </div>
-
             <Carousel />
           </div>
           <Section
@@ -352,11 +378,22 @@ const About = () => {
                   />
                 </a>
                 <a
+                  className="mr-5"
                   href="https://www.behance.net/thaynamuller"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <FaBehance
+                    fontSize={25}
+                    className="text-[#e2e8c0] hover:text-[#F25D76] cursor-pointer"
+                  />
+                </a>
+                <a
+                  href="https://www.instagram.com/th4ymuller/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaInstagram
                     fontSize={25}
                     className="text-[#e2e8c0] hover:text-[#F25D76] cursor-pointer"
                   />

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { t } from "i18next";
 import Image from "next/image";
 
@@ -8,6 +9,7 @@ type CardProps = {
   highlight?: boolean;
   onClick?: () => void;
   buttonTitle?: string;
+  previewVideo?: any;
 };
 
 const Card: React.FC<CardProps> = ({
@@ -17,25 +19,61 @@ const Card: React.FC<CardProps> = ({
   stack,
   highlight,
   onClick,
+  previewVideo,
 }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleMouseEnter = () => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
   return (
-    <div className="bg-[#101524]/60 backdrop-blur-md rounded-xl overflow-hidden shadow-lg w-full max-w-sm">
-      {highlight && (
-        <div className="w-full h-20">
-          <Image
-            src="/assets/highlight_waves.png"
-            alt="Decoração orgânica"
-            fill
-            className="object-cover mt-[-100px]"
-            priority
+    <div
+      className="group relative bg-[#101524]/60 backdrop-blur-md rounded-xl overflow-hidden shadow-lg w-full max-w-sm"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      {previewVideo && (
+        <div
+          className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
+          onClick={onClick}
+        >
+          <video
+            ref={videoRef}
+            src={previewVideo}
+            className="w-full h-full object-cover pointer-events-none"
+            muted
+            loop
           />
         </div>
       )}
 
       <div
-        className="p-5 flex flex-col gap-4"
-        style={{ marginTop: highlight ? 100 : 0 }}
+        className="p-5 flex flex-col gap-4 z-10 relative"
+        style={{ marginTop: highlight ? 20 : 0 }}
       >
+        {highlight && (
+          <div className="w-full h-10 mb-[100px]">
+            <Image
+              src="/assets/highlight_waves.png"
+              alt="Decoração orgânica"
+              fill
+              className="object-cover mt-[-100px]"
+              priority
+            />
+          </div>
+        )}
+
         <span className="bg-[#004b5c] text-cyan-100 text-xs font-semibold px-2 py-1 rounded-full w-fit">
           {type}
         </span>

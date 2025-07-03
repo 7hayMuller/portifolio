@@ -23,6 +23,8 @@ body {
   --foreground: #252323;
   --background-start: #252323;
   --background-end: #252323;
+  --white-rbg-color: 255, 255, 255;
+  --green-rbg-color: 0, 212, 113;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -168,4 +170,9 @@ body {
 
 .active {
   color: #6e32e1 !important;
+}
+
+.group:hover .pull-corner::after {
+  opacity: 1;
+  transform: translateY(-2px);
 }
