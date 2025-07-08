@@ -5,6 +5,9 @@ export const content = [
 ];
 export const theme = {
   extend: {
+    fontFamily: {
+      noto: ["var(--font-noto)"],
+    },
     animation: {
       spin: "spin 100s linear infinite",
     },

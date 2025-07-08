@@ -1,7 +1,5 @@
 import { t } from "i18next";
 import { useState } from "react";
-import Shape from "../../../public/assets/shapes.png";
-import Image from "next/image";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -21,6 +19,10 @@ const ContactForm = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    if (!e) {
+      setError("Preencha os campos por favor.");
+      return;
+    }
     e.preventDefault();
     setIsLoading(true);
     setIsSent(false);
@@ -50,107 +52,69 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center mt-12 sm:mt-16 md:mt-20 lg:mt-24 px-4 w-full max-w-2xl mx-auto">
+    <div className="flex lg:flex-[3] justify-center px-4 w-full mx-auto mt-12 sm:mt-16 lg:ml-10  ">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-[#101524] bg-opacity-50 p-6 rounded-lg shadow-lg"
+        className="relative w-full max-w-10xl h-[600px] p-10 rounded-2xl bg-[url('/assets/contact_bg.png')] bg-cover bg-center flex flex-col justify-center items-center"
       >
-        <Image
-          src={Shape}
-          alt="side-image"
-          className="absolute right-10 w-[100px] h-[100px] -z-1 outline-none border-none shadow-none"
-        />
-        {isSent && (
-          <div className="flex justify-center mb-4">
-            <p className="text-[#ffd449] font-bold text-center">
-              {t("contact_success_message")}
-            </p>
-            <p className="text-[25px] -mt-2">&#128573;</p>
+        <div className="mt-[110px] ml-8">
+          {isSent && (
+            <div className="flex justify-center bg-[#181629] w-[250px] rounded-md ml-[20px] mb-4 shadow-lg p-2">
+              <p className="text-[#A68CFB] text-sm font-noto font-mono font-bold text-center">
+                {t("contact_success_message")}
+              </p>
+            </div>
+          )}
+          {error && (
+            <div className="flex justify-center bg-[#181629] w-[250px] rounded-md ml-[20px] mb-4 shadow-lg">
+              <p className="text-[#FF715B] text-sm font-noto font-mono font-bold text-center">
+                {error}
+              </p>
+            </div>
+          )}
+          <div className="mb-4">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-[300px] py-3 px-4 bg-[#F5F5F7] text-[#181629] border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#A68CFB] transition duration-200 shadow-lg"
+              placeholder={t("name")}
+              required
+            />
           </div>
-        )}
-        {error && (
-          <div className="flex justify-center mb-4">
-            <p className="text-[#db324d] font-bold">{error}</p>
-            <p className="text-[25px] -mt-2">&#128576;</p>
+          <div className="mb-4">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-[300px] py-3 px-4 bg-[#F5F5F7] text-[#181629] border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#A68CFB] transition duration-200 shadow-lg"
+              placeholder={t("email")}
+              required
+            />
           </div>
-        )}
-        <div className="mb-4">
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#F25D76] transition duration-200 shadow-md"
-            placeholder={t("name")}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#F25D76] transition duration-200 shadow-md"
-            placeholder={t("email")}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#F25D76] transition duration-200 shadow-md"
-            placeholder={t("message")}
-            required
-          />
-        </div>
-        <Image
-          src={Shape}
-          alt="side-image"
-          className="absolute left-10 w-[100px] h-[100px] -z-1 outline-none border-none shadow-none"
-        />
-        <div className="flex flex-col lg:flex-row justify-around items-center">
-          <div
-            className="relative flex justify-center py-6"
-            style={{ filter: "url(#goo)" }}
-          >
+          <div className="mb-4">
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              className="w-[300px] py-3 px-4 bg-[#F5F5F7] text-[#181629] border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#A68CFB] transition duration-200 shadow-lg"
+              placeholder={t("message")}
+              required
+            />
+          </div>
+          <div className="flex justify-center mt-4">
             <button
-              type="submit"
-              className="relative inline-block text-center bg-[#F25D76] text-white font-bold py-3 px-4 sm:py-4 sm:px-5 rounded-full min-w-[10em] sm:min-w-[15em] md:min-w-[10em] text-base sm:text-lg no-underline
-        before:content-[''] before:w-[2.5em] before:h-[2.0em] sm:before:w-[4.4em] sm:before:h-[2.95em] before:absolute before:bg-[#F25D76]  before:rounded-full before:transition-transform before:duration-1000 before:ease-in-out before:scale-0 before:top-[-20%] sm:before:top-[-25%] before:left-[20%] before:z-[-1]
-        after:content-[''] after:w-[2.5em] after:h-[2.0em] sm:after:w-[4.4em] sm:after:h-[2.95em] after:absolute after:bg-[#F25D76] after:rounded-full after:transition-transform after:duration-1000 after:ease-in-out after:scale-0 after:bottom-[-20%] sm:after:bottom-[-25%] after:right-[20%] after:z-[-1] hover:before:scale-100 hover:after:scale-100"
               disabled={isLoading}
+              className="flex justify-center items-center bg-gradient-to-r from-[#A27DFB] to-[#6E8CFA] text-white text-sm font-medium px-4 py-2 rounded-md w-[200px] mt-2 hover:opacity-90 transition"
+              onClick={handleSubmit}
             >
               {isLoading ? t("sending") : t("send_message")}
             </button>
-
-            <svg
-              className="absolute inset-0 w-0 h-0"
-              xmlns="http://www.w3.org/2000/svg"
-              version="1.1"
-            >
-              <defs>
-                <filter id="goo">
-                  <feGaussianBlur
-                    in="SourceGraphic"
-                    stdDeviation="10"
-                    result="blur"
-                  />
-                  <feColorMatrix
-                    in="blur"
-                    mode="matrix"
-                    values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-                    result="goo"
-                  />
-                  <feComposite in="SourceGraphic" in2="goo" operator="atop" />
-                </filter>
-              </defs>
-            </svg>
           </div>
         </div>
       </form>
