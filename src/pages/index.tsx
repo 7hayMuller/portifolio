@@ -50,107 +50,60 @@ const About = () => {
         />
       )}
 
-      <div className="bg-[#2A235C] h-[700px]">
+      <div className="bg-[#2A235C] min-h-[700px]">
         <section
           id="introduction"
-          className="relative flex flex-col lg:flex-row-reverse h-auto lg:h-[600px] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12"
+          className="relative flex flex-col lg:flex-row-reverse h-auto lg:h-[600px] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12 gap-6"
         >
           <div className="order-1 flex justify-center items-center w-full lg:w-1/2">
             <Image
               src={Me}
               alt="side-image"
-              className="w-full h-auto max-w-[600px] mt-11"
+              className="w-full h-auto max-w-[400px] sm:max-w-[500px] lg:max-w-[600px] mt-6"
             />
           </div>
 
-          <div className="order-2 flex flex-1 justify-center lg:justify-end items-center w-full lg:w-1/2 lg:pl-6">
-            <div className="w-full max-w-lg mt-5 lg:mt-20">
-              <h2 className="text-[#e2e8c0] font-bold text-3xl mb-4 text-center lg:text-left">
+          <div className="order-2 flex flex-1 justify-center items-center w-full lg:w-1/2 lg:justify-end lg:pl-6">
+            <div className="w-full max-w-lg mt-5 lg:mt-20 space-y-4">
+              <h2 className="text-[#e2e8c0] font-bold text-3xl text-center lg:text-left">
                 <p className="flex justify-center lg:justify-start">
                   Me, Myself
                   <strong className="text-[#6ad5cb] ml-1 mr-1">&</strong> I
                 </p>
               </h2>
-              <div className="text-[#e2e8c0] text-center lg:text-left">
+              <div className="text-[#e2e8c0] text-center lg:text-left space-y-4">
                 <p>
-                  <Trans i18nKey="introduction.greeting" t={t}>
-                    Hi there! I’m Thayná Müller, a UX/UI designer and frontend
-                    developer from Brazil.
-                  </Trans>
+                  <Trans i18nKey="introduction.greeting" t={t} />
                 </p>
-                <br />
                 <p>
-                  <Trans i18nKey="introduction.hobbies" t={t}>
-                    <strong>I’m driven by curiosity</strong> — I love traveling,
-                    discovering new places, and immersing myself in different
-                    cultures. All of that finds its way into my creative process
-                    because I believe great ideas come from paying attention and
-                    drawing on real-life experiences.
-                  </Trans>
+                  <Trans i18nKey="introduction.hobbies" t={t} />
                 </p>
-                <br />
                 <p>
-                  <Trans i18nKey="introduction.welcome" t={t}>
-                    Here in my portfolio, you’ll find projects built on
-                    research, user-centered design, and interfaces crafted to
-                    delight and engage.
-                  </Trans>
+                  <Trans i18nKey="introduction.welcome" t={t} />
                 </p>
-                <br />
                 <p>
-                  <Trans i18nKey="introduction.finish" t={t}>
-                    Take a look at what I’ve created so far… maybe the next big
-                    idea is something we’ll bring to life together!
-                  </Trans>
+                  <Trans i18nKey="introduction.finish" t={t} />
                 </p>
-                <div className="flex flex-col lg:flex-row justify-start items-center">
-                  <div
-                    className="relative flex justify-center py-6"
-                    style={{ filter: "url(#goo)" }}
+                <div className="flex justify-center lg:justify-start">
+                  <button
+                    onClick={() => {
+                      const section = document.getElementById("contact");
+                      section?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center",
+                      });
+                    }}
+                    className="relative inline-block text-center bg-[#F25D76] text-white font-bold py-3 px-6 rounded-full
+              text-base sm:text-lg min-w-[12em] hover:before:scale-100 hover:after:scale-100"
                   >
-                    <button
-                      type="submit"
-                      className="relative inline-block text-center bg-[#F25D76] text-white font-bold py-3 px-4 sm:py-4 sm:px-5 rounded-full min-w-[10em] sm:min-w-[15em] md:min-w-[10em] text-base sm:text-lg no-underline
-                       before:content-[''] before:w-[2.5em] before:h-[2.0em] sm:before:w-[4.4em] sm:before:h-[2.95em] before:absolute before:bg-[#F25D76]  before:rounded-full before:transition-transform before:duration-1000 before:ease-in-out before:scale-0 before:top-[-20%] sm:before:top-[-25%] before:left-[20%] before:z-[-1]
-                       after:content-[''] after:w-[2.5em] after:h-[2.0em] sm:after:w-[4.4em] sm:after:h-[2.95em] after:absolute after:bg-[#F25D76] after:rounded-full after:transition-transform after:duration-1000 after:ease-in-out after:scale-0 after:bottom-[-20%] sm:after:bottom-[-25%] after:right-[20%] after:z-[-1] hover:before:scale-100 hover:after:scale-100"
-                    >
-                      {t("say_hi")}
-                    </button>
-
-                    <svg
-                      className="absolute inset-0 w-0 h-0"
-                      xmlns="http://www.w3.org/2000/svg"
-                      version="1.1"
-                    >
-                      <defs>
-                        <filter id="goo">
-                          <feGaussianBlur
-                            in="SourceGraphic"
-                            stdDeviation="10"
-                            result="blur"
-                          />
-                          <feColorMatrix
-                            in="blur"
-                            mode="matrix"
-                            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-                            result="goo"
-                          />
-                          <feComposite
-                            in="SourceGraphic"
-                            in2="goo"
-                            operator="atop"
-                          />
-                        </filter>
-                      </defs>
-                    </svg>
-                  </div>
+                    {t("say_hi")}
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </section>
       </div>
-
       <div id="projects" className="relative z-0 md:-mt-[150px] -mt-[100px]">
         <Image
           src="/assets/separator.png"
