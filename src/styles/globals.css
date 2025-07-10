@@ -39,7 +39,6 @@ body {
 body {
   color: var(--foreground);
   background: var(--background-end);
-  font-family: var(--font-poppins);
 }
 
 @layer utilities {
@@ -154,15 +153,6 @@ body {
 .group:hover .pull-corner::after {
   opacity: 1;
   transform: translateY(-2px);
-}
-
-.container {
-  height: 100vh;
-  display: flex;
-  justify-content: start;
-  align-items: start;
-  margin-top: 50px;
-  margin-left: 40px;
 }
 
 .blackhole {

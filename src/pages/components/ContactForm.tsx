@@ -52,70 +52,66 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="flex lg:flex-[3] justify-center px-4 w-full mx-auto mt-12 sm:mt-16 lg:ml-10  ">
+    <div className="relative flex items-center justify-center mt-12 sm:mt-16 md:mt-20 lg:mt-24 px-4 w-full max-w-2xl mx-auto">
       <form
         onSubmit={handleSubmit}
-        className="relative w-full max-w-10xl h-[600px] p-10 rounded-2xl bg-[url('/assets/contact_bg.png')] bg-cover bg-center flex flex-col justify-center items-center"
+        className="w-full max-w-lg bg-black bg-opacity-50 p-6 rounded-lg shadow-lg"
       >
-        <div className="mt-[110px] ml-8">
+        <div className="flex justify-center">
           {isSent && (
-            <div className="flex justify-center bg-[#181629] w-[250px] rounded-md ml-[20px] mb-4 shadow-lg p-2">
-              <p className="text-[#A68CFB] text-sm font-noto font-mono font-bold text-center">
-                {t("contact_success_message")}
-              </p>
-            </div>
+            <p className="text-[#A68CFB] text-sm font-mono font-bold text-center mb-[20px]">
+              {t("contact_success_message")}
+            </p>
           )}
           {error && (
-            <div className="flex justify-center bg-[#181629] w-[250px] rounded-md ml-[20px] mb-4 shadow-lg">
-              <p className="text-[#FF715B] text-sm font-noto font-mono font-bold text-center">
-                {error}
-              </p>
-            </div>
+            <p className="text-[#FF715B] text-sm font-mono font-bold text-center mb-[20px]">
+              {error}
+            </p>
           )}
-          <div className="mb-4">
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-[300px] py-3 px-4 bg-[#F5F5F7] text-[#181629] border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#A68CFB] transition duration-200 shadow-lg"
-              placeholder={t("name")}
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-[300px] py-3 px-4 bg-[#F5F5F7] text-[#181629] border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#A68CFB] transition duration-200 shadow-lg"
-              placeholder={t("email")}
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              className="w-[300px] py-3 px-4 bg-[#F5F5F7] text-[#181629] border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#A68CFB] transition duration-200 shadow-lg"
-              placeholder={t("message")}
-              required
-            />
-          </div>
-          <div className="flex justify-center mt-4">
-            <button
-              disabled={isLoading}
-              className="flex justify-center items-center bg-gradient-to-r from-[#A27DFB] to-[#6E8CFA] text-white text-sm font-medium px-4 py-2 rounded-md w-[200px] mt-2 hover:opacity-90 transition"
-              onClick={handleSubmit}
-            >
-              {isLoading ? t("sending") : t("send_message")}
-            </button>
-          </div>
+        </div>
+        <div className="mb-4">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#3DF58C] transition duration-200 shadow-md"
+            placeholder={t("name")}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#3DF58C] transition duration-200 shadow-md"
+            placeholder={t("email")}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <textarea
+            id="message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#3DF58C] transition duration-200 shadow-md"
+            placeholder={t("message")}
+            required
+          />
+        </div>
+        <div className="flex justify-center mt-4">
+          <button
+            disabled={isLoading}
+            className="flex justify-center items-center bg-gradient-to-r from-[#A27DFB] to-[#6E8CFA] text-white text-sm font-medium px-4 py-2 rounded-md w-[200px] mt-2 hover:opacity-90 transition"
+            onClick={handleSubmit}
+          >
+            {isLoading ? t("sending") : t("send_message")}
+          </button>
         </div>
       </form>
     </div>

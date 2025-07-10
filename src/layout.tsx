@@ -1,18 +1,27 @@
 import type { Metadata } from "next";
-import { Poppins, Noto_Sans_Mono } from "next/font/google";
+import {
+  Poppins,
+  Noto_Sans_Mono,
+  Open_Sans,
+  Lato,
+  Roboto_Mono,
+  Michroma,
+  Great_Vibes,
+} from "next/font/google";
 import "./styles/globals.css";
 import Head from "next/head";
 
-const poppins = Poppins({
+const greatVibes = Great_Vibes({
+  display: "swap",
   subsets: ["latin"],
-  variable: "--font-poppins",
-  weight: ["400", "600", "700"],
+  variable: "--font-great-vibes",
+  weight: ["400"],
 });
 
-const noto = Noto_Sans_Mono({
-  variable: "--font-noto",
+const roboto = Roboto_Mono({
   subsets: ["latin"],
-  weight: ["400", "100"],
+  variable: "--font-roboto",
+  weight: ["100", "300", "400"],
 });
 
 export const metadata: Metadata = {
@@ -61,7 +70,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <body className={`${poppins.className} ${noto.className}`}>
+      <body className={`${roboto.variable} ${greatVibes.variable}`}>
         {children}
       </body>
     </html>

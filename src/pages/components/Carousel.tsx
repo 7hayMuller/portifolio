@@ -61,7 +61,7 @@ const Carousel: React.FC<CarouselProps> = ({ setActiveKey }) => {
 
   return (
     <div
-      className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] lg:ml-10 flex items-center justify-center lg:-mt-[500px]"
+      className="w-full flex items-center justify-center h-[400px] lg:h-[500px]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -76,8 +76,8 @@ const Carousel: React.FC<CarouselProps> = ({ setActiveKey }) => {
             ? 1
             : 0.3;
 
-        const translateYValue = isMobile ? -80 : -180;
-        const size = isMobile ? 40 : 120;
+        const translateYValue = isMobile ? -120 : -180;
+        const size = isMobile ? 80 : 120;
         const scale = hoveredIndex === index ? 1.1 : 1;
         const brightness = hoveredIndex === index ? 1.5 : 1;
 
@@ -110,8 +110,8 @@ const Carousel: React.FC<CarouselProps> = ({ setActiveKey }) => {
                 src={each.src}
                 alt={`Slide ${index}`}
                 layout="intrinsic"
-                width={size - 50}
-                height={size - 50}
+                width={isMobile ? size - 30 : size - 50}
+                height={isMobile ? size - 30 : size - 50}
                 className="object-contain"
               />
             </div>

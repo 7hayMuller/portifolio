@@ -73,8 +73,9 @@ const Navbar: React.FC = () => {
       >
         <li className="pb-3 pt-3 md:pr-6">
           <button
+            data-text="Me, Myself & I"
             onClick={() => handleLinkClick("introduction")}
-            className={`text-base lg:text-base text-[#e2e8c0] ${
+            className={`text-base lg:text-base ${
               activeSection === "introduction"
                 ? "border-b-4 border-[#F25D76] pb-1 inline-block font-bold"
                 : ""
@@ -85,8 +86,9 @@ const Navbar: React.FC = () => {
         </li>
         <li className="pb-3 pt-3 md:pr-6">
           <button
+            data-text={t("my_projects")}
             onClick={() => handleLinkClick("projects")}
-            className={`text-base lg:text-base text-[#e2e8c0] ${
+            className={`text-base lg:text-base ${
               activeSection === "projects"
                 ? "border-b-4 border-[#F25D76] pb-1 inline-block font-bold"
                 : ""
@@ -97,8 +99,9 @@ const Navbar: React.FC = () => {
         </li>
         <li className="pb-3 pt-3 md:pr-6">
           <button
+            data-text={t("skills_and_tools")}
             onClick={() => handleLinkClick("skills")}
-            className={`text-base lg:text-base text-[#e2e8c0] ${
+            className={`text-base lg:text-base ${
               activeSection === "skills"
                 ? "border-b-4 border-[#F25D76] pb-1 inline-block font-bold"
                 : ""
@@ -109,8 +112,9 @@ const Navbar: React.FC = () => {
         </li>
         <li className="pb-3 pt-3">
           <button
+            data-text={t("contact")}
             onClick={() => handleLinkClick("contact")}
-            className={`text-base lg:text-base text-[#e2e8c0] ${
+            className={`text-base lg:text-base ${
               activeSection === "contact"
                 ? "border-b-4 border-[#F25D76] pb-1 inline-block font-bold"
                 : ""

@@ -1,24 +1,140 @@
-/* styles/navbar.module.css */
 .navbar {
-  @apply fixed top-0 left-0 z-50 w-full backdrop-blur-lg p-2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  backdrop-filter: blur(16px);
+  padding: 0.5rem;
 }
 
 .navbar ul {
-  @apply list-none p-0 m-0 flex flex-col md:flex-row justify-center transition-all duration-300 overflow-hidden;
-}
-
-.navbar li {
-  @apply sm:m-0 lg:ml-[20px] lg:mr-[20px] lg:mt-[5px] lg:mb-[5px];
-}
-
-.navbar a {
-  @apply text-[#e2e8c0] font-semibold cursor-pointer no-underline;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 300ms;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
   .navbar ul {
-    @apply flex-row bg-transparent justify-center relative w-auto h-auto transform-none;
+    flex-direction: row;
+    background: transparent;
+    justify-content: center;
+    position: relative;
+    width: auto;
+    height: auto;
+    transform: none;
   }
 }
 
+.navbar li {
+  margin: 0;
+}
 
+@media (min-width: 1024px) {
+  .navbar li {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+/* Estilo base do botão do link */
+.navbar button {
+  color: #e2e8c0;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  background: transparent;
+  padding: 0;
+  font-size: 16px;
+}
+
+/* glitch pseudo-elementos */
+.navbar button::before,
+.navbar button::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+  color: #67f3da;
+  clip: rect(0, 900px, 0, 0);
+}
+
+.navbar button::after {
+  color: #f16f6f;
+}
+
+/* animação */
+.navbar button:hover::before {
+  animation: glitchTop 1s infinite linear alternate-reverse;
+}
+
+.navbar button:hover::after {
+  animation: glitchBottom 1s infinite linear alternate-reverse;
+}
+
+/* keyframes glitch */
+@keyframes glitchTop {
+  0% {
+    clip: rect(0, 900px, 0, 0);
+    transform: translate(0, 0);
+  }
+  10% {
+    clip: rect(0, 900px, 10px, 0);
+    transform: translate(-2px, -2px);
+  }
+  20% {
+    clip: rect(0, 900px, 5px, 0);
+    transform: translate(2px, 2px);
+  }
+  30% {
+    clip: rect(0, 900px, 15px, 0);
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    clip: rect(0, 900px, 10px, 0);
+    transform: translate(2px, -2px);
+  }
+  50%,
+  100% {
+    clip: rect(0, 900px, 0, 0);
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes glitchBottom {
+  0% {
+    clip: rect(0, 900px, 0, 0);
+    transform: translate(0, 0);
+  }
+  10% {
+    clip: rect(5px, 900px, 10px, 0);
+    transform: translate(2px, 2px);
+  }
+  20% {
+    clip: rect(10px, 900px, 15px, 0);
+    transform: translate(-2px, -2px);
+  }
+  30% {
+    clip: rect(5px, 900px, 10px, 0);
+    transform: translate(2px, -2px);
+  }
+  40% {
+    clip: rect(10px, 900px, 15px, 0);
+    transform: translate(-2px, 2px);
+  }
+  50%,
+  100% {
+    clip: rect(0, 900px, 0, 0);
+    transform: translate(0, 0);
+  }
+}
