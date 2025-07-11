@@ -398,12 +398,12 @@ const About = () => {
               ) ? (
                 <p className="text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]">
                   <Trans>
-                    <i>"</i>Com{" "}
+                    <i>`&quot;`</i>Com{" "}
                     <strong className="text-[#E5E5DD]">
                       React, Next.js e TypeScript
                     </strong>
                     , construo a estrutura e a inteligência que fazem um projeto
-                    ganhar vida.<i>"</i>
+                    ganhar vida.<i>`&quot;`</i>
                   </Trans>
                 </p>
               ) : activeKey === "figma" ? (
@@ -411,10 +411,11 @@ const About = () => {
                   className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
                 >
                   <Trans>
-                    <i>"</i>No <strong className="text-[#E5E5DD]">Figma</strong>
-                    , experimento, pesquiso e penso em cada interação para que
+                    <i>`&quot;`</i>No{" "}
+                    <strong className="text-[#E5E5DD]">Figma</strong>,
+                    experimento, pesquiso e penso em cada interação para que
                     tudo faça sentido para quem está do outro lado da tela.
-                    <i>"</i>
+                    <i>`&quot;`</i>
                   </Trans>
                 </p>
               ) : ["tailwind", "sass"]?.includes(activeKey) ? (
@@ -422,13 +423,13 @@ const About = () => {
                   className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
                 >
                   <Trans>
-                    <i>"</i>
+                    <i>`&quot;`</i>
                     <strong className="text-[#E5E5DD]">
                       Tailwind e SCSS
                     </strong>{" "}
                     entram como meus pincéis para dar cor, forma e
                     personalidade, criando interfaces que não só funcionam, mas
-                    encantam.<i>"</i>
+                    encantam.<i>`&quot;`</i>
                   </Trans>
                 </p>
               ) : (
@@ -436,12 +437,12 @@ const About = () => {
                   className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
                 >
                   <Trans>
-                    <i>"</i>Com{" "}
+                    <i>`&quot;`</i>Com{" "}
                     <strong className="text-[#E5E5DD]">
                       React, Next.js e TypeScript
                     </strong>
                     , construo a estrutura e a inteligência que fazem um projeto
-                    ganhar vida.<i>"</i>
+                    ganhar vida.<i>`&quot;`</i>
                   </Trans>
                 </p>
               )}
