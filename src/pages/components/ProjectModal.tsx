@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { FaGithub, FaReact, FaSass } from "react-icons/fa";
-import { IoLogoBehance, IoLogoFigma } from "react-icons/io5";
-import { SiExpo, SiNextdotjs, SiTailwindcss } from "react-icons/si";
+import { IoLogoBehance, IoLogoCss3, IoLogoFigma } from "react-icons/io5";
+import {
+  SiExpo,
+  SiMedium,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiTypescript,
+} from "react-icons/si";
 import { TbBrandReactNative } from "react-icons/tb";
 
 import Image from "next/image";
@@ -46,15 +52,15 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex justify-center items-center p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex justify-center items-center p-4">
       <div
-        className={`relative w-full max-w-full md:max-w-3xl mx-auto p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center bg-[#181629] overflow-hidden transition-all duration-300 ease-out
+        className={`relative w-full max-w-full md:max-w-3xl mx-auto p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center bg-[#181629] transition-all duration-300 ease-out
           ${show ? "scale-100 opacity-100" : "scale-90 opacity-0"}
         `}
       >
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 bg-[#A68CFB] text-black rounded-full w-5 h-5 flex items-center justify-center font-bold hover:bg-gray-300 transition"
+          className="absolute top-2 right-2 bg-[#3DF58C] text-black rounded-full w-5 h-5 flex items-center justify-center font-bold hover:bg-[#3DF58C]/20 transition"
         >
           ✕
         </button>
@@ -75,27 +81,27 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
             autoplay={{ delay: 2500, disableOnInteraction: false }}
             spaceBetween={20}
             slidesPerView={1}
-            className="w-[300px]"
+            className="w-1/2 max-w-md h-[400px] "
           >
             {modalInfo?.images?.map((each, index) => (
               <SwiperSlide
                 key={index}
-                className="flex justify-center px-4 py-8"
+                className="flex justify-center items-center px-4 py-8"
               >
                 <Image
                   src={each.src}
                   alt="Modal"
                   width={each.width}
                   height={each.height}
-                  className="rounded-md object-contain max-h-[350px]"
+                  className="rounded-md object-contain w-full h-full"
                 />
               </SwiperSlide>
             ))}
           </Swiper>
         )}
 
-        <div className="flex flex-col flex-1 text-center md:text-left overflow-y-auto max-h-[80vh] mt-4 md:mt-0 md:ml-6">
-          <p className="text-white text-sm md:text-base mb-4">
+        <div className="flex flex-col flex-1 text-left overflow-hidden w-[300px] max-h-[80vh] mt-4 md:mt-0 md:ml-6 ">
+          <p className="text-white text-sm md:text-base mb-4 mt-10">
             {modalInfo.description}
           </p>
           {modalInfo?.tecnologies && modalInfo?.tecnologies.length > 0 && (
@@ -103,7 +109,7 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
               <p className="font-bold text-white mb-2">
                 {t("tecnologies_utilized")}
               </p>
-              <div className="flex flex-wrap justify-center md:justify-start gap-4">
+              <div className="flex flex-wrap justify-start gap-4">
                 {modalInfo.tecnologies.map((tech: string) => {
                   const techMap: Record<string, JSX.Element> = {
                     next: <SiNextdotjs size={25} />,
@@ -113,13 +119,15 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
                     figma: <IoLogoFigma size={25} />,
                     behance: <IoLogoBehance size={25} />,
                     "React Native": <TbBrandReactNative size={25} />,
-                    Expo: <SiExpo size={25} />,
+                    expo: <SiExpo size={25} />,
+                    typescript: <SiTypescript size={25} />,
+                    css: <IoLogoCss3 size={25} />,
                   };
 
                   return (
                     <div
                       key={tech}
-                      className="flex flex-col items-center text-center text-white"
+                      className="flex flex-col lg:items-center lg:text-center items-start justify-start text-white"
                     >
                       {techMap[tech] || null}
                     </div>
@@ -128,15 +136,15 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
               </div>
             </div>
           )}{" "}
-          <div className="mt-4">
+          <div className="mt-2">
             <p className="font-bold text-white mb-2">Links:</p>
-            <div className="mt-6 flex justify-center md:justify-start gap-4">
+            <div className="flex justify-start gap-4">
               {modalInfo?.links[0].figma && (
                 <a
                   href={modalInfo?.links[0].figma ?? ""}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-[#F25D76]"
+                  className="text-white hover:text-[#3DF58C]"
                 >
                   <IoLogoFigma size={30} />
                 </a>
@@ -146,7 +154,7 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
                   href={modalInfo?.links[0].behance ?? ""}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-[#F25D76]"
+                  className="text-white hover:text-[#3DF58C]"
                 >
                   <IoLogoBehance size={30} />
                 </a>
@@ -156,9 +164,19 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
                   href={modalInfo?.links[0].github ?? ""}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-[#F25D76]"
+                  className="text-white hover:text-[#3DF58C]"
                 >
                   <FaGithub size={30} />
+                </a>
+              )}
+              {modalInfo?.links[0].medium && (
+                <a
+                  href={modalInfo?.links[0].medium ?? ""}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-[#3DF58C]"
+                >
+                  <SiMedium size={30} />
                 </a>
               )}
             </div>

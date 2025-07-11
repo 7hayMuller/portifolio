@@ -1,6 +1,5 @@
 import "dayjs/locale/pt";
 import "dayjs/locale/es";
-
 import dayjs from "dayjs";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
@@ -13,7 +12,7 @@ i18n
   .use(initReactI18next)
   .init({
     debug: true,
-    fallbackLng: "pt",
+    fallbackLng: "en",
     supportedLngs: ["pt", "en"],
     ns: ["translations"],
     defaultNS: "translations",
@@ -22,7 +21,7 @@ i18n
       en: { translations: en },
     },
     detection: {
-      order: ["querystring", "localStorage", "sessionStorage", "navigator"],
+      order: ["localStorage", "sessionStorage", "querystring", "navigator"],
       caches: ["localStorage", "sessionStorage"],
     },
     interpolation: {
@@ -30,7 +29,8 @@ i18n
     },
   });
 
-const detectedLanguage = i18n.language || "en";
-dayjs.locale(detectedLanguage);
+if (typeof window !== "undefined") {
+  dayjs.locale(i18n.language || "en");
+}
 
 export default i18n;

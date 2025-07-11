@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { t } from "i18next";
 import Image from "next/image";
 
 type CardProps = {
   type: string;
   title: string;
+  intro: string;
   stack: string;
   highlight?: boolean;
   onClick?: () => void;
@@ -16,6 +17,7 @@ const Card: React.FC<CardProps> = ({
   buttonTitle = t("Ver mais"),
   type,
   title,
+  intro,
   stack,
   highlight,
   onClick,
@@ -63,12 +65,12 @@ const Card: React.FC<CardProps> = ({
         style={{ marginTop: highlight ? 20 : 0 }}
       >
         {highlight && (
-          <div className="w-full h-10 mb-[100px]">
+          <div className="w-full h-10  mb-[100px]">
             <Image
-              src="/assets/highlight_waves.png"
+              src="/assets/mobile_waves2.png"
               alt="Decoração orgânica"
               fill
-              className="object-cover mt-[-100px]"
+              className="object-cover mt-[-200px]"
               priority
             />
           </div>
@@ -82,10 +84,7 @@ const Card: React.FC<CardProps> = ({
 
         <p className="text-sm text-gray-400">{stack}</p>
 
-        <p className="text-sm text-gray-300 leading-snug">
-          Plataforma responsiva para explorar destinos, com filtros, dark mode e
-          animações suaves.
-        </p>
+        <p className="text-sm text-gray-300 leading-snug">{intro}</p>
 
         <a
           href="#"
