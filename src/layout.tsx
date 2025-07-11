@@ -1,30 +1,42 @@
 import type { Metadata } from "next";
-import { Lato, Roboto } from "next/font/google";
+import {
+  Poppins,
+  Noto_Sans_Mono,
+  Open_Sans,
+  Lato,
+  Roboto_Mono,
+  Michroma,
+  Great_Vibes,
+} from "next/font/google";
 import "./styles/globals.css";
 import Head from "next/head";
 
-const lato = Lato({
+const greatVibes = Great_Vibes({
+  display: "swap",
   subsets: ["latin"],
-  variable: "--font-lato",
-  weight: ["400", "300"],
+  variable: "--font-great-vibes",
+  weight: ["400"],
 });
 
-const roboto = Roboto({
+const roboto = Roboto_Mono({
   subsets: ["latin"],
   variable: "--font-roboto",
-  weight: "400",
+  weight: ["100", "300", "400"],
 });
 
 export const metadata: Metadata = {
-  title: "Thayná Müller | Frontend Developer & UI Designer",
-  description: "Portfólio de Thayná Müller, desenvolvedora frontend e UI designer.",
-  keywords: "frontend, desenvolvedora, UI, UX, React, Next.js, JavaScript, Typescript",
+  title: "Thayná Müller | Frontend Developer & UX/UI Designer",
+  description:
+    "Portfólio de Thayná Müller, desenvolvedora frontend e UX/UI designer.",
+  keywords:
+    "frontend, desenvolvedora, UI, UX, React, Next.js, JavaScript, Typescript",
   authors: [{ name: "Thayná Müller", url: "https://thaynamuller.com" }],
   creator: "Thayná Müller",
   metadataBase: new URL("https://thaynamuller.com"),
   openGraph: {
-    title: "Thayná Müller | Frontend Developer & UI Designer",
-    description: "Conheça o trabalho de Thayná Müller, desenvolvedora frontend e UI designer.",
+    title: "Thayná Müller | Frontend Developer & UX/UI Designer",
+    description:
+      "Conheça o trabalho de Thayná Müller, desenvolvedora frontend e UX/UI designer.",
     url: "https://thaynamuller.com",
     siteName: "Thayná Müller",
     images: [
@@ -36,7 +48,7 @@ export const metadata: Metadata = {
       },
     ],
     type: "website",
-  }, 
+  },
   robots: {
     index: true,
     follow: true,
@@ -58,7 +70,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <body className={`${lato.className} ${roboto.className}`}>
+      <body className={`${roboto.variable} ${greatVibes.variable}`}>
         {children}
       </body>
     </html>
