@@ -65,7 +65,7 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
           ✕
         </button>
 
-        {modalInfo.video ? (
+        {modalInfo?.video ? (
           <div className="w-full md:w-1/2 mb-4 md:mb-0 md:mr-6">
             <iframe
               src={modalInfo.video}
@@ -102,7 +102,7 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
 
         <div className="flex flex-col flex-1 text-left overflow-hidden w-[300px] max-h-[80vh] mt-4 md:mt-0 md:ml-6 ">
           <p className="text-white text-sm md:text-base mb-4 mt-10">
-            {modalInfo.description}
+            {modalInfo?.description}
           </p>
           {modalInfo?.tecnologies && modalInfo?.tecnologies.length > 0 && (
             <div className="mt-4">
