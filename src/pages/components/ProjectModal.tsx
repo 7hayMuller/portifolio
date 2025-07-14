@@ -52,15 +52,15 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex justify-center items-center p-2 md:p-4">
+    <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex flex-col justify-center items-center py-8 md:py-4 px-4 md:px-8">
       <div
-        className={`relative w-full max-w-[90vw] md:max-w-3xl mx-auto p-2 md:p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center bg-[#181629] transition-all duration-300 ease-out
+        className={`relative w-full max-w-[90vw] md:max-w-3xl mx-auto p-6 md:p-10 rounded-lg shadow-lg flex flex-col md:flex-row items-center bg-[#181629] transition-all duration-300 ease-out
           ${show ? "scale-100 opacity-100" : "scale-90 opacity-0"}
         `}
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 bg-[#3DF58C] text-black rounded-full w-5 h-5 flex items-center justify-center font-bold hover:bg-[#3DF58C]/20 transition"
+          className="fixed md:absolute top-6 right-6 md:top-4 md:right-4 bg-[#3DF58C] text-black rounded-full w-8 h-8 md:w-5 md:h-5 flex items-center justify-center font-bold text-lg md:text-base z-50 hover:bg-[#3DF58C]/20 transition"
         >
           ✕
         </button>
