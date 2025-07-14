@@ -18,6 +18,7 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { Trans } from "react-i18next";
 
 type ImageProps = {
   src: string;
@@ -26,7 +27,7 @@ type ImageProps = {
 };
 
 export type ProjectModalInfoProps = {
-  description: string;
+  key: string;
   images: ImageProps[];
   video: string;
   mobile: boolean;
@@ -102,7 +103,7 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
 
         <div className="flex flex-col flex-1 text-left overflow-y-auto w-full md:w-[300px] max-h-[70vh] mt-[30px] md:ml-6 ">
           <p className="text-white text-sm md:text-base lg:text-lg mb-4 mt-6 md:mt-10">
-            {modalInfo?.description}
+            <Trans i18nKey={modalInfo?.key} t={t} />
           </p>
           {modalInfo?.tecnologies && modalInfo?.tecnologies.length > 0 && (
             <div className="mt-4">

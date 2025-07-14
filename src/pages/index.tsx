@@ -200,9 +200,7 @@ const About = () => {
                     onClick={() => {
                       setModalInfo({
                         images: finnyImages,
-                        description: (
-                          <Trans i18nKey="finny_description" t={t} />
-                        ),
+                        key: "finny_description",
                         tecnologies: ["figma"],
                         links: [
                           {
@@ -227,7 +225,7 @@ const About = () => {
                     onClick={() => {
                       setModalInfo({
                         images: nearbyImages,
-                        description: <Trans i18nKey="nearby" t={t} />,
+                        key: "nearby",
                         tecnologies: [
                           "React Native",
                           "typescript",
@@ -257,7 +255,7 @@ const About = () => {
                     onClick={() => {
                       setModalInfo({
                         images: itauImages,
-                        description: t("itau_description"),
+                        key: "itau_description",
                         tecnologies: ["figma"],
                         links: [
                           {
@@ -284,7 +282,7 @@ const About = () => {
                     onClick={() => {
                       setModalInfo({
                         images: portfolioImages,
-                        description: t("portfolio_description"),
+                        key: "portfolio_description",
                         tecnologies: ["next", "typescript", "tailwind"],
                         links: [
                           {
@@ -311,7 +309,7 @@ const About = () => {
                 onClick={() => {
                   setModalInfo({
                     images: finnyImages,
-                    description: <Trans i18nKey="finny_description" t={t} />,
+                    key: "finny_description",
                     tecnologies: ["figma"],
                     links: [
                       {
@@ -332,7 +330,7 @@ const About = () => {
                 onClick={() => {
                   setModalInfo({
                     images: nearbyImages,
-                    description: <Trans i18nKey="nearby" t={t} />,
+                    key: "nearby",
                     tecnologies: ["React Native", "typescript", "expo", "css"],
                     links: [
                       { github: "https://github.com/7hayMuller/nlw-nearby" },
@@ -351,7 +349,7 @@ const About = () => {
                 onClick={() => {
                   setModalInfo({
                     images: itauImages,
-                    description: t("itau_description"),
+                    key: "itau_description",
                     tecnologies: ["figma"],
                     links: [
                       {
@@ -374,9 +372,7 @@ const About = () => {
                 onClick={() => {
                   setModalInfo({
                     images: portfolioImages,
-                    description: (
-                      <Trans i18nKey="portfolio_description" t={t} />
-                    ),
+                    key: "portfolio_description",
                     tecnologies: ["next", "typescript", "tailwind"],
                     links: [
                       {
@@ -414,45 +410,25 @@ const About = () => {
                 activeKey
               ) ? (
                 <p className="text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]">
-                  <Trans>
-                    <i>&quot;</i>Com{" "}
-                    <strong>React, Next.js e TypeScript</strong>, construo a
-                    estrutura e a inteligência que fazem um projeto ganhar vida.
-                    <i>&quot;</i>
-                  </Trans>
+                  <Trans i18nKey={"tech_skills"} t={t} />
                 </p>
               ) : activeKey === "figma" ? (
                 <p
                   className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
                 >
-                  <Trans>
-                    <i>&quot;</i>No <strong>Figma</strong>, experimento,
-                    pesquiso e penso em cada interação para que tudo faça
-                    sentido para quem está do outro lado da tela.
-                    <i>&quot;</i>
-                  </Trans>
+                  <Trans i18nKey={"figma_skills"} t={t} />
                 </p>
               ) : ["tailwind", "sass"]?.includes(activeKey) ? (
                 <p
                   className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
                 >
-                  <Trans>
-                    <i>&quot;</i>
-                    <strong>Tailwind e SCSS</strong> entram como meus pincéis
-                    para dar cor, forma e personalidade, criando interfaces que
-                    não só funcionam, mas encantam.<i>&quot;</i>
-                  </Trans>
+                  <Trans i18nKey={"design_skills"} t={t} />
                 </p>
               ) : (
                 <p
                   className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
                 >
-                  <Trans>
-                    <i>&quot;</i>Com{" "}
-                    <strong>React, Next.js e TypeScript</strong>, construo a
-                    estrutura e a inteligência que fazem um projeto ganhar vida.
-                    <i>&quot;</i>
-                  </Trans>
+                  <Trans i18nKey={"tech_skills"} t={t} />
                 </p>
               )}
             </div>
