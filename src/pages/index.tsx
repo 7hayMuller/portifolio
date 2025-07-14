@@ -76,7 +76,7 @@ const About = () => {
         />
       )}
 
-      <div className="bg-[#2A235C] min-h-[1060px] lg:min-h-[800px] md:min-h-[1200px]">
+      <div className="bg-[#2A235C] min-h-[1060px] lg:min-h-[800px] md:min-h-[1200px] pb-32">
         <section
           id="introduction"
           className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col h-auto lg:h-[600px] md:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 lg:py-16"
@@ -418,7 +418,7 @@ const About = () => {
                     <i>&quot;</i>Com{" "}
                     <strong>React, Next.js e TypeScript</strong>, construo a
                     estrutura e a inteligência que fazem um projeto ganhar vida.
-                    <i>`&quot;`</i>
+                    <i>&quot;</i>
                   </Trans>
                 </p>
               ) : activeKey === "figma" ? (
