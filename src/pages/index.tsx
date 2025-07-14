@@ -24,6 +24,7 @@ const About = () => {
   const [modalInfo, setModalInfo] = useState<any>(null);
   const [activeKey, setActiveKey] = useState<any>();
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
 
   const nearbyImages = [
     { src: "/assets/nearby-splash-mobile.png", width: 243, height: 150 },
@@ -53,8 +54,8 @@ const About = () => {
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 640);
+      setIsTablet(window.innerWidth >= 640 && window.innerWidth < 1024);
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -75,10 +76,10 @@ const About = () => {
         />
       )}
 
-      <div className="bg-[#2A235C] min-h-[1060px] lg:min-h-[800px] md:min-h-[900px]">
+      <div className="bg-[#2A235C] min-h-[1060px] lg:min-h-[800px] md:min-h-[1200px]">
         <section
           id="introduction"
-          className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col h-auto lg:h-[600px] md:h-full max-w-7xl mx-auto px-4 sm:px-6 py-6 lg:py-12"
+          className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col h-auto lg:h-[600px] md:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 lg:py-16"
         >
           <div className="order-1 flex justify-center items-center w-full lg:w-1/2">
             <Image
@@ -157,131 +158,144 @@ const About = () => {
 
       <div className="bg-gradient-to-b from-[#181629] via-[#100c1a] to-[#05020a] rounded-tl-[80px] rounded-tr-[80px] lg:rounded-tl-[100px] lg:rounded-tr-[100px] md:rounded-tl-[100px] md:rounded-tr-[100px] -mt-[150px] shadow-inner drop-shadow-[0_0_20px_#ec4899] shadow-[#2A235C]/80">
         <section
-          className="relative max-w-7xl mx-auto px-6 -mt-[10px] lg:px-8 py-6 lg:py-8 gap-12"
+          className="relative max-w-7xl mx-auto px-6 -mt-[10px] lg:px-8 py-12 lg:py-16 gap-12"
           id="projects"
         >
           <div className="order-1 lg:order-2 flex flex-1 justify-center items-center w-full lg:justify-start">
             <div className="flex flex-col w-full max-w-3xl mt-[50px] mb-[50px] md:mt-[50px] lg:mt-[80px] lg:mb-10 space-y-4">
               <h2 className="text-[#E5E5DD] font-bold text-3xl md:text-3xl lg:text-4xl text-center lg:text-left ">
-                <div className="flex justify-center lg:justify-start font-roboto">
-                  <p className="mr-2">{t("my")}</p>
-                  <p>Proj</p>
-                  <p className="text-[#3DF58C]">&</p>
-                  <p>{t("cts")}</p>
+                <div className="flex justify-center lg:justify-start font-roboto mb-[20px]">
+                  <p>{t("my")}</p>
+                  <p className="ml-2">
+                    Proje
+                    <strong className="text-[#3DF58C]">{t("ct")}</strong>s
+                  </p>
                 </div>
               </h2>
-              {/* <p className="text-[#E5E5DD] mt-6">
+              <p className="text-[#E5E5DD] text-center lg:text-left">
                 <Trans i18nKey="project_description" t={t} />
-              </p> */}
+              </p>
             </div>
           </div>
-          {isMobile ? (
+          {isMobile || isTablet ? (
             <Swiper
               modules={[Autoplay]}
               autoplay={{ delay: 2500, disableOnInteraction: false }}
               spaceBetween={20}
               slidesPerView={1}
+              breakpoints={{
+                640: { slidesPerView: 2, spaceBetween: 20 },
+              }}
+              style={{ maxWidth: "100%", width: "100%" }}
             >
               <SwiperSlide className="flex justify-center items-center px-4 py-8">
-                <Card
-                  buttonTitle={t("see_studycase")}
-                  type="UX/UI"
-                  intro={t("finny_intro")}
-                  highlight
-                  title={t("Finny Cashback Goals")}
-                  previewVideo="/assets/finny_prev.webm"
-                  stack="Figma"
-                  onClick={() => {
-                    setModalInfo({
-                      images: finnyImages,
-                      description: <Trans i18nKey="finny_description" t={t} />,
-                      tecnologies: ["figma"],
-                      links: [
-                        {
-                          medium:
-                            "https://medium.com/@thaynamuller88/finny-cashback-goals-db0509b21a6d",
-                        },
-                      ],
-                    });
-                    setIsModalOpen(true);
-                  }}
-                />
+                <div className="w-full max-w-[340px] h-[420px]">
+                  <Card
+                    buttonTitle={t("see_studycase")}
+                    type="UX/UI"
+                    intro={t("finny_intro")}
+                    title={t("Finny Cashback Goals")}
+                    previewVideo="/assets/finny_prev.webm"
+                    stack="Figma"
+                    onClick={() => {
+                      setModalInfo({
+                        images: finnyImages,
+                        description: (
+                          <Trans i18nKey="finny_description" t={t} />
+                        ),
+                        tecnologies: ["figma"],
+                        links: [
+                          {
+                            medium:
+                              "https://medium.com/@thaynamuller88/finny-cashback-goals-db0509b21a6d",
+                          },
+                        ],
+                      });
+                      setIsModalOpen(true);
+                    }}
+                  />
+                </div>
               </SwiperSlide>
               <SwiperSlide className="flex justify-center items-center px-4 py-8">
-                <Card
-                  type="Front-end"
-                  title={t("Nearby")}
-                  stack="React Native, Typescript, Expo e CSS"
-                  highlight
-                  intro={t("nearby_intro")}
-                  previewVideo="/assets/nearby_prev.webm"
-                  onClick={() => {
-                    setModalInfo({
-                      images: nearbyImages,
-                      description: <Trans i18nKey="nearby" t={t} />,
-                      tecnologies: [
-                        "React Native",
-                        "typescript",
-                        "expo",
-                        "css",
-                      ],
-                      links: [
-                        { github: "https://github.com/7hayMuller/nlw-nearby" },
-                      ],
-                    });
-                    setIsModalOpen(true);
-                  }}
-                />
+                <div className="w-full max-w-[340px]">
+                  <Card
+                    type="Front-end"
+                    title={t("Nearby")}
+                    stack="React Native, Typescript, Expo e CSS"
+                    intro={t("nearby_intro")}
+                    previewVideo="/assets/nearby_prev.webm"
+                    onClick={() => {
+                      setModalInfo({
+                        images: nearbyImages,
+                        description: <Trans i18nKey="nearby" t={t} />,
+                        tecnologies: [
+                          "React Native",
+                          "typescript",
+                          "expo",
+                          "css",
+                        ],
+                        links: [
+                          {
+                            github: "https://github.com/7hayMuller/nlw-nearby",
+                          },
+                        ],
+                      });
+                      setIsModalOpen(true);
+                    }}
+                  />
+                </div>
               </SwiperSlide>
               <SwiperSlide className="flex justify-center items-center px-4 py-8">
-                <Card
-                  type="UX/UI"
-                  title={t("itau_title")}
-                  buttonTitle={t("see_studycase")}
-                  highlight
-                  intro={t("itau_intro")}
-                  stack="Figma"
-                  previewVideo="/assets/itau_prev.webm"
-                  onClick={() => {
-                    setModalInfo({
-                      images: itauImages,
-                      description: t("itau_description"),
-                      tecnologies: ["figma"],
-                      links: [
-                        {
-                          figma:
-                            "https://www.figma.com/design/bWyeFyFptVlKsvX6pFO3IC/Ita%C3%BA---Prot%C3%B3tipo%2FCanais?node-id=0-1",
-                          behance:
-                            "https://www.behance.net/gallery/218042201/Ecossistema-digital-Itau",
-                        },
-                      ],
-                    });
-                    setIsModalOpen(true);
-                  }}
-                />
+                <div className="w-full max-w-[340px]">
+                  <Card
+                    type="UX/UI"
+                    title={t("itau_title")}
+                    buttonTitle={t("see_studycase")}
+                    intro={t("itau_intro")}
+                    stack="Figma"
+                    previewVideo="/assets/itau_prev.webm"
+                    onClick={() => {
+                      setModalInfo({
+                        images: itauImages,
+                        description: t("itau_description"),
+                        tecnologies: ["figma"],
+                        links: [
+                          {
+                            figma:
+                              "https://www.figma.com/design/bWyeFyFptVlKsvX6pFO3IC/Ita%C3%BA---Prot%C3%B3tipo%2FCanais?node-id=0-1",
+                            behance:
+                              "https://www.behance.net/gallery/218042201/Ecossistema-digital-Itau",
+                          },
+                        ],
+                      });
+                      setIsModalOpen(true);
+                    }}
+                  />
+                </div>
               </SwiperSlide>
               <SwiperSlide className="flex justify-center items-center px-4 py-8">
-                <Card
-                  type="Front-end"
-                  highlight
-                  intro={t("portfolio_intro")}
-                  title={t("this_portfolio")}
-                  stack="Next.js, Typescript e Tailwind"
-                  previewVideo="/assets/portfolio.webm"
-                  onClick={() => {
-                    setModalInfo({
-                      images: portfolioImages,
-                      description: t("portfolio_description"),
-                      tecnologies: ["next", "typescript", "tailwind"],
-                      links: [
-                        {
-                          github: "https://github.com/7hayMuller/portifolio",
-                        },
-                      ],
-                    });
-                    setIsModalOpen(true);
-                  }}
-                />
+                <div className="w-full max-w-[340px]">
+                  <Card
+                    type="Front-end"
+                    intro={t("portfolio_intro")}
+                    title={t("this_portfolio")}
+                    stack="Next.js, Typescript e Tailwind"
+                    previewVideo="/assets/portfolio.webm"
+                    onClick={() => {
+                      setModalInfo({
+                        images: portfolioImages,
+                        description: t("portfolio_description"),
+                        tecnologies: ["next", "typescript", "tailwind"],
+                        links: [
+                          {
+                            github: "https://github.com/7hayMuller/portifolio",
+                          },
+                        ],
+                      });
+                      setIsModalOpen(true);
+                    }}
+                  />
+                </div>
               </SwiperSlide>
             </Swiper>
           ) : (
@@ -379,7 +393,7 @@ const About = () => {
 
         <section
           id="skills"
-          className="relative flex flex-col md:flex md:flex-col lg:flex-row md:justify-center md:items-center justify-around items-start lg:py-12 mx-auto px-8 py-6 gap-12 max-w-7xl"
+          className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start lg:py-16 mx-auto px-8 -mt-[100px] gap-12 max-w-7xl"
         >
           <div className="text-center md:text-center lg:-mt-[200px] lg:text-left lg:text-lg max-w-3xl w-full">
             <h2 className="text-[#E5E5DD] font-bold text-3xl md:text-4xl lg:text-4xl mb-4 font-roboto">
@@ -392,18 +406,19 @@ const About = () => {
               <Trans i18nKey="skills" t={t} />
             </p>
             <br />
+            <div className="block lg:hidden w-full md:mt-[50px] md:mb-[80px]">
+              <Carousel setActiveKey={setActiveKey} />
+            </div>
             <div className="lg:w-[600px]">
               {["react", "next", "typescript", "javascript"].includes(
                 activeKey
               ) ? (
                 <p className="text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]">
                   <Trans>
-                    <i>`&quot;`</i>Com{" "}
-                    <strong className="text-[#E5E5DD]">
-                      React, Next.js e TypeScript
-                    </strong>
-                    , construo a estrutura e a inteligência que fazem um projeto
-                    ganhar vida.<i>`&quot;`</i>
+                    <i>&quot;</i>Com{" "}
+                    <strong>React, Next.js e TypeScript</strong>, construo a
+                    estrutura e a inteligência que fazem um projeto ganhar vida.
+                    <i>`&quot;`</i>
                   </Trans>
                 </p>
               ) : activeKey === "figma" ? (
@@ -411,11 +426,10 @@ const About = () => {
                   className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
                 >
                   <Trans>
-                    <i>`&quot;`</i>No{" "}
-                    <strong className="text-[#E5E5DD]">Figma</strong>,
-                    experimento, pesquiso e penso em cada interação para que
-                    tudo faça sentido para quem está do outro lado da tela.
-                    <i>`&quot;`</i>
+                    <i>&quot;</i>No <strong>Figma</strong>, experimento,
+                    pesquiso e penso em cada interação para que tudo faça
+                    sentido para quem está do outro lado da tela.
+                    <i>&quot;</i>
                   </Trans>
                 </p>
               ) : ["tailwind", "sass"]?.includes(activeKey) ? (
@@ -423,13 +437,10 @@ const About = () => {
                   className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
                 >
                   <Trans>
-                    <i>`&quot;`</i>
-                    <strong className="text-[#E5E5DD]">
-                      Tailwind e SCSS
-                    </strong>{" "}
-                    entram como meus pincéis para dar cor, forma e
-                    personalidade, criando interfaces que não só funcionam, mas
-                    encantam.<i>`&quot;`</i>
+                    <i>&quot;</i>
+                    <strong>Tailwind e SCSS</strong> entram como meus pincéis
+                    para dar cor, forma e personalidade, criando interfaces que
+                    não só funcionam, mas encantam.<i>&quot;</i>
                   </Trans>
                 </p>
               ) : (
@@ -437,12 +448,10 @@ const About = () => {
                   className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
                 >
                   <Trans>
-                    <i>`&quot;`</i>Com{" "}
-                    <strong className="text-[#E5E5DD]">
-                      React, Next.js e TypeScript
-                    </strong>
-                    , construo a estrutura e a inteligência que fazem um projeto
-                    ganhar vida.<i>`&quot;`</i>
+                    <i>&quot;</i>Com{" "}
+                    <strong>React, Next.js e TypeScript</strong>, construo a
+                    estrutura e a inteligência que fazem um projeto ganhar vida.
+                    <i>&quot;</i>
                   </Trans>
                 </p>
               )}
@@ -455,7 +464,7 @@ const About = () => {
               </div>
             </div>
           </div>
-          <div className="w-full mt-[50px] lg:w-[40%] relative lg:min-h-[800px]">
+          <div className="hidden lg:block w-full lg:w-[40%] relative lg:min-h-[800px] md:mt-[20px]">
             <div className="lg:sticky lg:top-1/2 lg:-translate-y-1/2">
               <Carousel setActiveKey={setActiveKey} />
             </div>
@@ -464,11 +473,11 @@ const About = () => {
 
         <section
           id="contact"
-          className="relative flex flex-col md:flex md:flex-col md:justify-center md:items-center lg:flex-row-reverse justify-around items-start md:mt-[100px] lg:-mt-[200px] lg:py-12 mx-auto px-10 py-6 gap-12 max-w-7xl"
+          className="relative flex flex-col md:flex md:flex-col md:justify-center md:items-center lg:flex-row-reverse justify-around items-start mt-[100px] md:mt-[100px] lg:-mt-[200px] lg:py-16 mx-auto px-10 py-12 gap-12 max-w-7xl"
         >
           <div className="order-3 flex justify-center lg:justify-start items-center">
             <div className="flex flex-col max-w-3xl lg:w-[600px] w-full">
-              <h2 className="flex justify-center lg:justify-start gap-2 text-[#E5E5DD] font-bold lg:text-5xl text-4xl text-center lg:text-left lg:mt-10 lg:mb-11 font-roboto">
+              <h2 className="flex justify-center lg:justify-start gap-2 text-[#E5E5DD] font-bold lg:text-5xl text-4xl text-center mb-[20px] lg:text-left md:mb-[20px] lg:mt-10 lg:mb-11 font-roboto">
                 <span>
                   {t("contact_title")}{" "}
                   <strong className="text-[#E64765] font-roboto">
@@ -532,8 +541,8 @@ const About = () => {
           </div>
         </section>
         <div className="h-[1px] w-full bg-[#3DF58C] shadow-[0_0_10px_#3DF58C]"></div>
-        <div className="flex justify-center text-center mt-6">
-          <p className="text-[12px] text-[#E5E5DD] opacity-50 font-roboto mb-6">
+        <div className="flex justify-center text-center w-full mt-6">
+          <p className="text-[12px] w-[300px] md:w-[300px] lg:w-full text-[#E5E5DD] opacity-50 font-roboto mb-6">
             {t("made_by_me")}
           </p>
         </div>
