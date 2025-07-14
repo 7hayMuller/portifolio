@@ -41,7 +41,7 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div
-      className="group relative bg-[#101524]/60 backdrop-blur-md rounded-xl overflow-hidden shadow-lg w-full max-w-sm"
+      className="group relative bg-[#101524]/60 backdrop-blur-md rounded-xl overflow-hidden shadow-lg w-full sm:min-h-0 md:min-h-[400px] lg:min-h-[300px] xl:min-h-[300px] max-w-sm"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
