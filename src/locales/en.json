@@ -38,10 +38,13 @@
   "my": "My",
   "projects": "Projects",
   "cts": "cts",
-  "portfolio_description": "This portfolio was created to express my profile as a frontend developer and UX/UI enthusiast.<br/> Built with Next.js, TypeScript and Tailwind CSS, it prioritizes performance, SEO and a modern look.<br/> Micro-animations and small details reinforce interactivity and my passion for design. The idea is to merge aesthetics and functionality, highlighting how I think and build digital experiences.",
+  "portfolio_description": "This portfolio was created to express my profile as a frontend developer and UX/UI enthusiast. <br/> Built with Next.js, TypeScript and Tailwind CSS, it prioritizes performance, SEO and a modern look.<br/> Micro-animations and small details reinforce interactivity and my passion for design. The idea is to merge aesthetics and functionality, highlighting how I think and build digital experiences.",
   "portfolio_intro": "Focused on performance, responsiveness and a modern UI that translates my passion for well-crafted digital experiences.",
   "itau_intro": "UX/UI to unify App, Desktop, Smartwatch and ATM, creating a fluid experience and strengthening Itaú’s identity across all channels.",
   "finny_intro": "A financial app designed to turn cashback into real goals and achievements, combining gamification, planning and rewards.",
   "skills": "These are the tools I use to turn <strong>great ideas</strong> into digital experiences that truly tell stories.",
-  "project_description": "<strong>A bit of what I've been creating:</strong> projects that combine UX/UI, research and frontend, always seeking experiences that are beautiful, functional and full of purpose.<br/><br/> Each one tells part of my journey and the lessons I've gathered along the way."
+  "project_description": "<strong>A bit of what I've been creating:</strong> projects that combine UX/UI, research and frontend, always seeking experiences that are beautiful, functional and full of purpose.<br/><br/> Each one tells part of my journey and the lessons I've gathered along the way.",
+  "tech_skills": "<i>&quot;</i>With <strong>React, Next.js and TypeScript</strong>, I build the structure and intelligence that bring a project to life.<i>&quot;</i>",
+  "design_skills": "<i>&quot;</i><strong>Tailwind and SCSS</strong> are my brushes to add color, shape and personality, creating interfaces that not only work but also enchant.<i>&quot;</i>",
+  "figma_skills": "<i>&quot;</i>In <strong>Figma</strong>, I experiment, research and think through each interaction so everything makes sense for the user.<i>&quot;</i>"
 }
