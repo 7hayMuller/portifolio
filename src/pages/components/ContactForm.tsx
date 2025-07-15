@@ -1,4 +1,5 @@
 import { t } from "i18next";
+import ClientOnly from "./ClientOnly";
 import { useState } from "react";
 
 const ContactForm = () => {
@@ -60,12 +61,12 @@ const ContactForm = () => {
         <div className="flex justify-center">
           {isSent && (
             <p className="text-[#A68CFB] text-sm font-mono font-bold text-center mb-[20px]">
-              {t("contact_success_message")}
+              <ClientOnly>{t("contact_success_message")}</ClientOnly>
             </p>
           )}
           {error && (
             <p className="text-[#FF715B] text-sm font-mono font-bold text-center mb-[20px]">
-              {error}
+              <ClientOnly>{error}</ClientOnly>
             </p>
           )}
         </div>
@@ -110,7 +111,9 @@ const ContactForm = () => {
             className="flex justify-center items-center bg-gradient-to-r from-[#A27DFB] to-[#6E8CFA] text-white text-sm font-medium px-4 py-2 rounded-md w-[200px] mt-2 hover:opacity-90 transition"
             onClick={handleSubmit}
           >
-            {isLoading ? t("sending") : t("send_message")}
+            <ClientOnly>
+              {isLoading ? t("sending") : t("send_message")}
+            </ClientOnly>
           </button>
         </div>
       </form>

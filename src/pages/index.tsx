@@ -1,4 +1,5 @@
 "use client";
+import ClientOnly from "./components/ClientOnly";
 
 import Navbar from "./components/NavBar";
 import Carousel from "./components/Carousel";
@@ -99,7 +100,9 @@ const About = () => {
               </h2>
               <div className="text-[#E5E5DD] text-center text-sm md:text-[16px] lg:text-[16px] lg:text-left space-y-4">
                 <p>
-                  <Trans i18nKey="introduction" t={t} />
+                  <ClientOnly>
+                    <Trans i18nKey="introduction" t={t} />
+                  </ClientOnly>
                 </p>
 
                 <div className="flex justify-center lg:justify-start">
@@ -119,7 +122,7 @@ const About = () => {
                         });
                       }}
                     >
-                      {t("say_hi")}
+                      <ClientOnly>{t("say_hi")}</ClientOnly>
                     </button>
 
                     <svg
@@ -165,15 +168,22 @@ const About = () => {
             <div className="flex flex-col w-full max-w-3xl mt-[50px] mb-[50px] md:mt-[50px] lg:mt-[80px] lg:mb-10 space-y-4">
               <h2 className="text-[#E5E5DD] font-bold text-3xl md:text-3xl lg:text-4xl text-center lg:text-left ">
                 <div className="flex justify-center lg:justify-start font-roboto mb-[20px]">
-                  <p>{t("my")}</p>
+                  <ClientOnly>
+                    <p>{t("my")}</p>
+                  </ClientOnly>
                   <p className="ml-2">
                     Proje
-                    <strong className="text-[#3DF58C]">{t("ct")}</strong>s
+                    <ClientOnly>
+                      <strong className="text-[#3DF58C]">{t("ct")}</strong>
+                    </ClientOnly>
+                    s
                   </p>
                 </div>
               </h2>
               <p className="text-[#E5E5DD] text-center lg:text-left">
-                <Trans i18nKey="project_description" t={t} />
+                <ClientOnly>
+                  <Trans i18nKey="project_description" t={t} />
+                </ClientOnly>
               </p>
             </div>
           </div>
@@ -399,7 +409,9 @@ const About = () => {
               </span>
             </h2>
             <p className="text-[#E5E5DD] lg:w-[600px] text-sm md:text-lg lg:text-lg mt-[20px]">
-              <Trans i18nKey="skills" t={t} />
+              <ClientOnly>
+                <Trans i18nKey="skills" t={t} />
+              </ClientOnly>
             </p>
             <br />
             <div className="block lg:hidden w-full md:mt-[50px] md:mb-[80px]">
@@ -409,27 +421,35 @@ const About = () => {
               {["react", "next", "typescript", "javascript"].includes(
                 activeKey
               ) ? (
-                <p className="text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]">
-                  <Trans i18nKey={"tech_skills"} t={t} />
-                </p>
+                <ClientOnly>
+                  <p className="text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]">
+                    <Trans i18nKey={"tech_skills"} t={t} />
+                  </p>
+                </ClientOnly>
               ) : activeKey === "figma" ? (
-                <p
-                  className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
-                >
-                  <Trans i18nKey={"figma_skills"} t={t} />
-                </p>
+                <ClientOnly>
+                  <p
+                    className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
+                  >
+                    <Trans i18nKey={"figma_skills"} t={t} />
+                  </p>
+                </ClientOnly>
               ) : ["tailwind", "sass"]?.includes(activeKey) ? (
-                <p
-                  className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
-                >
-                  <Trans i18nKey={"design_skills"} t={t} />
-                </p>
+                <ClientOnly>
+                  <p
+                    className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
+                  >
+                    <Trans i18nKey={"design_skills"} t={t} />
+                  </p>
+                </ClientOnly>
               ) : (
-                <p
-                  className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
-                >
-                  <Trans i18nKey={"tech_skills"} t={t} />
-                </p>
+                <ClientOnly>
+                  <p
+                    className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
+                  >
+                    <Trans i18nKey={"tech_skills"} t={t} />
+                  </p>
+                </ClientOnly>
               )}
             </div>
             <div className="lg:px-0 flex justify-center items-center md:flex md:justify-center md:items-center lg:flex lg:justify-start lg:items-start mt-[50px] md:px-8 lg:ml-[40px]">
@@ -455,15 +475,19 @@ const About = () => {
             <div className="flex flex-col max-w-3xl lg:w-[600px] w-full">
               <h2 className="flex justify-center lg:justify-start gap-2 text-[#E5E5DD] font-bold lg:text-5xl text-4xl text-center mb-[20px] lg:text-left md:mb-[20px] lg:mt-10 lg:mb-11 font-roboto">
                 <span>
-                  {t("contact_title")}{" "}
-                  <strong className="text-[#E64765] font-roboto">
-                    {t("me")}
-                  </strong>
+                  <ClientOnly>
+                    {t("contact_title") + " "}
+                    <strong className="text-[#E64765] font-roboto">
+                      {t("me")}
+                    </strong>
+                  </ClientOnly>
                 </span>
                 <Image alt="et" src={Et} width={50} height={50} />
               </h2>
               <p className="text-[#E5E5DD] text-center text-sm md:text-lg lg:text-lg lg:text-left lg:w-[600px]">
-                <Trans i18nKey="contact_description" t={t} />
+                <ClientOnly>
+                  <Trans i18nKey="contact_description" t={t} />
+                </ClientOnly>
               </p>
               <div className="flex items-center md:flex md:justify-center lg:mt-[50px] md:mt-10 mt-10 justify-center  lg:justify-start cursor-pointer lg:mb-6">
                 <a
@@ -519,7 +543,7 @@ const About = () => {
         <div className="h-[1px] w-full bg-[#3DF58C] shadow-[0_0_10px_#3DF58C]"></div>
         <div className="flex justify-center text-center w-full mt-6">
           <p className="text-[12px] w-[300px] md:w-[300px] lg:w-full text-[#E5E5DD] opacity-50 font-roboto mb-6">
-            {t("made_by_me")}
+            <ClientOnly>{t("made_by_me")}</ClientOnly>
           </p>
         </div>
       </div>

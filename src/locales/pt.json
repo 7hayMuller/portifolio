@@ -4,7 +4,7 @@
   "designer": "Uma UX/UI designer",
   "about": "Sobre",
   "see_studycase": "Ver estudo de caso",
-  "introduction": "Olá! Eu sou <strong>Thayná Müller</strong>, UX/UI designer e desenvolvedora Front-end, com 4+ anos de experiência criando interfaces que contam histórias e entregam experiências de <strong>outro mundo.</strong><br/><br/>Atualmente me redescobrindo no universo do UX/UI, cada vez mais fascinada por tecnologia e design que saem do óbvio e desafiam o <strong>comum.</strong><br/><br/> Gosto de observar o que passa despercebido, entender como as pessoas se sentem e transformar isso em experiências que fazem sentido — e que surpreendem. Esse olhar atento foi o que mais cresceu ao longo da minha jornada e hoje é o que me move a criar com empatia, propósito e um toque de <strong>ousadia.</strong><br/><br/>Aqui no meu portfólio você vai encontrar projetos que unem pesquisa, design centrado no usuário e interfaces feitas para engajar de verdade.<br/><br/><i>Quem sabe a próxima grande ideia não nasce com a gente?</i>",
+  "introduction": "Olá! Eu sou <strong>Thayná Müller</strong>, UX/UI designer e desenvolvedora Front-end, com 4+ anos de experiência criando interfaces que contam histórias e entregam experiências de <strong>outro mundo.</strong><br/><br/>Atualmente me redescobrindo no universo do UX/UI, cada vez mais fascinada por tecnologia e design que saem do óbvio e desafiam o <strong>comum.</strong><br/><br/> Gosto de observar o que passa despercebido, entender como as pessoas se sentem e transformar isso em experiências que fazem sentido — e que surpreendem. Esse olhar atento foi o que mais cresceu ao longo da minha jornada e hoje é o que me move a criar com empatia, propósito e um toque de <strong>ousadia.</strong><br/><br/>Aqui no meu portfólio você vai encontrar projetos que unem pesquisa, design centrado no usuário e interfaces feitas para engajar de verdade.",
   "see_more": "Veja mais",
   "frontend_projects": "Descubra os projetos que desenvolvi, destacando minha experiência em desenvolvimento frontend. Veja como construo aplicações web responsivas, eficientes e visualmente atraentes, utilizando tecnologias modernas e as melhores práticas do mercado.",
   "uxui_projects": "Aqui estão alguns dos projetos nos quais trabalhei, mostrando minhas habilidades em UX/UI design. Explore como crio experiências de usuário intuitivas, responsivas e visualmente atraentes.",
@@ -37,14 +37,15 @@
   "finny_description": "Finny – Cashback Goals, é um app financeiro pensado pra transformar pequenas compras em metas pessoais.<br/> O projeto passou por todas as etapas de um processo completo de UX/UI: fiz desk research, benchmarking, pesquisa qualitativa com usuários reais, definição de personas, mapeamento de jornadas, criação de wireframes e, por fim, um protótipo de alta fidelidade que representa tudo isso de forma visual e funcional.",
   "my": "Meus",
   "projects": "Projetos",
-  "cts": "tos",
+  "ct": "to",
   "portfolio_description": "Este portfólio foi criado para traduzir meu perfil como desenvolvedora frontend e entusiasta de UX/UI.<br/> Feito com Next.js, TypeScript e Tailwind CSS, prioriza performance, SEO e um visual moderno.<br/> Microanimações e pequenos detalhes reforçam a interatividade e minha paixão por design. A ideia é unir estética e funcionalidade, destacando como penso e construo experiências digitais.",
   "portfolio_intro": "Focado em performance, responsividade e uma UI moderna que traduz minha paixão por experiências digitais bem construídas.",
   "itau_intro": "UX/UI para unificar App, Desktop, Smartwatch e ATM, criando uma experiência fluida e reforçando a identidade do Itaú em todos os canais.",
   "finny_intro": "Um app financeiro pensado para transformar cashback em metas e conquistas reais, unindo gamificação, planejamento e recompensas.",
   "skills": "Essas são as ferramentas que uso para transformar <strong>boas ideias</strong> em experiências digitais que realmente contam histórias.",
   "project_description": "<strong>Um pouco do que venho criando por aí:</strong> projetos que unem UX/UI, pesquisa e frontend, sempre buscando experiências bonitas, funcionais e cheias de propósito.<br/><br/> Cada um conta um pedaço da minha trajetória e dos aprendizados que fui colecionando pelo caminho",
-  "tech_skills": "<i>&quot;</i>Com <strong>React, Next.js e TypeScript</strong>, construo a estrutura e a inteligência que fazem um projeto ganhar vida.<i>&quot;</i>",
-  "design_skills": "<i>&quot;</i><strong>Tailwind e SCSS</strong> são meus pincéis para adicionar cor, forma e personalidade, criando interfaces que não apenas funcionam, mas também encantam.<i>&quot;</i>",
-  "figma_skills": "<i>&quot;</i>Em <strong>Figma</strong>, experimento, pesquiso e penso em cada interação para que tudo faça sentido para o usuário.<i>&quot;</i>"
+  "tech_skills": "<i>“</i>Com <strong>React, Next.js e TypeScript</strong>, construo a estrutura e a inteligência que fazem um projeto ganhar vida.<i>”</i>",
+  "design_skills": "<i>“</i><strong>Tailwind e SCSS</strong> são meus pincéis para adicionar cor, forma e personalidade, criando interfaces que não apenas funcionam, mas também encantam.<i>”</i>",
+  "figma_skills": "<i>“</i>Em <strong>Figma</strong>, experimento, pesquiso e penso em cada interação para que tudo faça sentido para o usuário.<i>”</i>",
+  "see_more_in": "Veja mais em"
 }
