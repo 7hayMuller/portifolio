@@ -19,6 +19,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Trans } from "react-i18next";
+import ClientOnly from "./ClientOnly";
 
 type ImageProps = {
   src: string;
@@ -103,12 +104,14 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
 
         <div className="flex flex-col flex-1 text-left overflow-y-auto w-full md:w-[300px] max-h-[70vh] mt-[30px] md:ml-6 ">
           <p className="text-white text-sm md:text-base lg:text-lg mb-4 mt-6 md:mt-10">
-            <Trans i18nKey={modalInfo?.key} t={t} />
+            <ClientOnly>
+              <Trans i18nKey={modalInfo?.key} t={t} />
+            </ClientOnly>
           </p>
           {modalInfo?.tecnologies && modalInfo?.tecnologies.length > 0 && (
             <div className="mt-4">
               <p className="font-bold text-white mb-2">
-                {t("tecnologies_utilized")}
+                <ClientOnly>{t("tecnologies_utilized")}</ClientOnly>
               </p>
               <div className="flex flex-wrap justify-start gap-4">
                 {modalInfo.tecnologies.map((tech: string) => {
@@ -138,7 +141,9 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
             </div>
           )}{" "}
           <div className="mt-2">
-            <p className="font-bold text-white mb-2">Links:</p>
+            <p className="font-bold text-white mb-2">
+              <ClientOnly>{t("see_more_in")}</ClientOnly>
+            </p>
             <div className="flex justify-start gap-4">
               {modalInfo?.links[0].figma && (
                 <a

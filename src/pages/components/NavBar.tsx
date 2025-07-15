@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import styles from "../../styles/navbar.module.css";
 import { useTranslation } from "react-i18next";
+import ClientOnly from "./ClientOnly";
+import { t } from "i18next";
 
 const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>("introduction");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { t } = useTranslation();
 
   const handleToggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -86,41 +87,60 @@ const Navbar: React.FC = () => {
         </li>
         <li className="pb-3 pt-3 md:pr-6">
           <button
-            data-text={t("my_projects")}
             onClick={() => handleLinkClick("projects")}
             className={`text-base lg:text-base ${
               activeSection === "projects"
                 ? "border-b-4 border-[#F25D76] pb-1 inline-block font-bold"
                 : ""
             }`}
+            suppressHydrationWarning
+            data-text={t("my_projects")}
+            ref={(el) => {
+              if (el && typeof window !== "undefined") {
+                el.setAttribute("data-text", t("my_projects"));
+              }
+            }}
           >
-            {t("my_projects")}
+            <ClientOnly>{t("my_projects")}</ClientOnly>
           </button>
         </li>
+
         <li className="pb-3 pt-3 md:pr-6">
           <button
-            data-text={t("skills_and_tools")}
             onClick={() => handleLinkClick("skills")}
             className={`text-base lg:text-base ${
               activeSection === "skills"
                 ? "border-b-4 border-[#F25D76] pb-1 inline-block font-bold"
                 : ""
             }`}
+            suppressHydrationWarning
+            data-text={t("skills_and_tools")}
+            ref={(el) => {
+              if (el && typeof window !== "undefined") {
+                el.setAttribute("data-text", t("skills_and_tools"));
+              }
+            }}
           >
-            {t("skills_and_tools")}
+            <ClientOnly>{t("skills_and_tools")}</ClientOnly>
           </button>
         </li>
         <li className="pb-3 pt-3">
           <button
-            data-text={t("contact")}
             onClick={() => handleLinkClick("contact")}
             className={`text-base lg:text-base ${
               activeSection === "contact"
                 ? "border-b-4 border-[#F25D76] pb-1 inline-block font-bold"
                 : ""
             }`}
+            suppressHydrationWarning
+            data-text={t("contact")}
+            ref={(el) => {
+              if (el && typeof window !== "undefined") {
+                el.setAttribute("data-text", t("contact"));
+              }
+            }}
           >
-            {t("contact")}
+            <ClientOnly>{t("contact")}</ClientOnly>
           </button>
         </li>
       </ul>

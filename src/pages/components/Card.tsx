@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { t } from "i18next";
+import ClientOnly from "./ClientOnly";
 import Image from "next/image";
 
 type CardProps = {
@@ -41,7 +42,7 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div
-      className="group relative bg-[#101524]/60 backdrop-blur-md rounded-xl overflow-hidden shadow-lg w-full sm:min-h-0 md:min-h-[300px] lg:min-h-[300px] xl:min-h-[300px] max-w-sm"
+      className="group relative bg-[#101524]/60 backdrop-blur-md rounded-xl overflow-hidden shadow-lg w-full max-w-sm"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -77,21 +78,27 @@ const Card: React.FC<CardProps> = ({
         )}
 
         <span className="bg-[#004b5c] text-cyan-100 text-xs font-semibold px-2 py-1 rounded-full w-fit">
-          {type}
+          <ClientOnly>{type}</ClientOnly>
         </span>
 
-        <h3 className="text-white text-lg font-semibold">{title}</h3>
+        <h3 className="text-white text-lg font-semibold">
+          <ClientOnly>{title}</ClientOnly>
+        </h3>
 
-        <p className="text-sm text-gray-400">{stack}</p>
+        <p className="text-sm text-gray-400">
+          <ClientOnly>{stack}</ClientOnly>
+        </p>
 
-        <p className="text-sm text-gray-300 leading-snug">{intro}</p>
+        <p className="text-sm text-gray-300 leading-snug">
+          <ClientOnly>{intro}</ClientOnly>
+        </p>
 
         <a
           href="#"
           className="bg-gradient-to-r from-[#A27DFB] to-[#6E8CFA] text-white text-sm font-medium px-4 py-2 rounded-md w-fit mt-2 hover:opacity-90 transition"
           onClick={onClick}
         >
-          {buttonTitle}
+          <ClientOnly>{buttonTitle}</ClientOnly>
         </a>
       </div>
     </div>
