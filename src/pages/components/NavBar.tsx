@@ -8,6 +8,7 @@ import { t } from "i18next";
 const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>("introduction");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { i18n } = useTranslation();
 
   const handleToggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -49,101 +50,60 @@ const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <nav
-      className={`${styles.navbar} ${
-        isMobileMenuOpen && "h-[200px]"
-      } w-full flex justify-between md:justify-center items-center`}
-    >
-      <div className="md:hidden z-50">
-        <button onClick={handleToggleMobileMenu} className="text-[#e2e8c0]">
-          {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-        </button>
+    <nav className={`${styles.navbar} w-full flex items-center relative`}>
+      <div className="flex flex-grow justify-center md:justify-center">
+        <div className="md:hidden z-50 absolute left-4 top-4">
+          <button onClick={handleToggleMobileMenu} className="text-[#e2e8c0]">
+            {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </button>
+        </div>
+
+        <ul
+          className={`fixed top-0 left-0 w-full ${
+            isMobileMenuOpen ? "h-full" : "h-0"
+          } bg-opacity-90 flex flex-col items-center justify-center transform ${
+            isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+          } transition-all duration-300 md:relative md:top-auto md:left-auto md:w-auto md:h-auto md:bg-transparent md:flex-row md:items-center md:justify-center md:translate-x-0`}
+          style={{
+            backgroundColor: isMobileMenuOpen
+              ? "rgba(0, 0, 0, 0.3)"
+              : "transparent",
+          }}
+        >
+          {[
+            { id: "introduction", label: "Me, Myself & I" },
+            { id: "projects", label: t("my_projects") },
+            { id: "skills", label: t("skills_and_tools") },
+            { id: "contact", label: t("contact") },
+          ].map(({ id, label }) => (
+            <li key={id} className="pb-3 pt-3 md:pr-6">
+              <button
+                onClick={() => handleLinkClick(id)}
+                className={`text-base lg:text-base ${
+                  activeSection === id
+                    ? "border-b-4 border-[#F25D76] pb-1 inline-block font-bold"
+                    : ""
+                }`}
+                data-text={label}
+              >
+                <ClientOnly>{label}</ClientOnly>
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <ul
-        className={`fixed top-0 left-0 w-full ${
-          isMobileMenuOpen ? "h-full" : "h-0"
-        } bg-opacity-90 flex flex-col items-center justify-center transform ${
-          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-all duration-300 md:relative md:top-auto md:left-auto md:w-auto md:h-auto md:bg-transparent md:flex-row md:items-center md:justify-center md:translate-x-0`}
-        style={{
-          backgroundColor: isMobileMenuOpen
-            ? "rgba(0, 0, 0, 0.3)"
-            : "transparent",
-        }}
+      <button
+        aria-label="Alternar idioma"
+        className="flex items-center absolute right-4  md:static md:mr-0 z-40"
+        onClick={() =>
+          i18n.changeLanguage(i18n.language === "en" ? "pt" : "en")
+        }
+        data-text={i18n.language === "en" ? "PT" : "EN"}
+        suppressHydrationWarning
       >
-        <li className="pb-3 pt-3 md:pr-6">
-          <button
-            data-text="Me, Myself & I"
-            onClick={() => handleLinkClick("introduction")}
-            className={`text-base lg:text-base ${
-              activeSection === "introduction"
-                ? "border-b-4 border-[#F25D76] pb-1 inline-block font-bold"
-                : ""
-            }`}
-          >
-            Me, Myself & I
-          </button>
-        </li>
-        <li className="pb-3 pt-3 md:pr-6">
-          <button
-            onClick={() => handleLinkClick("projects")}
-            className={`text-base lg:text-base ${
-              activeSection === "projects"
-                ? "border-b-4 border-[#F25D76] pb-1 inline-block font-bold"
-                : ""
-            }`}
-            suppressHydrationWarning
-            data-text={t("my_projects")}
-            ref={(el) => {
-              if (el && typeof window !== "undefined") {
-                el.setAttribute("data-text", t("my_projects"));
-              }
-            }}
-          >
-            <ClientOnly>{t("my_projects")}</ClientOnly>
-          </button>
-        </li>
-
-        <li className="pb-3 pt-3 md:pr-6">
-          <button
-            onClick={() => handleLinkClick("skills")}
-            className={`text-base lg:text-base ${
-              activeSection === "skills"
-                ? "border-b-4 border-[#F25D76] pb-1 inline-block font-bold"
-                : ""
-            }`}
-            suppressHydrationWarning
-            data-text={t("skills_and_tools")}
-            ref={(el) => {
-              if (el && typeof window !== "undefined") {
-                el.setAttribute("data-text", t("skills_and_tools"));
-              }
-            }}
-          >
-            <ClientOnly>{t("skills_and_tools")}</ClientOnly>
-          </button>
-        </li>
-        <li className="pb-3 pt-3">
-          <button
-            onClick={() => handleLinkClick("contact")}
-            className={`text-base lg:text-base ${
-              activeSection === "contact"
-                ? "border-b-4 border-[#F25D76] pb-1 inline-block font-bold"
-                : ""
-            }`}
-            suppressHydrationWarning
-            data-text={t("contact")}
-            ref={(el) => {
-              if (el && typeof window !== "undefined") {
-                el.setAttribute("data-text", t("contact"));
-              }
-            }}
-          >
-            <ClientOnly>{t("contact")}</ClientOnly>
-          </button>
-        </li>
-      </ul>
+        {i18n.language.toUpperCase()}
+      </button>
     </nav>
   );
 };
