@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..900;1,100..900&display=swap");
-
 *,
 *::before,
 *::after {
@@ -352,4 +350,12 @@ body {
     clip: rect(0, 900px, 0, 0);
     transform: translate(0, 0);
   }
+}
+
+.stroke-white {
+  -webkit-text-stroke: 2px white;
+}
+
+.bold-text {
+  font-family: "Anton", sans-serif;
 }

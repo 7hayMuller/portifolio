@@ -49,5 +49,6 @@
   "tech_skills": "<i>“</i>With <strong>React, Next.js and TypeScript</strong>, I build the structure and intelligence that bring a project to life.<i>”</i>",
   "design_skills": "<i>“</i><strong>Tailwind and SCSS</strong> are my brushes to add color, shape and personality, creating interfaces that not only work but also enchant.<i>”</i>",
   "figma_skills": "<i>“</i>In <strong>Figma</strong>, I experiment, research and think through each interaction so everything makes sense for the user.<i>”</i>",
-  "see_more_in": "See more in"
+  "see_more_in": "See more in",
+  "get_in_touch": "Get in touch"
 }

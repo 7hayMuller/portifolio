@@ -4,13 +4,25 @@ import locales from "@/locales";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import dayjs from "dayjs";
-import { Raleway } from "next/font/google";
+import { Anton, Raleway, Roboto_Mono } from "next/font/google";
 export { locales };
 
 const raleway = Raleway({
   subsets: ["latin"],
   weight: ["400", "600"],
   variable: "--font-raleway",
+});
+
+export const robotoMono = Roboto_Mono({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-roboto-mono",
+});
+
+export const anton = Anton({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-anton",
 });
 
 const App = ({ Component, pageProps }: AppProps) => {
