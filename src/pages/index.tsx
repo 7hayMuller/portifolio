@@ -4,9 +4,6 @@ import ClientOnly from "./components/ClientOnly";
 import Navbar from "./components/NavBar";
 import Carousel from "./components/Carousel";
 import Me from "../../public/assets/Me.png";
-
-import Et from "../../public/assets/contact_me.png";
-
 import { Trans } from "react-i18next";
 import Loading from "./components/Loading";
 import Head from "next/head";
@@ -155,21 +152,21 @@ const About = () => {
           id="projects"
         >
           <div className="order-1 lg:order-2 flex flex-1 justify-center items-center w-full lg:justify-start">
-            <div className="flex flex-col w-full max-w-3xl mt-[50px] mb-[50px] md:mt-[50px] lg:mt-[80px] lg:mb-10 space-y-4">
-              <h2 className="text-[#E5E5DD] font-bold text-3xl md:text-3xl lg:text-4xl text-center lg:text-left ">
-                <div className="flex justify-center lg:justify-start font-roboto mb-[20px]">
+            <div className="flex flex-col lg:flex-row w-full max-w-3xl mt-[50px] mb-[50px] md:mt-[50px] lg:mt-[80px] lg:mb-10 space-y-4 lg:space-y-0">
+              <div className="flex w-full justify-center items-center lg:justify-start font-roboto mb-[20px]">
+                <h2 className="text-[#E5E5DD] font-bold text-3xl md:text-3xl lg:text-4xl text-center lg:text-left">
                   <ClientOnly>
                     <p>{t("my")}</p>
                   </ClientOnly>
-                  <p className="ml-2">
+                  <p>
                     Proje
                     <ClientOnly>
                       <strong className="text-[#3DF58C]">{t("ct")}</strong>
                     </ClientOnly>
                     s
                   </p>
-                </div>
-              </h2>
+                </h2>
+              </div>
               <p className="text-[#E5E5DD] text-center lg:text-left">
                 <ClientOnly>
                   <Trans i18nKey="project_description" t={t} />
@@ -177,6 +174,8 @@ const About = () => {
               </p>
             </div>
           </div>
+          {/* <div className="neon-circle"></div> */}
+
           {isMobile || isTablet ? (
             <Swiper
               modules={[Autoplay]}
@@ -442,16 +441,16 @@ const About = () => {
                 </ClientOnly>
               )}
             </div>
-            <div className="lg:px-0 flex justify-center items-center md:flex md:justify-center md:items-center lg:flex lg:justify-start lg:items-start mt-[50px] md:px-8 lg:ml-[40px]">
+            {/* <div className="lg:px-0 flex justify-center items-center md:flex md:justify-center md:items-center lg:flex lg:justify-start lg:items-start mt-[50px] md:px-8 lg:ml-[40px]">
               <div className="blackhole">
                 <div className="megna">
                   <div className="black"></div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="hidden lg:block w-full lg:w-[40%] relative lg:min-h-[800px] md:mt-[20px]">
-            <div className="lg:sticky lg:top-1/2 lg:-translate-y-1/2">
+            <div className="lg:sticky lg:top-1/2 lg:mt-[50px] lg:-translate-y-1/2">
               <Carousel setActiveKey={setActiveKey} />
             </div>
           </div>
@@ -459,7 +458,7 @@ const About = () => {
 
         <section
           id="contact"
-          className="relative flex flex-col md:flex md:flex-col md:justify-center md:items-center lg:flex-row-reverse justify-around items-start mt-[100px] md:mt-[100px] lg:-mt-[200px] lg:py-16 mx-auto px-10 py-12 gap-12 max-w-7xl"
+          className="relative flex flex-col md:flex md:flex-col md:justify-center md:items-center lg:flex-row-reverse justify-around items-start mt-[100px] md:mt-[100px] lg:-mt-[300px] lg:py-16 mx-auto px-10 py-12 gap-12 max-w-7xl"
         >
           <div className="order-3 flex justify-center lg:justify-start items-center">
             <div className="flex flex-col max-w-3xl lg:w-[600px] w-full">
@@ -472,7 +471,6 @@ const About = () => {
                     </strong>
                   </ClientOnly>
                 </span>
-                <Image alt="et" src={Et} width={50} height={50} />
               </h2>
               <p className="text-[#E5E5DD] text-center text-sm md:text-lg lg:text-lg lg:text-left lg:w-[600px]">
                 <ClientOnly>

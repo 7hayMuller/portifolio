@@ -47,7 +47,7 @@
 /* Estilo base do botão do link */
 .navbar button {
   color: #e2e8c0;
-  font-weight: 600;
+  font-weight: 200;
   cursor: pointer;
   text-decoration: none;
   position: relative;

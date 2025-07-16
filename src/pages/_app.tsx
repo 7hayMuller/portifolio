@@ -4,7 +4,14 @@ import locales from "@/locales";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import dayjs from "dayjs";
+import { Raleway } from "next/font/google";
 export { locales };
+
+const raleway = Raleway({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-raleway",
+});
 
 const App = ({ Component, pageProps }: AppProps) => {
   const { i18n } = useTranslation();
@@ -19,7 +26,11 @@ const App = ({ Component, pageProps }: AppProps) => {
       dayjs.locale("en");
     }
   }, []);
-  return <Component {...pageProps} />;
+  return (
+    <main className={raleway.className}>
+      <Component {...pageProps} />
+    </main>
+  );
 };
 
 export default App;

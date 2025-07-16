@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Playwrite+VN+Guides&display=swap");
+
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..900;1,100..900&display=swap");
 
 *,
@@ -36,12 +36,6 @@ html {
     --background-end: #2a235c;
     --secundary-background: #84e296;
   }
-}
-
-html,
-body {
-  height: 100%;
-  margin: 0;
 }
 
 h2 {
@@ -265,10 +259,11 @@ body {
 
 .neon-circle {
   position: absolute;
-  left: -200px;
-  bottom: 80px;
-  width: 300px;
-  height: 300px;
+  right: 0px;
+  overflow: hidden;
+  top: -50px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   border: 1px solid #3df58c;
   filter: blur(1px);
