@@ -5,10 +5,6 @@ export const content = [
 ];
 export const theme = {
   extend: {
-    fontFamily: {
-      roboto: ['"Roboto Mono"', "monospace"],
-      greatvibes: ['"Great Vibes"', "cursive"],
-    },
     animation: {
       spin: "spin 100s linear infinite",
     },

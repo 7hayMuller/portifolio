@@ -4,9 +4,10 @@ import ClientOnly from "./components/ClientOnly";
 import Navbar from "./components/NavBar";
 import Carousel from "./components/Carousel";
 import Me from "../../public/assets/Me.png";
+
 import Et from "../../public/assets/contact_me.png";
 
-import { Trans, useTranslation } from "react-i18next";
+import { Trans } from "react-i18next";
 import Loading from "./components/Loading";
 import Head from "next/head";
 import { FaBehance, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa6";
@@ -19,6 +20,7 @@ import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { t } from "i18next";
+import Typewriter from "typewriter-effect";
 
 const About = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -76,88 +78,76 @@ const About = () => {
           modalInfo={modalInfo}
         />
       )}
+      <section
+        id="hero"
+        className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col h-auto lg:h-[600px] md:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 lg:py-16"
+      >
+        <div className="order-1 flex justify-center items-center w-full lg:w-1/2">
+          <Image
+            src={Me}
+            alt="side-image"
+            className="w-full h-auto max-w-[300px] md:max-w-[500px] lg:max-w-[600px]"
+          />
+        </div>
 
-      <div className="bg-[#2A235C] min-h-[1060px] lg:min-h-[800px] md:min-h-[1200px] pb-32">
-        <section
-          id="introduction"
-          className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col h-auto lg:h-[600px] md:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 lg:py-16"
-        >
-          <div className="order-1 flex justify-center items-center w-full lg:w-1/2">
-            <Image
-              src={Me}
-              alt="side-image"
-              className="w-full h-auto max-w-[300px] md:max-w-[500px] lg:max-w-[600px] "
-            />
-          </div>
+        <div className="order-1 lg:order-2 flex flex-1 justify-center items-center w-full lg:justify-end">
+          <div className="flex flex-col w-full max-w-3xl mt-5 md:mt-[50px] lg:mt-[80px] space-y-6">
+            <h2 className="text-[#E5E5DD] font-bold font-roboto text-3xl md:text-3xl lg:text-4xl lg:mb-4 text-center lg:text-left">
+              <Typewriter
+                onInit={(typewriter) => {
+                  typewriter
+                    .typeString("Hi! I'm Thayná. Welcome aboard my spaceship.")
+                    .pauseFor(800)
+                    .typeString(" I'm a Frontend Developer")
+                    .pauseFor(1000)
+                    .typeString(" & UX/UI Designer from Br4z17.")
+                    .deleteChars(7)
+                    .pauseFor(800)
+                    .typeString("everywhere.")
+                    .start();
+                }}
+                options={{
+                  delay: 80,
+                  deleteSpeed: 20,
+                  loop: false,
+                }}
+              />
+            </h2>
 
-          <div className="order-1 lg:order-2 flex flex-1 justify-center items-center w-full lg:justify-end">
-            <div className="flex flex-col w-full max-w-3xl mt-5 md:mt-[50px] lg:mt-[80px] space-y-4">
-              <h2 className="text-[#E5E5DD] font-bold text-3xl md:text-3xl lg:text-4xl lg:mb-4 text-center lg:text-left">
-                <p className="flex justify-center lg:justify-start font-roboto">
-                  Me, Myself
-                  <strong className="text-[#3DF58C] ml-2 mr-2">&</strong> I
-                </p>
-              </h2>
-              <div className="text-[#E5E5DD] text-center text-sm md:text-[16px] lg:text-[16px] lg:text-left space-y-4">
-                <p>
-                  <ClientOnly>
-                    <Trans i18nKey="introduction" t={t} />
-                  </ClientOnly>
-                </p>
-
-                <div className="flex justify-center lg:justify-start">
-                  <div
-                    className="relative flex justify-center mt-6 mb-6 md:mt-6 md:mb-6 lg:mt-6"
-                    style={{ filter: "url(#goo)" }}
-                  >
-                    <button
-                      className="relative inline-block text-center bg-[#15132B] text-[#A68CFB] font-bold py-3 px-4 sm:py-4 sm:px-5 rounded-full min-w-[10em] sm:min-w-[15em] md:min-w-[10em] text-base sm:text-lg no-underline
-        before:content-[''] before:w-[2.5em] before:h-[2.0em] sm:before:w-[4.4em] sm:before:h-[2.95em] before:absolute before:bg-[#15132B] before:rounded-full before:transition-transform before:duration-1000 before:ease-in-out before:scale-0 before:top-[-20%] sm:before:top-[-25%] before:left-[20%] before:z-[-1]
-        after:content-[''] after:w-[2.5em] after:h-[2.0em] sm:after:w-[4.4em] sm:after:h-[2.95em] after:absolute after:bg-[#15132B] after:rounded-full after:transition-transform after:duration-1000 after:ease-in-out after:scale-0 after:bottom-[-20%] sm:after:bottom-[-25%] after:right-[20%] after:z-[-1] hover:before:scale-100 hover:after:scale-100 hover:text-[#3DF58C]"
-                      onClick={() => {
-                        const section = document.getElementById("contact");
-                        section?.scrollIntoView({
-                          behavior: "smooth",
-                          block: "center",
-                        });
-                      }}
-                    >
-                      <ClientOnly>{t("say_hi")}</ClientOnly>
-                    </button>
-
-                    <svg
-                      className="absolute inset-0 w-0 h-0"
-                      xmlns="http://www.w3.org/2000/svg"
-                      version="1.1"
-                    >
-                      <defs>
-                        <filter id="goo">
-                          <feGaussianBlur
-                            in="SourceGraphic"
-                            stdDeviation="10"
-                            result="blur"
-                          />
-                          <feColorMatrix
-                            in="blur"
-                            mode="matrix"
-                            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-                            result="goo"
-                          />
-                          <feComposite
-                            in="SourceGraphic"
-                            in2="goo"
-                            operator="atop"
-                          />
-                        </filter>
-                      </defs>
-                    </svg>
-                  </div>
-                </div>
-              </div>
+            <div className="flex justify-center lg:justify-start space-x-10 mt-4">
+              <button className="custom-btn btn-7">
+                <span>
+                  <ClientOnly>{t("say_hi")}</ClientOnly>
+                </span>
+              </button>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+
+      <section
+        id="introduction"
+        className="relative flex justify-center flex-col md:flex-col min-h-[800px] h-full max-w-7xl -mt-[200px] mx-auto px-4 sm:px-6 lg:max-w-5xl "
+      >
+        <h2 className="text-[#E5E5DD] font-bold font-roboto text-3xl md:text-3xl lg:text-4xl lg:mb-4 text-center lg:text-left ">
+          <ClientOnly>{t("about")}</ClientOnly>
+        </h2>
+        <div className="text text-[#E5E5DD] text-center text-sm md:text-[16px] lg:text-[16px] lg:text-left space-y-4">
+          <p>
+            <ClientOnly>
+              <Trans i18nKey="introduction" t={t} />
+            </ClientOnly>
+          </p>
+          {/* <div className="neon-circle"></div> */}
+        </div>
+        <div className="flex justify-center lg:justify-end space-x-10 mt-4">
+          <button className="custom-btn btn-7">
+            <span>
+              <ClientOnly>{t("my_projects")}</ClientOnly>
+            </span>
+          </button>
+        </div>
+      </section>
 
       <div className="bg-gradient-to-b from-[#181629] via-[#100c1a] to-[#05020a] rounded-tl-[80px] rounded-tr-[80px] lg:rounded-tl-[100px] lg:rounded-tr-[100px] md:rounded-tl-[100px] md:rounded-tr-[100px] -mt-[150px] shadow-inner drop-shadow-[0_0_20px_#ec4899] shadow-[#2A235C]/80">
         <section
@@ -478,7 +468,7 @@ const About = () => {
                   <ClientOnly>
                     {t("contact_title") + " "}
                     <strong className="text-[#E64765] font-roboto">
-                      {t("me")}
+                      {t("to_me")}
                     </strong>
                   </ClientOnly>
                 </span>

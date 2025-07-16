@@ -1,28 +1,18 @@
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+"use client";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const Loading = () => {
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
-    const handleStart = () => setLoading(true);
-    const handleComplete = () => setLoading(false);
+    setLoading(true);
+    const timeout = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timeout);
+  }, [pathname]);
 
-    router.events.on("routeChangeStart", handleStart);
-    router.events.on("routeChangeComplete", handleComplete);
-    router.events.on("routeChangeError", handleComplete);
-
-    return () => {
-      router.events.off("routeChangeStart", handleStart);
-      router.events.off("routeChangeComplete", handleComplete);
-      router.events.off("routeChangeError", handleComplete);
-    };
-  }, [router]);
-
-  return loading ? (
-    <div className="fixed top-0 left-0 w-full h-1 bg-[#F25D76] animate-pulse" />
-  ) : null;
+  return loading && <div>Loading...</div>;
 };
 
 export default Loading;
