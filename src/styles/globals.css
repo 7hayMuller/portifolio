@@ -19,7 +19,7 @@ body {
   max-width: 100vw;
 }
 
-:root {
+html {
   --foreground: #2a235c;
   --background-start: #2a235c;
   --background-end: #2a235c;
@@ -28,12 +28,16 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  html {
     --foreground: #2a235c;
     --background-start: #2a235c;
     --background-end: #2a235c;
     --secundary-background: #84e296;
   }
+}
+
+h2 {
+  font-family: "Roboto Mono", monospace !important;
 }
 
 body {
@@ -59,48 +63,6 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background-color: #f25d76;
-}
-
-.rotating-text {
-  font-family: var(--font-poppins) !important;
-  transform: translateX(-80px);
-}
-
-.rotating-text p {
-  display: inline-flex;
-  margin: 0;
-  vertical-align: top;
-}
-
-.rotating-text .word {
-  position: absolute;
-  display: flex;
-}
-
-.rotating-text .letter {
-  transform-origin: center center 25px;
-}
-
-.rotating-text .word .letter:first-child {
-  margin-left: 10px;
-}
-
-.rotating-text .letter:last-child {
-  margin-right: 0;
-}
-
-.rotating-text .letter.out {
-  transform: rotateX(90deg);
-  transition: 0.32s cubic-bezier(0.6, 0, 0.7, 0.2);
-}
-
-.rotating-text .letter.in {
-  transform: rotateX(0deg);
-  transition: 0.38s ease;
-}
-
-.rotating-text .letter.behind {
-  transform: rotateX(-90deg);
 }
 
 @keyframes ripple {
@@ -205,4 +167,195 @@ body {
   50% {
     transform: scale(1.05, 0.95);
   }
+}
+
+.custom-btn {
+  font-weight: 600;
+  color: #fff;
+  width: 200px;
+  height: 40px;
+  padding: 10px 25px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.btn-7 {
+  color: #a68cfb;
+  shadow: 0 0 5px #ec4899;
+  line-height: 40px;
+  padding: 0;
+  border: none;
+}
+
+.btn-7 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-7:before,
+.btn-7:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  bottom: 0;
+  background: #a68cfb;
+  box-shadow: 0 0 5px #ec4899;
+  transition: all 0.3s ease;
+}
+
+.btn-7:before {
+  height: 50%;
+  width: 2px;
+}
+
+.btn-7:after {
+  width: 20%;
+  height: 2px;
+}
+
+.btn-7:hover:before {
+  height: 100%;
+}
+
+.btn-7:hover:after {
+  width: 100%;
+}
+
+.btn-7 span:before,
+.btn-7 span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  background: #a68cfb;
+  box-shadow: 0 0 5px #ec4899;
+  transition: all 0.3s ease;
+}
+
+.btn-7 span:before {
+  width: 2px;
+  height: 50%;
+}
+
+.btn-7 span:after {
+  height: 2px;
+  width: 20%;
+}
+
+.btn-7 span:hover:before {
+  height: 100%;
+}
+
+.btn-7 span:hover:after {
+  width: 100%;
+}
+
+.neon-circle {
+  position: absolute;
+  right: 0px;
+  overflow: hidden;
+  top: -50px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 1px solid #3df58c;
+  filter: blur(1px);
+  box-shadow: 0 0 2px #3df58c, 0 0 4px #3df58c, 0 0 6px #3df58c, 0 0 8px #3df58c;
+  background: transparent;
+}
+
+.glitch-text {
+  position: relative;
+  color: #e64765;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.glitch-text::before {
+  color: #67f3da;
+  clip: rect(0, 900px, 0, 0);
+  animation: glitchTop 1s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  color: #f16f6f;
+  clip: rect(0, 900px, 0, 0);
+  animation: glitchBottom 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitchTop {
+  0% {
+    clip: rect(0, 900px, 0, 0);
+    transform: translate(0, 0);
+  }
+  10% {
+    clip: rect(0, 900px, 10px, 0);
+    transform: translate(-2px, -2px);
+  }
+  20% {
+    clip: rect(0, 900px, 5px, 0);
+    transform: translate(2px, 2px);
+  }
+  30% {
+    clip: rect(0, 900px, 15px, 0);
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    clip: rect(0, 900px, 10px, 0);
+    transform: translate(2px, -2px);
+  }
+  50%,
+  100% {
+    clip: rect(0, 900px, 0, 0);
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes glitchBottom {
+  0% {
+    clip: rect(0, 900px, 0, 0);
+    transform: translate(0, 0);
+  }
+  10% {
+    clip: rect(5px, 900px, 10px, 0);
+    transform: translate(2px, 2px);
+  }
+  20% {
+    clip: rect(10px, 900px, 15px, 0);
+    transform: translate(-2px, -2px);
+  }
+  30% {
+    clip: rect(5px, 900px, 10px, 0);
+    transform: translate(2px, -2px);
+  }
+  40% {
+    clip: rect(10px, 900px, 15px, 0);
+    transform: translate(-2px, 2px);
+  }
+  50%,
+  100% {
+    clip: rect(0, 900px, 0, 0);
+    transform: translate(0, 0);
+  }
+}
+
+.stroke-white {
+  -webkit-text-stroke: 2px white;
+}
+
+.bold-text {
+  font-family: "Anton", sans-serif;
 }

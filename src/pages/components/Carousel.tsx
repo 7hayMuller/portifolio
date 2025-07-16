@@ -109,7 +109,6 @@ const Carousel: React.FC<CarouselProps> = ({ setActiveKey }) => {
               <Image
                 src={each.src}
                 alt={`Slide ${index}`}
-                layout="intrinsic"
                 width={isMobile ? size - 30 : size - 50}
                 height={isMobile ? size - 30 : size - 50}
                 className="object-contain"

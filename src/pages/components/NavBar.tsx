@@ -71,7 +71,7 @@ const Navbar: React.FC = () => {
           }}
         >
           {[
-            { id: "introduction", label: "Me, Myself & I" },
+            { id: "introduction", label: t("about") },
             { id: "projects", label: t("my_projects") },
             { id: "skills", label: t("skills_and_tools") },
             { id: "contact", label: t("contact") },
@@ -97,12 +97,12 @@ const Navbar: React.FC = () => {
         aria-label="Alternar idioma"
         className="flex items-center absolute right-4  md:static md:mr-0 z-40"
         onClick={() =>
-          i18n.changeLanguage(i18n.language === "en" ? "pt" : "en")
+          i18n.changeLanguage(i18n?.language === "en" ? "pt" : "en")
         }
-        data-text={i18n.language === "en" ? "PT" : "EN"}
+        data-text={i18n?.language === "en" ? "PT" : "EN"}
         suppressHydrationWarning
       >
-        {i18n.language.toUpperCase()}
+        {i18n?.language?.toUpperCase()}
       </button>
     </nav>
   );

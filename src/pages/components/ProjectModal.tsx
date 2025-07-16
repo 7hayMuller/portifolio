@@ -103,7 +103,7 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
         )}
 
         <div className="flex flex-col flex-1 text-left overflow-y-auto w-full md:w-[300px] max-h-[70vh] mt-[30px] md:ml-6 ">
-          <p className="text-white text-sm md:text-base lg:text-lg mb-4 mt-6 md:mt-10">
+          <p className="text-white text-sm md:text-base lg:text-md mb-2">
             <ClientOnly>
               <Trans i18nKey={modalInfo?.key} t={t} />
             </ClientOnly>

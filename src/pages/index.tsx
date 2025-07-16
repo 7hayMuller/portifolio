@@ -4,9 +4,7 @@ import ClientOnly from "./components/ClientOnly";
 import Navbar from "./components/NavBar";
 import Carousel from "./components/Carousel";
 import Me from "../../public/assets/Me.png";
-import Et from "../../public/assets/contact_me.png";
-
-import { Trans, useTranslation } from "react-i18next";
+import { Trans } from "react-i18next";
 import Loading from "./components/Loading";
 import Head from "next/head";
 import { FaBehance, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa6";
@@ -15,10 +13,12 @@ import Card from "./components/Card";
 
 import Image from "next/image";
 import ProjectModal from "./components/ProjectModal";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { t } from "i18next";
+import Typewriter from "typewriter-effect";
+import { anton, robotoMono } from "./_app";
 
 const About = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -62,6 +62,93 @@ const About = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const useDecryptText = (text: string, delay = 50, pause = 2000) => {
+    const [displayed, setDisplayed] = useState("");
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*()";
+    const iterationRef = useRef(0);
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+    const startAnimation = () => {
+      iterationRef.current = 0;
+
+      intervalRef.current = setInterval(() => {
+        setDisplayed(() => {
+          return text
+            .split("")
+            .map((char, i) => {
+              if (i < iterationRef.current) return text[i];
+              return characters[Math.floor(Math.random() * characters.length)];
+            })
+            .join("");
+        });
+
+        iterationRef.current += 1;
+
+        if (iterationRef.current > text.length) {
+          clearInterval(intervalRef.current!);
+          setTimeout(() => {
+            startAnimation();
+          }, pause);
+        }
+      }, delay);
+    };
+
+    useEffect(() => {
+      startAnimation();
+      return () => {
+        if (intervalRef.current) clearInterval(intervalRef.current);
+      };
+    }, [text]);
+
+    return displayed;
+  };
+
+  const decrypted = useDecryptText(t("get_in_touch"), 200, 1000);
+
+  const Ribbon = ({
+    text,
+    bgColor = "bg-black",
+    rotateClass = "rotate-[12deg]",
+  }: {
+    text: string;
+    bgColor?: string;
+    rotateClass?: string;
+  }) => {
+    const fullText = `${text}   `.repeat(10);
+
+    return (
+      <div
+        className={`absolute top-[60px] left-1/2 -translate-x-1/2 ${rotateClass} w-[300%]`}
+      >
+        <div
+          className={`${bgColor} text-white font-extrabold text-lg md:text-xl whitespace-nowrap py-2 px-6 shadow-md`}
+          style={{ willChange: "transform" }}
+        >
+          {fullText}
+        </div>
+      </div>
+    );
+  };
+
+  const RibbonX = () => {
+    return (
+      <div className="relative h-[500px] w-full overflow-hidden lg:mt-[100px]">
+        <Ribbon
+          text="MEUS PROJETOS → UX/UI DESIGNER → FRONTEND DEVELOPER →"
+          bgColor="bg-[#0f172a]"
+          rotateClass={"rotate-[10deg]"}
+        />
+
+        <Ribbon
+          text="MEUS PROJETOS → UX/UI DESIGNER → FRONTEND DEVELOPER →"
+          bgColor="bg-[#a78bfa]"
+          rotateClass={"rotate-[-10deg]"}
+        />
+      </div>
+    );
+  };
+
   return (
     <>
       <Head>
@@ -76,117 +163,83 @@ const About = () => {
           modalInfo={modalInfo}
         />
       )}
+      <section
+        id="hero"
+        className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col md:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-16"
+      >
+        <div className="order-1 flex justify-center items-center w-full lg:w-1/2">
+          <Image
+            src={Me}
+            alt="side-image"
+            className="w-full max-w-[300px] md:max-w-[500px] lg:max-w-[600px]"
+          />
+        </div>
 
-      <div className="bg-[#2A235C] min-h-[1060px] lg:min-h-[800px] md:min-h-[1200px] pb-32">
+        <div className="order-1 lg:order-2 flex flex-1 justify-center items-center w-full lg:justify-end">
+          <div className="flex flex-col w-full max-w-3xl mt-5 md:mt-[50px] lg:mt-[80px] space-y-6">
+            <h2 className="text-[#E5E5DD] font-bold font-roboto text-3xl md:text-3xl lg:text-4xl lg:mb-4 text-center lg:text-left">
+              <Typewriter
+                onInit={(typewriter) => {
+                  typewriter
+                    .typeString("Hi! I'm Thayná. Welcome aboard my spaceship.")
+                    .pauseFor(800)
+                    .typeString(" I'm a Frontend Developer")
+                    .pauseFor(1000)
+                    .typeString(" & UX/UI Designer from Br4z17.")
+                    .deleteChars(7)
+                    .pauseFor(800)
+                    .typeString("everywhere.")
+                    .start();
+                }}
+                options={{
+                  delay: 80,
+                  deleteSpeed: 20,
+                  loop: false,
+                }}
+              />
+            </h2>
+
+            <div className="flex justify-center lg:justify-start space-x-10 mt-4">
+              <button className="custom-btn btn-7">
+                <span>
+                  <ClientOnly>{t("say_hi")}</ClientOnly>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="bg-gradient-to-b from-[#2a235c] via-[#181629] to-[#05020a]">
         <section
           id="introduction"
-          className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col h-auto lg:h-[600px] md:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 lg:py-16"
+          className="flex flex-col lg:flex-row md:flex-col items-center justify-center text-center px-6 py-16 mt-[100px] lg:mt-0 md:py-16 lg:py-16"
         >
-          <div className="order-1 flex justify-center items-center w-full lg:w-1/2">
-            <Image
-              src={Me}
-              alt="side-image"
-              className="w-full h-auto max-w-[300px] md:max-w-[500px] lg:max-w-[600px] "
-            />
+          <div className="relative mb-[50px] -mt-[60px] lg:mt-0 lg:mb-0 text-[25vw] lg:text-[12vw] leading-none font-anton uppercase tracking-tight w-fit">
+            <span
+              className={`${anton.className} text-transparent stroke-white absolute top-0 lg:left-1/2 -translate-x-1/2 -translate-y-[0.40em] lg:-translate-y-[0.25em] z-0`}
+            >
+              <ClientOnly>{t("about")}</ClientOnly>
+            </span>
+            <span
+              className={`${anton.className} text-[#3DF58C] relative z-10 block translate-y-[0.2em] lg:translate-y-[0.1em]`}
+            >
+              <ClientOnly>{t("me")}</ClientOnly>
+            </span>
           </div>
 
-          <div className="order-1 lg:order-2 flex flex-1 justify-center items-center w-full lg:justify-end">
-            <div className="flex flex-col w-full max-w-3xl mt-5 md:mt-[50px] lg:mt-[80px] space-y-4">
-              <h2 className="text-[#E5E5DD] font-bold text-3xl md:text-3xl lg:text-4xl lg:mb-4 text-center lg:text-left">
-                <p className="flex justify-center lg:justify-start font-roboto">
-                  Me, Myself
-                  <strong className="text-[#3DF58C] ml-2 mr-2">&</strong> I
-                </p>
-              </h2>
-              <div className="text-[#E5E5DD] text-center text-sm md:text-[16px] lg:text-[16px] lg:text-left space-y-4">
-                <p>
-                  <ClientOnly>
-                    <Trans i18nKey="introduction" t={t} />
-                  </ClientOnly>
-                </p>
-
-                <div className="flex justify-center lg:justify-start">
-                  <div
-                    className="relative flex justify-center mt-6 mb-6 md:mt-6 md:mb-6 lg:mt-6"
-                    style={{ filter: "url(#goo)" }}
-                  >
-                    <button
-                      className="relative inline-block text-center bg-[#15132B] text-[#A68CFB] font-bold py-3 px-4 sm:py-4 sm:px-5 rounded-full min-w-[10em] sm:min-w-[15em] md:min-w-[10em] text-base sm:text-lg no-underline
-        before:content-[''] before:w-[2.5em] before:h-[2.0em] sm:before:w-[4.4em] sm:before:h-[2.95em] before:absolute before:bg-[#15132B] before:rounded-full before:transition-transform before:duration-1000 before:ease-in-out before:scale-0 before:top-[-20%] sm:before:top-[-25%] before:left-[20%] before:z-[-1]
-        after:content-[''] after:w-[2.5em] after:h-[2.0em] sm:after:w-[4.4em] sm:after:h-[2.95em] after:absolute after:bg-[#15132B] after:rounded-full after:transition-transform after:duration-1000 after:ease-in-out after:scale-0 after:bottom-[-20%] sm:after:bottom-[-25%] after:right-[20%] after:z-[-1] hover:before:scale-100 hover:after:scale-100 hover:text-[#3DF58C]"
-                      onClick={() => {
-                        const section = document.getElementById("contact");
-                        section?.scrollIntoView({
-                          behavior: "smooth",
-                          block: "center",
-                        });
-                      }}
-                    >
-                      <ClientOnly>{t("say_hi")}</ClientOnly>
-                    </button>
-
-                    <svg
-                      className="absolute inset-0 w-0 h-0"
-                      xmlns="http://www.w3.org/2000/svg"
-                      version="1.1"
-                    >
-                      <defs>
-                        <filter id="goo">
-                          <feGaussianBlur
-                            in="SourceGraphic"
-                            stdDeviation="10"
-                            result="blur"
-                          />
-                          <feColorMatrix
-                            in="blur"
-                            mode="matrix"
-                            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-                            result="goo"
-                          />
-                          <feComposite
-                            in="SourceGraphic"
-                            in2="goo"
-                            operator="atop"
-                          />
-                        </filter>
-                      </defs>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <p className="text-[#E5E5DD] lg:ml-[100px] text-left mt-2 max-w-3xl text-sm md:text-base">
+            <ClientOnly>
+              <Trans i18nKey="introduction" t={t} />
+            </ClientOnly>
+          </p>
         </section>
-      </div>
 
-      <div className="bg-gradient-to-b from-[#181629] via-[#100c1a] to-[#05020a] rounded-tl-[80px] rounded-tr-[80px] lg:rounded-tl-[100px] lg:rounded-tr-[100px] md:rounded-tl-[100px] md:rounded-tr-[100px] -mt-[150px] shadow-inner drop-shadow-[0_0_20px_#ec4899] shadow-[#2A235C]/80">
         <section
-          className="relative max-w-7xl mx-auto px-6 -mt-[10px] lg:px-8 py-12 lg:py-16 gap-12"
+          className="relative max-w-7xl mx-auto px-6 lg:px-8 py-12 md:py-16 lg:py-16"
           id="projects"
         >
-          <div className="order-1 lg:order-2 flex flex-1 justify-center items-center w-full lg:justify-start">
-            <div className="flex flex-col w-full max-w-3xl mt-[50px] mb-[50px] md:mt-[50px] lg:mt-[80px] lg:mb-10 space-y-4">
-              <h2 className="text-[#E5E5DD] font-bold text-3xl md:text-3xl lg:text-4xl text-center lg:text-left ">
-                <div className="flex justify-center lg:justify-start font-roboto mb-[20px]">
-                  <ClientOnly>
-                    <p>{t("my")}</p>
-                  </ClientOnly>
-                  <p className="ml-2">
-                    Proje
-                    <ClientOnly>
-                      <strong className="text-[#3DF58C]">{t("ct")}</strong>
-                    </ClientOnly>
-                    s
-                  </p>
-                </div>
-              </h2>
-              <p className="text-[#E5E5DD] text-center lg:text-left">
-                <ClientOnly>
-                  <Trans i18nKey="project_description" t={t} />
-                </ClientOnly>
-              </p>
-            </div>
-          </div>
+          <RibbonX />
           {isMobile || isTablet ? (
             <Swiper
               modules={[Autoplay]}
@@ -196,10 +249,10 @@ const About = () => {
               breakpoints={{
                 640: { slidesPerView: 2, spaceBetween: 20 },
               }}
-              style={{ maxWidth: "100%", width: "100%" }}
+              style={{ maxWidth: "100%", width: "100%", marginTop: -300 }}
             >
               <SwiperSlide className="flex justify-center items-center px-4 py-8">
-                <div className="w-full max-w-[340px] h-[420px]">
+                <div className="w-full max-w-[340px]">
                   <Card
                     buttonTitle={t("see_studycase")}
                     type="UX/UI"
@@ -307,7 +360,7 @@ const About = () => {
               </SwiperSlide>
             </Swiper>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-4 md:items-start md:justify-center mb-10 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 md:items-start md:justify-center mb-10 lg:-mt-[200px] gap-4">
               <Card
                 buttonTitle={t("see_studycase")}
                 type="UX/UI"
@@ -399,10 +452,10 @@ const About = () => {
 
         <section
           id="skills"
-          className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start lg:py-16 mx-auto px-8 -mt-[100px] gap-12 max-w-7xl"
+          className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start py-12 md:py-16 lg:py-16 mx-auto px-8 gap-12 max-w-7xl"
         >
           <div className="text-center md:text-center lg:-mt-[200px] lg:text-left lg:text-lg max-w-3xl w-full">
-            <h2 className="text-[#E5E5DD] font-bold text-3xl md:text-4xl lg:text-4xl mb-4 font-roboto">
+            <h2 className="text-[#E5E5DD] font-bold text-3xl md:text-4xl lg:text-4xl mb-4 bold-text">
               <span className="flex justify-center md:flex md:justify-center lg:justify-start">
                 Skills
                 <strong className="text-[#3DF58C] ml-1 mr-1">&</strong> Tools
@@ -417,19 +470,21 @@ const About = () => {
             <div className="block lg:hidden w-full md:mt-[50px] md:mb-[80px]">
               <Carousel setActiveKey={setActiveKey} />
             </div>
-            <div className="lg:w-[600px]">
+            <div className="lg:w-[600px] mt-[30px]">
               {["react", "next", "typescript", "javascript"].includes(
                 activeKey
               ) ? (
                 <ClientOnly>
-                  <p className="text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]">
+                  <p
+                    className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl ${robotoMono.className} drop-shadow-[0_0_5px_#ec4899]`}
+                  >
                     <Trans i18nKey={"tech_skills"} t={t} />
                   </p>
                 </ClientOnly>
               ) : activeKey === "figma" ? (
                 <ClientOnly>
                   <p
-                    className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
+                    className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl ${robotoMono.className} drop-shadow-[0_0_5px_#ec4899]`}
                   >
                     <Trans i18nKey={"figma_skills"} t={t} />
                   </p>
@@ -437,7 +492,7 @@ const About = () => {
               ) : ["tailwind", "sass"]?.includes(activeKey) ? (
                 <ClientOnly>
                   <p
-                    className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
+                    className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl ${robotoMono.className} drop-shadow-[0_0_5px_#ec4899]`}
                   >
                     <Trans i18nKey={"design_skills"} t={t} />
                   </p>
@@ -445,23 +500,23 @@ const About = () => {
               ) : (
                 <ClientOnly>
                   <p
-                    className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl font-roboto drop-shadow-[0_0_5px_#ec4899]`}
+                    className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl ${robotoMono.className} drop-shadow-[0_0_5px_#ec4899]`}
                   >
                     <Trans i18nKey={"tech_skills"} t={t} />
                   </p>
                 </ClientOnly>
               )}
             </div>
-            <div className="lg:px-0 flex justify-center items-center md:flex md:justify-center md:items-center lg:flex lg:justify-start lg:items-start mt-[50px] md:px-8 lg:ml-[40px]">
+            {/* <div className="lg:px-0 flex justify-center items-center md:flex md:justify-center md:items-center lg:flex lg:justify-start lg:items-start mt-[50px] md:px-8 lg:ml-[40px]">
               <div className="blackhole">
                 <div className="megna">
                   <div className="black"></div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="hidden lg:block w-full lg:w-[40%] relative lg:min-h-[800px] md:mt-[20px]">
-            <div className="lg:sticky lg:top-1/2 lg:-translate-y-1/2">
+            <div className="lg:sticky lg:top-1/2 lg:mt-[50px] lg:-translate-y-1/2">
               <Carousel setActiveKey={setActiveKey} />
             </div>
           </div>
@@ -469,20 +524,24 @@ const About = () => {
 
         <section
           id="contact"
-          className="relative flex flex-col md:flex md:flex-col md:justify-center md:items-center lg:flex-row-reverse justify-around items-start mt-[100px] md:mt-[100px] lg:-mt-[200px] lg:py-16 mx-auto px-10 py-12 gap-12 max-w-7xl"
+          className="relative flex flex-col md:flex md:flex-col md:justify-center md:items-center lg:flex-row-reverse justify-around items-start mx-auto px-10 gap-12 max-w-7xl py-12 md:py-16 lg:-mt-[150px]"
         >
           <div className="order-3 flex justify-center lg:justify-start items-center">
-            <div className="flex flex-col max-w-3xl lg:w-[600px] w-full">
-              <h2 className="flex justify-center lg:justify-start gap-2 text-[#E5E5DD] font-bold lg:text-5xl text-4xl text-center mb-[20px] lg:text-left md:mb-[20px] lg:mt-10 lg:mb-11 font-roboto">
+            <div className="flex flex-col max-w-3xl lg:w-[500px] w-full">
+              <h2
+                className={`flex justify-center lg:justify-start gap-2 text-[#E5E5DD] font-bold lg:text-5xl text-4xl text-center mb-[20px] lg:text-left md:mb-[20px] lg:mt-10 lg:mb-11 ${robotoMono.className}`}
+              >
                 <span>
                   <ClientOnly>
-                    {t("contact_title") + " "}
-                    <strong className="text-[#E64765] font-roboto">
-                      {t("me")}
-                    </strong>
+                    <div
+                      className={`relative text-[10vw] lg:text-[12vw] ${robotoMono.className} uppercase w-fit`}
+                    >
+                      <h2 className="text-5xl text-[#A68CFB] drop-shadow-[0_0_5px_#2a235c] text-center">
+                        {decrypted}
+                      </h2>
+                    </div>
                   </ClientOnly>
                 </span>
-                <Image alt="et" src={Et} width={50} height={50} />
               </h2>
               <p className="text-[#E5E5DD] text-center text-sm md:text-lg lg:text-lg lg:text-left lg:w-[600px]">
                 <ClientOnly>
@@ -536,13 +595,15 @@ const About = () => {
               </div>
             </div>
           </div>
-          <div className="order-3 lg:order-2 w-full lg:flex-[2] -mt-[30px] md:-mt-[80px] lg:-mt-[50px] lg:ml-[80px]">
+          <div className="order-3 lg:order-2 w-full lg:flex-[2]">
             <ContactForm />
           </div>
         </section>
         <div className="h-[1px] w-full bg-[#3DF58C] shadow-[0_0_10px_#3DF58C]"></div>
-        <div className="flex justify-center text-center w-full mt-6">
-          <p className="text-[12px] w-[300px] md:w-[300px] lg:w-full text-[#E5E5DD] opacity-50 font-roboto mb-6">
+        <div className="flex justify-center text-center w-full">
+          <p
+            className={`text-[12px] w-[300px] md:w-[300px] mt-6 mb-6 lg:w-full text-[#E5E5DD] opacity-50 ${robotoMono.className} `}
+          >
             <ClientOnly>{t("made_by_me")}</ClientOnly>
           </p>
         </div>
