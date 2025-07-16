@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import styles from "../../styles/navbar.module.css";
+import styles from "../styles/navbar.module.css";
 import { useTranslation } from "react-i18next";
 import ClientOnly from "./ClientOnly";
 import { t } from "i18next";
