@@ -115,17 +115,16 @@ const About = () => {
     bgColor?: string;
     rotateClass?: string;
   }) => {
-    const fullText = `${text}   `.repeat(10);
-
     return (
       <div
-        className={`absolute top-[60px] left-1/2 -translate-x-1/2 ${rotateClass} w-[300%]`}
+        className={`absolute top-[60px] left-1/2 -translate-x-1/2 ${rotateClass} w-full overflow-hidden`}
       >
         <div
-          className={`${bgColor} text-white font-extrabold text-lg md:text-xl whitespace-nowrap py-2 px-6 shadow-md`}
+          className={`ribbon-loop ${bgColor} text-white font-extrabold text-lg md:text-xl whitespace-nowrap py-2 px-6 shadow-md`}
           style={{ willChange: "transform" }}
         >
-          {fullText}
+          <span className="pr-8">{text}</span>
+          <span className="pr-8">{text}</span>
         </div>
       </div>
     );
@@ -135,15 +134,14 @@ const About = () => {
     return (
       <div className="relative h-[500px] w-full overflow-hidden lg:mt-[100px]">
         <Ribbon
-          text="MEUS PROJETOS → UX/UI DESIGNER → FRONTEND DEVELOPER →"
+          text="UX/UI DESIGNER → FRONTEND DEVELOPER → MEUS PROJETOS →"
           bgColor="bg-[#0f172a]"
-          rotateClass={"rotate-[10deg]"}
+          rotateClass={"rotate-[4deg]"}
         />
-
         <Ribbon
-          text="MEUS PROJETOS → UX/UI DESIGNER → FRONTEND DEVELOPER →"
+          text="UX/UI DESIGNER → FRONTEND DEVELOPER → MEUS PROJETOS →"
           bgColor="bg-[#a78bfa]"
-          rotateClass={"rotate-[-10deg]"}
+          rotateClass={"rotate-[-4deg]"}
         />
       </div>
     );
@@ -165,7 +163,7 @@ const About = () => {
       )}
       <section
         id="hero"
-        className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col md:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-16"
+        className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col min-h-[600px] md:h-full lg:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-16"
       >
         <div className="order-1 flex justify-center items-center w-full lg:w-1/2">
           <Image
@@ -199,8 +197,16 @@ const About = () => {
               />
             </h2>
 
-            <div className="flex justify-center lg:justify-start space-x-10 mt-4">
-              <button className="custom-btn btn-7">
+            <div className="flex justify-center lg:justify-start space-x-10">
+              <button
+                className="custom-btn btn-7 mt-4"
+                onClick={() => {
+                  const section = document.getElementById("contact");
+                  if (section) {
+                    section.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+              >
                 <span>
                   <ClientOnly>{t("say_hi")}</ClientOnly>
                 </span>
@@ -234,12 +240,11 @@ const About = () => {
             </ClientOnly>
           </p>
         </section>
-
+        <RibbonX />
         <section
           className="relative max-w-7xl mx-auto px-6 lg:px-8 py-12 md:py-16 lg:py-16"
           id="projects"
         >
-          <RibbonX />
           {isMobile || isTablet ? (
             <Swiper
               modules={[Autoplay]}
@@ -455,7 +460,7 @@ const About = () => {
           className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start py-12 md:py-16 lg:py-16 mx-auto px-8 gap-12 max-w-7xl"
         >
           <div className="text-center md:text-center lg:-mt-[200px] lg:text-left lg:text-lg max-w-3xl w-full">
-            <h2 className="text-[#E5E5DD] font-bold text-3xl md:text-4xl lg:text-4xl mb-4 bold-text">
+            <h2 className="text-[#E5E5DD] font-bold text-4xl md:text-5xl lg:text-5xl mb-4 bold-text">
               <span className="flex justify-center md:flex md:justify-center lg:justify-start">
                 Skills
                 <strong className="text-[#3DF58C] ml-1 mr-1">&</strong> Tools
@@ -531,17 +536,13 @@ const About = () => {
               <h2
                 className={`flex justify-center lg:justify-start gap-2 text-[#E5E5DD] font-bold lg:text-5xl text-4xl text-center mb-[20px] lg:text-left md:mb-[20px] lg:mt-10 lg:mb-11 ${robotoMono.className}`}
               >
-                <span>
-                  <ClientOnly>
-                    <div
-                      className={`relative text-[10vw] lg:text-[12vw] ${robotoMono.className} uppercase w-fit`}
-                    >
-                      <h2 className="text-5xl text-[#A68CFB] drop-shadow-[0_0_5px_#2a235c] text-center">
-                        {decrypted}
-                      </h2>
-                    </div>
-                  </ClientOnly>
-                </span>
+                <ClientOnly>
+                  <div
+                    className={`relative text-[#A68CFB] drop-shadow-[0_0_5px_#2a235c] uppercase w-full max-w-full break-words text-4xl lg:text-5xl text-center lg:text-left`}
+                  >
+                    {decrypted}
+                  </div>
+                </ClientOnly>
               </h2>
               <p className="text-[#E5E5DD] text-center text-sm md:text-lg lg:text-lg lg:text-left lg:w-[600px]">
                 <ClientOnly>

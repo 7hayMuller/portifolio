@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import styles from "../styles/navbar.module.css";
 import { useTranslation } from "react-i18next";
 import ClientOnly from "./ClientOnly";
 import { t } from "i18next";
+
+import styles from "../../styles/navbar.module.css";
 
 const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>("introduction");
@@ -49,26 +50,23 @@ const Navbar: React.FC = () => {
     };
   }, []);
 
+  console.log(isMobileMenuOpen);
+
   return (
     <nav className={`${styles.navbar} w-full flex items-center relative`}>
       <div className="flex flex-grow justify-center md:justify-center">
         <div className="md:hidden z-50 absolute left-4 top-4">
-          <button onClick={handleToggleMobileMenu} className="text-[#e2e8c0]">
+          <button onClick={handleToggleMobileMenu} className="text-[#E5E5DD]">
             {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
         </div>
 
         <ul
-          className={`fixed top-0 left-0 w-full ${
-            isMobileMenuOpen ? "h-full" : "h-0"
-          } bg-opacity-90 flex flex-col items-center justify-center transform ${
-            isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-          } transition-all duration-300 md:relative md:top-auto md:left-auto md:w-auto md:h-auto md:bg-transparent md:flex-row md:items-center md:justify-center md:translate-x-0`}
-          style={{
-            backgroundColor: isMobileMenuOpen
-              ? "rgba(0, 0, 0, 0.3)"
-              : "transparent",
-          }}
+          className={`absolute top-0 left-0 w-full z-40 bg-[#05020a] bg-opacity-90 text-[#E5E5DD] transition-all duration-300 ease-in-out
+    flex-col items-center
+    md:static md:flex-row md:flex md:bg-transparent md:py-0 ${
+      isMobileMenuOpen ? "flex py-4" : "hidden"
+    }`}
         >
           {[
             { id: "introduction", label: t("about") },
@@ -76,7 +74,7 @@ const Navbar: React.FC = () => {
             { id: "skills", label: t("skills_and_tools") },
             { id: "contact", label: t("contact") },
           ].map(({ id, label }) => (
-            <li key={id} className="pb-3 pt-3 md:pr-6">
+            <li key={id} className="py-2 md:pr-6">
               <button
                 onClick={() => handleLinkClick(id)}
                 className={`text-base lg:text-base ${
