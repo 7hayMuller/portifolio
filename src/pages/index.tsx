@@ -205,7 +205,10 @@ const About = () => {
             </p>
           </section>
 
-          <div className="overflow-hidden lg:w-screen lg:flex lg:justify-center">
+          <div
+            className="overflow-hidden lg:w-screen lg:flex lg:justify-center"
+            id="projects"
+          >
             <div className="container">
               <div className="marquee marquee-top">
                 <div className="marquee-track">
@@ -230,10 +233,7 @@ const About = () => {
             </div>
           </div>
 
-          <section
-            className="relative max-w-7xl mx-auto px-6 lg:px-8 py-12 mt-30 md:py-16 lg:py-0"
-            id="projects"
-          >
+          <section className="relative max-w-7xl mx-auto px-6 lg:px-8 py-12 mt-30 md:py-16 lg:py-0">
             {isMobile || isTablet ? (
               <Swiper
                 modules={[Autoplay]}
