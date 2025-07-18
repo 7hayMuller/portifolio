@@ -359,3 +359,93 @@ body {
 .bold-text {
   font-family: "Anton", sans-serif;
 }
+
+.container {
+  width: 100%;
+  height: 480px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background-color: transparent;
+}
+
+.marquee {
+  position: relative;
+  width: 100%;
+  white-space: nowrap;
+  font-size: 15px;
+  color: white;
+  font-weight: bold;
+}
+
+.marquee-track {
+  display: inline-flex;
+  width: max-content;
+  animation: scroll 40s linear infinite;
+  animation-play-state: running;
+  animation-timing-function: linear;
+}
+.marquee-track-reverse {
+  display: inline-flex;
+  width: max-content;
+  animation: scroll 40s linear infinite;
+  animation-play-state: running;
+  animation-timing-function: linear;
+}
+
+@keyframes scroll-reverse {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(33.333%);
+  }
+}
+
+.marquee-track .content {
+  display: flex;
+}
+
+.marquee-track .content.top {
+  padding: 10px;
+  background-color: #0f172a;
+}
+
+.marquee-track .content.bottom {
+  padding: 10px;
+  background-color: #a78bfa;
+}
+
+.marquee-track span {
+  margin-right: 2rem;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.marquee-top {
+  transform: rotate(6deg) translateY(10px);
+  transform-origin: center;
+  z-index: 2;
+}
+
+.marquee-bottom {
+  transform: rotate(-6deg) translateY(-10px);
+  transform-origin: center;
+  z-index: 1;
+}
+
+@media screen and (min-width: 2000px) {
+  .marquee-top {
+    transform: translateX(-50%) rotate(2deg) translateY(4px);
+  }
+
+  .marquee-bottom {
+    transform: translateX(-50%) rotate(-2deg) translateY(-4px);
+  }
+}

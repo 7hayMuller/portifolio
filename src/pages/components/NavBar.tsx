@@ -18,7 +18,11 @@ const Navbar: React.FC = () => {
   const handleLinkClick = (id: string) => {
     setIsMobileMenuOpen(false);
     const section = document.getElementById(id);
-    section?.scrollIntoView({ behavior: "smooth", block: "start" });
+    section?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "center",
+    });
   };
 
   useEffect(() => {
@@ -49,8 +53,6 @@ const Navbar: React.FC = () => {
       observers.forEach((observer) => observer.disconnect());
     };
   }, []);
-
-  console.log(isMobileMenuOpen);
 
   return (
     <nav className={`${styles.navbar} w-full flex items-center relative`}>
