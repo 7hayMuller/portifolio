@@ -54,8 +54,6 @@ const Navbar: React.FC = () => {
     };
   }, []);
 
-  console.log(isMobileMenuOpen);
-
   return (
     <nav className={`${styles.navbar} w-full flex items-center relative`}>
       <div className="flex flex-grow justify-center md:justify-center">
