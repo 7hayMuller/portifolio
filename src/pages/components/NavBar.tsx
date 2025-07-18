@@ -18,7 +18,11 @@ const Navbar: React.FC = () => {
   const handleLinkClick = (id: string) => {
     setIsMobileMenuOpen(false);
     const section = document.getElementById(id);
-    section?.scrollIntoView({ behavior: "smooth", block: "start" });
+    section?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "center",
+    });
   };
 
   useEffect(() => {

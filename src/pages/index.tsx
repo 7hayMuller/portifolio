@@ -163,7 +163,7 @@ const About = () => {
       )}
       <section
         id="hero"
-        className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col min-h-[600px] md:h-full lg:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-16"
+        className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col min-h-[600px] md:h-full lg:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-6"
       >
         <div className="order-1 flex justify-center items-center w-full lg:w-1/2">
           <Image
@@ -242,7 +242,7 @@ const About = () => {
         </section>
         <RibbonX />
         <section
-          className="relative max-w-7xl mx-auto px-6 lg:px-8 py-12 md:py-16 lg:py-16"
+          className="relative max-w-7xl mx-auto px-6 lg:px-8 py-12 md:py-16 lg:py-0"
           id="projects"
         >
           {isMobile || isTablet ? (
