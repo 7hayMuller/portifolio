@@ -96,9 +96,9 @@ const Navbar: React.FC = () => {
       <button
         aria-label="Alternar idioma"
         className="flex items-center absolute right-4  md:static md:mr-0 z-40"
-        onClick={() =>
-          i18n.changeLanguage(i18n?.language === "en" ? "pt" : "en")
-        }
+        onClick={() => {
+          i18n.changeLanguage(i18n?.language === "en" ? "pt" : "en");
+        }}
         data-text={i18n?.language === "en" ? "PT" : "EN"}
         suppressHydrationWarning
       >

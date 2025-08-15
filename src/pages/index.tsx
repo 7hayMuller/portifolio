@@ -19,6 +19,7 @@ import { Autoplay } from "swiper/modules";
 import { t } from "i18next";
 import Typewriter from "typewriter-effect";
 import { anton, robotoMono } from "./_app";
+import i18n from "@/locales";
 
 const About = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -147,7 +148,7 @@ const About = () => {
       <div className="overflow-hidden">
         <section
           id="hero"
-          className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col min-h-[600px] md:h-full lg:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-6"
+          className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col min-h-[600px] md:h-full lg:min-h-[800px] lg:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-6"
         >
           <div className="order-1 flex justify-center items-center w-full lg:w-1/2">
             <Image
@@ -161,12 +162,13 @@ const About = () => {
             <div className="flex flex-col w-full max-w-3xl mt-5 md:mt-[50px] lg:mt-[80px] space-y-6">
               <h2 className="text-[#E5E5DD] font-bold font-roboto text-3xl md:text-3xl lg:text-4xl lg:mb-4 text-center lg:text-left">
                 <Typewriter
+                  key={i18n.language}
                   onInit={(typewriter) => {
                     typewriter
                       .typeString(t("hello"))
                       .pauseFor(700)
                       .typeString(t("present"))
-                      .pauseFor(800)
+                      .pauseFor(700)
                       .typeString(t("present_2"))
                       .deleteChars(7)
                       .pauseFor(700)
