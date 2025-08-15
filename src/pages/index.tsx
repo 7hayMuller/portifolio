@@ -170,8 +170,8 @@ const About = () => {
                       .typeString(t("present"))
                       .pauseFor(700)
                       .typeString(t("present_2"))
-                      .deleteChars(7)
-                      .pauseFor(700)
+                      .pauseFor(800)
+                      .deleteChars(10)
                       .typeString(t("everywhere"))
                       .start();
                   }}
