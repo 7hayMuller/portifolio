@@ -450,6 +450,22 @@ body {
   }
 }
 
+@keyframes blink-scroll-indicator {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.4;
+    transform: translateY(5px);
+  }
+}
+
+.blink-scroll-indicator {
+  animation: blink-scroll-indicator 1s infinite;
+}
+
 @keyframes blink-bounce {
   0%,
   100% {

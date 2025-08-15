@@ -142,9 +142,6 @@ const About = () => {
   }, []);
 
   useEffect(() => {
-    // const seen = window.sessionStorage.getItem("skillsCarouselHint");
-    // if (seen) return;
-
     const el = containerRef.current;
     if (!el) return;
 
@@ -155,7 +152,6 @@ const About = () => {
 
           const t = setTimeout(() => {
             setShowHint(false);
-            //window.sessionStorage.setItem("skillsCarouselHint", "1");
           }, 10000);
           io.disconnect();
           return () => clearTimeout(t);
@@ -166,13 +162,7 @@ const About = () => {
 
     io.observe(el);
     return () => io.disconnect();
-  }, ["skillsCarouselHint"]);
-
-  // const handleFirstHover = () => {
-  //   if (!showHint) return;
-  //   setShowHint(false);
-  //   window.sessionStorage.setItem("skillsCarouselHint", "1");
-  // };
+  }, []);
 
   return (
     <>
@@ -244,9 +234,9 @@ const About = () => {
             </div>
           </div>
         </section>
-        <div className="flex flex-col items-center justify-center text-center mt-8">
+        <div className="flex flex-col items-center justify-center text-center lg:-mt-[100px]">
           <FaChevronDown
-            className="text-gray-600 mt-2 blink-bounce"
+            className="text-gray-600 mt-2 blink-scroll-indicator"
             size={28}
           />
         </div>
