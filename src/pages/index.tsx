@@ -7,7 +7,14 @@ import Me from "../../public/assets/Me.png";
 import { Trans } from "react-i18next";
 import Loading from "./components/Loading";
 import Head from "next/head";
-import { FaBehance, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa6";
+import {
+  FaBehance,
+  FaChevronDown,
+  FaGithub,
+  FaHandPointer,
+  FaInstagram,
+  FaLinkedin,
+} from "react-icons/fa6";
 import ContactForm from "./components/ContactForm";
 import Card from "./components/Card";
 
@@ -27,6 +34,9 @@ const About = () => {
   const [activeKey, setActiveKey] = useState<any>();
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
+
+  const containerRef = useRef(null);
+  const [showHint, setShowHint] = useState(false);
 
   const nearbyImages = [
     { src: "/assets/nearby-splash-mobile.png", width: 243, height: 150 },
@@ -131,6 +141,39 @@ const About = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    // const seen = window.sessionStorage.getItem("skillsCarouselHint");
+    // if (seen) return;
+
+    const el = containerRef.current;
+    if (!el) return;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowHint(true);
+
+          const t = setTimeout(() => {
+            setShowHint(false);
+            //window.sessionStorage.setItem("skillsCarouselHint", "1");
+          }, 10000);
+          io.disconnect();
+          return () => clearTimeout(t);
+        }
+      },
+      { threshold: 0.35 }
+    );
+
+    io.observe(el);
+    return () => io.disconnect();
+  }, ["skillsCarouselHint"]);
+
+  // const handleFirstHover = () => {
+  //   if (!showHint) return;
+  //   setShowHint(false);
+  //   window.sessionStorage.setItem("skillsCarouselHint", "1");
+  // };
+
   return (
     <>
       <Head>
@@ -201,6 +244,12 @@ const About = () => {
             </div>
           </div>
         </section>
+        <div className="flex flex-col items-center justify-center text-center mt-8">
+          <FaChevronDown
+            className="text-gray-600 mt-2 blink-bounce"
+            size={28}
+          />
+        </div>
 
         <div className="bg-gradient-to-b from-[#2a235c] via-[#181629] to-[#05020a]">
           <section
@@ -543,7 +592,21 @@ const About = () => {
                 id="carousel-container"
                 className="relative will-change-transform"
               >
-                <Carousel setActiveKey={setActiveKey} />
+                <div ref={containerRef} className="relative">
+                  <Carousel setActiveKey={setActiveKey} />
+
+                  {showHint && (
+                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center hint-overlay">
+                      <div className="flex flex-col items-center gap-1 rounded-xlpy-2 backdrop-blur-sm">
+                        <span className="text-white text-sm">{t("hint")}</span>
+                        <FaHandPointer
+                          className="text-white hint-hand"
+                          size={20}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </section>
