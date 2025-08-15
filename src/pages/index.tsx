@@ -154,7 +154,7 @@ const About = () => {
             <Image
               src={Me}
               alt="side-image"
-              className="w-full max-w-[400px] md:max-w-[600px] lg:max-w-[700px]"
+              className="w-full max-w-[400px] md:max-w-[600px] lg:max-w-[700px] lg:-mt-[100px]"
             />
           </div>
 
