@@ -234,7 +234,7 @@ const About = () => {
             </div>
           </div>
         </section>
-        <div className="flex flex-col items-center justify-center text-center lg:-mt-[100px]">
+        <div className="flex flex-col items-center justify-center text-center lg:-mt-[150px]">
           <FaChevronDown
             className="text-gray-600 mt-2 blink-scroll-indicator"
             size={28}
