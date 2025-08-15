@@ -110,6 +110,26 @@ const About = () => {
 
   const decrypted = useDecryptText(t("get_in_touch"), 200, 1000);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = document.getElementById("carousel-container");
+      const section = document.getElementById("skills");
+
+      if (!container || !section) return;
+
+      const sectionTop = section.getBoundingClientRect().top;
+      const scrollOffset = Math.max(-200, -sectionTop);
+
+      const maxScroll = section.offsetHeight - container.offsetHeight - 50;
+
+      const translateY = Math.min(scrollOffset, maxScroll);
+      container.style.transform = `translateY(${translateY}px)`;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <Head>
@@ -144,12 +164,12 @@ const About = () => {
                   onInit={(typewriter) => {
                     typewriter
                       .typeString(t("hello"))
-                      .pauseFor(800)
+                      .pauseFor(700)
                       .typeString(t("present"))
-                      .pauseFor(1000)
+                      .pauseFor(800)
                       .typeString(t("present_2"))
                       .deleteChars(7)
-                      .pauseFor(800)
+                      .pauseFor(700)
                       .typeString(t("everywhere"))
                       .start();
                   }}
@@ -241,7 +261,7 @@ const About = () => {
                 spaceBetween={20}
                 slidesPerView={1}
                 breakpoints={{
-                  640: { slidesPerView: 2, spaceBetween: 20 },
+                  400: { slidesPerView: 1.2, spaceBetween: 20 },
                 }}
                 style={{ maxWidth: "100%", width: "100%", marginTop: -300 }}
               >
@@ -453,7 +473,7 @@ const About = () => {
 
           <section
             id="skills"
-            className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start py-12 md:py-16 lg:py-16 mx-auto px-8 gap-12 max-w-7xl"
+            className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start py-12 md:py-16 lg:py-16 mx-auto px-8 gap-12 max-w-7xl lg:min-h-[600px] xl:min-h-[700px]"
           >
             <div className="text-center md:text-center lg:-mt-[200px] lg:text-left lg:text-lg max-w-3xl w-full">
               <h2 className="text-[#E5E5DD] font-bold text-4xl md:text-5xl lg:text-5xl mb-4 bold-text">
@@ -516,8 +536,11 @@ const About = () => {
               </div>
             </div> */}
             </div>
-            <div className="hidden lg:block w-full lg:w-[40%] lg:mr-[100px] relative lg:min-h-[800px] md:mt-[20px]">
-              <div className="lg:sticky lg:top-1/2 lg:mt-[50px] lg:-translate-y-1/2">
+            <div className="hidden lg:block w-full lg:w-[40%] relative">
+              <div
+                id="carousel-container"
+                className="relative will-change-transform"
+              >
                 <Carousel setActiveKey={setActiveKey} />
               </div>
             </div>
@@ -525,74 +548,69 @@ const About = () => {
 
           <section
             id="contact"
-            className="relative flex flex-col md:flex md:flex-col md:justify-center md:items-center lg:flex-row-reverse justify-around items-start mx-auto px-10 gap-12 max-w-7xl py-12 md:py-16 lg:-mt-[300px]"
+            className="relative flex flex-col md:flex md:flex-col md:justify-center md:items-center lg:flex-row-reverse items-center justify-center mx-auto px-6 gap-16 max-w-7xl py-20"
           >
-            <div className="order-3 flex justify-center lg:justify-start items-center">
-              <div className="flex flex-col max-w-3xl lg:w-[500px] w-full">
-                <h2
-                  className={`flex justify-center lg:justify-start gap-2 text-[#E5E5DD] font-bold lg:text-5xl text-4xl text-center mb-[20px] lg:text-left md:mb-[20px] lg:mt-10 lg:mb-11 ${robotoMono.className}`}
+            <div className="lg:order-3 order-2 w-full max-w-3xl lg:max-w-[500px]">
+              <h2
+                className={`flex justify-center lg:justify-start gap-2 text-[#E5E5DD] font-bold text-4xl lg:text-5xl text-center lg:text-left mb-6 ${robotoMono.className}`}
+              >
+                <ClientOnly>
+                  <div className="relative text-[#A68CFB] drop-shadow-[0_0_5px_#2a235c] uppercase w-full break-words text-4xl lg:text-5xl text-center lg:text-left">
+                    {decrypted}
+                  </div>
+                </ClientOnly>
+              </h2>
+              <p className="text-[#E5E5DD] text-center lg:text-left text-sm md:text-lg">
+                <ClientOnly>
+                  <Trans i18nKey="contact_description" t={t} />
+                </ClientOnly>
+              </p>
+
+              <div className="flex justify-center lg:justify-start gap-5 mt-10 mb-6 cursor-pointer">
+                <a
+                  href="https://github.com/7hayMuller"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <ClientOnly>
-                    <div
-                      className={`relative text-[#A68CFB] drop-shadow-[0_0_5px_#2a235c] uppercase w-full max-w-full break-words text-4xl lg:text-5xl text-center lg:text-left`}
-                    >
-                      {decrypted}
-                    </div>
-                  </ClientOnly>
-                </h2>
-                <p className="text-[#E5E5DD] text-center text-sm md:text-lg lg:text-lg lg:text-left lg:w-[600px]">
-                  <ClientOnly>
-                    <Trans i18nKey="contact_description" t={t} />
-                  </ClientOnly>
-                </p>
-                <div className="flex items-center md:flex md:justify-center lg:mt-[50px] md:mt-10 mt-10 justify-center  lg:justify-start cursor-pointer lg:mb-6">
-                  <a
-                    className="mr-5"
-                    href="https://github.com/7hayMuller"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaGithub
-                      fontSize={25}
-                      className="text-[#E5E5DD] hover:text-[#3DF58C]"
-                    />
-                  </a>
-                  <a
-                    className="mr-5"
-                    href="https://www.linkedin.com/in/thaynamuller/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaLinkedin
-                      fontSize={25}
-                      className="text-[#E5E5DD] hover:text-[#3DF58C]"
-                    />
-                  </a>
-                  <a
-                    className="mr-5"
-                    href="https://www.behance.net/thaynamuller"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaBehance
-                      fontSize={25}
-                      className="text-[#E5E5DD] hover:text-[#3DF58C]"
-                    />
-                  </a>
-                  <a
-                    href="https://www.instagram.com/th4ymuller/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaInstagram
-                      fontSize={25}
-                      className="text-[#E5E5DD] hover:text-[#3DF58C]"
-                    />
-                  </a>
-                </div>
+                  <FaGithub
+                    fontSize={25}
+                    className="text-[#E5E5DD] hover:text-[#3DF58C]"
+                  />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/thaynamuller/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaLinkedin
+                    fontSize={25}
+                    className="text-[#E5E5DD] hover:text-[#3DF58C]"
+                  />
+                </a>
+                <a
+                  href="https://www.behance.net/thaynamuller"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaBehance
+                    fontSize={25}
+                    className="text-[#E5E5DD] hover:text-[#3DF58C]"
+                  />
+                </a>
+                <a
+                  href="https://www.instagram.com/th4ymuller/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaInstagram
+                    fontSize={25}
+                    className="text-[#E5E5DD] hover:text-[#3DF58C]"
+                  />
+                </a>
               </div>
             </div>
-            <div className="order-3 lg:order-2 w-full lg:flex-[2]">
+
+            <div className="order-3 lg:order-2 w-full max-w-3xl">
               <ContactForm />
             </div>
           </section>

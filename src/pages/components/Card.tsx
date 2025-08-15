@@ -15,7 +15,7 @@ type CardProps = {
 };
 
 const Card: React.FC<CardProps> = ({
-  buttonTitle = t("Ver mais"),
+  buttonTitle = t("See more"),
   type,
   title,
   intro,
