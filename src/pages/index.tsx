@@ -148,13 +148,13 @@ const About = () => {
       <div className="overflow-hidden">
         <section
           id="hero"
-          className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col min-h-[600px] md:h-full lg:min-h-[800px] lg:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-6"
+          className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col min-h-[600px] md:h-full lg:min-h-[700px] lg:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-6"
         >
           <div className="order-1 flex justify-center items-center w-full lg:w-1/2">
             <Image
               src={Me}
               alt="side-image"
-              className="w-full max-w-[300px] md:max-w-[500px] lg:max-w-[600px]"
+              className="w-full max-w-[400px] md:max-w-[600px] lg:max-w-[700px]"
             />
           </div>
 
