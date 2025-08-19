@@ -204,7 +204,7 @@ const About = () => {
                       .pauseFor(700)
                       .typeString(t("present_2"))
                       .pauseFor(800)
-                      .deleteChars(10)
+                      .deleteChars(7)
                       .typeString(t("everywhere"))
                       .start();
                   }}
