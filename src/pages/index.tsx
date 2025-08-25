@@ -292,7 +292,7 @@ const About = () => {
             </div>
           </div>
 
-          <section className="relative max-w-7xl mx-auto px-6 lg:px-8 py-6 lg:-mt-[50px] mb-30 md:py-16 lg:py-0">
+          <section className="relative max-w-7xl mx-auto px-6 lg:px-8 py-6 lg:-mt-[50px] lg:mb-[150px] md:py-16 lg:py-0">
             <button
               className="prev-btn absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-3 bg-white/10 backdrop-blur hover:bg-white/20 transition shadow md:flex hidden"
               aria-label="Anterior"
