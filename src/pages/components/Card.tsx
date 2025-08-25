@@ -66,7 +66,7 @@ const Card: React.FC<CardProps> = ({
         style={{ marginTop: highlight ? 20 : 0 }}
       >
         {highlight && (
-          <div className="w-full h-10  mb-[100px]">
+          <div className="w-full h-10 mb-[150px]">
             <Image
               src="/assets/mobile_waves2.png"
               alt="Decoração orgânica"

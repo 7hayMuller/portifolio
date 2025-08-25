@@ -56,5 +56,7 @@
   "present_2": " & UX/UI Designer do Brasil.",
   "everywhere": "de qualquer lugar do mundo.",
   "frontend_developer_text": "DESENVOLVEDORA FRONTEND",
-  "hint": "Passe o mouse sobre os cards"
+  "hint": "Passe o mouse sobre os cards",
+  "remedia_intro": "Remedia é um app de saúde que ajuda pacientes e cuidadores a acompanhar tratamentos de forma simples e acolhedora. Com lembretes inteligentes e interface acessível, garante mais confiança e bem-estar no dia a dia.",
+  "remedia_description": "Remedia foi projetado para pessoas com necessidades especiais que devem tomar seus medicamentos pontualmente. O aplicativo possui uma interface altamente acessível e sem distrações, além de fornecer acesso a cuidadores para monitorar a adesão e apoiar o paciente. Construído com React Native e Expo, o projeto foi planejado para priorizar inclusão, simplicidade e confiabilidade no uso diário."
 }
