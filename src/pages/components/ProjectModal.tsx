@@ -83,7 +83,7 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
             autoplay={{ delay: 2500, disableOnInteraction: false }}
             spaceBetween={20}
             slidesPerView={1}
-            className="w-full max-w-[400px] md:w-1/2 md:max-w-md h-[200px] md:h-[400px]"
+            className="w-full md:w-1/2 md:max-w-md md:h-[400px]"
           >
             {modalInfo?.images?.map((each, index) => (
               <SwiperSlide
@@ -93,8 +93,8 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
                 <Image
                   src={each.src}
                   alt="Modal"
-                  width={each.width}
-                  height={each.height}
+                  width={500}
+                  height={600}
                   className="rounded-md object-contain w-full h-full"
                 />
               </SwiperSlide>
@@ -145,46 +145,50 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
               <ClientOnly>{t("see_more_in")}</ClientOnly>
             </p>
             <div className="flex justify-start gap-4">
-              {modalInfo?.links[0].figma && (
-                <a
-                  href={modalInfo?.links[0].figma ?? ""}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-[#3DF58C]"
-                >
-                  <IoLogoFigma size={30} />
-                </a>
-              )}
-              {modalInfo?.links[0].behance && (
-                <a
-                  href={modalInfo?.links[0].behance ?? ""}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-[#3DF58C]"
-                >
-                  <IoLogoBehance size={30} />
-                </a>
-              )}
-              {modalInfo?.links[0].github && (
-                <a
-                  href={modalInfo?.links[0].github ?? ""}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-[#3DF58C]"
-                >
-                  <FaGithub size={30} />
-                </a>
-              )}
-              {modalInfo?.links[0].medium && (
-                <a
-                  href={modalInfo?.links[0].medium ?? ""}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-[#3DF58C]"
-                >
-                  <SiMedium size={30} />
-                </a>
-              )}
+              {modalInfo?.links?.map((link: any, index: number) => (
+                <div key={index} className="flex gap-4">
+                  {link.figma && (
+                    <a
+                      href={link.figma}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white hover:text-[#3DF58C]"
+                    >
+                      <IoLogoFigma size={30} />
+                    </a>
+                  )}
+                  {link.behance && (
+                    <a
+                      href={link.behance}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white hover:text-[#3DF58C]"
+                    >
+                      <IoLogoBehance size={30} />
+                    </a>
+                  )}
+                  {link.github && (
+                    <a
+                      href={link.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white hover:text-[#3DF58C]"
+                    >
+                      <FaGithub size={30} />
+                    </a>
+                  )}
+                  {link.medium && (
+                    <a
+                      href={link.medium}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white hover:text-[#3DF58C]"
+                    >
+                      <SiMedium size={30} />
+                    </a>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>

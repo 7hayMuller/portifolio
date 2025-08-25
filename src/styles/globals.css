@@ -360,12 +360,18 @@ body {
   font-family: "Anton", sans-serif;
 }
 
-.container {
+.marquee-container {
   width: 100%;
   height: 480px;
   padding-top: 80px;
   padding-bottom: 80px;
   background-color: transparent;
+}
+
+@media (max-width: 500px) {
+  .marquee-container {
+    height: 200px;
+  }
 }
 
 .marquee {
@@ -524,4 +530,11 @@ body {
 .hint-hand {
   animation: hint-blink 0.65s ease-in-out infinite,
     hint-bob 1.1s ease-in-out infinite;
+}
+
+@media (max-width: 767px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
 }

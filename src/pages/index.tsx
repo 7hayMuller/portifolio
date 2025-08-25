@@ -22,28 +22,36 @@ import Image from "next/image";
 import ProjectModal from "./components/ProjectModal";
 import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import { t } from "i18next";
 import Typewriter from "typewriter-effect";
 import { anton, robotoMono } from "./_app";
 import i18n from "@/locales";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 const About = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState<any>(null);
   const [activeKey, setActiveKey] = useState<any>();
-  const [isMobile, setIsMobile] = useState(false);
-  const [isTablet, setIsTablet] = useState(false);
 
   const containerRef = useRef(null);
   const [showHint, setShowHint] = useState(false);
 
   const nearbyImages = [
-    { src: "/assets/nearby-splash-mobile.png", width: 243, height: 150 },
-    { src: "/assets/nearby-start-mobile.png", width: 243, height: 150 },
-    { src: "/assets/nearby-home-mobile.png", width: 243, height: 150 },
-    { src: "/assets/nearby-homelist-mobile.png", width: 243, height: 150 },
-    { src: "/assets/nearby-details-mobile.png", width: 243, height: 150 },
+    { src: "/assets/nearby-splash-mobile.png", width: 500, height: 500 },
+    { src: "/assets/nearby-start-mobile.png", width: 500, height: 500 },
+    { src: "/assets/nearby-home-mobile.png", width: 500, height: 500 },
+    { src: "/assets/nearby-homelist-mobile.png", width: 500, height: 500 },
+    { src: "/assets/nearby-details-mobile.png", width: 500, height: 500 },
+  ];
+
+  const remediaImages = [
+    { src: "/assets/remedia1.png", width: 243, height: 150 },
+    { src: "/assets/remedia.png", width: 243, height: 150 },
+    { src: "/assets/remedia2.png", width: 243, height: 150 },
+    { src: "/assets/remedia3.png", width: 243, height: 150 },
+    { src: "/assets/remedia4.png", width: 243, height: 150 },
+    { src: "/assets/remedia5.png", width: 243, height: 150 },
   ];
 
   const itauImages = [
@@ -62,16 +70,6 @@ const About = () => {
     { src: "/assets/portfolio.png", width: 300, height: 300 },
     { src: "/assets/portfolio_mobile.png", width: 300, height: 300 },
   ];
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 640);
-      setIsTablet(window.innerWidth >= 640 && window.innerWidth < 1024);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const useDecryptText = (text: string, delay = 50, pause = 2000) => {
     const [displayed, setDisplayed] = useState("");
@@ -270,7 +268,7 @@ const About = () => {
             className="overflow-hidden lg:w-screen lg:flex lg:justify-center"
             id="projects"
           >
-            <div className="container">
+            <div className="marquee-container">
               <div className="marquee marquee-top">
                 <div className="marquee-track">
                   <div className="content top">
@@ -294,222 +292,188 @@ const About = () => {
             </div>
           </div>
 
-          <section className="relative max-w-7xl mx-auto px-6 lg:px-8 py-12 mt-30 md:py-16 lg:py-0">
-            {isMobile || isTablet ? (
-              <Swiper
-                modules={[Autoplay]}
-                autoplay={{ delay: 2500, disableOnInteraction: false }}
-                spaceBetween={20}
-                slidesPerView={1}
-                breakpoints={{
-                  400: { slidesPerView: 1.2, spaceBetween: 20 },
-                }}
-                style={{ maxWidth: "100%", width: "100%", marginTop: -300 }}
-              >
-                <SwiperSlide className="flex justify-center items-center px-4 py-8">
-                  <div className="w-full max-w-[340px]">
-                    <Card
-                      buttonTitle={t("see_studycase")}
-                      type="UX/UI"
-                      intro={t("finny_intro")}
-                      title={t("Finny Cashback Goals")}
-                      previewVideo="/assets/finny_prev.webm"
-                      stack="Figma"
-                      onClick={() => {
-                        setModalInfo({
-                          images: finnyImages,
-                          key: "finny_description",
-                          tecnologies: ["figma"],
-                          links: [
-                            {
-                              medium:
-                                "https://medium.com/@thaynamuller88/finny-cashback-goals-db0509b21a6d",
-                            },
-                          ],
-                        });
-                        setIsModalOpen(true);
-                      }}
-                    />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="flex justify-center items-center px-4 py-8">
-                  <div className="w-full max-w-[340px]">
-                    <Card
-                      type="Front-end"
-                      title={t("Nearby")}
-                      stack="React Native, Typescript, Expo e CSS"
-                      intro={t("nearby_intro")}
-                      previewVideo="/assets/nearby_prev.webm"
-                      onClick={() => {
-                        setModalInfo({
-                          images: nearbyImages,
-                          key: "nearby",
-                          tecnologies: [
-                            "React Native",
-                            "typescript",
-                            "expo",
-                            "css",
-                          ],
-                          links: [
-                            {
-                              github:
-                                "https://github.com/7hayMuller/nlw-nearby",
-                            },
-                          ],
-                        });
-                        setIsModalOpen(true);
-                      }}
-                    />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="flex justify-center items-center px-4 py-8">
-                  <div className="w-full max-w-[340px]">
-                    <Card
-                      type="UX/UI"
-                      title={t("itau_title")}
-                      buttonTitle={t("see_studycase")}
-                      intro={t("itau_intro")}
-                      stack="Figma"
-                      previewVideo="/assets/itau_prev.webm"
-                      onClick={() => {
-                        setModalInfo({
-                          images: itauImages,
-                          key: "itau_description",
-                          tecnologies: ["figma"],
-                          links: [
-                            {
-                              figma:
-                                "https://www.figma.com/design/bWyeFyFptVlKsvX6pFO3IC/Ita%C3%BA---Prot%C3%B3tipo%2FCanais?node-id=0-1",
-                              behance:
-                                "https://www.behance.net/gallery/218042201/Ecossistema-digital-Itau",
-                            },
-                          ],
-                        });
-                        setIsModalOpen(true);
-                      }}
-                    />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="flex justify-center items-center px-4 py-8">
-                  <div className="w-full max-w-[340px]">
-                    <Card
-                      type="Front-end"
-                      intro={t("portfolio_intro")}
-                      title={t("this_portfolio")}
-                      stack="Next.js, Typescript e Tailwind"
-                      previewVideo="/assets/portfolio.webm"
-                      onClick={() => {
-                        setModalInfo({
-                          images: portfolioImages,
-                          key: "portfolio_description",
-                          tecnologies: ["next", "typescript", "tailwind"],
-                          links: [
-                            {
-                              github:
-                                "https://github.com/7hayMuller/portifolio",
-                            },
-                          ],
-                        });
-                        setIsModalOpen(true);
-                      }}
-                    />
-                  </div>
-                </SwiperSlide>
-              </Swiper>
-            ) : (
-              <div className="grid grid-cols-2 md:grid-cols-4 md:items-start md:justify-center mb-10 lg:-mt-[200px] gap-4">
-                <Card
-                  buttonTitle={t("see_studycase")}
-                  type="UX/UI"
-                  title={t("Finny Cashback Goals")}
-                  intro={t("finny_intro")}
-                  previewVideo="/assets/finny_prev.webm"
-                  stack="Figma"
-                  highlight
-                  onClick={() => {
-                    setModalInfo({
-                      images: finnyImages,
-                      key: "finny_description",
-                      tecnologies: ["figma"],
-                      links: [
-                        {
-                          medium:
-                            "https://medium.com/@thaynamuller88/finny-cashback-goals-db0509b21a6d",
-                        },
-                      ],
-                    });
-                    setIsModalOpen(true);
-                  }}
-                />
-                <Card
-                  type="Front-end"
-                  title={t("Nearby")}
-                  stack="React Native, Typescript, Expo e CSS"
-                  intro={t("nearby_intro")}
-                  previewVideo="/assets/nearby_prev.webm"
-                  onClick={() => {
-                    setModalInfo({
-                      images: nearbyImages,
-                      key: "nearby",
-                      tecnologies: [
-                        "React Native",
-                        "typescript",
-                        "expo",
-                        "css",
-                      ],
-                      links: [
-                        { github: "https://github.com/7hayMuller/nlw-nearby" },
-                      ],
-                    });
-                    setIsModalOpen(true);
-                  }}
-                />
-                <Card
-                  type="UX/UI"
-                  title={t("itau_title")}
-                  stack="Figma"
-                  previewVideo="/assets/itau_prev.webm"
-                  buttonTitle={t("see_studycase")}
-                  intro={t("itau_intro")}
-                  onClick={() => {
-                    setModalInfo({
-                      images: itauImages,
-                      key: "itau_description",
-                      tecnologies: ["figma"],
-                      links: [
-                        {
-                          figma:
-                            "https://www.figma.com/design/bWyeFyFptVlKsvX6pFO3IC/Ita%C3%BA---Prot%C3%B3tipo%2FCanais?node-id=0-1",
-                          behance:
-                            "https://www.behance.net/gallery/218042201/Ecossistema-digital-Itau",
-                        },
-                      ],
-                    });
-                    setIsModalOpen(true);
-                  }}
-                />
-                <Card
-                  type="Front-end"
-                  title={t("this_portfolio")}
-                  previewVideo="/assets/portfolio.webm"
-                  stack="Next.js, Typescript e Tailwind"
-                  intro={t("portfolio_intro")}
-                  onClick={() => {
-                    setModalInfo({
-                      images: portfolioImages,
-                      key: "portfolio_description",
-                      tecnologies: ["next", "typescript", "tailwind"],
-                      links: [
-                        {
-                          github: "https://github.com/7hayMuller/portifolio",
-                        },
-                      ],
-                    });
-                    setIsModalOpen(true);
-                  }}
-                />
-              </div>
-            )}
+          <section className="relative max-w-7xl mx-auto px-6 lg:px-8 py-6 lg:-mt-[50px] lg:mb-[150px] md:py-16 lg:py-0">
+            <button
+              className="prev-btn absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-3 bg-white/10 backdrop-blur hover:bg-white/20 transition shadow md:flex hidden"
+              aria-label="Anterior"
+            >
+              <BiChevronLeft size={25} color="#fff" />
+            </button>
+
+            <button
+              className="next-btn absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-3 bg-white/10 backdrop-blur hover:bg-white/20 transition shadow md:flex hidden"
+              aria-label="Próximo"
+            >
+              <BiChevronRight size={25} color="#fff" />
+            </button>
+
+            <Swiper
+              modules={[Autoplay, Navigation]}
+              navigation={{ prevEl: ".prev-btn", nextEl: ".next-btn" }}
+              autoplay={{ delay: 5000, disableOnInteraction: false }}
+              spaceBetween={20}
+              slidesPerView={1}
+              centeredSlides={false}
+              autoHeight={true}
+              observer={true}
+              observeParents={true}
+              breakpoints={{
+                0: { slidesPerView: 1, centeredSlides: false },
+                400: { slidesPerView: 1.1, centeredSlides: true },
+                768: { slidesPerView: 2, centeredSlides: false },
+                1024: { slidesPerView: "auto", centeredSlides: false },
+              }}
+              className="w-full overflow-visible"
+            >
+              <SwiperSlide className="flex justify-center items-stretch px-1 py-6 w-full md:!w-auto">
+                <div className="w-full max-w-[360px] md:w-[320px] lg:w-[340px]">
+                  <Card
+                    buttonTitle={t("see_studycase")}
+                    type="UX/UI + Front-end"
+                    intro={t("remedia_intro")}
+                    title={t("Remedia")}
+                    highlight
+                    previewVideo="/assets/remedia_preview.webm"
+                    stack="Figma, React Native, Typescript, Expo ..."
+                    onClick={() => {
+                      setModalInfo({
+                        images: remediaImages,
+                        key: "remedia_description",
+                        tecnologies: [
+                          "figma",
+                          "React Native",
+                          "typescript",
+                          "expo",
+                        ],
+                        links: [
+                          {
+                            medium:
+                              "https://medium.com/@thaynamuller88/problem-analysis-market-research-3aefb2f3b8cf",
+                          },
+                          {
+                            github: "https://github.com/7hayMuller/nlw-nearby",
+                          },
+                        ],
+                      });
+                      setIsModalOpen(true);
+                    }}
+                  />
+                </div>
+              </SwiperSlide>
+
+              <SwiperSlide className="flex justify-center items-stretch px-1 py-6 w-full md:!w-auto">
+                <div className="w-full max-w-[360px] md:w-[320px] lg:w-[340px]">
+                  <Card
+                    buttonTitle={t("see_studycase")}
+                    type="UX/UI"
+                    intro={t("finny_intro")}
+                    title={t("Finny Cashback Goals")}
+                    previewVideo="/assets/finny_prev.webm"
+                    stack="Figma"
+                    onClick={() => {
+                      setModalInfo({
+                        images: finnyImages,
+                        key: "finny_description",
+                        tecnologies: ["figma"],
+                        links: [
+                          {
+                            medium:
+                              "https://medium.com/@thaynamuller88/finny-cashback-goals-db0509b21a6d",
+                          },
+                        ],
+                      });
+                      setIsModalOpen(true);
+                    }}
+                  />
+                </div>
+              </SwiperSlide>
+
+              <SwiperSlide className="flex justify-center items-stretch px-1 py-6 w-full md:!w-auto">
+                <div className="w-full max-w-[360px] md:w-[320px] lg:w-[340px]">
+                  <Card
+                    type="Front-end"
+                    title={t("Nearby")}
+                    stack="React Native, Typescript, Expo e CSS"
+                    intro={t("nearby_intro")}
+                    previewVideo="/assets/nearby_prev.webm"
+                    onClick={() => {
+                      setModalInfo({
+                        images: nearbyImages,
+                        key: "nearby",
+                        tecnologies: [
+                          "React Native",
+                          "typescript",
+                          "expo",
+                          "css",
+                        ],
+                        links: [
+                          {
+                            github: "https://github.com/7hayMuller/nlw-nearby",
+                          },
+                        ],
+                      });
+                      setIsModalOpen(true);
+                    }}
+                  />
+                </div>
+              </SwiperSlide>
+
+              <SwiperSlide className="flex justify-center items-stretch px-1 py-6 w-full md:!w-auto">
+                <div className="w-full max-w-[360px] md:w-[320px] lg:w-[340px]">
+                  <Card
+                    type="UX/UI"
+                    title={t("itau_title")}
+                    buttonTitle={t("see_studycase")}
+                    intro={t("itau_intro")}
+                    stack="Figma"
+                    previewVideo="/assets/itau_prev.webm"
+                    onClick={() => {
+                      setModalInfo({
+                        images: itauImages,
+                        key: "itau_description",
+                        tecnologies: ["figma"],
+                        links: [
+                          {
+                            figma:
+                              "https://www.figma.com/design/bWyeFyFptVlKsvX6pFO3IC/Ita%C3%BA---Prot%C3%B3tipo%2FCanais?node-id=0-1",
+                          },
+                          {
+                            behance:
+                              "https://www.behance.net/gallery/218042201/Ecossistema-digital-Itau",
+                          },
+                        ],
+                      });
+                      setIsModalOpen(true);
+                    }}
+                  />
+                </div>
+              </SwiperSlide>
+
+              <SwiperSlide className="flex justify-center items-stretch px-1 py-6 w-full md:!w-auto">
+                <div className="w-full max-w-[360px] md:w-[320px] lg:w-[340px]">
+                  <Card
+                    type="Front-end"
+                    intro={t("portfolio_intro")}
+                    title={t("this_portfolio")}
+                    stack="Next.js, Typescript e Tailwind"
+                    previewVideo="/assets/portfolio.webm"
+                    onClick={() => {
+                      setModalInfo({
+                        images: portfolioImages,
+                        key: "portfolio_description",
+                        tecnologies: ["next", "typescript", "tailwind"],
+                        links: [
+                          {
+                            github: "https://github.com/7hayMuller/portifolio",
+                          },
+                        ],
+                      });
+                      setIsModalOpen(true);
+                    }}
+                  />
+                </div>
+              </SwiperSlide>
+            </Swiper>
           </section>
 
           <section
@@ -684,3 +648,120 @@ const About = () => {
 };
 
 export default About;
+// ) : (
+//   <div className="grid grid-cols-2 md:grid-cols-4 md:items-start md:justify-center mb-10 lg:-mt-[200px] gap-4">
+//     <Card
+//       buttonTitle={t("see_studycase")}
+//       type="UX/UI + Frontend"
+//       title={t("Remedia")}
+//       intro={t("finny_intro")}
+//       previewVideo="/assets/finny_prev.webm"
+//       stack="Figma"
+//       highlight
+//       onClick={() => {
+//         setModalInfo({
+//           images: finnyImages,
+//           key: "finny_description",
+//           tecnologies: ["figma"],
+//           links: [
+//             {
+//               medium:
+//                 "https://medium.com/@thaynamuller88/problem-analysis-market-research-3aefb2f3b8cf",
+//             },
+//           ],
+//         });
+//         setIsModalOpen(true);
+//       }}
+//     />
+
+//     <Card
+//       buttonTitle={t("see_studycase")}
+//       type="UX/UI"
+//       title={t("Finny Cashback Goals")}
+//       intro={t("finny_intro")}
+//       previewVideo="/assets/finny_prev.webm"
+//       stack="Figma"
+//       onClick={() => {
+//         setModalInfo({
+//           images: finnyImages,
+//           key: "finny_description",
+//           tecnologies: ["figma"],
+//           links: [
+//             {
+//               medium:
+//                 "https://medium.com/@thaynamuller88/finny-cashback-goals-db0509b21a6d",
+//             },
+//           ],
+//         });
+//         setIsModalOpen(true);
+//       }}
+//     />
+//     <Card
+//       type="Front-end"
+//       title={t("Nearby")}
+//       stack="React Native, Typescript, Expo e CSS"
+//       intro={t("nearby_intro")}
+//       previewVideo="/assets/nearby_prev.webm"
+//       onClick={() => {
+//         setModalInfo({
+//           images: nearbyImages,
+//           key: "nearby",
+//           tecnologies: [
+//             "React Native",
+//             "typescript",
+//             "expo",
+//             "css",
+//           ],
+//           links: [
+//             { github: "https://github.com/7hayMuller/nlw-nearby" },
+//           ],
+//         });
+//         setIsModalOpen(true);
+//       }}
+//     />
+//     <Card
+//       type="UX/UI"
+//       title={t("itau_title")}
+//       stack="Figma"
+//       previewVideo="/assets/itau_prev.webm"
+//       buttonTitle={t("see_studycase")}
+//       intro={t("itau_intro")}
+//       onClick={() => {
+//         setModalInfo({
+//           images: itauImages,
+//           key: "itau_description",
+//           tecnologies: ["figma"],
+//           links: [
+//             {
+//               figma:
+//                 "https://www.figma.com/design/bWyeFyFptVlKsvX6pFO3IC/Ita%C3%BA---Prot%C3%B3tipo%2FCanais?node-id=0-1",
+//               behance:
+//                 "https://www.behance.net/gallery/218042201/Ecossistema-digital-Itau",
+//             },
+//           ],
+//         });
+//         setIsModalOpen(true);
+//       }}
+//     />
+//     <Card
+//       type="Front-end"
+//       title={t("this_portfolio")}
+//       previewVideo="/assets/portfolio.webm"
+//       stack="Next.js, Typescript e Tailwind"
+//       intro={t("portfolio_intro")}
+//       onClick={() => {
+//         setModalInfo({
+//           images: portfolioImages,
+//           key: "portfolio_description",
+//           tecnologies: ["next", "typescript", "tailwind"],
+//           links: [
+//             {
+//               github: "https://github.com/7hayMuller/portifolio",
+//             },
+//           ],
+//         });
+//         setIsModalOpen(true);
+//       }}
+//     />
+//   </div>
+// )}
