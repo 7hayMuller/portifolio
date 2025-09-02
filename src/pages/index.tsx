@@ -185,13 +185,13 @@ const About = () => {
             <Image
               src={Me}
               alt="side-image"
-              className="w-full max-w-[400px] md:max-w-[600px] lg:max-w-[700px] lg:-mt-[100px]"
+              className="w-full max-w-[400px] -mt-[50px] md:max-w-[600px] lg:max-w-[700px] lg:-mt-[100px]"
             />
           </div>
 
           <div className="order-1 lg:order-2 flex flex-1 justify-center items-center w-full lg:justify-end">
             <div className="flex flex-col w-full max-w-3xl mt-5 md:mt-[50px] lg:mt-[80px] space-y-6">
-              <h2 className="text-[#E5E5DD] font-bold font-roboto text-3xl md:text-3xl lg:text-4xl lg:mb-4 text-center lg:text-left">
+              <h2 className="text-[#E5E5DD] font-bold font-roboto text-2xl md:text-3xl lg:text-4xl lg:mb-4 text-center lg:text-left">
                 <Typewriter
                   key={i18n.language}
                   onInit={(typewriter) => {
