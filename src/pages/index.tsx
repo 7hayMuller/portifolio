@@ -1,12 +1,12 @@
 "use client";
-import ClientOnly from "./components/ClientOnly";
+import ClientOnly from "../components/ClientOnly";
 
 import { motion, Variants } from "framer-motion";
-import Navbar from "./components/NavBar";
+import Navbar from "../components/NavBar";
 
 import Me from "../../public/assets/Me.png";
 import { Trans } from "react-i18next";
-import Loading from "./components/Loading";
+import Loading from "../components/Loading";
 import Head from "next/head";
 import {
   FaBehance,
@@ -15,11 +15,11 @@ import {
   FaInstagram,
   FaLinkedin,
 } from "react-icons/fa6";
-import ContactForm from "./components/ContactForm";
-import Card from "./components/Card";
+import ContactForm from "../components/ContactForm";
+import Card from "../components/Card";
 
 import Image from "next/image";
-import ProjectModal from "./components/ProjectModal";
+import ProjectModal from "../components/ProjectModal";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
@@ -29,7 +29,7 @@ import { anton, pacifico, robotoMono } from "./_app";
 
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import ShapeHero from "@/components/kokonutui/shape-hero";
-import Carousel from "./components/Carousel";
+import Carousel from "../components/Carousel";
 
 const About = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

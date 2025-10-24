@@ -2,21 +2,16 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import ReactLogo from "../../../public/assets/react.png";
-import Next from "../../../public/assets/next.png";
-import Tailwind from "../../../public/assets/tailwind.png";
-import Typescript from "../../../public/assets/typescript.png";
-import Javascript from "../../../public/assets/javascript.png";
-import Sass from "../../../public/assets/sass-logo.png";
-import Figma from "../../../public/assets/figma.png";
-
+import ReactLogo from "../../public/assets/react.png";
+import Next from "../../public/assets/next.png";
+import Tailwind from "../../public/assets/tailwind.png";
+import Typescript from "../../public/assets/typescript.png";
+import Javascript from "../../public/assets/javascript.png";
+import Sass from "../../public/assets/sass-logo.png";
+import Figma from "../../public/assets/figma.png";
 
 const Carousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  
   const [isMobile, setIsMobile] = useState(false);
- 
-  
 
   const images = [
     { key: "react", src: ReactLogo },
@@ -38,14 +33,10 @@ const Carousel = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  
   return (
-    <div
-      className="w-full flex items-center justify-center h-[400px] lg:h-[500px]"
-     
-    >
+    <div className="w-full flex items-center justify-center h-[400px] lg:h-[500px]">
       {images.map((each, index) => {
-        const position = (index - currentIndex + images.length) % images.length;
+        const position = (index + images.length) % images.length;
         const angle = position * (360 / images.length);
         const zIndex = images.length - position;
         const opacity = 0.3;
@@ -70,10 +61,7 @@ const Carousel = () => {
               filter: `brightness(${brightness})`,
             }}
           >
-            <div
-              className="glass-card flex items-center justify-center w-full h-full"
-             
-            >
+            <div className="glass-card flex items-center justify-center w-full h-full">
               <Image
                 src={each.src}
                 alt={`Slide ${index}`}

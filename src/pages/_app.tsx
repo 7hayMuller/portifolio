@@ -26,11 +26,10 @@ export const anton = Anton({
 });
 
 export const pacifico = Pacifico({
-    subsets: ["latin"],
-    weight: ["400"],
-    variable: "--font-pacifico",
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-pacifico",
 });
-
 
 const App = ({ Component, pageProps }: AppProps) => {
   const { i18n } = useTranslation();
@@ -44,7 +43,8 @@ const App = ({ Component, pageProps }: AppProps) => {
       i18n.changeLanguage("en");
       dayjs.locale("en");
     }
-  }, []);
+  }, [i18n]);
+
   return (
     <main className={raleway.className}>
       <Component {...pageProps} />
