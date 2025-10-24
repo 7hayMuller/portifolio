@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import ClientOnly from "./ClientOnly";
 import { t } from "i18next";
 
-import styles from "../../styles/navbar.module.css";
+import styles from "../styles/navbar.module.css";
 
 const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>("introduction");
@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
         {
           rootMargin: "-50% 0px -50% 0px",
           threshold: 0,
-        }
+        },
       );
 
       observer.observe(section);
