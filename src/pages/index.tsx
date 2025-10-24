@@ -118,25 +118,25 @@ const About = () => {
     "my_projects",
   ).toLocaleUpperCase()} →  `.repeat(30);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const container = document.getElementById("carousel-container");
-      const section = document.getElementById("skills");
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const container = document.getElementById("carousel-container");
+  //     const section = document.getElementById("skills");
 
-      if (!container || !section) return;
+  //     if (!container || !section) return;
 
-      const sectionTop = section.getBoundingClientRect().top;
-      const scrollOffset = Math.max(-200, -sectionTop);
+  //     const sectionTop = section.getBoundingClientRect().top;
+  //     const scrollOffset = Math.max(-200, -sectionTop);
 
-      const maxScroll = section.offsetHeight - container.offsetHeight - 50;
+  //     const maxScroll = section.offsetHeight - container.offsetHeight - 50;
 
-      const translateY = Math.min(scrollOffset, maxScroll);
-      container.style.transform = `translateY(${translateY}px)`;
-    };
+  //     const translateY = Math.min(scrollOffset, maxScroll);
+  //     container.style.transform = `translateY(${translateY}px)`;
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
 
   const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 30 },

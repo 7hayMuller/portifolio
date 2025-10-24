@@ -52,8 +52,11 @@ const ProjectModal = ({ modalInfo, onClose }: ProjectModalProps) => {
       >
         {/* Fechar modal */}
         <button
-          onClick={onClose}
-          className="absolute top-4 right-4 bg-[#3DF58C] text-black rounded-full w-8 h-8 flex items-center justify-center font-bold text-lg hover:bg-[#3DF58C]/30 transition"
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
+          className="absolute top-4 right-4 bg-[#3DF58C] text-black rounded-full w-8 h-8 flex items-center justify-center font-bold text-lg hover:bg-[#3DF58C]/30 transition z-[9999] touch-manipulation"
         >
           ✕
         </button>
