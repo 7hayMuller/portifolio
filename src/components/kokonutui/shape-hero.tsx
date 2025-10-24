@@ -53,7 +53,7 @@ function ElegantShape({
             "shadow-[0_2px_16px_-2px_rgba(255,255,255,0.04)]",
             "after:absolute after:inset-0",
             "after:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.15),transparent_70%)]",
-            "after:rounded-[inherit]"
+            "after:rounded-[inherit]",
           )}
         />
       </motion.div>
@@ -83,7 +83,6 @@ export default function ShapeHero({
 
   return (
     <div className="relative min-h-[80vh] sm:min-h-screen w-full flex items-center justify-center overflow-hidden bg-white dark:bg-transparent">
-     
       {/* Shapes */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Adapt sizes and positions per breakpoint */}
@@ -186,7 +185,7 @@ export default function ShapeHero({
               <span
                 className={cn(
                   "bg-clip-text text-[#fff]/80 bg-gradient-to-r from-indigo-300 via-black/90 to-rose-300 dark:from-indigo-300 dark:via-white/90 dark:to-rose-300",
-                  pacifico.className
+                  pacifico.className,
                 )}
               >
                 {title2}
@@ -195,9 +194,6 @@ export default function ShapeHero({
           </motion.div>
         </div>
       </div>
-
-      
-    
     </div>
   );
 }
