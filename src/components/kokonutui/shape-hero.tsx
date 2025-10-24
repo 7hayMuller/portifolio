@@ -82,9 +82,9 @@ export default function ShapeHero({
   };
 
   return (
-    <div className="relative min-h-[80vh] sm:min-h-screen w-full flex items-center justify-center overflow-hidden bg-white dark:bg-transparent">
+    <div className="relative w-full flex items-center justify-center overflow-hidden bg-white dark:bg-transparent min-h-[70vh] sm:min-h-[80vh] max-h-[500px] px-6 py-12 md:py-16">
       {/* Shapes */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden scale-[0.9] sm:scale-[1] md:scale-[1.1]">
         {/* Adapt sizes and positions per breakpoint */}
         <ElegantShape
           delay={0.3}
@@ -178,13 +178,11 @@ export default function ShapeHero({
             viewport={{ once: false, amount: 0.4 }}
           >
             <h1 className="text-7xl sm:text-8xl md:text-7xl lg:text-8xl font-bold mb-6 md:mb-8 ">
-              <span className="bg-clip-text text-[#fff]/70 bg-gradient-to-b">
-                {title1}
-              </span>
+              <span className="bg-clip-text text-[#fff]/70">{title1}</span>
               <br />
               <span
                 className={cn(
-                  "bg-clip-text text-[#fff]/80 bg-gradient-to-r from-indigo-300 via-black/90 to-rose-300 dark:from-indigo-300 dark:via-white/90 dark:to-rose-300",
+                  "bg-clip-text text-[#fff]/70 0",
                   pacifico.className,
                 )}
               >
