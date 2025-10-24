@@ -480,7 +480,7 @@ const About = () => {
 
           <section
             id="skills"
-            className="relative w-full flex flex-col lg:flex-row items-start justify-between gap-12 px-6 lg:px-16 lg:mt-[200px] py-16"
+            className="relative w-full flex flex-col lg:flex-row items-start justify-between gap-12 px-6 lg:px-16 py-16 xl:mt-[100px]"
           >
             <div className="block lg:hidden w-full md:mt-[50px] md:mb-[80px]">
               <Carousel />
