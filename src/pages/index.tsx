@@ -1,8 +1,9 @@
 "use client";
 import ClientOnly from "./components/ClientOnly";
 
+import { motion, Variants } from "framer-motion";
 import Navbar from "./components/NavBar";
-import Carousel from "./components/Carousel";
+
 import Me from "../../public/assets/Me.png";
 import { Trans } from "react-i18next";
 import Loading from "./components/Loading";
@@ -11,7 +12,6 @@ import {
   FaBehance,
   FaChevronDown,
   FaGithub,
-  FaHandPointer,
   FaInstagram,
   FaLinkedin,
 } from "react-icons/fa6";
@@ -20,22 +20,22 @@ import Card from "./components/Card";
 
 import Image from "next/image";
 import ProjectModal from "./components/ProjectModal";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import { t } from "i18next";
-import Typewriter from "typewriter-effect";
-import { anton, robotoMono } from "./_app";
-import i18n from "@/locales";
+
+import { anton, pacifico, robotoMono } from "./_app";
+
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import ShapeHero from "@/components/kokonutui/shape-hero";
+import Carousel from "./components/Carousel";
 
 const About = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState<any>(null);
-  const [activeKey, setActiveKey] = useState<any>();
 
   const containerRef = useRef(null);
-  const [showHint, setShowHint] = useState(false);
 
   const nearbyImages = [
     { src: "/assets/nearby-splash-mobile.png", width: 500, height: 500 },
@@ -78,7 +78,7 @@ const About = () => {
     const iterationRef = useRef(0);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-    const startAnimation = () => {
+    const startAnimation = useCallback(() => {
       iterationRef.current = 0;
 
       intervalRef.current = setInterval(() => {
@@ -101,23 +101,22 @@ const About = () => {
           }, pause);
         }
       }, delay);
-    };
+    }, [delay, pause, text]);
 
     useEffect(() => {
       startAnimation();
       return () => {
         if (intervalRef.current) clearInterval(intervalRef.current);
       };
-    }, [text]);
+    }, [text, startAnimation]);
 
     return displayed;
   };
+  const decrypted = useDecryptText(t("get_in_touch"), 200, 1000);
 
   const ribbonText = `UX/UI DESIGNER → ${t("frontend_developer_text")} → ${t(
-    "my_projects"
+    "my_projects",
   ).toLocaleUpperCase()} →  `.repeat(30);
-
-  const decrypted = useDecryptText(t("get_in_touch"), 200, 1000);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -139,28 +138,18 @@ const About = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShowHint(true);
-
-          const t = setTimeout(() => {
-            setShowHint(false);
-          }, 10000);
-          io.disconnect();
-          return () => clearTimeout(t);
-        }
+  const fadeInUp: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.2,
+        duration: 0.6,
+        ease: "easeOut",
       },
-      { threshold: 0.35 }
-    );
-
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+    }),
+  };
 
   return (
     <>
@@ -179,40 +168,46 @@ const About = () => {
       <div className="overflow-hidden">
         <section
           id="hero"
-          className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col min-h-[600px] md:h-full lg:min-h-[700px] lg:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-6"
+          className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col min-h-[600px] md:h-full lg:min-h-[700px] lg:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-6 "
         >
-          <div className="order-1 flex justify-center items-center w-full lg:w-1/2">
+          <motion.div
+            initial={{ opacity: 0, y: -80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{
+              duration: 1.2,
+              ease: [0.25, 1, 0.5, 1],
+            }}
+            className="order-1 flex justify-center items-center w-full lg:w-1/2 min-h-[400px]"
+          >
             <Image
               src={Me}
               alt="side-image"
               className="w-full max-w-[400px] -mt-[50px] md:max-w-[600px] lg:max-w-[700px] lg:-mt-[100px]"
             />
-          </div>
+          </motion.div>
 
-          <div className="order-1 lg:order-2 flex flex-1 justify-center items-center w-full lg:justify-end">
+          <motion.div
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{
+              duration: 1.4,
+              delay: 0.3,
+              ease: [0.25, 1, 0.5, 1],
+            }}
+            className="order-2 flex flex-1 justify-center items-center w-full lg:justify-end"
+          >
             <div className="flex flex-col w-full max-w-3xl mt-5 md:mt-[50px] lg:mt-[80px] space-y-6">
-              <h2 className="text-[#E5E5DD] font-bold font-roboto text-2xl md:text-3xl lg:text-4xl lg:mb-4 text-center lg:text-left">
-                <Typewriter
-                  key={i18n.language}
-                  onInit={(typewriter) => {
-                    typewriter
-                      .typeString(t("hello"))
-                      .pauseFor(700)
-                      .typeString(t("present"))
-                      .pauseFor(700)
-                      .typeString(t("present_2"))
-                      .pauseFor(800)
-                      .deleteChars(i18n.language === "pt" ? 10 : 7)
-                      .typeString(t("everywhere"))
-                      .start();
-                  }}
-                  options={{
-                    delay: 80,
-                    deleteSpeed: 20,
-                    loop: false,
-                  }}
-                />
-              </h2>
+              <span className="text-[#E5E5DD] font-bold text-2xl md:text-3xl lg:text-4xl  text-center lg:text-left">
+                <ClientOnly>{t("hello")}</ClientOnly>{" "}
+              </span>
+              <span className="text-[#E5E5DD] font-bold text-2xl md:text-3xl lg:text-4xl lg:mb-4 text-center lg:text-left">
+                <ClientOnly>
+                  {t("present")}
+                  {t("present_2")}
+                </ClientOnly>
+              </span>
 
               <div className="flex justify-center lg:justify-start space-x-10">
                 <button
@@ -230,7 +225,7 @@ const About = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         </section>
         <div className="flex flex-col items-center justify-center text-center lg:-mt-[150px]">
           <FaChevronDown
@@ -477,97 +472,77 @@ const About = () => {
           </section>
 
           <section
-            id="skills"
-            className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start py-12 md:py-16 lg:py-16 mx-auto px-8 gap-12 max-w-7xl lg:min-h-[600px] xl:min-h-[700px]"
+            id="skills-hero"
+            className="relative w-full flex items-center justify-center h-[500px] lg:-mt-[100px]"
           >
-            <div className="text-center md:text-center lg:-mt-[200px] lg:text-left lg:text-lg max-w-3xl w-full">
-              <h2 className="text-[#E5E5DD] font-bold text-4xl md:text-5xl lg:text-5xl mb-4 bold-text">
-                <span className="flex justify-center md:flex md:justify-center lg:justify-start">
-                  Skills
-                  <strong className="text-[#3DF58C] ml-1 mr-1">&</strong> Tools
-                </span>
-              </h2>
-              <p className="text-[#E5E5DD] lg:w-[600px] text-sm md:text-lg lg:text-lg mt-[20px]">
-                <ClientOnly>
-                  <Trans i18nKey="skills" t={t} />
-                </ClientOnly>
-              </p>
-              <br />
-              <div className="block lg:hidden w-full md:mt-[50px] md:mb-[80px]">
-                <Carousel setActiveKey={setActiveKey} />
-              </div>
-              <div className="lg:w-[600px] mt-[30px]">
-                {["react", "next", "typescript", "javascript"].includes(
-                  activeKey
-                ) ? (
-                  <ClientOnly>
-                    <p
-                      className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl ${robotoMono.className} drop-shadow-[0_0_5px_#ec4899]`}
-                    >
-                      <Trans i18nKey={"tech_skills"} t={t} />
-                    </p>
-                  </ClientOnly>
-                ) : activeKey === "figma" ? (
-                  <ClientOnly>
-                    <p
-                      className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl ${robotoMono.className} drop-shadow-[0_0_5px_#ec4899]`}
-                    >
-                      <Trans i18nKey={"figma_skills"} t={t} />
-                    </p>
-                  </ClientOnly>
-                ) : ["tailwind", "sass"]?.includes(activeKey) ? (
-                  <ClientOnly>
-                    <p
-                      className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl ${robotoMono.className} drop-shadow-[0_0_5px_#ec4899]`}
-                    >
-                      <Trans i18nKey={"design_skills"} t={t} />
-                    </p>
-                  </ClientOnly>
-                ) : (
-                  <ClientOnly>
-                    <p
-                      className={`text-[#A68CFB] text-lg md:text-2xl lg:text-2xl ${robotoMono.className} drop-shadow-[0_0_5px_#ec4899]`}
-                    >
-                      <Trans i18nKey={"tech_skills"} t={t} />
-                    </p>
-                  </ClientOnly>
-                )}
-              </div>
-              {/* <div className="lg:px-0 flex justify-center items-center md:flex md:justify-center md:items-center lg:flex lg:justify-start lg:items-start mt-[50px] md:px-8 lg:ml-[40px]">
-              <div className="blackhole">
-                <div className="megna">
-                  <div className="black"></div>
-                </div>
-              </div>
-            </div> */}
+            <ShapeHero title1="Skills &" title2="Tools" />
+          </section>
+
+          <section
+            id="skills"
+            className="relative w-full flex flex-col lg:flex-row items-start justify-between gap-12 px-6 lg:px-16 lg:mt-[200px] py-16"
+          >
+            <div className="block lg:hidden w-full md:mt-[50px] md:mb-[80px]">
+              <Carousel />
             </div>
-            <div className="hidden lg:block w-full lg:w-[40%] relative">
+            <div className="hidden lg:flex w-full lg:w-1/2 relative justify-center">
               <div
                 id="carousel-container"
                 className="relative will-change-transform"
               >
                 <div ref={containerRef} className="relative">
-                  <Carousel setActiveKey={setActiveKey} />
-
-                  {showHint && (
-                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center hint-overlay">
-                      <div className="flex flex-col items-center gap-1 rounded-xlpy-2 backdrop-blur-sm">
-                        <span className="text-white text-sm">{t("hint")}</span>
-                        <FaHandPointer
-                          className="text-white hint-hand"
-                          size={20}
-                        />
-                      </div>
-                    </div>
-                  )}
+                  <Carousel />
                 </div>
               </div>
+            </div>
+
+            <div className="w-full lg:w-1/2 mt-8 lg:mt-0 lg:pl-12 text-left flex flex-col justify-center">
+              <motion.div
+                className="flex flex-row flex-wrap items-center"
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+              >
+                <div className="text-[#E5E5DD] text-sm md:text-base text-muted-foreground leading-relaxed inline align-middle">
+                  <h3
+                    className={`${pacifico.className} text-4xl md:text-5xl text-[#A27DFB] leading-[1] align-middle mr-2`}
+                    style={{ display: "inline", verticalAlign: "baseline" }}
+                  >
+                    <ClientOnly>{t("i_develop")}</ClientOnly>
+                  </h3>
+                  <ClientOnly>
+                    <Trans i18nKey="skills" t={t} />
+                  </ClientOnly>
+                </div>
+              </motion.div>
+
+              {[2, 3, 4].map((num, i) => (
+                <motion.p
+                  key={num}
+                  className="text-[#E5E5DD] text-sm md:text-base text-muted-foreground leading-relaxed mb-4"
+                  variants={fadeInUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{
+                    delay: (i + 1) * 0.2,
+                    duration: 0.6,
+                    ease: [0.25, 0.1, 0.25, 1],
+                  }}
+                >
+                  <ClientOnly>
+                    <Trans i18nKey={`skills${num}`} t={t} />
+                  </ClientOnly>
+                </motion.p>
+              ))}
             </div>
           </section>
 
           <section
             id="contact"
-            className="relative flex flex-col md:flex md:flex-col md:justify-center md:items-center lg:flex-row-reverse items-center justify-center mx-auto px-6 gap-16 max-w-7xl py-20"
+            className="relative flex flex-col md:flex md:flex-col md:justify-center md:items-center lg:flex-row-reverse items-center justify-center mx-auto px-6 gap-16 max-w-7xl py-20 z-100"
           >
             <div className="lg:order-3 order-2 w-full max-w-3xl lg:max-w-[500px]">
               <h2
@@ -648,120 +623,3 @@ const About = () => {
 };
 
 export default About;
-// ) : (
-//   <div className="grid grid-cols-2 md:grid-cols-4 md:items-start md:justify-center mb-10 lg:-mt-[200px] gap-4">
-//     <Card
-//       buttonTitle={t("see_studycase")}
-//       type="UX/UI + Frontend"
-//       title={t("Remedia")}
-//       intro={t("finny_intro")}
-//       previewVideo="/assets/finny_prev.webm"
-//       stack="Figma"
-//       highlight
-//       onClick={() => {
-//         setModalInfo({
-//           images: finnyImages,
-//           key: "finny_description",
-//           tecnologies: ["figma"],
-//           links: [
-//             {
-//               medium:
-//                 "https://medium.com/@thaynamuller88/problem-analysis-market-research-3aefb2f3b8cf",
-//             },
-//           ],
-//         });
-//         setIsModalOpen(true);
-//       }}
-//     />
-
-//     <Card
-//       buttonTitle={t("see_studycase")}
-//       type="UX/UI"
-//       title={t("Finny Cashback Goals")}
-//       intro={t("finny_intro")}
-//       previewVideo="/assets/finny_prev.webm"
-//       stack="Figma"
-//       onClick={() => {
-//         setModalInfo({
-//           images: finnyImages,
-//           key: "finny_description",
-//           tecnologies: ["figma"],
-//           links: [
-//             {
-//               medium:
-//                 "https://medium.com/@thaynamuller88/finny-cashback-goals-db0509b21a6d",
-//             },
-//           ],
-//         });
-//         setIsModalOpen(true);
-//       }}
-//     />
-//     <Card
-//       type="Front-end"
-//       title={t("Nearby")}
-//       stack="React Native, Typescript, Expo e CSS"
-//       intro={t("nearby_intro")}
-//       previewVideo="/assets/nearby_prev.webm"
-//       onClick={() => {
-//         setModalInfo({
-//           images: nearbyImages,
-//           key: "nearby",
-//           tecnologies: [
-//             "React Native",
-//             "typescript",
-//             "expo",
-//             "css",
-//           ],
-//           links: [
-//             { github: "https://github.com/7hayMuller/nlw-nearby" },
-//           ],
-//         });
-//         setIsModalOpen(true);
-//       }}
-//     />
-//     <Card
-//       type="UX/UI"
-//       title={t("itau_title")}
-//       stack="Figma"
-//       previewVideo="/assets/itau_prev.webm"
-//       buttonTitle={t("see_studycase")}
-//       intro={t("itau_intro")}
-//       onClick={() => {
-//         setModalInfo({
-//           images: itauImages,
-//           key: "itau_description",
-//           tecnologies: ["figma"],
-//           links: [
-//             {
-//               figma:
-//                 "https://www.figma.com/design/bWyeFyFptVlKsvX6pFO3IC/Ita%C3%BA---Prot%C3%B3tipo%2FCanais?node-id=0-1",
-//               behance:
-//                 "https://www.behance.net/gallery/218042201/Ecossistema-digital-Itau",
-//             },
-//           ],
-//         });
-//         setIsModalOpen(true);
-//       }}
-//     />
-//     <Card
-//       type="Front-end"
-//       title={t("this_portfolio")}
-//       previewVideo="/assets/portfolio.webm"
-//       stack="Next.js, Typescript e Tailwind"
-//       intro={t("portfolio_intro")}
-//       onClick={() => {
-//         setModalInfo({
-//           images: portfolioImages,
-//           key: "portfolio_description",
-//           tecnologies: ["next", "typescript", "tailwind"],
-//           links: [
-//             {
-//               github: "https://github.com/7hayMuller/portifolio",
-//             },
-//           ],
-//         });
-//         setIsModalOpen(true);
-//       }}
-//     />
-//   </div>
-// )}

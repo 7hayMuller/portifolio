@@ -10,16 +10,13 @@ import Javascript from "../../../public/assets/javascript.png";
 import Sass from "../../../public/assets/sass-logo.png";
 import Figma from "../../../public/assets/figma.png";
 
-type CarouselProps = {
-  setActiveKey: (value: string) => void;
-};
 
-const Carousel: React.FC<CarouselProps> = ({ setActiveKey }) => {
+const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isFastTransition, setIsFastTransition] = useState(false);
+  
   const [isMobile, setIsMobile] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [isPaused, setIsPaused] = useState(false);
+ 
+  
 
   const images = [
     { key: "react", src: ReactLogo },
@@ -41,45 +38,22 @@ const Carousel: React.FC<CarouselProps> = ({ setActiveKey }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    if (isPaused) return;
-
-    const interval = setInterval(() => {
-      if (currentIndex === images.length - 1) {
-        setIsFastTransition(true);
-        setTimeout(() => {
-          setIsFastTransition(false);
-          setCurrentIndex(0);
-        }, 500);
-      } else {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-      }
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [currentIndex, images.length, isPaused]);
-
+  
   return (
     <div
       className="w-full flex items-center justify-center h-[400px] lg:h-[500px]"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+     
     >
       {images.map((each, index) => {
         const position = (index - currentIndex + images.length) % images.length;
         const angle = position * (360 / images.length);
         const zIndex = images.length - position;
-        const opacity =
-          hoveredIndex === null
-            ? 1 - position / (images.length - 1)
-            : hoveredIndex === index
-            ? 1
-            : 0.3;
+        const opacity = 0.3;
 
         const translateYValue = isMobile ? -120 : -180;
         const size = isMobile ? 80 : 120;
-        const scale = hoveredIndex === index ? 1.1 : 1;
-        const brightness = hoveredIndex === index ? 1.5 : 1;
+        const scale = 1;
+        const brightness = 1;
 
         const transformStyle = `rotate(${angle}deg) translateY(${translateYValue}px) rotate(-${angle}deg) scale(${scale})`;
 
@@ -97,14 +71,8 @@ const Carousel: React.FC<CarouselProps> = ({ setActiveKey }) => {
             }}
           >
             <div
-              className="glass-card flex items-center justify-center w-full h-full cursor-pointer"
-              onMouseEnter={() => {
-                setActiveKey(each.key);
-                setHoveredIndex(index);
-              }}
-              onMouseLeave={() => {
-                setHoveredIndex(null);
-              }}
+              className="glass-card flex items-center justify-center w-full h-full"
+             
             >
               <Image
                 src={each.src}
