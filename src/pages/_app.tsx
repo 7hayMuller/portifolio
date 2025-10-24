@@ -4,7 +4,7 @@ import locales from "@/locales";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import dayjs from "dayjs";
-import { Anton, Raleway, Roboto_Mono } from "next/font/google";
+import { Anton, Pacifico, Raleway, Roboto_Mono } from "next/font/google";
 export { locales };
 
 const raleway = Raleway({
@@ -24,6 +24,13 @@ export const anton = Anton({
   weight: ["400"],
   variable: "--font-anton",
 });
+
+export const pacifico = Pacifico({
+    subsets: ["latin"],
+    weight: ["400"],
+    variable: "--font-pacifico",
+});
+
 
 const App = ({ Component, pageProps }: AppProps) => {
   const { i18n } = useTranslation();
