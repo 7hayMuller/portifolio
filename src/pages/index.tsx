@@ -458,7 +458,7 @@ const About = () => {
 
           <section
             id="skills"
-            className="relative w-full flex flex-col lg:flex-row items-center justify-center mx-auto  max-w-7xl py-20 "
+            className="relative w-full flex flex-col lg:flex-row items-center justify-center mx-auto lg:max-w-7xl py-20 "
           >
             <div className="block lg:hidden w-full md:mt-[50px] md:mb-[80px]">
               <Carousel />
@@ -467,7 +467,7 @@ const About = () => {
               <Carousel />
             </div>
 
-            <div className="w-full lg:w-1/2 mt-8 lg:mt-0 lg:pl-12 text-left flex flex-col justify-center">
+            <div className="w-full lg:w-1/2 mt-8 lg:mt-0 lg:pl-12 text-left flex flex-col justify-center px-8">
               <motion.div
                 className="flex flex-row flex-wrap items-center"
                 variants={fadeInUp}
