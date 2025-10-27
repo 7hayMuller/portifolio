@@ -56,7 +56,7 @@ const ContactForm = () => {
     <div className="relative flex items-center justify-center px-0 sm:px-4 w-full max-w-[100vw] sm:max-w-xl md:max-w-2xl lg:w-[600px] xl:max-w-4xl mx-auto">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-black bg-opacity-50 p-6 rounded-lg shadow-lg"
+        className="w-full max-w-2xl bg-black bg-opacity-50 p-6 rounded-lg shadow-lg"
       >
         <div className="flex justify-center">
           {isSent && (
