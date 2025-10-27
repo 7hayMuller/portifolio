@@ -82,10 +82,30 @@ export default function ShapeHero({
   };
 
   return (
-    <div className="relative w-full flex items-center justify-center overflow-hidden bg-white dark:bg-transparent min-h-[70vh] sm:min-h-[80vh] max-h-[500px] px-6 py-12 md:py-16">
+    <div className="relative w-full flex items-center justify-center overflow-hidden bg-white dark:bg-transparent max-h-[500px] px-6 py-12 md:py-16">
       {/* Shapes */}
       <div className="absolute inset-0 overflow-hidden scale-[0.9] sm:scale-[1] md:scale-[1.1]">
         {/* Adapt sizes and positions per breakpoint */}
+        <ElegantShape
+          delay={0.3}
+          width={180}
+          height={300}
+          rotate={-8}
+          borderRadius={24}
+          gradient="from-indigo-500/[0.25] dark:from-indigo-500/[0.35]"
+          className="left-[-25%] sm:left-[-15%] top-[-5%]"
+        />
+
+        <ElegantShape
+          delay={0.3}
+          width={180}
+          height={300}
+          rotate={-8}
+          borderRadius={24}
+          gradient="from-indigo-500/[0.25] dark:from-indigo-500/[0.35]"
+          className="left-[-25%] sm:left-[-15%] top-[-5%]"
+        />
+
         <ElegantShape
           delay={0.3}
           width={180}
@@ -105,6 +125,24 @@ export default function ShapeHero({
           gradient="from-rose-500/[0.25] dark:from-rose-500/[0.35]"
           className="right-[-30%] sm:right-[-15%] bottom-[0%]"
         />
+        <ElegantShape
+          delay={0.5}
+          width={350}
+          height={120}
+          rotate={15}
+          borderRadius={20}
+          gradient="from-rose-500/[0.25] dark:from-rose-500/[0.35]"
+          className="right-[-30%] sm:right-[-15%] bottom-[0%]"
+        />
+        <ElegantShape
+          delay={0.5}
+          width={350}
+          height={120}
+          rotate={15}
+          borderRadius={20}
+          gradient="from-rose-500/[0.25] dark:from-rose-500/[0.35]"
+          className="right-[-10%] sm:right-[-25%] bottom-[0%]"
+        />
 
         <ElegantShape
           delay={0.4}
@@ -123,7 +161,7 @@ export default function ShapeHero({
           rotate={-20}
           borderRadius={12}
           gradient="from-amber-500/[0.25] dark:from-amber-500/[0.35]"
-          className="right-[5%] sm:right-[15%] top-[10%]"
+          className="right-[15%] sm:right-[15%] top-[10%]"
         />
 
         <ElegantShape
@@ -143,6 +181,15 @@ export default function ShapeHero({
           rotate={-25}
           borderRadius={28}
           gradient="from-[#3DF58C]/[0.25] dark:from-[#3DF58C]/[0.35]"
+          className="left-[30%] sm:left-[15%] bottom-[8%]"
+        />
+        <ElegantShape
+          delay={0.2}
+          width={140}
+          height={140}
+          rotate={-25}
+          borderRadius={28}
+          gradient="from-[#3DF58C]/[0.25] dark:from-[#3DF58C]/[0.35]"
           className="left-[10%] sm:left-[15%] bottom-[8%]"
         />
 
@@ -153,7 +200,7 @@ export default function ShapeHero({
           rotate={45}
           borderRadius={10}
           gradient="from-purple-500/[0.25] dark:from-purple-500/[0.35]"
-          className="left-[35%] top-[15%]"
+          className="left-[25%] top-[5%]"
         />
 
         <ElegantShape
@@ -163,7 +210,7 @@ export default function ShapeHero({
           rotate={-12}
           borderRadius={18}
           gradient="from-[#F25D76] dark:from-[#F25D76]/[0.50]"
-          className="left-[20%] top-[65%]"
+          className="left-[10%] top-[50%]"
         />
       </div>
 

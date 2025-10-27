@@ -35,8 +35,6 @@ const About = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState<any>(null);
 
-  const containerRef = useRef(null);
-
   const nearbyImages = [
     { src: "/assets/nearby-splash-mobile.png", width: 500, height: 500 },
     { src: "/assets/nearby-start-mobile.png", width: 500, height: 500 },
@@ -117,26 +115,6 @@ const About = () => {
   const ribbonText = `UX/UI DESIGNER → ${t("frontend_developer_text")} → ${t(
     "my_projects",
   ).toLocaleUpperCase()} →  `.repeat(30);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const container = document.getElementById("carousel-container");
-      const section = document.getElementById("skills-hero");
-
-      if (!container || !section) return;
-
-      const sectionTop = section.getBoundingClientRect().top;
-      const scrollOffset = Math.max(-200, -sectionTop);
-
-      const maxScroll = section.offsetHeight - container.offsetHeight - 50;
-
-      const translateY = Math.min(scrollOffset, maxScroll);
-      container.style.transform = `translateY(${translateY}px)`;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 30 },
@@ -473,27 +451,20 @@ const About = () => {
 
           <section
             id="skills-hero"
-            className="relative w-full flex items-center justify-center h-[500px] lg:-mt-[100px]"
+            className="relative w-full flex items-center justify-center h-[500px] lg:mt-[200px]"
           >
             <ShapeHero title1="Skills &" title2="Tools" />
           </section>
 
           <section
             id="skills"
-            className="relative w-full flex flex-col lg:flex-row items-start justify-between gap-12 px-6 lg:px-16 py-16 xl:mt-[100px]"
+            className="relative w-full flex flex-col lg:flex-row items-center justify-center mx-auto  max-w-7xl py-20 "
           >
             <div className="block lg:hidden w-full md:mt-[50px] md:mb-[80px]">
               <Carousel />
             </div>
-            <div className="hidden lg:flex w-full lg:w-1/2 relative justify-center">
-              <div
-                id="carousel-container"
-                className="relative will-change-transform"
-              >
-                <div ref={containerRef} className="relative">
-                  <Carousel />
-                </div>
-              </div>
+            <div className="hidden lg:flex w-full lg:w-1/2 -ml-[150px] relative justify-center">
+              <Carousel />
             </div>
 
             <div className="w-full lg:w-1/2 mt-8 lg:mt-0 lg:pl-12 text-left flex flex-col justify-center">
@@ -604,7 +575,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="order-3 lg:order-2 w-full max-w-3xl">
+            <div className="order-3 lg:order-2 w-full max-w-5xl">
               <ContactForm />
             </div>
           </section>
