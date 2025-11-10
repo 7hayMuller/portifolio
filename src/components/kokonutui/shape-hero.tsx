@@ -82,7 +82,7 @@ export default function ShapeHero({
   };
 
   return (
-    <div className="relative w-full flex items-center justify-center overflow-hidden bg-white dark:bg-transparent h-[70vh] lg:max-h-[500px] px-6 py-12 md:py-16">
+    <div className="relative w-full flex items-center justify-center overflow-hidden bg-transparent dark:bg-transparent h-[70vh] lg:max-h-[500px] px-6 py-12 md:py-16">
       {/* Shapes */}
       <div className="absolute inset-0 overflow-hidden scale-[0.9] sm:scale-[1] md:scale-[1.1]">
         {/* Adapt sizes and positions per breakpoint */}

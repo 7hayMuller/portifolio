@@ -30,6 +30,7 @@ import { anton, pacifico, robotoMono } from "./_app";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import ShapeHero from "@/components/kokonutui/shape-hero";
 import Carousel from "../components/Carousel";
+import { Timeline } from "@/components/ui/timeline";
 
 const About = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -476,7 +477,7 @@ const About = () => {
                 viewport={{ once: false, amount: 0.3 }}
                 transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
               >
-                <div className="text-[#E5E5DD] text-sm md:text-base text-muted-foreground leading-relaxed inline align-middle">
+                <div className="text-[#e5e5dd] text-sm md:text-base inline align-middle">
                   <h3
                     className={`${pacifico.className} text-4xl md:text-5xl text-[#A27DFB] leading-[1] align-middle mr-2`}
                     style={{ display: "inline", verticalAlign: "baseline" }}
@@ -492,7 +493,7 @@ const About = () => {
               {[2, 3, 4].map((num, i) => (
                 <motion.p
                   key={num}
-                  className="text-[#E5E5DD] text-sm md:text-base text-muted-foreground leading-relaxed mb-4"
+                  className="text-[#e5e5dd] text-sm md:text-base text-muted-foreground leading-relaxed mb-4"
                   variants={fadeInUp}
                   initial="hidden"
                   whileInView="visible"
@@ -510,6 +511,98 @@ const About = () => {
               ))}
             </div>
           </section>
+          <section id="timeline">
+            <Timeline
+              data={[
+                {
+                  title: "2020",
+                  content: (
+                    <p className="text-[#e5e5dd] text-sm md:text-base text-muted-foreground leading-relaxed mb-4">
+                      I transitioned from Civil Engineering to pursue a career
+                      in technology, completing a web development bootcamp
+                      promoted by a local Tech Business initiative. Shortly
+                      after, I received an offer to work as a Full Stack
+                      Developer at Neki IT — one of the largest software houses
+                      in Petrópolis, RJ — where I built my first production
+                      systems using modern JavaScript stacks and RESTful APIs.
+                    </p>
+                  ),
+                },
+                {
+                  title: "2021",
+                  content: (
+                    <p className="text-[#e5e5dd] text-sm md:text-base text-muted-foreground leading-relaxed mb-4">
+                      I joined <strong>SPOT Metrics</strong> as a Frontend
+                      Developer, where I began building scalable and data-driven
+                      interfaces using React, TypeScript, and modern front-end
+                      practices. It was the beginning of a journey focused on
+                      crafting intuitive experiences backed by strong technical
+                      implementation.
+                    </p>
+                  ),
+                },
+                {
+                  title: "2022",
+                  content: (
+                    <p className="text-[#e5e5dd] text-sm md:text-base text-muted-foreground leading-relaxed mb-4">
+                      Promoted to <strong>Mid-Level Frontend Developer</strong>,
+                      I took greater ownership of complex projects,
+                      collaborating closely with designers and backend engineers
+                      to deliver high-performance and user-focused interfaces.
+                    </p>
+                  ),
+                },
+                {
+                  title: "2023",
+                  content: (
+                    <p className="text-[#e5e5dd] text-sm md:text-base text-muted-foreground leading-relaxed mb-4">
+                      Alongside my role at SPOT Metrics, I began working as a{" "}
+                      <strong>freelance Frontend Developer</strong>, building
+                      and maintaining e-commerce experiences for nationally
+                      recognized brands such as <strong>Democrata</strong>,
+                      <strong> Bagaggio</strong>, and <strong>Tecnos</strong>.
+                      Most of these projects were developed with{" "}
+                      <strong>JavaScript (Vanilla)</strong> and the
+                      <strong> VTEX</strong> platform, giving me solid
+                      experience in web performance, conversion optimization,
+                      and client communication. I also started my degree in{" "}
+                      <strong>Systems Analysis and Development</strong>.
+                    </p>
+                  ),
+                },
+                {
+                  title: "2024",
+                  content: (
+                    <p className="text-[#e5e5dd] text-sm md:text-base text-muted-foreground leading-relaxed mb-4">
+                      I pursued a professional course in{" "}
+                      <strong>UX/UI Design</strong> at EBAC, where I developed
+                      strong skills in user research, wireframing, prototyping,
+                      and usability testing. I began applying these concepts
+                      directly at SPOT Metrics, merging design thinking with my
+                      technical expertise to enhance user experience and product
+                      usability.
+                    </p>
+                  ),
+                },
+                {
+                  title: "2025",
+                  content: (
+                    <p className="text-[#e5e5dd] text-sm md:text-base text-muted-foreground leading-relaxed mb-4">
+                      Promoted to a hybrid position as{" "}
+                      <strong>Frontend Developer & UX Designer</strong>
+                      at SPOT Metrics, I now combine design strategy and
+                      technical implementation to deliver data-driven and
+                      user-centered experiences. I lead usability testing,
+                      design prototypes, and implement accessible, scalable
+                      front-end solutions. In parallel, I continue working on
+                      freelance UX/UI projects, expanding my expertise in user
+                      research, prototyping, and creative direction.
+                    </p>
+                  ),
+                },
+              ]}
+            />
+          </section>
 
           <section
             id="contact"
@@ -517,7 +610,7 @@ const About = () => {
           >
             <div className="lg:order-3 order-2 w-full max-w-3xl lg:max-w-[500px]">
               <h2
-                className={`flex justify-center lg:justify-start gap-2 text-[#E5E5DD] font-bold text-4xl lg:text-5xl text-center lg:text-left mb-6 ${robotoMono.className}`}
+                className={`flex justify-center lg:justify-start gap-2 text-[#e5e5dd] font-bold text-4xl lg:text-5xl text-center lg:text-left mb-6 ${robotoMono.className}`}
               >
                 <ClientOnly>
                   <div className="relative text-[#A68CFB] drop-shadow-[0_0_5px_#2a235c] uppercase w-full break-words text-4xl lg:text-5xl text-center lg:text-left">
