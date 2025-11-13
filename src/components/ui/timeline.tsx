@@ -1,6 +1,8 @@
 "use client";
 import { useScroll, useTransform, motion, Variants } from "framer-motion";
+import { t } from "i18next";
 import React, { useEffect, useRef, useState } from "react";
+import ClientOnly from "../ClientOnly";
 
 interface TimelineEntry {
   title: string;
@@ -10,9 +12,20 @@ interface TimelineEntry {
 export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const [height, setHeight] = useState(0);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (ref.current) {
@@ -26,7 +39,11 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     offset: ["start 10%", "end 50%"],
   });
 
-  const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
+  const heightTransform = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, height + (isMobile ? 200 : 400)],
+  );
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   const fadeInUp: Variants = {
@@ -70,8 +87,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     >
       <div className="max-w-4xl mx-auto flex flex-col items-center justify-center text-center py-20 px-4 md:px-8 lg:px-10">
         <h2 className="text-lg md:text-4xl mb-4 text-[#e5e5dd] dark:text-[#e5e5dd] max-w-3xl">
-          Here a short brief of my journey as a Frontend developer & UX/UI
-          Designer
+          <ClientOnly>{t("timeline_title")}</ClientOnly>
         </h2>
       </div>
 

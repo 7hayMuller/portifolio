@@ -530,14 +530,7 @@ const About = () => {
                   title: "2020",
                   content: (
                     <p>
-                      Transitioned from Civil Engineering to pursue a career in
-                      technology, completing a web development bootcamp promoted
-                      by a local Tech Business initiative. Shortly after, I
-                      received an offer to work as a Full Stack Developer at
-                      Neki IT — one of the largest software houses in
-                      Petrópolis, RJ — where I built my first production systems
-                      using modern JavaScript stacks and RESTful APIs using JAVA
-                      with SpringBoot.
+                      <ClientOnly>{t("timeline_1")}</ClientOnly>
                     </p>
                   ),
                 },
@@ -545,12 +538,7 @@ const About = () => {
                   title: "2021",
                   content: (
                     <p>
-                      Joined <strong>SPOT Metrics</strong> as a Frontend
-                      Developer, where I began building scalable and data-driven
-                      interfaces using React, TypeScript, and modern front-end
-                      practices. It was the beginning of a journey focused on
-                      crafting intuitive experiences backed by strong technical
-                      implementation.
+                      <ClientOnly>{t("timeline_2")}</ClientOnly>
                     </p>
                   ),
                 },
@@ -558,10 +546,7 @@ const About = () => {
                   title: "2022",
                   content: (
                     <p>
-                      Promoted to <strong>Mid-Level Frontend Developer</strong>,
-                      I took greater ownership of complex projects,
-                      collaborating closely with designers and backend engineers
-                      to deliver high-performance and user-focused interfaces.
+                      <ClientOnly>{t("timeline_3")}</ClientOnly>
                     </p>
                   ),
                 },
@@ -569,17 +554,7 @@ const About = () => {
                   title: "2023",
                   content: (
                     <p>
-                      Alongside my role at SPOT Metrics, I began working as a{" "}
-                      <strong>freelance Frontend Developer</strong>, building
-                      and maintaining e-commerce experiences for nationally
-                      recognized brands such as <strong>Democrata</strong>,
-                      <strong> Bagaggio</strong>, and <strong>Tecnos</strong>.
-                      Most of these projects were developed with{" "}
-                      <strong>JavaScript (Vanilla)</strong> and the
-                      <strong> VTEX</strong> platform, giving me solid
-                      experience in web performance, conversion optimization,
-                      and client communication. I also started my degree in{" "}
-                      <strong>Systems Analysis and Development</strong>.
+                      <ClientOnly>{t("timeline_4")}</ClientOnly>
                     </p>
                   ),
                 },
@@ -587,13 +562,7 @@ const About = () => {
                   title: "2024",
                   content: (
                     <p>
-                      Pursued a professional course in{" "}
-                      <strong>UX/UI Design</strong> at EBAC (Escola Britânica de
-                      Artes Criativas), where I developed strong skills in user
-                      research, wireframing, prototyping, and usability testing.
-                      I began applying these concepts directly at SPOT Metrics,
-                      merging design thinking with my technical expertise to
-                      enhance user experience and product usability.
+                      <ClientOnly>{t("timeline_5")}</ClientOnly>
                     </p>
                   ),
                 },
@@ -601,15 +570,7 @@ const About = () => {
                   title: "2025",
                   content: (
                     <p>
-                      Promoted to a hybrid position as{" "}
-                      <strong>Frontend Developer & UX Designer</strong>
-                      at SPOT Metrics, I now combine design strategy and
-                      technical implementation to deliver data-driven and
-                      user-centered experiences. I lead usability testing,
-                      design prototypes, and implement accessible, scalable
-                      front-end solutions. In parallel, I continue working on
-                      freelance UX/UI projects, expanding my expertise in user
-                      research, prototyping, and creative direction.
+                      <ClientOnly>{t("timeline_6")}</ClientOnly>
                     </p>
                   ),
                 },
