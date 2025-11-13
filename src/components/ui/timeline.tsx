@@ -12,26 +12,22 @@ interface TimelineEntry {
 export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
+
   const [height, setHeight] = useState(0);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 640);
-    };
+    if (!ref.current) return;
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
+    const observer = new ResizeObserver(() => {
+      const rect = ref.current!.getBoundingClientRect();
       setHeight(rect.height);
-    }
+    });
+
+    observer.observe(ref.current);
+
+    return () => observer.disconnect();
   }, []);
 
   const { scrollYProgress } = useScroll({
@@ -39,11 +35,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     offset: ["start 10%", "end 50%"],
   });
 
-  const heightTransform = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [0, height + (isMobile ? 600 : 400)],
-  );
+  const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   const fadeInUp: Variants = {

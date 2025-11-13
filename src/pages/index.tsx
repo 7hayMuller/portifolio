@@ -216,7 +216,7 @@ const About = () => {
         <div className="bg-gradient-to-b from-[#2a235c] via-[#181629] to-[#05020a]">
           <section
             id="introduction"
-            className="flex flex-col lg:flex-row md:flex-col items-center justify-center text-center px-6 py-16 mt-[100px] mb-[100px] md:py-16 lg:py-16"
+            className="flex flex-col lg:flex-row md:flex-col items-center justify-center text-center px-6 py-16 mt-[100px] lg:mb-[100px] md:py-16 lg:py-16"
           >
             <div className="relative mb-[50px] -mt-[60px] lg:mt-0 lg:mb-0 text-[25vw] lg:text-[150px] leading-none font-anton uppercase tracking-tight w-fit">
               <span
@@ -459,11 +459,12 @@ const About = () => {
             id="skills"
             className="relative w-full flex flex-col lg:flex-row items-center justify-center mx-auto lg:max-w-7xl py-20 lg:mt-[150px] "
           >
-            <div className="flex lg:hidden -ml-[100px] md:mt-[50px] md:mb-[80px] relative justify-center">
+            <div className="flex lg:hidden  md:mt-[50px] md:mb-[80px] relative justify-center">
               <Spline
-                scene="https://prod.spline.design/tcNr92Wb1TwkqtPd/scene.splinecode"
+                scene="https://prod.spline.design/Hk2bRYLJv7OCEthv/scene.splinecode"
                 style={{ height: 500 }}
               />
+
               <div
                 className="absolute right-[12px] bottom-[20px] w-[150px] h-[40px] flex items-center justify-center 
                   bg-gradient-to-b from-[#1E1A3A] to-[#1D1A39] rounded-md z-[100] pointer-events-auto"
@@ -471,9 +472,10 @@ const About = () => {
             </div>
             <div className="hidden lg:flex w-full lg:w-1/2 -ml-[150px] relative justify-center">
               <Spline
-                scene="https://prod.spline.design/tcNr92Wb1TwkqtPd/scene.splinecode"
+                scene="https://prod.spline.design/Hk2bRYLJv7OCEthv/scene.splinecode"
                 style={{ height: 500 }}
               />
+
               <div
                 className="absolute lg:right-[12px] lg:bottom-[20px] lg:w-[150px] lg:h-[40px] flex items-center justify-center 
                   bg-gradient-to-b from-[#1C1936] to-[#1C1935] rounded-md z-[100] pointer-events-auto"
@@ -530,7 +532,11 @@ const About = () => {
                   title: "2020",
                   content: (
                     <p>
-                      <ClientOnly>{t("timeline_1")}</ClientOnly>
+                      <ClientOnly>
+                        {t(
+                          "Transitioned from Civil Engineering into technology after completing a web development bootcamp. Worked as a Full Stack Developer, building production systems with modern JavaScript frameworks and RESTful APIs using Java and Spring Boot.",
+                        )}
+                      </ClientOnly>
                     </p>
                   ),
                 },
@@ -538,7 +544,11 @@ const About = () => {
                   title: "2021",
                   content: (
                     <p>
-                      <ClientOnly>{t("timeline_2")}</ClientOnly>
+                      <ClientOnly>
+                        {t(
+                          "I joined SPOT Metrics as a Frontend Developer, where I started building scalable and data-driven interfaces using React, TypeScript, and modern front-end practices. I specialized in frontend development, the area I most connected with, beginning a journey focused on creating intuitive experiences supported by solid technical implementation.",
+                        )}
+                      </ClientOnly>
                     </p>
                   ),
                 },
@@ -546,7 +556,11 @@ const About = () => {
                   title: "2022",
                   content: (
                     <p>
-                      <ClientOnly>{t("timeline_3")}</ClientOnly>
+                      <ClientOnly>
+                        {t(
+                          "Promoted to Mid-Level Frontend Developer, I took on greater responsibility in complex projects, working closely with designers and backend engineers to deliver high-performance, user-focused interfaces.",
+                        )}
+                      </ClientOnly>
                     </p>
                   ),
                 },
@@ -554,7 +568,11 @@ const About = () => {
                   title: "2023",
                   content: (
                     <p>
-                      <ClientOnly>{t("timeline_4")}</ClientOnly>
+                      <ClientOnly>
+                        {t(
+                          "Alongside my role at SPOT Metrics, I started working as a freelance Frontend Developer through an e-commerce agency, building and maintaining online experiences for nationally recognized brands such as Democrata, Bagaggio, and Tecnos. Most of these projects were developed with JavaScript (Vanilla) and the VTEX platform, giving me solid experience in web performance, conversion optimization, and client communication. During this time, I also began my degree in Systems Analysis and Development.",
+                        )}
+                      </ClientOnly>
                     </p>
                   ),
                 },
@@ -562,7 +580,11 @@ const About = () => {
                   title: "2024",
                   content: (
                     <p>
-                      <ClientOnly>{t("timeline_5")}</ClientOnly>
+                      <ClientOnly>
+                        {t(
+                          "I completed a professional course in UX/UI Design at EBAC (British School of Creative Arts), where I developed solid skills in user research, wireframing, prototyping, and usability testing. I began applying these concepts directly at SPOT Metrics, combining design thinking with my technical expertise to improve user experience and product usability.",
+                        )}
+                      </ClientOnly>
                     </p>
                   ),
                 },
@@ -570,7 +592,11 @@ const About = () => {
                   title: "2025",
                   content: (
                     <p>
-                      <ClientOnly>{t("timeline_6")}</ClientOnly>
+                      <ClientOnly>
+                        {t(
+                          "Promoted to a hybrid role as Frontend Developer & UX Designer at SPOT Metrics, I combine design strategy with technical implementation to deliver data-driven, user-centered experiences. I lead usability testing, design prototypes, and implement accessible, scalable front-end solutions. In parallel, now , I work as freelance on UX/UI projects, expanding my expertise in user research, prototyping, and creative direction.",
+                        )}
+                      </ClientOnly>
                     </p>
                   ),
                 },
