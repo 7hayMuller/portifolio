@@ -42,7 +42,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const heightTransform = useTransform(
     scrollYProgress,
     [0, 1],
-    [0, height + (isMobile ? 200 : 400)],
+    [0, height + (isMobile ? 600 : 400)],
   );
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
