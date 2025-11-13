@@ -18,6 +18,8 @@ import {
 import ContactForm from "../components/ContactForm";
 import Card from "../components/Card";
 
+import Spline from "@splinetool/react-spline";
+
 import Image from "next/image";
 import ProjectModal from "../components/ProjectModal";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -28,8 +30,7 @@ import { t } from "i18next";
 import { anton, pacifico, robotoMono } from "./_app";
 
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-import ShapeHero from "@/components/kokonutui/shape-hero";
-import Carousel from "../components/Carousel";
+import { Timeline } from "@/components/ui/timeline";
 
 const About = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -215,7 +216,7 @@ const About = () => {
         <div className="bg-gradient-to-b from-[#2a235c] via-[#181629] to-[#05020a]">
           <section
             id="introduction"
-            className="flex flex-col lg:flex-row md:flex-col items-center justify-center text-center px-6 py-16 mt-[100px] lg:mt-0 md:py-16 lg:py-16"
+            className="flex flex-col lg:flex-row md:flex-col items-center justify-center text-center px-6 py-16 mt-[100px] mb-[100px] md:py-16 lg:py-16"
           >
             <div className="relative mb-[50px] -mt-[60px] lg:mt-0 lg:mb-0 text-[25vw] lg:text-[150px] leading-none font-anton uppercase tracking-tight w-fit">
               <span
@@ -287,7 +288,6 @@ const About = () => {
               spaceBetween={20}
               slidesPerView={1}
               centeredSlides={false}
-              autoHeight={true}
               observer={true}
               observeParents={true}
               breakpoints={{
@@ -305,7 +305,6 @@ const About = () => {
                     type="UX/UI + Front-end"
                     intro={t("remedia_intro")}
                     title={t("Remedia")}
-                    highlight
                     previewVideo="/assets/remedia_preview.webm"
                     stack="Figma, React Native, Typescript, Expo ..."
                     onClick={() => {
@@ -449,22 +448,36 @@ const About = () => {
             </Swiper>
           </section>
 
-          <section
+          {/* <section
             id="skills-hero"
             className="relative w-full flex items-center justify-center h-[500px] lg:mt-[200px]"
           >
             <ShapeHero title1="Skills &" title2="Tools" />
-          </section>
+          </section> */}
 
           <section
             id="skills"
-            className="relative w-full flex flex-col lg:flex-row items-center justify-center mx-auto lg:max-w-7xl py-20 "
+            className="relative w-full flex flex-col lg:flex-row items-center justify-center mx-auto lg:max-w-7xl py-20 lg:mt-[150px] "
           >
-            <div className="block lg:hidden w-full md:mt-[50px] md:mb-[80px]">
-              <Carousel />
+            <div className="flex lg:hidden -ml-[100px] md:mt-[50px] md:mb-[80px] relative justify-center">
+              <Spline
+                scene="https://prod.spline.design/tcNr92Wb1TwkqtPd/scene.splinecode"
+                style={{ height: 500 }}
+              />
+              <div
+                className="absolute right-[12px] bottom-[20px] w-[150px] h-[40px] flex items-center justify-center 
+                  bg-gradient-to-b from-[#1E1A3A] to-[#1D1A39] rounded-md z-[100] pointer-events-auto"
+              />
             </div>
             <div className="hidden lg:flex w-full lg:w-1/2 -ml-[150px] relative justify-center">
-              <Carousel />
+              <Spline
+                scene="https://prod.spline.design/tcNr92Wb1TwkqtPd/scene.splinecode"
+                style={{ height: 500 }}
+              />
+              <div
+                className="absolute lg:right-[12px] lg:bottom-[20px] lg:w-[150px] lg:h-[40px] flex items-center justify-center 
+                  bg-gradient-to-b from-[#1C1936] to-[#1C1935] rounded-md z-[100] pointer-events-auto"
+              />
             </div>
 
             <div className="w-full lg:w-1/2 mt-8 lg:mt-0 lg:pl-12 text-left flex flex-col justify-center px-8">
@@ -476,7 +489,7 @@ const About = () => {
                 viewport={{ once: false, amount: 0.3 }}
                 transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
               >
-                <div className="text-[#E5E5DD] text-sm md:text-base text-muted-foreground leading-relaxed inline align-middle">
+                <div className="text-[#e5e5dd] text-sm md:text-base inline align-middle">
                   <h3
                     className={`${pacifico.className} text-4xl md:text-5xl text-[#A27DFB] leading-[1] align-middle mr-2`}
                     style={{ display: "inline", verticalAlign: "baseline" }}
@@ -492,7 +505,7 @@ const About = () => {
               {[2, 3, 4].map((num, i) => (
                 <motion.p
                   key={num}
-                  className="text-[#E5E5DD] text-sm md:text-base text-muted-foreground leading-relaxed mb-4"
+                  className="text-[#e5e5dd] text-sm md:text-base mb-4"
                   variants={fadeInUp}
                   initial="hidden"
                   whileInView="visible"
@@ -510,6 +523,60 @@ const About = () => {
               ))}
             </div>
           </section>
+          <section id="timeline">
+            <Timeline
+              data={[
+                {
+                  title: "2020",
+                  content: (
+                    <p>
+                      <ClientOnly>{t("timeline_1")}</ClientOnly>
+                    </p>
+                  ),
+                },
+                {
+                  title: "2021",
+                  content: (
+                    <p>
+                      <ClientOnly>{t("timeline_2")}</ClientOnly>
+                    </p>
+                  ),
+                },
+                {
+                  title: "2022",
+                  content: (
+                    <p>
+                      <ClientOnly>{t("timeline_3")}</ClientOnly>
+                    </p>
+                  ),
+                },
+                {
+                  title: "2023",
+                  content: (
+                    <p>
+                      <ClientOnly>{t("timeline_4")}</ClientOnly>
+                    </p>
+                  ),
+                },
+                {
+                  title: "2024",
+                  content: (
+                    <p>
+                      <ClientOnly>{t("timeline_5")}</ClientOnly>
+                    </p>
+                  ),
+                },
+                {
+                  title: "2025",
+                  content: (
+                    <p>
+                      <ClientOnly>{t("timeline_6")}</ClientOnly>
+                    </p>
+                  ),
+                },
+              ]}
+            />
+          </section>
 
           <section
             id="contact"
@@ -517,7 +584,7 @@ const About = () => {
           >
             <div className="lg:order-3 order-2 w-full max-w-3xl lg:max-w-[500px]">
               <h2
-                className={`flex justify-center lg:justify-start gap-2 text-[#E5E5DD] font-bold text-4xl lg:text-5xl text-center lg:text-left mb-6 ${robotoMono.className}`}
+                className={`flex justify-center lg:justify-start gap-2 text-[#e5e5dd] font-bold text-4xl lg:text-5xl text-center lg:text-left mb-6 ${robotoMono.className}`}
               >
                 <ClientOnly>
                   <div className="relative text-[#A68CFB] drop-shadow-[0_0_5px_#2a235c] uppercase w-full break-words text-4xl lg:text-5xl text-center lg:text-left">

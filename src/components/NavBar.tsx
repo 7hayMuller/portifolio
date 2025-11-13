@@ -26,7 +26,13 @@ const Navbar: React.FC = () => {
   };
 
   useEffect(() => {
-    const sections = ["introduction", "projects", "skills", "contact"];
+    const sections = [
+      "introduction",
+      "projects",
+      "skills",
+      "timeline",
+      "contact",
+    ];
     const observers: IntersectionObserver[] = [];
 
     sections.forEach((id) => {
@@ -74,6 +80,7 @@ const Navbar: React.FC = () => {
             { id: "introduction", label: t("about") },
             { id: "projects", label: t("my_projects") },
             { id: "skills", label: t("skills_and_tools") },
+            { id: "timeline", label: t("timeline") },
             { id: "contact", label: t("contact") },
           ].map(({ id, label }) => (
             <li key={id} className="py-2 md:pr-6">

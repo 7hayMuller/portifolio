@@ -36,9 +36,6 @@ html {
   }
 }
 
-h2 {
-  font-family: "Roboto Mono", monospace !important;
-}
 
 body {
   color: var(--foreground);
