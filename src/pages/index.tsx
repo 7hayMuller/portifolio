@@ -1,4 +1,6 @@
 "use client";
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Head from "next/head";
