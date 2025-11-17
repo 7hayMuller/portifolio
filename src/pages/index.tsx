@@ -32,7 +32,6 @@ import Me from "../../public/assets/Me.png";
 import { anton, pacifico, robotoMono } from "./_app";
 
 import { t } from "i18next";
-import LazySpline from "@/components/CubeSequence";
 import CubeSequence from "@/components/CubeSequence";
 
 const useDecryptText = (text: string, delay = 50, pause = 2000) => {
@@ -75,8 +74,6 @@ const useDecryptText = (text: string, delay = 50, pause = 2000) => {
 
   return displayed;
 };
-
-// ---------------------------------------------------------------------------
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -517,7 +514,7 @@ const About = () => {
               className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start py-12 md:py-16 lg:py-16 mx-auto px-8 gap-12 max-w-7xl lg:sticky top-0 lg:max-h-[1000px]"
             >
               <div className="flex lg:hidden mt-[50px] mb-[80px] relative justify-center">
-                <LazySpline />
+                <CubeSequence />
               </div>
 
               <div
