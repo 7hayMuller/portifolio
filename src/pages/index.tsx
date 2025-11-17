@@ -134,6 +134,8 @@ const About = () => {
   ];
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const container = document.getElementById("skills-container");
     const section = document.getElementById("skills");
 
@@ -145,7 +147,6 @@ const About = () => {
 
     const update = () => {
       currentY += (targetY - currentY) * ease;
-
       container.style.transform = `translateY(${currentY}px)`;
       requestAnimationFrame(update);
     };
