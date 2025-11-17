@@ -13,7 +13,7 @@ import Loading from "../components/Loading";
 import ContactForm from "../components/ContactForm";
 import Card from "../components/Card";
 import ProjectModal from "../components/ProjectModal";
-import { Timeline } from "@/components/ui/timeline";
+import { Timeline } from "../components/ui/timeline";
 
 import { motion, Variants } from "framer-motion";
 
@@ -34,7 +34,7 @@ import Me from "../../public/assets/Me.png";
 import { anton, pacifico, robotoMono } from "./_app";
 
 import { t } from "i18next";
-import CubeSequence from "@/components/CubeSequence";
+import CubeSequence from "../components/CubeSequence";
 
 const useDecryptText = (text: string, delay = 50, pause = 2000) => {
   const [displayed, setDisplayed] = useState("");
