@@ -1,13 +1,20 @@
 "use client";
+
+import { useCallback, useEffect, useRef, useState } from "react";
+import Head from "next/head";
+import Image from "next/image";
+import { Trans } from "react-i18next";
+
 import ClientOnly from "../components/ClientOnly";
+import Navbar from "../components/NavBar";
+import Loading from "../components/Loading";
+import ContactForm from "../components/ContactForm";
+import Card from "../components/Card";
+import ProjectModal from "../components/ProjectModal";
+import { Timeline } from "@/components/ui/timeline";
 
 import { motion, Variants } from "framer-motion";
-import Navbar from "../components/NavBar";
 
-import Me from "../../public/assets/Me.png";
-import { Trans } from "react-i18next";
-import Loading from "../components/Loading";
-import Head from "next/head";
 import {
   FaBehance,
   FaChevronDown,
@@ -15,27 +22,86 @@ import {
   FaInstagram,
   FaLinkedin,
 } from "react-icons/fa6";
-import ContactForm from "../components/ContactForm";
-import Card from "../components/Card";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
-import Spline from "@splinetool/react-spline";
-
-import Image from "next/image";
-import ProjectModal from "../components/ProjectModal";
-import { useCallback, useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
-import { t } from "i18next";
+
+import Me from "../../public/assets/Me.png";
 
 import { anton, pacifico, robotoMono } from "./_app";
 
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-import { Timeline } from "@/components/ui/timeline";
+import { t } from "i18next";
+import LazySpline from "@/components/CubeSequence";
+import CubeSequence from "@/components/CubeSequence";
+
+const useDecryptText = (text: string, delay = 50, pause = 2000) => {
+  const [displayed, setDisplayed] = useState("");
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*()";
+
+  const iterationRef = useRef(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const startAnimation = useCallback(() => {
+    iterationRef.current = 0;
+
+    intervalRef.current = setInterval(() => {
+      setDisplayed(() => {
+        return text
+          .split("")
+          .map((char, i) => {
+            if (i < iterationRef.current) return text[i];
+            return characters[Math.floor(Math.random() * characters.length)];
+          })
+          .join("");
+      });
+
+      iterationRef.current += 1;
+
+      if (iterationRef.current > text.length) {
+        clearInterval(intervalRef.current!);
+        setTimeout(() => startAnimation(), pause);
+      }
+    }, delay);
+  }, [delay, pause, text]);
+
+  useEffect(() => {
+    startAnimation();
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [text, startAnimation]);
+
+  return displayed;
+};
+
+// ---------------------------------------------------------------------------
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.2,
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  }),
+};
 
 const About = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState<any>(null);
 
+  const decrypted = useDecryptText(t("get_in_touch"), 200, 1000);
+
+  const ribbonText = `UX/UI DESIGNER → ${t("frontend_developer_text")} → ${t(
+    "my_projects",
+  ).toLocaleUpperCase()} → `.repeat(15);
+
+  // Imagens
   const nearbyImages = [
     { src: "/assets/nearby-splash-mobile.png", width: 500, height: 500 },
     { src: "/assets/nearby-start-mobile.png", width: 500, height: 500 },
@@ -70,71 +136,43 @@ const About = () => {
     { src: "/assets/portfolio_mobile.png", width: 300, height: 300 },
   ];
 
-  const useDecryptText = (text: string, delay = 50, pause = 2000) => {
-    const [displayed, setDisplayed] = useState("");
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*()";
-    const iterationRef = useRef(0);
-    const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  useEffect(() => {
+    const container = document.getElementById("skills-container");
+    const section = document.getElementById("skills");
 
-    const startAnimation = useCallback(() => {
-      iterationRef.current = 0;
+    if (!container || !section) return;
 
-      intervalRef.current = setInterval(() => {
-        setDisplayed(() => {
-          return text
-            .split("")
-            .map((char, i) => {
-              if (i < iterationRef.current) return text[i];
-              return characters[Math.floor(Math.random() * characters.length)];
-            })
-            .join("");
-        });
+    let targetY = 0;
+    let currentY = 0;
+    const ease = 0.08;
 
-        iterationRef.current += 1;
+    const update = () => {
+      currentY += (targetY - currentY) * ease;
 
-        if (iterationRef.current > text.length) {
-          clearInterval(intervalRef.current!);
-          setTimeout(() => {
-            startAnimation();
-          }, pause);
-        }
-      }, delay);
-    }, [delay, pause, text]);
+      container.style.transform = `translateY(${currentY}px)`;
+      requestAnimationFrame(update);
+    };
 
-    useEffect(() => {
-      startAnimation();
-      return () => {
-        if (intervalRef.current) clearInterval(intervalRef.current);
-      };
-    }, [text, startAnimation]);
+    const handleScroll = () => {
+      const sectionTop = section.getBoundingClientRect().top;
+      const scrollOffset = Math.max(-200, -sectionTop);
+      const maxScroll = section.offsetHeight - container.offsetHeight - 50;
 
-    return displayed;
-  };
-  const decrypted = useDecryptText(t("get_in_touch"), 200, 1000);
+      targetY = Math.min(scrollOffset, maxScroll);
+    };
 
-  const ribbonText = `UX/UI DESIGNER → ${t("frontend_developer_text")} → ${t(
-    "my_projects",
-  ).toLocaleUpperCase()} →  `.repeat(30);
+    requestAnimationFrame(update);
+    window.addEventListener("scroll", handleScroll);
 
-  const fadeInUp: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.2,
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    }),
-  };
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
       <Head>
         <title>Frontend Developer | UX/UI</title>
       </Head>
+
       <Loading />
       <Navbar />
 
@@ -144,15 +182,20 @@ const About = () => {
           modalInfo={modalInfo}
         />
       )}
+
       <div className="overflow-hidden">
+        {/* ------------------------------------------------------- */}
+        {/* 🔹 HERO SECTION                                         */}
+        {/* ------------------------------------------------------- */}
+
         <section
           id="hero"
-          className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col min-h-[600px] md:h-full lg:min-h-[700px] lg:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-6 "
+          className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col min-h-[600px] md:h-full lg:min-h-[700px] lg:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-6"
         >
           <motion.div
             initial={{ opacity: 0, y: -80 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{
               duration: 1.2,
               ease: [0.25, 1, 0.5, 1],
@@ -163,13 +206,14 @@ const About = () => {
               src={Me}
               alt="side-image"
               className="w-full max-w-[400px] -mt-[50px] md:max-w-[600px] lg:max-w-[700px] lg:-mt-[100px]"
+              priority
             />
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{
               duration: 1.4,
               delay: 0.3,
@@ -178,8 +222,8 @@ const About = () => {
             className="order-2 flex flex-1 justify-center items-center w-full lg:justify-end"
           >
             <div className="flex flex-col w-full max-w-3xl mt-5 md:mt-[50px] lg:mt-[80px] space-y-6">
-              <span className="text-[#E5E5DD] font-bold text-2xl md:text-3xl lg:text-4xl  text-center lg:text-left">
-                <ClientOnly>{t("hello")}</ClientOnly>{" "}
+              <span className="text-[#E5E5DD] font-bold text-2xl md:text-3xl lg:text-4xl text-center lg:text-left">
+                <ClientOnly>{t("hello")}</ClientOnly>
               </span>
               <span className="text-[#E5E5DD] font-bold text-2xl md:text-3xl lg:text-4xl lg:mb-4 text-center lg:text-left">
                 <ClientOnly>
@@ -206,12 +250,17 @@ const About = () => {
             </div>
           </motion.div>
         </section>
+
         <div className="flex flex-col items-center justify-center text-center lg:-mt-[150px]">
           <FaChevronDown
             className="text-gray-600 mt-2 blink-scroll-indicator"
             size={28}
           />
         </div>
+
+        {/* ------------------------------------------------------- */}
+        {/* 🔹 INTRO SECTION                                        */}
+        {/* ------------------------------------------------------- */}
 
         <div className="bg-gradient-to-b from-[#2a235c] via-[#181629] to-[#05020a]">
           <section
@@ -220,7 +269,7 @@ const About = () => {
           >
             <div className="relative mb-[50px] -mt-[60px] lg:mt-0 lg:mb-0 text-[25vw] lg:text-[150px] leading-none font-anton uppercase tracking-tight w-fit">
               <span
-                className={`${anton.className} text-transparent stroke-white absolute top-0 lg:left-1/2 -translate-x-1/2 -translate-y-[0.40em] lg:-translate-y-[0.30em]  z-0`}
+                className={`${anton.className} text-transparent stroke-white absolute top-0 lg:left-1/2 -translate-x-1/2 -translate-y-[0.40em] lg:-translate-y-[0.30em] z-0`}
               >
                 <ClientOnly>{t("about")}</ClientOnly>
               </span>
@@ -238,11 +287,15 @@ const About = () => {
             </p>
           </section>
 
+          {/* ------------------------------------------------------- */}
+          {/* 🔹 RIBBON                     */}
+          {/* ------------------------------------------------------- */}
+
           <div
             className="overflow-hidden lg:w-screen lg:flex lg:justify-center"
             id="projects"
           >
-            <div className="marquee-container">
+            <div className="marquee-container select-none">
               <div className="marquee marquee-top">
                 <div className="marquee-track">
                   <div className="content top">
@@ -257,7 +310,6 @@ const About = () => {
                 <div className="marquee-track marquee-track-reverse">
                   <div className="content bottom">
                     <span>
-                      {" "}
                       <ClientOnly>{ribbonText}</ClientOnly>
                     </span>
                   </div>
@@ -266,7 +318,12 @@ const About = () => {
             </div>
           </div>
 
+          {/* ------------------------------------------------------- */}
+          {/* 🔹 PROJECTS                            */}
+          {/* ------------------------------------------------------- */}
+
           <section className="relative max-w-7xl mx-auto px-6 lg:px-8 py-6 lg:-mt-[50px] lg:mb-[150px] md:py-16 lg:py-0">
+            {/* Botões de navegação do Swiper */}
             <button
               className="prev-btn absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-3 bg-white/10 backdrop-blur hover:bg-white/20 transition shadow md:flex hidden"
               aria-label="Anterior"
@@ -284,12 +341,10 @@ const About = () => {
             <Swiper
               modules={[Autoplay, Navigation]}
               navigation={{ prevEl: ".prev-btn", nextEl: ".next-btn" }}
-              autoplay={{ delay: 5000, disableOnInteraction: false }}
+              autoplay={{ delay: 6000, disableOnInteraction: false }}
               spaceBetween={20}
               slidesPerView={1}
               centeredSlides={false}
-              observer={true}
-              observeParents={true}
               breakpoints={{
                 0: { slidesPerView: 1, centeredSlides: false },
                 400: { slidesPerView: 1.1, centeredSlides: true },
@@ -298,6 +353,7 @@ const About = () => {
               }}
               className="w-full overflow-visible"
             >
+              {/* REMEDIA */}
               <SwiperSlide className="flex justify-center items-stretch px-1 py-6 w-full md:!w-auto">
                 <div className="w-full max-w-[360px] md:w-[320px] lg:w-[340px]">
                   <Card
@@ -333,6 +389,7 @@ const About = () => {
                 </div>
               </SwiperSlide>
 
+              {/* FINNY */}
               <SwiperSlide className="flex justify-center items-stretch px-1 py-6 w-full md:!w-auto">
                 <div className="w-full max-w-[360px] md:w-[320px] lg:w-[340px]">
                   <Card
@@ -360,6 +417,7 @@ const About = () => {
                 </div>
               </SwiperSlide>
 
+              {/* NEARBY */}
               <SwiperSlide className="flex justify-center items-stretch px-1 py-6 w-full md:!w-auto">
                 <div className="w-full max-w-[360px] md:w-[320px] lg:w-[340px]">
                   <Card
@@ -390,6 +448,7 @@ const About = () => {
                 </div>
               </SwiperSlide>
 
+              {/* ITAÚ */}
               <SwiperSlide className="flex justify-center items-stretch px-1 py-6 w-full md:!w-auto">
                 <div className="w-full max-w-[360px] md:w-[320px] lg:w-[340px]">
                   <Card
@@ -421,6 +480,7 @@ const About = () => {
                 </div>
               </SwiperSlide>
 
+              {/* PORTFÓLIO */}
               <SwiperSlide className="flex justify-center items-stretch px-1 py-6 w-full md:!w-auto">
                 <div className="w-full max-w-[360px] md:w-[320px] lg:w-[340px]">
                   <Card
@@ -448,83 +508,73 @@ const About = () => {
             </Swiper>
           </section>
 
-          {/* <section
-            id="skills-hero"
-            className="relative w-full flex items-center justify-center h-[500px] lg:mt-[200px]"
-          >
-            <ShapeHero title1="Skills &" title2="Tools" />
-          </section> */}
-
-          <section
-            id="skills"
-            className="relative w-full flex flex-col lg:flex-row items-center justify-center mx-auto lg:max-w-7xl py-20 lg:mt-[150px] "
-          >
-            <div className="flex lg:hidden  md:mt-[50px] md:mb-[80px] relative justify-center">
-              <Spline
-                scene="https://prod.spline.design/Hk2bRYLJv7OCEthv/scene.splinecode"
-                style={{ height: 500 }}
-              />
+          {/* ------------------------------------------------------- */}
+          {/* 🔹 SKILLS SECTION   */}
+          {/* ------------------------------------------------------- */}
+          <div id="skills-container">
+            <section
+              id="skills"
+              className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start py-12 md:py-16 lg:py-16 mx-auto px-8 gap-12 max-w-7xl lg:sticky top-0 lg:max-h-[1000px]"
+            >
+              <div className="flex lg:hidden mt-[50px] mb-[80px] relative justify-center">
+                <LazySpline />
+              </div>
 
               <div
-                className="absolute right-[12px] bottom-[20px] w-[150px] h-[40px] flex items-center justify-center 
-                  bg-gradient-to-b from-[#1E1A3A] to-[#1D1A39] rounded-md z-[100] pointer-events-auto"
-              />
-            </div>
-            <div className="hidden lg:flex w-full lg:w-1/2 -ml-[150px] relative justify-center">
-              <Spline
-                scene="https://prod.spline.design/Hk2bRYLJv7OCEthv/scene.splinecode"
-                style={{ height: 500 }}
-              />
-
-              <div
-                className="absolute lg:right-[12px] lg:bottom-[20px] lg:w-[150px] lg:h-[40px] flex items-center justify-center 
-                  bg-gradient-to-b from-[#1C1936] to-[#1C1935] rounded-md z-[100] pointer-events-auto"
-              />
-            </div>
-
-            <div className="w-full lg:w-1/2 mt-8 lg:mt-0 lg:pl-12 text-left flex flex-col justify-center px-8">
-              <motion.div
-                className="flex flex-row flex-wrap items-center"
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }}
-                transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+                id="cube-container"
+                className="hidden lg:flex w-full lg:w-1/2 -ml-[150px] justify-center relative will-change-transform"
               >
-                <div className="text-[#e5e5dd] text-sm md:text-base inline align-middle">
-                  <h3
-                    className={`${pacifico.className} text-4xl md:text-5xl text-[#A27DFB] leading-[1] align-middle mr-2`}
-                    style={{ display: "inline", verticalAlign: "baseline" }}
-                  >
-                    <ClientOnly>{t("i_develop")}</ClientOnly>
-                  </h3>
-                  <ClientOnly>
-                    <Trans i18nKey="skills" t={t} />
-                  </ClientOnly>
-                </div>
-              </motion.div>
+                <CubeSequence />
+              </div>
 
-              {[2, 3, 4].map((num, i) => (
-                <motion.p
-                  key={num}
-                  className="text-[#e5e5dd] text-sm md:text-base mb-4"
+              {/* TEXTO */}
+              <div className="w-full lg:w-1/2 mt-8 lg:mt-0 lg:pl-12 text-left flex flex-col justify-center px-8">
+                <motion.div
+                  className="flex flex-row flex-wrap items-center"
                   variants={fadeInUp}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{
-                    delay: (i + 1) * 0.2,
-                    duration: 0.6,
-                    ease: [0.25, 0.1, 0.25, 1],
-                  }}
+                  viewport={{ once: true, amount: 0.3 }}
                 >
-                  <ClientOnly>
-                    <Trans i18nKey={`skills${num}`} t={t} />
-                  </ClientOnly>
-                </motion.p>
-              ))}
-            </div>
-          </section>
+                  <div className="text-[#e5e5dd] text-sm md:text-base inline align-middle">
+                    <h3
+                      className={`${pacifico.className} text-4xl md:text-5xl text-[#A27DFB] leading-[1] align-middle mr-2`}
+                    >
+                      <ClientOnly>{t("i_develop")}</ClientOnly>
+                    </h3>
+                    <ClientOnly>
+                      <Trans i18nKey="skills" t={t} />
+                    </ClientOnly>
+                  </div>
+                </motion.div>
+
+                {[2, 3, 4].map((num, i) => (
+                  <motion.p
+                    key={num}
+                    className="text-[#e5e5dd] text-sm md:text-base mb-4"
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{
+                      delay: (i + 1) * 0.2,
+                      duration: 0.6,
+                      ease: [0.25, 0.1, 0.25, 1],
+                    }}
+                  >
+                    <ClientOnly>
+                      <Trans i18nKey={`skills${num}`} t={t} />
+                    </ClientOnly>
+                  </motion.p>
+                ))}
+              </div>
+            </section>
+          </div>
+
+          {/* ------------------------------------------------------- */}
+          {/* 🔹 TIMELINE SECTION                                     */}
+          {/* ------------------------------------------------------- */}
+
           <section id="timeline">
             <Timeline
               data={[
@@ -604,10 +654,15 @@ const About = () => {
             />
           </section>
 
+          {/* ------------------------------------------------------- */}
+          {/* 🔹 CONTACT SECTION                                      */}
+          {/* ------------------------------------------------------- */}
+
           <section
             id="contact"
             className="relative flex flex-col md:flex md:flex-col md:justify-center md:items-center lg:flex-row-reverse items-center justify-center mx-auto px-6 gap-16 max-w-7xl py-20 z-100"
           >
+            {/* Title + Text + Socials */}
             <div className="lg:order-3 order-2 w-full max-w-3xl lg:max-w-[500px]">
               <h2
                 className={`flex justify-center lg:justify-start gap-2 text-[#e5e5dd] font-bold text-4xl lg:text-5xl text-center lg:text-left mb-6 ${robotoMono.className}`}
@@ -618,12 +673,14 @@ const About = () => {
                   </div>
                 </ClientOnly>
               </h2>
+
               <p className="text-[#E5E5DD] text-center lg:text-left text-sm md:text-lg">
                 <ClientOnly>
                   <Trans i18nKey="contact_description" t={t} />
                 </ClientOnly>
               </p>
 
+              {/* Social Links */}
               <div className="flex justify-center lg:justify-start gap-5 mt-10 mb-6 cursor-pointer">
                 <a
                   href="https://github.com/7hayMuller"
@@ -635,6 +692,7 @@ const About = () => {
                     className="text-[#E5E5DD] hover:text-[#3DF58C]"
                   />
                 </a>
+
                 <a
                   href="https://www.linkedin.com/in/thaynamuller/"
                   target="_blank"
@@ -645,6 +703,7 @@ const About = () => {
                     className="text-[#E5E5DD] hover:text-[#3DF58C]"
                   />
                 </a>
+
                 <a
                   href="https://www.behance.net/thaynamuller"
                   target="_blank"
@@ -655,6 +714,7 @@ const About = () => {
                     className="text-[#E5E5DD] hover:text-[#3DF58C]"
                   />
                 </a>
+
                 <a
                   href="https://www.instagram.com/th4ymuller/"
                   target="_blank"
@@ -668,14 +728,22 @@ const About = () => {
               </div>
             </div>
 
+            {/* Contact Form */}
             <div className="order-3 lg:order-2 w-full max-w-5xl">
               <ContactForm />
             </div>
           </section>
+
+          {/* Divider */}
           <div className="h-[1px] w-full bg-[#3DF58C] shadow-[0_0_10px_#3DF58C]"></div>
+
+          {/* ------------------------------------------------------- */}
+          {/* 🔹 FOOTER                                               */}
+          {/* ------------------------------------------------------- */}
+
           <div className="flex justify-center text-center w-full">
             <p
-              className={`text-[12px] w-[300px] md:w-[300px] mt-6 mb-6 lg:w-full text-[#E5E5DD] opacity-50 ${robotoMono.className} `}
+              className={`text-[12px] w-[300px] md:w-[300px] mt-6 mb-6 lg:w-full text-[#E5E5DD] opacity-50 ${robotoMono.className}`}
             >
               <ClientOnly>{t("made_by_me")}</ClientOnly>
             </p>

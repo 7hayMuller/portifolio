@@ -603,3 +603,8 @@ body {
   }
 }
 
+
+.parallax-bg {
+  transform: translateZ(-1px) scale(2); /* profundidade */
+  perspective: 1px;
+}
