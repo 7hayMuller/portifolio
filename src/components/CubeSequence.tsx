@@ -90,6 +90,7 @@ export default function CubeSequence() {
       st = ScrollTrigger.create({
         trigger: "#skills",
         start: "top bottom",
+
         scrub: 0.25,
 
         onUpdate: (self) => {
