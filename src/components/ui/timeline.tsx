@@ -38,11 +38,10 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 30 },
-    visible: (i: number) => ({
+    visible: () => ({
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.2,
         duration: 0.6,
         ease: "easeOut",
       },
@@ -124,7 +123,6 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.3 }}
                 transition={{
-                  delay: 0.2,
                   duration: 0.6,
                   ease: [0.25, 0.1, 0.25, 1],
                 }}
