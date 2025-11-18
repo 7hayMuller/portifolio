@@ -1,15 +1,18 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import i18n from "../locales";
 import ClientOnly from "./ClientOnly";
-import { t } from "i18next";
 
 import styles from "../styles/navbar.module.css";
 
 const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>("introduction");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { i18n } = useTranslation();
+
+  const { t } = useTranslation();
 
   const handleToggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -102,14 +105,13 @@ const Navbar: React.FC = () => {
 
       <button
         aria-label="Alternar idioma"
-        className="flex items-center absolute right-4  md:static md:mr-0 z-40"
+        className="flex items-center absolute right-4 md:static md:mr-0 z-40"
         onClick={() => {
-          i18n.changeLanguage(i18n?.language === "en" ? "pt" : "en");
+          i18n.changeLanguage(i18n.language === "en" ? "pt" : "en");
         }}
-        data-text={i18n?.language === "en" ? "PT" : "EN"}
-        suppressHydrationWarning
+        data-text={i18n.language === "en" ? "PT" : "EN"}
       >
-        {i18n?.language?.toUpperCase()}
+        {i18n.language?.toUpperCase()}
       </button>
     </nav>
   );

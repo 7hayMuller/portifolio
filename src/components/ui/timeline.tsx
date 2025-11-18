@@ -1,8 +1,6 @@
 "use client";
 import { useScroll, useTransform, motion, Variants } from "framer-motion";
-import { t } from "i18next";
 import React, { useEffect, useRef, useState } from "react";
-import ClientOnly from "../ClientOnly";
 
 interface TimelineEntry {
   title: string;
@@ -21,7 +19,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     if (!ref.current) return;
 
     const observer = new ResizeObserver(() => {
-      const rect = ref.current!.getBoundingClientRect();
+      const rect = ref.current!?.getBoundingClientRect();
       setHeight(rect.height);
     });
 
@@ -77,12 +75,6 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       className="w-full bg-transparent dark:bg-neutral-950 md:px-10"
       ref={containerRef}
     >
-      <div className="max-w-4xl mx-auto flex flex-col items-center justify-center text-center py-20 px-4 md:px-8 lg:px-10">
-        <h2 className="text-lg md:text-4xl mb-4 text-[#e5e5dd] dark:text-[#e5e5dd] max-w-3xl">
-          <ClientOnly>{t("timeline_title")}</ClientOnly>
-        </h2>
-      </div>
-
       <div ref={ref} className="relative max-w-3xl mx-auto pb-20">
         {data.map((item, index) => (
           <div

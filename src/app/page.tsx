@@ -1,17 +1,18 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import { Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 import ClientOnly from "../components/ClientOnly";
-import Navbar from "../components/NavBar";
+
 import Loading from "../components/Loading";
 import ContactForm from "../components/ContactForm";
 import Card from "../components/Card";
 import ProjectModal from "../components/ProjectModal";
 import { Timeline } from "../components/ui/timeline";
+import Spline from "@splinetool/react-spline";
 
 import { motion, Variants } from "framer-motion";
 
@@ -25,17 +26,19 @@ import {
 
 import Me from "../../public/assets/Me.png";
 
-import { anton, pacifico, robotoMono } from "./_app";
-
-import { t } from "i18next";
+import { anton, pacifico, robotoMono } from "./layout";
 
 import dynamic from "next/dynamic";
+
+const Navbar = dynamic(() => import("../components/NavBar"), {
+  ssr: false,
+});
 
 const PortfolioSwiper = dynamic(() => import("../components/Swipper"), {
   ssr: false,
 });
 
-const CubeSequence = dynamic(() => import("../components/CubeSequence"), {
+const FrameSequence = dynamic(() => import("../components/FrameSequence"), {
   ssr: false,
 });
 
@@ -46,8 +49,12 @@ const useDecryptText = (text: string, delay = 50, pause = 2000) => {
 
   const iterationRef = useRef(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const startAnimation = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
     iterationRef.current = 0;
 
     intervalRef.current = setInterval(() => {
@@ -65,17 +72,22 @@ const useDecryptText = (text: string, delay = 50, pause = 2000) => {
 
       if (iterationRef.current > text.length) {
         clearInterval(intervalRef.current!);
-        setTimeout(() => startAnimation(), pause);
+
+        timeoutRef.current = setTimeout(() => {
+          startAnimation();
+        }, pause);
       }
     }, delay);
   }, [delay, pause, text]);
 
   useEffect(() => {
     startAnimation();
+
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  }, [text, startAnimation]);
+  }, [startAnimation]);
 
   return displayed;
 };
@@ -94,14 +106,22 @@ const fadeInUp: Variants = {
 };
 
 const About = () => {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState<any>(null);
 
   const decrypted = useDecryptText(t("get_in_touch"), 200, 1000);
 
-  const ribbonText = `UX/UI DESIGNER → ${t("frontend_developer_text")} → ${t(
-    "my_projects",
-  ).toLocaleUpperCase()} → `.repeat(15);
+  const ribbonText = useMemo(() => {
+    return `UX/UI DESIGNER → ${t("frontend_developer_text")} → ${t(
+      "my_projects",
+    )?.toLocaleUpperCase()} → `.repeat(15);
+  }, [t]);
+
+  const cubeFrames = Array.from(
+    { length: 298 },
+    (_, i) => `/assets/cube-and-balls/${String(i).padStart(3, "0")}.png`,
+  );
 
   // Imagens
   const nearbyImages = [
@@ -472,11 +492,11 @@ const About = () => {
 
           {/* ------------------------------------------------------- */}
           {/* 🔹 SKILLS SECTION                                       */}
-          {/* ------------------------------------------------------- */}
+          {/* -------------------------------------------------------*/}
           <div id="skills-container">
             <section
               id="skills"
-              className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start py-12 md:py-16 lg:py-16 mx-auto px-8 gap-12 max-w-7xl lg:sticky top-0 lg:max-h-[1000px]"
+              className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start py-12 md:py-16 lg:py-16 mx-auto px-6  max-w-7xl lg:sticky top-0 lg:max-h-[1000px]"
             >
               <div className="flex lg:hidden mt-[100px] relative justify-center">
                 <Image
@@ -489,13 +509,18 @@ const About = () => {
 
               <div
                 id="cube-container"
-                className="hidden lg:flex w-full lg:w-1/2 -ml-[150px] mt-[80px] justify-center items-center"
+                className="hidden lg:flex w-1/2 -ml-[150px] mt-[80px] justify-center items-center"
               >
-                <CubeSequence />
+                <FrameSequence
+                  frameSources={cubeFrames}
+                  triggerSelector="#skills"
+                  width={1422}
+                  height={1080}
+                />
               </div>
 
               {/* TEXTO */}
-              <div className="w-full lg:w-1/2 mt-8 lg:mt-0 lg:pl-12 text-left flex flex-col justify-center px-8">
+              <div className="w-full lg:w-1/2 mt-8 lg:mt-0 lg:pl-12 text-left flex flex-col justify-center">
                 <motion.div
                   className="flex flex-row flex-wrap items-center"
                   variants={fadeInUp}
@@ -542,83 +567,98 @@ const About = () => {
           {/* 🔹 TIMELINE SECTION                                     */}
           {/* ------------------------------------------------------- */}
 
-          <section id="timeline">
-            <Timeline
-              data={[
-                {
-                  title: "2020",
-                  content: (
-                    <p>
-                      <ClientOnly>
-                        {t(
-                          "Transitioned from Civil Engineering into technology after completing a web development bootcamp. Worked as a Full Stack Developer, building production systems with modern JavaScript frameworks and RESTful APIs using Java and Spring Boot.",
-                        )}
-                      </ClientOnly>
-                    </p>
-                  ),
-                },
-                {
-                  title: "2021",
-                  content: (
-                    <p>
-                      <ClientOnly>
-                        {t(
-                          "I joined SPOT Metrics as a Frontend Developer, where I started building scalable and data-driven interfaces using React, TypeScript, and modern front-end practices. I specialized in frontend development, the area I most connected with, beginning a journey focused on creating intuitive experiences supported by solid technical implementation.",
-                        )}
-                      </ClientOnly>
-                    </p>
-                  ),
-                },
-                {
-                  title: "2022",
-                  content: (
-                    <p>
-                      <ClientOnly>
-                        {t(
-                          "Promoted to Mid-Level Frontend Developer, I took on greater responsibility in complex projects, working closely with designers and backend engineers to deliver high-performance, user-focused interfaces.",
-                        )}
-                      </ClientOnly>
-                    </p>
-                  ),
-                },
-                {
-                  title: "2023",
-                  content: (
-                    <p>
-                      <ClientOnly>
-                        {t(
-                          "Alongside my role at SPOT Metrics, I started working as a freelance Frontend Developer through an e-commerce agency, building and maintaining online experiences for nationally recognized brands such as Democrata, Bagaggio, and Tecnos. Most of these projects were developed with JavaScript (Vanilla) and the VTEX platform, giving me solid experience in web performance, conversion optimization, and client communication. During this time, I also began my degree in Systems Analysis and Development.",
-                        )}
-                      </ClientOnly>
-                    </p>
-                  ),
-                },
-                {
-                  title: "2024",
-                  content: (
-                    <p>
-                      <ClientOnly>
-                        {t(
-                          "I completed a professional course in UX/UI Design at EBAC (British School of Creative Arts), where I developed solid skills in user research, wireframing, prototyping, and usability testing. I began applying these concepts directly at SPOT Metrics, combining design thinking with my technical expertise to improve user experience and product usability.",
-                        )}
-                      </ClientOnly>
-                    </p>
-                  ),
-                },
-                {
-                  title: "2025",
-                  content: (
-                    <p>
-                      <ClientOnly>
-                        {t(
-                          "Promoted to a hybrid role as Frontend Developer & UX Designer at SPOT Metrics, I combine design strategy with technical implementation to deliver data-driven, user-centered experiences. I lead usability testing, design prototypes, and implement accessible, scalable front-end solutions. In parallel, now , I work as freelance on UX/UI projects, expanding my expertise in user research, prototyping, and creative direction.",
-                        )}
-                      </ClientOnly>
-                    </p>
-                  ),
-                },
-              ]}
-            />
+          <section
+            id="timeline"
+            className="relative min-h-[200vh] overflow-hidden mask-section"
+          >
+            <div className="fixed inset-0 z-10 ">
+              <Spline scene="https://prod.spline.design/t8REDGR78N-aTfE2/scene.splinecode" />
+            </div>
+
+            <div className="relative max-w-4xl mx-auto text-center py-20">
+              <h2 className="text-lg md:text-4xl mb-4 text-[#e5e5dd]">
+                <ClientOnly>{t("timeline_title")}</ClientOnly>
+              </h2>
+            </div>
+
+            <div className="relative mt-20">
+              <Timeline
+                data={[
+                  {
+                    title: "2020",
+                    content: (
+                      <p>
+                        <ClientOnly>
+                          {t(
+                            "Transitioned from Civil Engineering into technology after completing a web development bootcamp. Worked as a Full Stack Developer, building production systems with modern JavaScript frameworks and RESTful APIs using Java and Spring Boot.",
+                          )}
+                        </ClientOnly>
+                      </p>
+                    ),
+                  },
+                  {
+                    title: "2021",
+                    content: (
+                      <p>
+                        <ClientOnly>
+                          {t(
+                            "I joined SPOT Metrics as a Frontend Developer, where I started building scalable and data-driven interfaces using React, TypeScript, and modern front-end practices. I specialized in frontend development, the area I most connected with, beginning a journey focused on creating intuitive experiences supported by solid technical implementation.",
+                          )}
+                        </ClientOnly>
+                      </p>
+                    ),
+                  },
+                  {
+                    title: "2022",
+                    content: (
+                      <p>
+                        <ClientOnly>
+                          {t(
+                            "Promoted to Mid-Level Frontend Developer, I took on greater responsibility in complex projects, working closely with designers and backend engineers to deliver high-performance, user-focused interfaces.",
+                          )}
+                        </ClientOnly>
+                      </p>
+                    ),
+                  },
+                  {
+                    title: "2023",
+                    content: (
+                      <p>
+                        <ClientOnly>
+                          {t(
+                            "Alongside my role at SPOT Metrics, I started working as a freelance Frontend Developer through an e-commerce agency, building and maintaining online experiences for nationally recognized brands such as Democrata, Bagaggio, and Tecnos. Most of these projects were developed with JavaScript (Vanilla) and the VTEX platform, giving me solid experience in web performance, conversion optimization, and client communication. During this time, I also began my degree in Systems Analysis and Development.",
+                          )}
+                        </ClientOnly>
+                      </p>
+                    ),
+                  },
+                  {
+                    title: "2024",
+                    content: (
+                      <p>
+                        <ClientOnly>
+                          {t(
+                            "I completed a professional course in UX/UI Design at EBAC (British School of Creative Arts), where I developed solid skills in user research, wireframing, prototyping, and usability testing. I began applying these concepts directly at SPOT Metrics, combining design thinking with my technical expertise to improve user experience and product usability.",
+                          )}
+                        </ClientOnly>
+                      </p>
+                    ),
+                  },
+                  {
+                    title: "2025",
+                    content: (
+                      <p>
+                        <ClientOnly>
+                          {t(
+                            "Promoted to a hybrid role as Frontend Developer & UX Designer at SPOT Metrics, I combine design strategy with technical implementation to deliver data-driven, user-centered experiences. I lead usability testing, design prototypes, and implement accessible, scalable front-end solutions. In parallel, now , I work as freelance on UX/UI projects, expanding my expertise in user research, prototyping, and creative direction.",
+                          )}
+                        </ClientOnly>
+                      </p>
+                    ),
+                  },
+                ]}
+              />
+            </div>
           </section>
 
           {/* ------------------------------------------------------- */}

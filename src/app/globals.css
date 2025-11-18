@@ -551,3 +551,8 @@ body {
   }
 }
 
+.mask-section {
+  --mask: linear-gradient(#000 0 0);
+  mask-image: var(--mask);
+  -webkit-mask-image: var(--mask);
+}
