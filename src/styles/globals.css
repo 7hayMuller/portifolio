@@ -114,58 +114,6 @@ body {
   transform: translateY(-2px);
 }
 
-.blackhole {
-  width: 20em;
-  height: 6em;
-  transform: scaleY(0.4);
-}
-
-.blackhole .megna {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: radial-gradient(circle at center, #ff4500, #ff9900);
-  box-shadow: 0 0 30px 15px #fcbd3e, 0 0 50px 30px #fd7a4d,
-    0 0 70px 45px #ff0b6b;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  filter: blur(4px);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-.blackhole .black {
-  width: 80%;
-  height: 80%;
-  border-radius: 50%;
-  background-color: black;
-  animation: distort 3s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    filter: blur(4px);
-    box-shadow: 0 0 30px 15px #fcbd3e, 0 0 50px 30px #fd7a4d,
-      0 0 70px 45px #ff0b6b;
-  }
-  50% {
-    filter: blur(6px);
-    box-shadow: 0 0 40px 20px #fcbd3e, 0 0 60px 40px #fd7a4d,
-      0 0 80px 55px #ff0b6b;
-  }
-}
-
-@keyframes distort {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05, 0.95);
-  }
-}
-
 .custom-btn {
   font-weight: 600;
   color: #fff;
@@ -603,8 +551,3 @@ body {
   }
 }
 
-
-.parallax-bg {
-  transform: translateZ(-1px) scale(2); /* profundidade */
-  perspective: 1px;
-}
