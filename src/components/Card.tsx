@@ -77,7 +77,7 @@ const Card: React.FC<CardProps> = ({
           </div>
         )}
 
-        <span className="bg-[#004b5c] text-cyan-100 text-xs font-semibold px-2 py-1 rounded-full w-fit">
+        <span className="bg-[#004b5c] text-cyan-100 text-base font-semibold px-2 py-1 rounded-full w-fit">
           <ClientOnly>{type}</ClientOnly>
         </span>
 
@@ -85,17 +85,17 @@ const Card: React.FC<CardProps> = ({
           <ClientOnly>{title}</ClientOnly>
         </h3>
 
-        <p className="text-sm text-gray-400">
+        <p className="text-base text-gray-400">
           <ClientOnly>{stack}</ClientOnly>
         </p>
 
-        <p className="text-sm text-gray-300 leading-snug">
+        <p className="text-base text-gray-300 leading-snug">
           <ClientOnly>{intro}</ClientOnly>
         </p>
 
         <a
           href="#"
-          className="bg-gradient-to-r from-[#A27DFB] to-[#6E8CFA] text-white text-sm font-medium px-4 py-2 rounded-md w-fit mt-2 hover:opacity-90 transition"
+          className="bg-gradient-to-r from-[#A27DFB] to-[#6E8CFA] text-white  text-base font-medium px-4 py-2 rounded-md w-fit mt-2 hover:opacity-90 transition"
           onClick={onClick}
         >
           <ClientOnly>{buttonTitle}</ClientOnly>

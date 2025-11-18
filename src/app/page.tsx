@@ -14,7 +14,7 @@ import ProjectModal from "../components/ProjectModal";
 import { Timeline } from "../components/ui/timeline";
 import Spline from "@splinetool/react-spline";
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 
 import {
   FaBehance,
@@ -35,10 +35,6 @@ const Navbar = dynamic(() => import("../components/NavBar"), {
 });
 
 const PortfolioSwiper = dynamic(() => import("../components/Swipper"), {
-  ssr: false,
-});
-
-const FrameSequence = dynamic(() => import("../components/FrameSequence"), {
   ssr: false,
 });
 
@@ -92,19 +88,6 @@ const useDecryptText = (text: string, delay = 50, pause = 2000) => {
   return displayed;
 };
 
-const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.2,
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  }),
-};
-
 const About = () => {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -117,11 +100,6 @@ const About = () => {
       "my_projects",
     )?.toLocaleUpperCase()} → `.repeat(15);
   }, [t]);
-
-  const cubeFrames = Array.from(
-    { length: 298 },
-    (_, i) => `/assets/cube-and-balls/${String(i).padStart(3, "0")}.png`,
-  );
 
   // Imagens
   const nearbyImages = [
@@ -157,55 +135,6 @@ const About = () => {
     { src: "/assets/portfolio.png", width: 300, height: 300 },
     { src: "/assets/portfolio_mobile.png", width: 300, height: 300 },
   ];
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    // Apenas desktop
-    if (window.innerWidth < 1024) return;
-
-    const section = document.getElementById("skills-section");
-    const container = document.getElementById("skills-container");
-
-    if (!section || !container) return;
-
-    let targetY = 0;
-    let currentY = 0;
-    const ease = 0.08;
-
-    let raf: number;
-
-    const animate = () => {
-      currentY += (targetY - currentY) * ease;
-      section.style.transform = `translateY(${currentY}px)`;
-      raf = requestAnimationFrame(animate);
-    };
-
-    const onScroll = () => {
-      const rect = section.getBoundingClientRect();
-      const viewportH = window.innerHeight;
-
-      // Quando a section estiver entrando na tela…
-      if (rect.top <= viewportH && rect.bottom >= 0) {
-        const maxTravel = section.offsetHeight - viewportH;
-
-        // progresso entre 0 e 1
-        const progress = 1 - rect.top / viewportH;
-        const clamped = Math.max(0, Math.min(progress, 1));
-
-        // Deslocamento limitado
-        targetY = -(clamped * maxTravel);
-      }
-    };
-
-    raf = requestAnimationFrame(animate);
-    window.addEventListener("scroll", onScroll);
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(raf);
-    };
-  }, []);
 
   const slides = [
     <div
@@ -461,7 +390,7 @@ const About = () => {
               </span>
             </div>
 
-            <p className="text-[#E5E5DD] lg:ml-[150px] text-left mt-2 max-w-3xl text-sm md:text-base">
+            <p className="text-[#E5E5DD] lg:ml-[150px] text-left mt-2 max-w-3xl text-base">
               <ClientOnly>
                 <Trans i18nKey="introduction" t={t} />
               </ClientOnly>
@@ -503,7 +432,7 @@ const About = () => {
           {/* 🔹 PROJECTS                                             */}
           {/* ------------------------------------------------------- */}
 
-          <section className="relative max-w-7xl mx-auto px-6 lg:px-8 py-6 lg:-mt-[50px] lg:mb-[150px] md:py-16 lg:py-0">
+          <section className="relative max-w-7xl mx-auto px-6 lg:px-8 py-6 lg:-mt-[50px] md:py-16 lg:py-0">
             <PortfolioSwiper slides={slides} />;
           </section>
 
@@ -513,69 +442,47 @@ const About = () => {
           <div id="skills-container">
             <section
               id="skills"
-              className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start py-12 md:py-16 lg:py-16 mx-auto px-6  max-w-7xl lg:sticky top-0 lg:max-h-[700px]"
+              className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start mx-auto px-6 -mt-20 lg:mt-0 lg:mb-[200px] max-w-7xl"
             >
-              <div className="flex lg:hidden  relative justify-center">
+              {/* <div className="flex lg:hidden relative justify-center">
                 <Image
                   src="/assets/cube.png"
                   alt="Cube"
-                  width={400}
-                  height={400}
+                  width={500}
+                  height={500}
                 />
-              </div>
+              </div> */}
 
               <div
                 id="cube-container"
-                className="hidden lg:flex w-1/2 -ml-[150px] mt-[80px] justify-center items-center"
+                className="flex w-[500px] lg:w-1/2 -ml-[150px] lg:mt-[80px] justify-center items-center"
               >
-                <FrameSequence
-                  frameSources={cubeFrames}
-                  triggerSelector="#skills"
-                  width={1422}
-                  height={1080}
-                />
+                <Spline scene="https://prod.spline.design/6zAYsxG7fggjhttr/scene.splinecode" />
               </div>
 
               {/* TEXTO */}
-              <div className="w-full lg:w-1/2 mt-8 lg:mt-0 lg:pl-12 text-left flex flex-col justify-center">
-                <motion.div
-                  className="flex flex-row flex-wrap items-center"
-                  variants={fadeInUp}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                >
-                  <div className="text-[#e5e5dd] text-sm md:text-base inline align-middle">
-                    <h3
-                      className={`${pacifico.className} text-4xl md:text-5xl text-[#A27DFB] leading-[1] align-middle mr-2`}
-                    >
-                      <ClientOnly>{t("i_develop")}</ClientOnly>
-                    </h3>
+              <div className="w-full lg:w-1/2 -mt-20 lg:pl-12 text-left flex flex-col justify-center">
+                <div className="flex flex-row flex-wrap items-end text-base text-[#E5E5DD] mb-5">
+                  <h3
+                    className={`${pacifico.className} text-5xl text-[#A27DFB] leading-none mr-2 mb-2`}
+                  >
+                    <ClientOnly>{t("i_develop")}</ClientOnly>
+                  </h3>
+
+                  <span className="text-base">
                     <ClientOnly>
                       <Trans i18nKey="skills" t={t} />
                     </ClientOnly>
-                  </div>
-                </motion.div>
+                  </span>
+                </div>
 
-                {[2, 3, 4].map((num, i) => (
-                  <motion.p
-                    key={num}
-                    className="text-[#e5e5dd] text-sm md:text-base mb-4"
-                    variants={fadeInUp}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{
-                      delay: (i + 1) * 0.2,
-                      duration: 0.6,
-                      ease: [0.25, 0.1, 0.25, 1],
-                    }}
-                  >
-                    <ClientOnly>
+                <div className="text-[#E5E5DD] text-base mb-4">
+                  {[2, 3, 4].map((num, i) => (
+                    <ClientOnly key={i}>
                       <Trans i18nKey={`skills${num}`} t={t} />
                     </ClientOnly>
-                  </motion.p>
-                ))}
+                  ))}
+                </div>
               </div>
             </section>
           </div>
@@ -586,96 +493,94 @@ const About = () => {
 
           <section
             id="timeline"
-            className="relative min-h-[200vh] overflow-hidden mask-section"
+            className="relative min-h-[200vh] lg:-mt-[150px] overflow-hidden mask-section"
           >
-            <div className="hidden lg:flex fixed inset-0 z-10 ">
+            <div className="hidden lg:flex fixed inset-0 z-10">
               <Spline scene="https://prod.spline.design/t8REDGR78N-aTfE2/scene.splinecode" />
             </div>
 
             <div className="relative max-w-4xl mx-auto text-center py-20">
-              <h2 className="text-lg md:text-4xl mb-4 text-[#e5e5dd]">
+              <h2 className="text-lg md:text-4xl text-[#E5E5DD]">
                 <ClientOnly>{t("timeline_title")}</ClientOnly>
               </h2>
             </div>
 
-            <div className="relative mt-20">
-              <Timeline
-                data={[
-                  {
-                    title: "2020",
-                    content: (
-                      <p>
-                        <ClientOnly>
-                          {t(
-                            "Transitioned from Civil Engineering into technology after completing a web development bootcamp. Worked as a Full Stack Developer, building production systems with modern JavaScript frameworks and RESTful APIs using Java and Spring Boot.",
-                          )}
-                        </ClientOnly>
-                      </p>
-                    ),
-                  },
-                  {
-                    title: "2021",
-                    content: (
-                      <p>
-                        <ClientOnly>
-                          {t(
-                            "I joined SPOT Metrics as a Frontend Developer, where I started building scalable and data-driven interfaces using React, TypeScript, and modern front-end practices. I specialized in frontend development, the area I most connected with, beginning a journey focused on creating intuitive experiences supported by solid technical implementation.",
-                          )}
-                        </ClientOnly>
-                      </p>
-                    ),
-                  },
-                  {
-                    title: "2022",
-                    content: (
-                      <p>
-                        <ClientOnly>
-                          {t(
-                            "Promoted to Mid-Level Frontend Developer, I took on greater responsibility in complex projects, working closely with designers and backend engineers to deliver high-performance, user-focused interfaces.",
-                          )}
-                        </ClientOnly>
-                      </p>
-                    ),
-                  },
-                  {
-                    title: "2023",
-                    content: (
-                      <p>
-                        <ClientOnly>
-                          {t(
-                            "Alongside my role at SPOT Metrics, I started working as a freelance Frontend Developer through an e-commerce agency, building and maintaining online experiences for nationally recognized brands such as Democrata, Bagaggio, and Tecnos. Most of these projects were developed with JavaScript (Vanilla) and the VTEX platform, giving me solid experience in web performance, conversion optimization, and client communication. During this time, I also began my degree in Systems Analysis and Development.",
-                          )}
-                        </ClientOnly>
-                      </p>
-                    ),
-                  },
-                  {
-                    title: "2024",
-                    content: (
-                      <p>
-                        <ClientOnly>
-                          {t(
-                            "I completed a professional course in UX/UI Design at EBAC (British School of Creative Arts), where I developed solid skills in user research, wireframing, prototyping, and usability testing. I began applying these concepts directly at SPOT Metrics, combining design thinking with my technical expertise to improve user experience and product usability.",
-                          )}
-                        </ClientOnly>
-                      </p>
-                    ),
-                  },
-                  {
-                    title: "2025",
-                    content: (
-                      <p>
-                        <ClientOnly>
-                          {t(
-                            "Promoted to a hybrid role as Frontend Developer & UX Designer at SPOT Metrics, I combine design strategy with technical implementation to deliver data-driven, user-centered experiences. I lead usability testing, design prototypes, and implement accessible, scalable front-end solutions. In parallel, now , I work as freelance on UX/UI projects, expanding my expertise in user research, prototyping, and creative direction.",
-                          )}
-                        </ClientOnly>
-                      </p>
-                    ),
-                  },
-                ]}
-              />
-            </div>
+            <Timeline
+              data={[
+                {
+                  title: "2020",
+                  content: (
+                    <p>
+                      <ClientOnly>
+                        {t(
+                          "Transitioned from Civil Engineering into technology after completing a web development bootcamp. Worked as a Full Stack Developer, building production systems with modern JavaScript frameworks and RESTful APIs using Java and Spring Boot.",
+                        )}
+                      </ClientOnly>
+                    </p>
+                  ),
+                },
+                {
+                  title: "2021",
+                  content: (
+                    <p>
+                      <ClientOnly>
+                        {t(
+                          "I joined SPOT Metrics as a Frontend Developer, where I started building scalable and data-driven interfaces using React, TypeScript, and modern front-end practices. I specialized in frontend development, the area I most connected with, beginning a journey focused on creating intuitive experiences supported by solid technical implementation.",
+                        )}
+                      </ClientOnly>
+                    </p>
+                  ),
+                },
+                {
+                  title: "2022",
+                  content: (
+                    <p>
+                      <ClientOnly>
+                        {t(
+                          "Promoted to Mid-Level Frontend Developer, I took on greater responsibility in complex projects, working closely with designers and backend engineers to deliver high-performance, user-focused interfaces.",
+                        )}
+                      </ClientOnly>
+                    </p>
+                  ),
+                },
+                {
+                  title: "2023",
+                  content: (
+                    <p>
+                      <ClientOnly>
+                        {t(
+                          "Alongside my role at SPOT Metrics, I started working as a freelance Frontend Developer through an e-commerce agency, building and maintaining online experiences for nationally recognized brands such as Democrata, Bagaggio, and Tecnos. Most of these projects were developed with JavaScript (Vanilla) and the VTEX platform, giving me solid experience in web performance, conversion optimization, and client communication. During this time, I also began my degree in Systems Analysis and Development.",
+                        )}
+                      </ClientOnly>
+                    </p>
+                  ),
+                },
+                {
+                  title: "2024",
+                  content: (
+                    <p>
+                      <ClientOnly>
+                        {t(
+                          "I completed a professional course in UX/UI Design at EBAC (British School of Creative Arts), where I developed solid skills in user research, wireframing, prototyping, and usability testing. I began applying these concepts directly at SPOT Metrics, combining design thinking with my technical expertise to improve user experience and product usability.",
+                        )}
+                      </ClientOnly>
+                    </p>
+                  ),
+                },
+                {
+                  title: "2025",
+                  content: (
+                    <p>
+                      <ClientOnly>
+                        {t(
+                          "Promoted to a hybrid role as Frontend Developer & UX Designer at SPOT Metrics, I combine design strategy with technical implementation to deliver data-driven, user-centered experiences. I lead usability testing, design prototypes, and implement accessible, scalable front-end solutions. In parallel, now , I work as freelance on UX/UI projects, expanding my expertise in user research, prototyping, and creative direction.",
+                        )}
+                      </ClientOnly>
+                    </p>
+                  ),
+                },
+              ]}
+            />
           </section>
 
           {/* ------------------------------------------------------- */}
@@ -698,7 +603,7 @@ const About = () => {
                 </ClientOnly>
               </h2>
 
-              <p className="text-[#E5E5DD] text-center lg:text-left text-sm md:text-lg">
+              <p className="text-[#E5E5DD] text-center lg:text-left text-base md:text-lg">
                 <ClientOnly>
                   <Trans i18nKey="contact_description" t={t} />
                 </ClientOnly>

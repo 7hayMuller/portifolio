@@ -20,7 +20,7 @@ export default function FrameSequence({
   triggerSelector = "#skills",
   width = 1422,
   height = 1080,
-  scrub = 0.25,
+  scrub = 0.5,
   start = "top bottom",
 }: FrameSequenceProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -28,7 +28,6 @@ export default function FrameSequence({
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const [ready, setReady] = useState(false);
 
-  // Render frame with correct size
   const render = useCallback(
     (index: number) => {
       const canvas = canvasRef.current;
@@ -49,7 +48,6 @@ export default function FrameSequence({
     [width, height],
   );
 
-  // Preload frames
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -78,7 +76,6 @@ export default function FrameSequence({
     });
   }, [frameSources]);
 
-  // Activate animation when preload completes
   useEffect(() => {
     if (!ready) return;
 
@@ -89,7 +86,14 @@ export default function FrameSequence({
       start,
       scrub,
       onUpdate: (self) => {
-        const index = Math.floor(self.progress * (frameSources.length - 1));
+        const speed = 2.5; // AUMENTE AQUI PARA FICAR MAIS RÁPIDO
+        const maxIndex = frameSources.length - 1;
+
+        const index = Math.min(
+          Math.floor(self.progress * maxIndex * speed),
+          maxIndex,
+        );
+
         render(index);
       },
     });
