@@ -444,15 +444,6 @@ const About = () => {
               id="skills"
               className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start mx-auto px-6 -mt-20 lg:mt-0 lg:mb-[200px] max-w-7xl"
             >
-              {/* <div className="flex lg:hidden relative justify-center">
-                <Image
-                  src="/assets/cube.png"
-                  alt="Cube"
-                  width={500}
-                  height={500}
-                />
-              </div> */}
-
               <div
                 id="cube-container"
                 className="flex w-[500px] lg:w-1/2 -ml-[150px] lg:mt-[80px] justify-center items-center"
