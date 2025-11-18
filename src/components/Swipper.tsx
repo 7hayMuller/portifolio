@@ -17,14 +17,14 @@ export default function PortfolioSwiper({ slides }: { slides: any[] }) {
     <>
       <button
         ref={prevRef}
-        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-3 bg-white/10 backdrop-blur hover:bg-white/20 transition shadow md:flex hidden"
+        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-3 bg-white/10 backdrop-blur hover:bg-white/20 transition shadow flex "
       >
         <BiChevronLeft size={25} color="#fff" />
       </button>
 
       <button
         ref={nextRef}
-        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-3 bg-white/10 backdrop-blur hover:bg-white/20 transition shadow md:flex hidden"
+        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-3 bg-white/10 backdrop-blur hover:bg-white/20 transition shadow flex"
       >
         <BiChevronRight size={25} color="#fff" />
       </button>
