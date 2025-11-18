@@ -1,8 +1,9 @@
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 import ClientOnly from "./ClientOnly";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ContactForm = () => {
+  const { t, i18n } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -11,6 +12,22 @@ const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [error, setError] = useState("");
+
+  const useHydratedPlaceholder = (key: string) => {
+    const [text, setText] = useState(key);
+
+    useEffect(() => {
+      // garante que só roda no cliente
+      setText(t(key));
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [i18n.language, key, t]);
+
+    return text;
+  };
+
+  const namePlaceholder = useHydratedPlaceholder("name");
+  const emailPlaceholder = useHydratedPlaceholder("email");
+  const messagePlaceholder = useHydratedPlaceholder("message");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -78,7 +95,7 @@ const ContactForm = () => {
             value={formData.name}
             onChange={handleChange}
             className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#3DF58C] transition duration-200 shadow-md"
-            placeholder={t("name")}
+            placeholder={namePlaceholder}
             required
           />
         </div>
@@ -90,7 +107,7 @@ const ContactForm = () => {
             value={formData.email}
             onChange={handleChange}
             className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#3DF58C] transition duration-200 shadow-md"
-            placeholder={t("email")}
+            placeholder={emailPlaceholder}
             required
           />
         </div>
@@ -101,7 +118,7 @@ const ContactForm = () => {
             value={formData.message}
             onChange={handleChange}
             className="w-full py-3 px-4 bg-black bg-opacity-50 text-gray-300 border-2 border-transparent rounded-xl outline-none focus:ring-2 focus:ring-[#3DF58C] transition duration-200 shadow-md"
-            placeholder={t("message")}
+            placeholder={messagePlaceholder}
             required
           />
         </div>
