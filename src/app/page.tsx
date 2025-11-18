@@ -161,35 +161,50 @@ const About = () => {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
+    // Apenas desktop
     if (window.innerWidth < 1024) return;
 
+    const section = document.getElementById("skills-section");
     const container = document.getElementById("skills-container");
-    const section = document.getElementById("skills");
 
-    if (!container || !section) return;
+    if (!section || !container) return;
 
     let targetY = 0;
     let currentY = 0;
     const ease = 0.08;
 
-    const update = () => {
+    let raf: number;
+
+    const animate = () => {
       currentY += (targetY - currentY) * ease;
-      container.style.transform = `translateY(${currentY}px)`;
-      requestAnimationFrame(update);
+      section.style.transform = `translateY(${currentY}px)`;
+      raf = requestAnimationFrame(animate);
     };
 
-    const handleScroll = () => {
-      const sectionTop = section.getBoundingClientRect().top;
-      const scrollOffset = Math.max(-200, -sectionTop);
-      const maxScroll = section.offsetHeight - container.offsetHeight - 50;
+    const onScroll = () => {
+      const rect = section.getBoundingClientRect();
+      const viewportH = window.innerHeight;
 
-      targetY = Math.min(scrollOffset, maxScroll);
+      // Quando a section estiver entrando na tela…
+      if (rect.top <= viewportH && rect.bottom >= 0) {
+        const maxTravel = section.offsetHeight - viewportH;
+
+        // progresso entre 0 e 1
+        const progress = 1 - rect.top / viewportH;
+        const clamped = Math.max(0, Math.min(progress, 1));
+
+        // Deslocamento limitado
+        targetY = -(clamped * maxTravel);
+      }
     };
 
-    requestAnimationFrame(update);
-    window.addEventListener("scroll", handleScroll);
+    raf = requestAnimationFrame(animate);
+    window.addEventListener("scroll", onScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   const slides = [
@@ -498,9 +513,9 @@ const About = () => {
           <div id="skills-container">
             <section
               id="skills"
-              className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start py-12 md:py-16 lg:py-16 mx-auto px-6  max-w-7xl lg:sticky top-0 lg:max-h-[1000px]"
+              className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start py-12 md:py-16 lg:py-16 mx-auto px-6  max-w-7xl lg:sticky top-0 lg:max-h-[700px]"
             >
-              <div className="flex lg:hidden mt-[100px] relative justify-center">
+              <div className="flex lg:hidden  relative justify-center">
                 <Image
                   src="/assets/cube.png"
                   alt="Cube"
