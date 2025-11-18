@@ -442,13 +442,16 @@ const About = () => {
           <div id="skills-container">
             <section
               id="skills"
-              className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start mx-auto px-6 -mt-20 lg:mt-0 lg:mb-[200px] max-w-7xl"
+              className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start mx-auto px-6 mt-20 mb-20 lg:mt-[200px] lg:mb-[200px] max-w-7xl"
             >
               <div
                 id="cube-container"
-                className="flex w-[500px] lg:w-1/2 -ml-[150px] lg:mt-[80px] justify-center items-center"
+                className="flex w-[500px] lg:w-1/2 -ml-[150px] justify-center items-center"
               >
-                <Spline scene="https://prod.spline.design/6zAYsxG7fggjhttr/scene.splinecode" />
+                <Spline
+                  scene="https://prod.spline.design/6zAYsxG7fggjhttr/scene.splinecode"
+                  style={{ width: 500, height: 500 }}
+                />
               </div>
 
               {/* TEXTO */}
@@ -486,14 +489,14 @@ const About = () => {
             id="timeline"
             className="relative min-h-[200vh] lg:-mt-[150px] overflow-hidden mask-section"
           >
-            <div className="hidden lg:flex fixed inset-0 z-10">
-              <Spline scene="https://prod.spline.design/t8REDGR78N-aTfE2/scene.splinecode" />
-            </div>
-
             <div className="relative max-w-4xl mx-auto text-center py-20">
               <h2 className="text-lg md:text-4xl text-[#E5E5DD]">
                 <ClientOnly>{t("timeline_title")}</ClientOnly>
               </h2>
+            </div>
+
+            <div className="hidden lg:flex fixed inset-0 z-10">
+              <Spline scene="https://prod.spline.design/t8REDGR78N-aTfE2/scene.splinecode" />
             </div>
 
             <Timeline

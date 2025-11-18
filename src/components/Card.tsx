@@ -77,7 +77,7 @@ const Card: React.FC<CardProps> = ({
           </div>
         )}
 
-        <span className="bg-[#004b5c] text-cyan-100 text-base font-semibold px-2 py-1 rounded-full w-fit">
+        <span className="bg-[#004b5c] text-cyan-100 text-sm font-semibold px-2 py-1 rounded-full w-fit">
           <ClientOnly>{type}</ClientOnly>
         </span>
 
