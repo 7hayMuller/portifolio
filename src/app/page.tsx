@@ -161,6 +161,8 @@ const About = () => {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
+    if (window.innerWidth < 1024) return;
+
     const container = document.getElementById("skills-container");
     const section = document.getElementById("skills");
 
@@ -571,7 +573,7 @@ const About = () => {
             id="timeline"
             className="relative min-h-[200vh] overflow-hidden mask-section"
           >
-            <div className="fixed inset-0 z-10 ">
+            <div className="hidden lg:flex fixed inset-0 z-10 ">
               <Spline scene="https://prod.spline.design/t8REDGR78N-aTfE2/scene.splinecode" />
             </div>
 
