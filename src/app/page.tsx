@@ -445,16 +445,25 @@ const About = () => {
             >
               <div
                 id="cube-container"
-                className="flex w-[500px] lg:w-1/2 -ml-[150px] justify-center items-center"
+                className="hidden lg:flex w-[500px] lg:w-1/2 -ml-[150px] justify-center items-center"
               >
                 <Spline
                   scene="https://prod.spline.design/6zAYsxG7fggjhttr/scene.splinecode"
                   style={{ width: 500, height: 500 }}
                 />
               </div>
+              <div className="lg:hidden -ml-[250px] -mt-[150px] flex justify-center items-center">
+                <Image
+                  src="/assets/cube.png"
+                  alt="skills"
+                  width={800}
+                  height={800}
+                  className="max-w-none h-[100%]"
+                />
+              </div>
 
               {/* TEXTO */}
-              <div className="w-full lg:w-1/2 mt-15 lg:pl-12 text-left flex flex-col justify-center">
+              <div className="w-full lg:w-1/2 mt-15 lg:pl-12 text-left -mt-[100px] lg:mt-0 flex flex-col justify-center">
                 <div className="flex flex-row flex-wrap items-end text-base text-[#E5E5DD] mb-5">
                   <h3
                     className={`${pacifico.className} text-5xl text-[#A27DFB] leading-none mr-2 mb-2`}
