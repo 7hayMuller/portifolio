@@ -442,7 +442,7 @@ const About = () => {
           <div id="skills-container">
             <section
               id="skills"
-              className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start mx-auto px-6 mt-20 mb-20 lg:mt-[200px] lg:mb-[200px] max-w-7xl"
+              className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start mx-auto px-6  mb-20 lg:mt-[200px] lg:mb-[200px] max-w-7xl"
             >
               <div
                 id="cube-container"
@@ -455,7 +455,7 @@ const About = () => {
               </div>
 
               {/* TEXTO */}
-              <div className="w-full lg:w-1/2 -mt-20 lg:pl-12 text-left flex flex-col justify-center">
+              <div className="w-full lg:w-1/2 mt-15 lg:pl-12 text-left flex flex-col justify-center">
                 <div className="flex flex-row flex-wrap items-end text-base text-[#E5E5DD] mb-5">
                   <h3
                     className={`${pacifico.className} text-5xl text-[#A27DFB] leading-none mr-2 mb-2`}
