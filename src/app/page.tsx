@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Trans, useTranslation } from "react-i18next";
@@ -11,7 +11,6 @@ import Loading from "../components/Loading";
 import ContactForm from "../components/ContactForm";
 import Card from "../components/Card";
 import ProjectModal from "../components/ProjectModal";
-import { Timeline } from "../components/ui/timeline";
 import Spline from "@splinetool/react-spline";
 
 import { motion } from "framer-motion";
@@ -38,62 +37,62 @@ const PortfolioSwiper = dynamic(() => import("../components/Swipper"), {
   ssr: false,
 });
 
-// const useDecryptText = (text: string, delay = 50, pause = 2000) => {
-//   const [displayed, setDisplayed] = useState("");
-//   const characters =
-//     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*()";
+const useDecryptText = (text: string, delay = 50, pause = 2000) => {
+  const [displayed, setDisplayed] = useState("");
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*()";
 
-//   const iterationRef = useRef(0);
-//   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-//   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const iterationRef = useRef(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-//   const startAnimation = useCallback(() => {
-//     if (intervalRef.current) clearInterval(intervalRef.current);
-//     if (timeoutRef.current) clearTimeout(timeoutRef.current);
+  const startAnimation = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
-//     iterationRef.current = 0;
+    iterationRef.current = 0;
 
-//     intervalRef.current = setInterval(() => {
-//       setDisplayed(() => {
-//         return text
-//           .split("")
-//           .map((char, i) => {
-//             if (i < iterationRef.current) return text[i];
-//             return characters[Math.floor(Math.random() * characters.length)];
-//           })
-//           .join("");
-//       });
+    intervalRef.current = setInterval(() => {
+      setDisplayed(() => {
+        return text
+          .split("")
+          .map((char, i) => {
+            if (i < iterationRef.current) return text[i];
+            return characters[Math.floor(Math.random() * characters.length)];
+          })
+          .join("");
+      });
 
-//       iterationRef.current += 1;
+      iterationRef.current += 1;
 
-//       if (iterationRef.current > text.length) {
-//         clearInterval(intervalRef.current!);
+      if (iterationRef.current > text.length) {
+        clearInterval(intervalRef.current!);
 
-//         timeoutRef.current = setTimeout(() => {
-//           startAnimation();
-//         }, pause);
-//       }
-//     }, delay);
-//   }, [delay, pause, text]);
+        timeoutRef.current = setTimeout(() => {
+          startAnimation();
+        }, pause);
+      }
+    }, delay);
+  }, [delay, pause, text]);
 
-//   useEffect(() => {
-//     startAnimation();
+  useEffect(() => {
+    startAnimation();
 
-//     return () => {
-//       if (intervalRef.current) clearInterval(intervalRef.current);
-//       if (timeoutRef.current) clearTimeout(timeoutRef.current);
-//     };
-//   }, [startAnimation]);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [startAnimation]);
 
-//   return displayed;
-// };
+  return displayed;
+};
 
 const About = () => {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState<any>(null);
 
-  //const decrypted = useDecryptText(t("get_in_touch"), 200, 1000);
+  const decrypted = useDecryptText(t("get_in_touch"), 200, 1000);
 
   const ribbonText = useMemo(() => {
     return `UX/UI DESIGNER → ${t("frontend_developer_text")} → ${t(
@@ -485,7 +484,7 @@ const About = () => {
           {/* 🔹 TIMELINE SECTION                                     */}
           {/* ------------------------------------------------------- */}
 
-          <section
+          {/* <section
             id="timeline"
             className="relative min-h-[200vh] lg:-mt-[150px] overflow-hidden mask-section"
           >
@@ -575,7 +574,7 @@ const About = () => {
                 },
               ]}
             />
-          </section>
+          </section> */}
 
           {/* ------------------------------------------------------- */}
           {/* 🔹 CONTACT SECTION                                      */}
@@ -587,7 +586,7 @@ const About = () => {
           >
             {/* Title + Text + Socials */}
             <div className="lg:order-3 order-2 w-full max-w-3xl lg:max-w-[500px]">
-              {/* <h2
+              <h2
                 className={`flex justify-center lg:justify-start gap-2 text-[#e5e5dd] font-bold text-4xl lg:text-5xl text-center lg:text-left mb-6 ${robotoMono.className}`}
               >
                 <ClientOnly>
@@ -595,7 +594,7 @@ const About = () => {
                     {decrypted}
                   </div>
                 </ClientOnly>
-              </h2> */}
+              </h2>
 
               <p className="text-[#E5E5DD] text-center lg:text-left text-base md:text-lg">
                 <ClientOnly>
