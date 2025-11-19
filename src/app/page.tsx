@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Trans, useTranslation } from "react-i18next";
@@ -13,6 +13,8 @@ import Card from "../components/Card";
 import ProjectModal from "../components/ProjectModal";
 import { Timeline } from "../components/ui/timeline";
 import Spline from "@splinetool/react-spline";
+
+import { motion } from "framer-motion";
 
 import {
   FaBehance,
@@ -36,62 +38,62 @@ const PortfolioSwiper = dynamic(() => import("../components/Swipper"), {
   ssr: false,
 });
 
-const useDecryptText = (text: string, delay = 50, pause = 2000) => {
-  const [displayed, setDisplayed] = useState("");
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*()";
+// const useDecryptText = (text: string, delay = 50, pause = 2000) => {
+//   const [displayed, setDisplayed] = useState("");
+//   const characters =
+//     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*()";
 
-  const iterationRef = useRef(0);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+//   const iterationRef = useRef(0);
+//   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+//   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const startAnimation = useCallback(() => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+//   const startAnimation = useCallback(() => {
+//     if (intervalRef.current) clearInterval(intervalRef.current);
+//     if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
-    iterationRef.current = 0;
+//     iterationRef.current = 0;
 
-    intervalRef.current = setInterval(() => {
-      setDisplayed(() => {
-        return text
-          .split("")
-          .map((char, i) => {
-            if (i < iterationRef.current) return text[i];
-            return characters[Math.floor(Math.random() * characters.length)];
-          })
-          .join("");
-      });
+//     intervalRef.current = setInterval(() => {
+//       setDisplayed(() => {
+//         return text
+//           .split("")
+//           .map((char, i) => {
+//             if (i < iterationRef.current) return text[i];
+//             return characters[Math.floor(Math.random() * characters.length)];
+//           })
+//           .join("");
+//       });
 
-      iterationRef.current += 1;
+//       iterationRef.current += 1;
 
-      if (iterationRef.current > text.length) {
-        clearInterval(intervalRef.current!);
+//       if (iterationRef.current > text.length) {
+//         clearInterval(intervalRef.current!);
 
-        timeoutRef.current = setTimeout(() => {
-          startAnimation();
-        }, pause);
-      }
-    }, delay);
-  }, [delay, pause, text]);
+//         timeoutRef.current = setTimeout(() => {
+//           startAnimation();
+//         }, pause);
+//       }
+//     }, delay);
+//   }, [delay, pause, text]);
 
-  useEffect(() => {
-    startAnimation();
+//   useEffect(() => {
+//     startAnimation();
 
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    };
-  }, [startAnimation]);
+//     return () => {
+//       if (intervalRef.current) clearInterval(intervalRef.current);
+//       if (timeoutRef.current) clearTimeout(timeoutRef.current);
+//     };
+//   }, [startAnimation]);
 
-  return displayed;
-};
+//   return displayed;
+// };
 
 const About = () => {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState<any>(null);
 
-  const decrypted = useDecryptText(t("get_in_touch"), 200, 1000);
+  //const decrypted = useDecryptText(t("get_in_touch"), 200, 1000);
 
   const ribbonText = useMemo(() => {
     return `UX/UI DESIGNER → ${t("frontend_developer_text")} → ${t(
@@ -300,7 +302,7 @@ const About = () => {
           id="hero"
           className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col min-h-[600px] md:h-full lg:min-h-[700px] lg:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-6"
         >
-          {/* <motion.div
+          <motion.div
             initial={{ opacity: 0, y: -80 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -309,18 +311,16 @@ const About = () => {
               ease: [0.25, 1, 0.5, 1],
             }}
             className="order-1 flex justify-center items-center w-full lg:w-1/2 min-h-[400px]"
-          > */}
-          <div className="order-1 flex justify-center items-center w-full lg:w-1/2 min-h-[400px]">
+          >
             <Image
               src={Me}
               alt="side-image"
               className="w-full max-w-[400px] -mt-[50px] md:max-w-[600px] lg:max-w-[700px] lg:-mt-[100px]"
               priority
             />
-          </div>
-          {/* </motion.div> */}
+          </motion.div>
 
-          {/* <motion.div
+          <motion.div
             initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -330,8 +330,7 @@ const About = () => {
               ease: [0.25, 1, 0.5, 1],
             }}
             className="order-2 flex flex-1 justify-center items-center w-full lg:justify-end"
-          > */}
-          <div className="order-2 flex flex-1 justify-center items-center w-full lg:justify-end">
+          >
             <div className="flex flex-col w-full max-w-3xl mt-5 md:mt-[50px] lg:mt-[80px] space-y-6">
               <span className="text-[#E5E5DD] font-bold text-2xl md:text-3xl lg:text-4xl text-center lg:text-left">
                 <ClientOnly>{t("hello")}</ClientOnly>
@@ -359,8 +358,7 @@ const About = () => {
                 </button>
               </div>
             </div>
-          </div>
-          {/* </motion.div> */}
+          </motion.div>
         </section>
 
         <div className="flex flex-col items-center justify-center text-center lg:-mt-[150px]">
@@ -589,7 +587,7 @@ const About = () => {
           >
             {/* Title + Text + Socials */}
             <div className="lg:order-3 order-2 w-full max-w-3xl lg:max-w-[500px]">
-              <h2
+              {/* <h2
                 className={`flex justify-center lg:justify-start gap-2 text-[#e5e5dd] font-bold text-4xl lg:text-5xl text-center lg:text-left mb-6 ${robotoMono.className}`}
               >
                 <ClientOnly>
@@ -597,7 +595,7 @@ const About = () => {
                     {decrypted}
                   </div>
                 </ClientOnly>
-              </h2>
+              </h2> */}
 
               <p className="text-[#E5E5DD] text-center lg:text-left text-base md:text-lg">
                 <ClientOnly>
