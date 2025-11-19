@@ -107,7 +107,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                 {item.title}
               </h3>
 
-              <motion.div
+              {/* <motion.div
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.3 }}
@@ -118,9 +118,8 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                       : 0.55,
                   ease: "easeOut",
                 }}
-              >
-                {item.content}
-              </motion.div>
+              > */}
+              {item.content}
             </div>
           </div>
         ))}
@@ -128,7 +127,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         {/* LINE */}
         <div
           style={{ height: height }}
-          className="absolute left-8 top-0 w-[2px] bg-neutral-400/40 dark:bg-neutral-300/30 overflow-hidden 
+          className="absolute left-8 -z-10 top-0 w-[2px] bg-neutral-400/40 dark:bg-neutral-300/30 overflow-hidden 
                      [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
         >
           <motion.div

@@ -14,8 +14,6 @@ import ProjectModal from "../components/ProjectModal";
 import { Timeline } from "../components/ui/timeline";
 import Spline from "@splinetool/react-spline";
 
-import { motion } from "framer-motion";
-
 import {
   FaBehance,
   FaChevronDown,
@@ -302,7 +300,7 @@ const About = () => {
           id="hero"
           className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col min-h-[600px] md:h-full lg:min-h-[700px] lg:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-6"
         >
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: -80 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -311,16 +309,18 @@ const About = () => {
               ease: [0.25, 1, 0.5, 1],
             }}
             className="order-1 flex justify-center items-center w-full lg:w-1/2 min-h-[400px]"
-          >
+          > */}
+          <div className="order-1 flex justify-center items-center w-full lg:w-1/2 min-h-[400px]">
             <Image
               src={Me}
               alt="side-image"
               className="w-full max-w-[400px] -mt-[50px] md:max-w-[600px] lg:max-w-[700px] lg:-mt-[100px]"
               priority
             />
-          </motion.div>
+          </div>
+          {/* </motion.div> */}
 
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -330,7 +330,8 @@ const About = () => {
               ease: [0.25, 1, 0.5, 1],
             }}
             className="order-2 flex flex-1 justify-center items-center w-full lg:justify-end"
-          >
+          > */}
+          <div className="order-2 flex flex-1 justify-center items-center w-full lg:justify-end">
             <div className="flex flex-col w-full max-w-3xl mt-5 md:mt-[50px] lg:mt-[80px] space-y-6">
               <span className="text-[#E5E5DD] font-bold text-2xl md:text-3xl lg:text-4xl text-center lg:text-left">
                 <ClientOnly>{t("hello")}</ClientOnly>
@@ -358,7 +359,8 @@ const About = () => {
                 </button>
               </div>
             </div>
-          </motion.div>
+          </div>
+          {/* </motion.div> */}
         </section>
 
         <div className="flex flex-col items-center justify-center text-center lg:-mt-[150px]">
