@@ -13,21 +13,16 @@ import Card from "../components/Card";
 import ProjectModal from "../components/ProjectModal";
 import Spline from "@splinetool/react-spline";
 
-import { motion } from "framer-motion";
+import { FaBehance, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa6";
 
-import {
-  FaBehance,
-  FaChevronDown,
-  FaGithub,
-  FaInstagram,
-  FaLinkedin,
-} from "react-icons/fa6";
-
-import Me from "../../public/assets/Me.png";
+import Hero from "../../public/assets/hero.png";
+import HeroMobile from "../../public/assets/hero-mobile.png";
 
 import { anton, pacifico, robotoMono } from "./layout";
 
 import dynamic from "next/dynamic";
+import { Timeline } from "@/components/ui/timeline";
+import { IoArrowForward } from "react-icons/io5";
 
 const Navbar = dynamic(() => import("../components/NavBar"), {
   ssr: false,
@@ -91,6 +86,17 @@ const About = () => {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState<any>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const decrypted = useDecryptText(t("get_in_touch"), 200, 1000);
 
@@ -299,9 +305,9 @@ const About = () => {
 
         <section
           id="hero"
-          className="relative flex justify-center md:flex lg:flex-row-reverse flex-col md:flex-col min-h-[600px] md:h-full lg:min-h-[700px] lg:h-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-6"
+          className="relative flex justify-center md:flex flex-col md:flex-col mt-[100px] lg:mt-[200px] "
         >
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: -80 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -317,9 +323,9 @@ const About = () => {
               className="w-full max-w-[400px] -mt-[50px] md:max-w-[600px] lg:max-w-[700px] lg:-mt-[100px]"
               priority
             />
-          </motion.div>
+          </motion.div> */}
 
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -328,7 +334,7 @@ const About = () => {
               delay: 0.3,
               ease: [0.25, 1, 0.5, 1],
             }}
-            className="order-2 flex flex-1 justify-center items-center w-full lg:justify-end"
+            //className="order-2 flex flex-1 justify-center items-center w-full lg:justify-end"
           >
             <div className="flex flex-col w-full max-w-3xl mt-5 md:mt-[50px] lg:mt-[80px] space-y-6">
               <span className="text-[#E5E5DD] font-bold text-2xl md:text-3xl lg:text-4xl text-center lg:text-left">
@@ -357,15 +363,51 @@ const About = () => {
                 </button>
               </div>
             </div>
-          </motion.div>
+          </motion.div> */}
+          <div className="flex flex-col justify-start lg:justify-center items-start lg:items-center px-4">
+            <span
+              className={`${anton.className} text-white text-[60px] lg:text-[100px] xl:text-[120px] 2xl:text-[200px] `}
+            >
+              FRONT-END DEVELOPER & UX/UI DESIGNER
+            </span>
+            <button
+              className="flex text-xl xl:text-2xl items-center text-white underline"
+              onClick={() => {
+                const section = document.getElementById("contact");
+                if (section) {
+                  section.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+            >
+              <ClientOnly>{t("say_hi")}</ClientOnly> <IoArrowForward />
+            </button>
+          </div>
+
+          <Image
+            src={isMobile ? HeroMobile : Hero}
+            alt="side-image"
+            className="
+            w-full
+            sm:w-[90vw]
+            lg:w-[70vw]
+            xl:w-[60vw]
+            2xl:w-[80vw]
+            max-w-[2600px]
+            lg:-ml-[100px]
+            lg:mt-[30px]
+            ml-[50px]
+            
+          "
+            priority
+          />
         </section>
 
-        <div className="flex flex-col items-center justify-center text-center lg:-mt-[150px]">
+        {/* <div className="flex flex-col items-center justify-center text-center lg:-mt-[150px]">
           <FaChevronDown
             className="text-gray-600 mt-2 blink-scroll-indicator"
             size={28}
           />
-        </div>
+        </div> */}
 
         {/* ------------------------------------------------------- */}
         {/* 🔹 INTRO SECTION                                        */}
@@ -376,7 +418,7 @@ const About = () => {
             id="introduction"
             className="flex flex-col lg:flex-row md:flex-col items-center justify-center text-center px-6 py-16 mt-[100px] lg:mb-[100px] md:py-16 lg:py-16"
           >
-            <div className="relative mb-[50px] -mt-[60px] lg:mt-0 lg:mb-0 text-[25vw] lg:text-[150px] leading-none font-anton uppercase tracking-tight w-fit">
+            <div className="relative mb-[50px] -mt-[60px] lg:mt-10 lg:mb-0 text-[25vw] lg:text-[200px] leading-none font-anton uppercase tracking-tight w-fit">
               <span
                 className={`${anton.className} text-transparent stroke-white absolute top-0 lg:left-1/2 -translate-x-1/2 -translate-y-[0.40em] lg:-translate-y-[0.30em] z-0`}
               >
@@ -389,7 +431,7 @@ const About = () => {
               </span>
             </div>
 
-            <p className="text-[#E5E5DD] lg:ml-[150px] text-left mt-2 max-w-3xl text-base">
+            <p className="text-[#E5E5DD] lg:ml-[150px] text-left mt-2 max-w-2xl text-base">
               <ClientOnly>
                 <Trans i18nKey="introduction" t={t} />
               </ClientOnly>
@@ -441,7 +483,7 @@ const About = () => {
           <div id="skills-container">
             <section
               id="skills"
-              className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start mx-auto px-6  mb-20 lg:mt-[200px] lg:mb-[200px] max-w-7xl"
+              className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start mx-auto px-6  mb-20 lg:mt-[150px] lg:mb-[200px] max-w-7xl"
             >
               <div
                 id="cube-container"
@@ -452,21 +494,21 @@ const About = () => {
                   style={{ width: 500, height: 500 }}
                 />
               </div>
-              <div className="lg:hidden -ml-[250px] -mt-[150px] flex justify-center items-center">
+              <div className="lg:hidden -ml-[420px] -mt-[100px] flex justify-center items-center">
                 <Image
                   src="/assets/cube.png"
                   alt="skills"
-                  width={800}
-                  height={800}
+                  width={1200}
+                  height={1200}
                   className="max-w-none h-[100%]"
                 />
               </div>
 
               {/* TEXTO */}
-              <div className="w-full lg:w-1/2 mt-15 lg:pl-12 text-left -mt-[100px] lg:mt-0 flex flex-col justify-center">
-                <div className="flex flex-row flex-wrap items-end text-base text-[#E5E5DD] mb-5">
+              <div className="w-full lg:w-1/2  lg:pl-12 text-left -mt-[80px] lg:mt-0 flex flex-col justify-center">
+                <div className="lg:flex lg:flex-row  items-start text-base text-[#E5E5DD]">
                   <h3
-                    className={`${pacifico.className} text-5xl text-[#A27DFB] leading-none mr-2 mb-2`}
+                    className={`${pacifico.className} text-6xl mb-5 lg:mb-0 w-full  text-[#A27DFB]  mr-2 `}
                   >
                     <ClientOnly>{t("i_develop")}</ClientOnly>
                   </h3>
@@ -493,12 +535,12 @@ const About = () => {
           {/* 🔹 TIMELINE SECTION                                     */}
           {/* ------------------------------------------------------- */}
 
-          {/* <section
+          <section
             id="timeline"
             className="relative min-h-[200vh] lg:-mt-[150px] overflow-hidden mask-section"
           >
             <div className="relative max-w-4xl mx-auto text-center py-20">
-              <h2 className="text-lg md:text-4xl text-[#E5E5DD]">
+              <h2 className="text-xl md:text-4xl px-4 text-[#E5E5DD]">
                 <ClientOnly>{t("timeline_title")}</ClientOnly>
               </h2>
             </div>
@@ -515,7 +557,7 @@ const About = () => {
                     <p>
                       <ClientOnly>
                         {t(
-                          "Transitioned from Civil Engineering into technology after completing a web development bootcamp. Worked as a Full Stack Developer, building production systems with modern JavaScript frameworks and RESTful APIs using Java and Spring Boot.",
+                          "I transitioned from Civil Engineering into tech after a web development bootcamp and soon started working as a Full Stack Developer, building production applications using modern JavaScript frameworks, Java, and Spring Boot.",
                         )}
                       </ClientOnly>
                     </p>
@@ -527,7 +569,7 @@ const About = () => {
                     <p>
                       <ClientOnly>
                         {t(
-                          "I joined SPOT Metrics as a Frontend Developer, where I started building scalable and data-driven interfaces using React, TypeScript, and modern front-end practices. I specialized in frontend development, the area I most connected with, beginning a journey focused on creating intuitive experiences supported by solid technical implementation.",
+                          "In 2021, I specialized in frontend development, building scalable, data-driven interfaces using React, TypeScript, and modern best practices. During this phase, I strengthened my ability to turn complex requirements into intuitive experiences supported by solid technical foundations.",
                         )}
                       </ClientOnly>
                     </p>
@@ -539,7 +581,7 @@ const About = () => {
                     <p>
                       <ClientOnly>
                         {t(
-                          "Promoted to Mid-Level Frontend Developer, I took on greater responsibility in complex projects, working closely with designers and backend engineers to deliver high-performance, user-focused interfaces.",
+                          "Promoted to Mid-Level Frontend Developer, I began leading key parts of complex projects, collaborating closely with designers and backend engineers to deliver high-performance, user-focused interfaces. This phase strengthened my ownership, sharpened my problem-solving skills, and deepened my ability to transform product requirements into scalable, well-crafted solutions.",
                         )}
                       </ClientOnly>
                     </p>
@@ -551,7 +593,7 @@ const About = () => {
                     <p>
                       <ClientOnly>
                         {t(
-                          "Alongside my role at SPOT Metrics, I started working as a freelance Frontend Developer through an e-commerce agency, building and maintaining online experiences for nationally recognized brands such as Democrata, Bagaggio, and Tecnos. Most of these projects were developed with JavaScript (Vanilla) and the VTEX platform, giving me solid experience in web performance, conversion optimization, and client communication. During this time, I also began my degree in Systems Analysis and Development.",
+                          "Alongside my main role, I began freelancing as a Frontend Developer through an e-commerce agency, creating and maintaining online experiences for nationally recognized brands such as Democrata, Bagaggio, and Tecnos. Most projects were built using Vanilla JavaScript and the VTEX platform, giving me strong experience in web performance, conversion optimization, and direct client communication. During this period, I also started my degree in Systems Analysis and Development.",
                         )}
                       </ClientOnly>
                     </p>
@@ -563,7 +605,7 @@ const About = () => {
                     <p>
                       <ClientOnly>
                         {t(
-                          "I completed a professional course in UX/UI Design at EBAC (British School of Creative Arts), where I developed solid skills in user research, wireframing, prototyping, and usability testing. I began applying these concepts directly at SPOT Metrics, combining design thinking with my technical expertise to improve user experience and product usability.",
+                          "Started a professional course in UX/UI Design at EBAC (British School of Creative Arts), where I developed solid skills in user research, wireframing, prototyping, and usability testing. I began applying these concepts directly at SPOT Metrics, combining design thinking with my technical expertise to improve user experience and product usability.",
                         )}
                       </ClientOnly>
                     </p>
@@ -575,7 +617,7 @@ const About = () => {
                     <p>
                       <ClientOnly>
                         {t(
-                          "Promoted to a hybrid role as Frontend Developer & UX Designer at SPOT Metrics, I combine design strategy with technical implementation to deliver data-driven, user-centered experiences. I lead usability testing, design prototypes, and implement accessible, scalable front-end solutions. In parallel, now , I work as freelance on UX/UI projects, expanding my expertise in user research, prototyping, and creative direction.",
+                          "Promoted to a hybrid role as Frontend Developer & UX Designer, now I combine design strategy with technical implementation to deliver data-driven, user-centered experiences. I lead usability testing, design prototypes, and implement accessible, scalable front-end solutions. In parallel, after concluding my UX/UI professional course , I also work as freelance on UX/UI projects, expanding my expertise in user research, prototyping, and creative direction.",
                         )}
                       </ClientOnly>
                     </p>
@@ -583,7 +625,7 @@ const About = () => {
                 },
               ]}
             />
-          </section> */}
+          </section>
 
           {/* ------------------------------------------------------- */}
           {/* 🔹 CONTACT SECTION                                      */}

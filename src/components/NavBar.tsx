@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
       "introduction",
       "projects",
       "skills",
-      //"timeline",
+      "timeline",
       "contact",
     ];
     const observers: IntersectionObserver[] = [];
@@ -81,9 +81,9 @@ const Navbar: React.FC = () => {
         >
           {[
             { id: "introduction", label: t("about") },
-            { id: "projects", label: t("my_projects") },
+            { id: "projects", label: t("projects") },
             { id: "skills", label: t("skills_and_tools") },
-            //{ id: "timeline", label: t("timeline") },
+            { id: "timeline", label: t("timeline") },
             { id: "contact", label: t("contact") },
           ].map(({ id, label }) => (
             <li key={id} className="py-2 md:pr-6">
@@ -111,7 +111,7 @@ const Navbar: React.FC = () => {
         }}
         data-text={i18n.language === "en" ? "PT" : "EN"}
       >
-        {i18n.language?.toUpperCase()}
+        {i18n.language?.toUpperCase().split("-")[0]}
       </button>
     </nav>
   );
