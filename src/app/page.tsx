@@ -366,7 +366,7 @@ const About = () => {
           </motion.div> */}
           <div className="flex flex-col justify-start lg:justify-center items-start lg:items-center px-4">
             <span
-              className={`${anton.className} text-white text-[60px] lg:text-[100px] xl:text-[120px] 2xl:text-[200px] `}
+              className={`${anton.className} text-white text-[60px] lg:text-[80px] 2xl:text-[100px]`}
             >
               FRONT-END DEVELOPER & UX/UI DESIGNER
             </span>
@@ -389,9 +389,9 @@ const About = () => {
             className="
             w-full
             sm:w-[90vw]
-            lg:w-[70vw]
-            xl:w-[60vw]
-            2xl:w-[80vw]
+            lg:w-[100vw]
+            xl:w-[100vw]
+            2xl:w-[100vw]
             max-w-[2600px]
             lg:-ml-[100px]
             lg:mt-[30px]
@@ -508,7 +508,7 @@ const About = () => {
               <div className="w-full lg:w-1/2  lg:pl-12 text-left -mt-[80px] lg:mt-0 flex flex-col justify-center">
                 <div className="lg:flex lg:flex-row  items-start text-base text-[#E5E5DD]">
                   <h3
-                    className={`${pacifico.className} text-6xl mb-5 lg:mb-0 w-full  text-[#A27DFB]  mr-2 `}
+                    className={`${pacifico.className} text-6xl lg:text-5xl mb-5 lg:mb-0 w-full  text-[#A27DFB]  mr-2 `}
                   >
                     <ClientOnly>{t("i_develop")}</ClientOnly>
                   </h3>
