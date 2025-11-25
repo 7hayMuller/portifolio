@@ -27,6 +27,10 @@ export const pacifico = Pacifico({
   variable: "--font-pacifico",
 });
 
+export const metadata = {
+  title: "Thayná Müller",
+};
+
 export default function RootLayout({
   children,
 }: {
