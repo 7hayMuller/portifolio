@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import Head from "next/head";
 import Image from "next/image";
 import { Trans, useTranslation } from "react-i18next";
 
@@ -24,19 +23,12 @@ import {
 import Hero from "../../public/assets/hero.png";
 import HeroMobile from "../../public/assets/hero-mobile.png";
 
-import { anton, pacifico, robotoMono } from "./layout";
+import { anton, pacifico, robotoMono } from "./fonts";
 
-import dynamic from "next/dynamic";
 import { Timeline } from "@/components/ui/timeline";
 import { IoArrowForward } from "react-icons/io5";
-
-const Navbar = dynamic(() => import("../components/NavBar"), {
-  ssr: false,
-});
-
-const PortfolioSwiper = dynamic(() => import("../components/Swipper"), {
-  ssr: false,
-});
+import Navbar from "@/components/NavBar";
+import PortfolioSwiper from "../components/Swipper";
 
 const useDecryptText = (text: string, delay = 50, pause = 2000) => {
   const [displayed, setDisplayed] = useState("");
@@ -99,7 +91,7 @@ const About = () => {
       setIsMobile(window.innerWidth < 640);
     };
 
-    handleResize(); // define imediatamente após hidratar
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -292,10 +284,6 @@ const About = () => {
 
   return (
     <>
-      <Head>
-        <title>Frontend Developer | UX/UI</title>
-      </Head>
-
       <Loading />
       <Navbar />
 
