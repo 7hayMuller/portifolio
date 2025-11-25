@@ -13,7 +13,13 @@ import Card from "../components/Card";
 import ProjectModal from "../components/ProjectModal";
 import Spline from "@splinetool/react-spline";
 
-import { FaBehance, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa6";
+import {
+  FaBehance,
+  FaChevronDown,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+} from "react-icons/fa6";
 
 import Hero from "../../public/assets/hero.png";
 import HeroMobile from "../../public/assets/hero-mobile.png";
@@ -86,14 +92,14 @@ const About = () => {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState<any>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<null | boolean>(null);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 640);
     };
 
-    handleResize();
+    handleResize(); // define imediatamente após hidratar
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -282,6 +288,8 @@ const About = () => {
     </div>,
   ];
 
+  if (isMobile === null) return null;
+
   return (
     <>
       <Head>
@@ -382,32 +390,36 @@ const About = () => {
               <ClientOnly>{t("say_hi")}</ClientOnly> <IoArrowForward />
             </button>
           </div>
-
-          <Image
-            src={isMobile ? HeroMobile : Hero}
-            alt="side-image"
-            className="
-            w-full
-            sm:w-[90vw]
-            lg:w-[100vw]
-            xl:w-[100vw]
-            2xl:w-[100vw]
-            max-w-[2600px]
-            lg:-ml-[100px]
-            lg:mt-[30px]
-            ml-[50px]
-            
-          "
-            priority
-          />
+          {isMobile ? (
+            <Image
+              src={HeroMobile}
+              alt="side-image"
+              className="w-full sm:w-[90vw] -mt-[80px] ml-[50px]"
+              priority
+            />
+          ) : (
+            <Image
+              src={Hero}
+              alt="side-image"
+              className="
+              w-full           
+              lg:w-[100vw]
+              xl:w-[100vw]
+              2xl:w-[100vw]
+              max-w-[2600px]                    
+              lg:-ml-[100px]
+              lg:mt-[30px]"
+              priority
+            />
+          )}
         </section>
 
-        {/* <div className="flex flex-col items-center justify-center text-center lg:-mt-[150px]">
+        <div className="lg:hidden flex flex-col items-center justify-center text-center lg:-mt-[150px]">
           <FaChevronDown
             className="text-gray-600 mt-2 blink-scroll-indicator"
             size={28}
           />
-        </div> */}
+        </div>
 
         {/* ------------------------------------------------------- */}
         {/* 🔹 INTRO SECTION                                        */}
@@ -494,18 +506,18 @@ const About = () => {
                   style={{ width: 500, height: 500 }}
                 />
               </div>
-              <div className="lg:hidden -ml-[420px] -mt-[100px] flex justify-center items-center">
+              <div className="lg:hidden -ml-[820px] -mt-[150px] flex justify-center items-center">
                 <Image
                   src="/assets/cube.png"
                   alt="skills"
-                  width={1200}
-                  height={1200}
+                  width={2000}
+                  height={2000}
                   className="max-w-none h-[100%]"
                 />
               </div>
 
               {/* TEXTO */}
-              <div className="w-full lg:w-1/2  lg:pl-12 text-left -mt-[80px] lg:mt-0 flex flex-col justify-center">
+              <div className="w-full lg:w-1/2  lg:pl-12 text-left -mt-[150px] lg:mt-0 flex flex-col justify-center">
                 <div className="lg:flex lg:flex-row  items-start text-base text-[#E5E5DD]">
                   <h3
                     className={`${pacifico.className} text-6xl lg:text-5xl mb-5 lg:mb-0 w-full  text-[#A27DFB]  mr-2 `}

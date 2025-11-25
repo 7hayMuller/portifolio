@@ -14,6 +14,17 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   const [height, setHeight] = useState(0);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState<null | boolean>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // ----- PERFORMANCE: ResizeObserver otimizado -----
   useEffect(() => {
@@ -107,19 +118,24 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                 {item.title}
               </h3>
 
-              {/* <motion.div
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.3 }}
-                transition={{
-                  duration:
-                    typeof window !== "undefined" && window.innerWidth < 640
-                      ? 0.35
-                      : 0.55,
-                  ease: "easeOut",
-                }}
-              > */}
-              {item.content}
+              {isMobile ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{
+                    duration:
+                      typeof window !== "undefined" && window.innerWidth < 640
+                        ? 0.35
+                        : 0.55,
+                    ease: "easeOut",
+                  }}
+                >
+                  {item.content}
+                </motion.div>
+              ) : (
+                <>{item.content}</>
+              )}
             </div>
           </div>
         ))}
