@@ -8,7 +8,7 @@ const raleway = Raleway({
 });
 
 export const metadata = {
-  title: "Thayná Müller",
+  title: "Front-end | UX/UI designer",
 };
 
 export default function RootLayout({
