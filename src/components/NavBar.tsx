@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
       "introduction",
       "projects",
       "skills",
-      "timeline",
+      //"timeline",
       "contact",
     ];
     const observers: IntersectionObserver[] = [];
@@ -83,7 +83,7 @@ const Navbar: React.FC = () => {
             { id: "introduction", label: t("about") },
             { id: "projects", label: t("projects") },
             { id: "skills", label: t("skills_and_tools") },
-            { id: "timeline", label: t("timeline") },
+            //{ id: "timeline", label: t("timeline") },
             { id: "contact", label: t("contact") },
           ].map(({ id, label }) => (
             <li key={id} className="py-2 md:pr-6">

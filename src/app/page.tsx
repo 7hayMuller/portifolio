@@ -25,10 +25,10 @@ import HeroMobile from "../../public/assets/hero-mobile.png";
 
 import { anton, pacifico, robotoMono } from "./fonts";
 
-import { Timeline } from "@/components/ui/timeline";
 import { IoArrowForward } from "react-icons/io5";
 import Navbar from "@/components/NavBar";
 import PortfolioSwiper from "../components/Swipper";
+import { motion } from "framer-motion";
 
 const useDecryptText = (text: string, delay = 50, pause = 2000) => {
   const [displayed, setDisplayed] = useState("");
@@ -223,7 +223,7 @@ const About = () => {
       />
     </div>,
     <div
-      className="w-full max-w-[360px] md:w-[320px] lg:w-[340px]"
+      className="w-full max-w-[360px] md:w-[320px] lg:w-[340px] "
       key={"itau"}
     >
       <Card
@@ -301,7 +301,7 @@ const About = () => {
 
         <section
           id="hero"
-          className="relative flex justify-center md:flex flex-col md:flex-col mt-[100px] lg:mt-[200px] "
+          className="relative flex justify-center md:flex flex-col md:flex-col mt-[100px]"
         >
           {/* <motion.div
             initial={{ opacity: 0, y: -80 }}
@@ -396,7 +396,7 @@ const About = () => {
               2xl:w-[100vw]
               max-w-[2600px]                    
               lg:-ml-[100px]
-              lg:mt-[30px]"
+              lg:-mt-[50px]"
               priority
             />
           )}
@@ -483,7 +483,7 @@ const About = () => {
           <div id="skills-container">
             <section
               id="skills"
-              className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start mx-auto px-6 mb-20 -mt-[50px] lg:mt-[150px] lg:mb-[200px] max-w-7xl"
+              className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start mx-auto px-6 mb-20 -mt-[50px] lg:mt-[150px]  max-w-7xl"
             >
               <div
                 id="cube-container"
@@ -505,28 +505,57 @@ const About = () => {
               </div>
 
               {/* TEXTO */}
+
               <div className="w-full lg:w-1/2  lg:pl-12 text-left -mt-[150px] lg:mt-0 flex flex-col justify-center">
-                <div className="lg:flex lg:flex-row  items-start text-base text-[#E5E5DD]">
+                <motion.div
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{
+                    duration: 0.55,
+                    ease: "easeOut",
+                  }}
+                >
                   <h3
-                    className={`${pacifico.className} text-6xl lg:text-5xl mb-5 lg:mb-0 w-full  text-[#A27DFB]  mr-2 `}
+                    className={`${pacifico.className} text-6xl lg:text-[100px] mb-5 lg:mb-15 w-full text-[#A27DFB] mr-2 `}
                   >
                     <ClientOnly>{t("i_develop")}</ClientOnly>
                   </h3>
-
-                  <span className="text-base">
-                    <ClientOnly>
-                      <Trans i18nKey="skills" t={t} />
-                    </ClientOnly>
-                  </span>
+                </motion.div>
+                <div className="lg:flex lg:flex-row  items-start text-base text-[#E5E5DD]">
+                  <motion.div
+                    initial={{ opacity: 0, y: 25 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    transition={{
+                      duration: 0.55,
+                      ease: "easeOut",
+                    }}
+                  >
+                    <span className="text-xl">
+                      <ClientOnly>
+                        <Trans i18nKey="skills" t={t} />
+                      </ClientOnly>
+                    </span>
+                  </motion.div>
                 </div>
-
-                <div className="text-[#E5E5DD] text-base mb-4">
-                  {[2, 3, 4].map((num, i) => (
-                    <ClientOnly key={i}>
-                      <Trans i18nKey={`skills${num}`} t={t} />
-                    </ClientOnly>
-                  ))}
-                </div>
+                <motion.div
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{
+                    duration: 0.55,
+                    ease: "easeOut",
+                  }}
+                >
+                  <div className="text-[#E5E5DD] text-base mb-4">
+                    {[2].map((num, i) => (
+                      <ClientOnly key={i}>
+                        <Trans i18nKey={`skills${num}`} t={t} />
+                      </ClientOnly>
+                    ))}
+                  </div>
+                </motion.div>
               </div>
             </section>
           </div>
@@ -535,7 +564,7 @@ const About = () => {
           {/* 🔹 TIMELINE SECTION                                     */}
           {/* ------------------------------------------------------- */}
 
-          <section
+          {/* <section
             id="timeline"
             className="relative min-h-[200vh] lg:-mt-[150px] overflow-hidden mask-section"
           >
@@ -625,7 +654,7 @@ const About = () => {
                 },
               ]}
             />
-          </section>
+          </section> */}
 
           {/* ------------------------------------------------------- */}
           {/* 🔹 CONTACT SECTION                                      */}
