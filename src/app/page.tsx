@@ -367,7 +367,7 @@ const About = () => {
               FRONT-END DEVELOPER & UX/UI DESIGNER
             </span>
             <button
-              className="flex text-xl xl:text-2xl items-center text-white underline"
+              className="flex text-xl xl:text-2xl items-center text-white underline cursor-pointer z-10"
               onClick={() => {
                 const section = document.getElementById("contact");
                 if (section) {
