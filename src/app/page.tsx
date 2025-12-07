@@ -483,7 +483,7 @@ const About = () => {
           <div id="skills-container">
             <section
               id="skills"
-              className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start mx-auto px-6 mb-20 -mt-[50px] lg:mt-[150px]  max-w-7xl"
+              className="relative flex flex-col lg:flex-row md:justify-center md:items-center justify-around items-start mx-auto px-6 mb-20 -mt-[50px] lg:mt-[150px] max-w-7xl"
             >
               <div
                 id="cube-container"
