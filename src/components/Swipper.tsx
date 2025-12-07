@@ -32,6 +32,7 @@ export default function PortfolioSwiper({ slides }: { slides: any[] }) {
       <Swiper
         modules={[Navigation, Autoplay]}
         spaceBetween={20}
+        autoHeight
         slidesPerView={1}
         centeredSlides={false}
         autoplay={{

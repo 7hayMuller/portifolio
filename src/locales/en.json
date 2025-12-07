@@ -5,7 +5,7 @@
   "about": "About",
   "timeline":"Timeline",
   "see_studycase": "See case study",
-  "introduction": "I’m a Frontend Developer with over 5 years of experience, and over time I found in UX/UI a way to bring together everything I love most: creating, observing, and turning ideas into experiences that genuinely make sense to people. The deeper I got into design, the more I realized how understanding otions, behaviors, and the small details can completely change the outcome of a product.<br/><br/>I love exploring the world and paying attention to things most people overlook — and I bring that same sensitivity into my work. It helps me build interfaces that aren’t just visually appealing, but clear, purposeful, and user-focused. Day to day, I combine my experience with React, TypeScript, and frontend development with research and user-centered design.<br/><br/>In my portfolio, you’ll find projects that reflect this blend: thoughtful solutions grounded in real user needs, crafted to create meaningful and engaging digital experiences.",
+  "introduction": "I’m a Frontend Developer with over 5 years of experience, and over time I found in UX/UI a way to bring together everything I love most: creating, observing, and turning ideas into experiences that genuinely make sense to people. The deeper I got into design, the more I realized how understanding otions, behaviors, and the small details can completely change the outcome of a product.<br/><br/>I love exploring the world and paying attention to things most people overlook — and I bring that same sensitivity into my work. It helps me build interfaces that aren’t just visually appealing, but clear, purposeful, and user-focused.",
   "see_more": "See more",
   "frontend_projects": "Discover the projects I've developed, highlighting my experience in frontend development. See how I build responsive, efficient and visually appealing web applications using modern technologies and best market practices.",
   "uxui_projects": "Here are some of the projects I've worked on, showcasing my skills in UX/UI design. Explore how I create intuitive, responsive and visually engaging user experiences.",
@@ -48,8 +48,8 @@
   "i_develop":"I develop",
   "skills": "interfaces that combine <strong>design, performance, and accessibility</strong>, always focused on creating <strong>intuitive and engaging user experiences</strong>.<br/><br/>",
   "skills2": "My stack includes <strong>React</strong>, <strong>Next.js</strong>, <strong>React Native</strong>, and <strong>TypeScript</strong>, using <strong>Vite</strong> for high-speed development, <strong>Tailwind CSS</strong> and <strong>Sass (SCSS)</strong> for efficient styling, and <strong>Framer Motion</strong> for smooth animations. ",
-  "skills3": "I have experience working with <strong>design systems</strong> such as <strong>Material UI</strong> and <strong>Ant Design</strong>, ensuring consistency and scalability across interfaces.<br/><br/>I also apply <strong>React Testing Library</strong> for unit testing to ensure quality and reliability in the codebase. ",
-  "skills4": "Every project I build is guided by a vision that balances <strong>aesthetics, usability, and accessibility</strong>, striving to deliver products that are <strong>beautiful, functional, and inclusive</strong>.",
+  
+  
   "project_description": "<strong>A bit of what I've been creating:</strong> projects that combine UX/UI, research and frontend, always seeking experiences that are beautiful, functional and full of purpose.<br/><br/> Each one tells part of my journey and the lessons I've gathered along the way.",
   "tech_skills": "<i>“</i>With <strong>React, Next.js, Javascript and TypeScript</strong>, I build the structure and intelligence that bring a project to life.<i>”</i>",
   "design_skills": "<i>“</i><strong>Tailwind and SCSS</strong> are my brushes to add color, shape and personality, creating interfaces that not only work but also enchant.<i>”</i>",
