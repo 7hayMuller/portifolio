@@ -100,7 +100,7 @@ const About = () => {
 
   const ribbonText = useMemo(() => {
     return `UX/UI DESIGNER → ${t("frontend_developer_text")} → ${t(
-      "my_projects",
+      "my_projects"
     )?.toLocaleUpperCase()} → `.repeat(15);
   }, [t]);
 
@@ -364,7 +364,7 @@ const About = () => {
             <span
               className={`${anton.className} text-white text-[60px] lg:text-[80px] 2xl:text-[100px]`}
             >
-              FRONT-END DEVELOPER & UX/UI DESIGNER
+              {t("front_end_dev")} {t("ux_ui_designer")}
             </span>
             <button
               className="flex text-xl xl:text-2xl items-center text-white underline cursor-pointer z-10"
@@ -382,7 +382,7 @@ const About = () => {
             <Image
               src={HeroMobile}
               alt="side-image"
-              className="w-full sm:w-[90vw] -mt-[80px] ml-[50px]"
+              className="w-full sm:w-[90vw] -mt-[60px] ml-[50px]"
               priority
             />
           ) : (
