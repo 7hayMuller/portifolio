@@ -367,7 +367,7 @@ const About = () => {
               {t("front_end_dev")} {t("ux_ui_designer")}
             </span>
             <button
-              className="flex text-xl xl:text-2xl items-center text-white underline cursor-pointer z-10"
+              className="flex text-xl xl:text-2xl items-center text-white underline cursor-pointer z-10 uppercase"
               onClick={() => {
                 const section = document.getElementById("contact");
                 if (section) {
