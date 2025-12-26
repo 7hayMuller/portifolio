@@ -8,7 +8,7 @@ const raleway = Raleway({
 });
 
 export const metadata = {
-  title: "Front-end | UX/UI designer",
+  title: "Frontend | UX/UI designer",
 };
 
 export default function RootLayout({
