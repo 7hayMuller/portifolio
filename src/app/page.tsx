@@ -100,6 +100,7 @@ const About = () => {
 
   const ribbonText = useMemo(() => {
     return `UX/UI DESIGNER → ${t("frontend_developer_text")} → ${t(
+      // eslint-disable-next-line prettier/prettier
       "my_projects"
     )?.toLocaleUpperCase()} → `.repeat(15);
   }, [t]);
