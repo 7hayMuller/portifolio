@@ -363,12 +363,12 @@ const About = () => {
           </motion.div> */}
           <div className="flex flex-col justify-start lg:justify-center items-start lg:items-center px-4">
             <span
-              className={`${anton.className} text-white text-[60px] lg:text-[80px] 2xl:text-[100px]`}
+              className={`${anton.className} text-white text-[60px] lg:text-[80px] 2xl:text-[100px] uppercase`}
             >
               {t("front_end_dev")} {t("ux_ui_designer")}
             </span>
             <button
-              className="flex text-xl xl:text-2xl items-center text-white underline cursor-pointer z-10 uppercase"
+              className="flex text-xl xl:text-2xl items-center text-white underline cursor-pointer z-10"
               onClick={() => {
                 const section = document.getElementById("contact");
                 if (section) {
