@@ -71,7 +71,7 @@ export default function Blog() {
             <span className="block text-white/80 text-2xl tracking-wide">
               Built with curiosity
             </span>
-            <span className="block mt-2 text-white/50 text-[12px] text-sm tracking-wider uppercase">
+            <span className="mt-4 block max-w-[240px] text-center text-white/50 text-sm tracking-wider uppercase md:max-w-none">
               Frontend · UX/UI design · Real-world lessons
             </span>
           </div>
@@ -83,7 +83,7 @@ export default function Blog() {
         id="blog"
         className="bg-gradient-to-b from-[#2a0e16] via-[#3b1521] to-[#2a0e16] py-32"
       >
-        <div className="max-w-4xl mx-auto px-4 -mt-[100px] lg:mt-0">
+        <div className="max-w-4xl mx-auto px-4 -mt-[120px] lg:mt-0">
           <div className="grid gap-8">
             {posts.map((post) => (
               <article
