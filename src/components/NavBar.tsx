@@ -3,49 +3,107 @@
 import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { usePathname, useRouter } from "next/navigation";
 import i18n from "../locales";
 import ClientOnly from "./ClientOnly";
-
 import styles from "../styles/navbar.module.css";
 
+type NavItem = {
+  id: string;
+  label: string;
+  type: "section" | "route";
+};
+
 const Navbar: React.FC = () => {
-  const [activeSection, setActiveSection] = useState<string>("introduction");
+  const [activeId, setActiveId] = useState<string>("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const { t } = useTranslation();
+  const pathname = usePathname();
+  const router = useRouter();
 
-  const handleToggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const navItems: NavItem[] = [
+    { id: "introduction", label: t("about"), type: "section" },
+    { id: "projects", label: t("projects"), type: "section" },
+    { id: "skills", label: t("skills_and_tools"), type: "section" },
+    { id: "contact", label: t("contact"), type: "section" },
+    { id: "/blog", label: t("blog"), type: "route" },
+  ];
 
-  const handleLinkClick = (id: string) => {
+  const handleNavClick = (item: NavItem) => {
     setIsMobileMenuOpen(false);
-    const section = document.getElementById(id);
-    section?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "center",
-    });
+
+    if (item.type === "route") {
+      setActiveId("/blog");
+      router.push("/blog");
+      return;
+    }
+
+    setActiveId(item.id);
+
+    if (pathname === "/") {
+      router.push(`/#${item.id}`, { scroll: false });
+
+      const section = document.getElementById(item.id);
+      section?.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      return;
+    }
+
+    router.push(`/#${item.id}`);
   };
+  useEffect(() => {
+    if (pathname !== "/") return;
+
+    const syncFromHash = () => {
+      const hash = window.location.hash.replace("#", "");
+
+      if (!hash) {
+        setActiveId("introduction");
+        return;
+      }
+
+      setActiveId(hash);
+
+      const section = document.getElementById(hash);
+      section?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    };
+
+    syncFromHash();
+
+    window.addEventListener("hashchange", syncFromHash);
+
+    return () => {
+      window.removeEventListener("hashchange", syncFromHash);
+    };
+  }, [pathname]);
 
   useEffect(() => {
-    const sections = [
-      "introduction",
-      "projects",
-      "skills",
-      //"timeline",
-      "contact",
-    ];
+    if (pathname === "/blog") {
+      setActiveId("/blog");
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (pathname !== "/") return;
+
+    const sectionIds = ["introduction", "projects", "skills", "contact"];
+
     const observers: IntersectionObserver[] = [];
 
-    sections.forEach((id) => {
+    sectionIds.forEach((id) => {
       const section = document.getElementById(id);
       if (!section) return;
 
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            setActiveSection(id);
+            setActiveId(id);
+
+            window.history.replaceState(null, "", `/#${id}`);
           }
         },
         {
@@ -58,45 +116,43 @@ const Navbar: React.FC = () => {
       observers.push(observer);
     });
 
-    return () => {
-      observers.forEach((observer) => observer.disconnect());
-    };
-  }, []);
+    return () => observers.forEach((o) => o.disconnect());
+  }, [pathname]);
+
+  const isHomeSectionActive = (item: NavItem) => {
+    return pathname === "/" && item.type === "section" && activeId === item.id;
+  };
+
+  const isBlogActive = (item: NavItem) => {
+    return pathname === "/blog/" && item.type === "route";
+  };
 
   return (
     <nav className={`${styles.navbar} w-full flex items-center relative`}>
-      <div className="flex flex-grow justify-center md:justify-center">
-        <div className="md:hidden z-50 absolute left-4 top-4">
-          <button onClick={handleToggleMobileMenu} className="text-[#E5E5DD]">
+      <div className="flex flex-grow justify-center">
+        <div className="md:hidden absolute left-4 top-4 z-50">
+          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
             {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
         </div>
 
         <ul
-          className={`absolute top-0 left-0 w-full z-40 bg-[#05020a] bg-opacity-90 text-[#E5E5DD] transition-all duration-300 ease-in-out
-    flex-col items-center
-    md:static md:flex-row md:flex md:bg-transparent md:py-0 ${
-      isMobileMenuOpen ? "flex py-4" : "hidden"
-    }`}
+          className={`absolute top-0 left-0 w-full z-40 bg-[#05020a] bg-opacity-90
+          flex-col items-center transition-all duration-300
+          md:static md:flex md:flex-row md:bg-transparent
+          ${isMobileMenuOpen ? "flex py-4" : "hidden"}`}
         >
-          {[
-            { id: "introduction", label: t("about") },
-            { id: "projects", label: t("projects") },
-            { id: "skills", label: t("skills_and_tools") },
-            //{ id: "timeline", label: t("timeline") },
-            { id: "contact", label: t("contact") },
-          ].map(({ id, label }) => (
-            <li key={id} className="py-2 md:pr-6">
+          {navItems.map((item) => (
+            <li key={item.id} className="py-2 md:pr-6">
               <button
-                onClick={() => handleLinkClick(id)}
+                onClick={() => handleNavClick(item)}
                 className={`text-base lg:text-base ${
-                  activeSection === id
+                  isHomeSectionActive(item) || isBlogActive(item)
                     ? "border-b-4 border-[#F25D76] pb-1 inline-block font-bold"
                     : ""
                 }`}
-                data-text={label}
               >
-                <ClientOnly>{label}</ClientOnly>
+                <ClientOnly>{item.label}</ClientOnly>
               </button>
             </li>
           ))}
@@ -105,11 +161,10 @@ const Navbar: React.FC = () => {
 
       <button
         aria-label="Alternar idioma"
-        className="flex items-center absolute right-4 md:static md:mr-0 z-40"
-        onClick={() => {
-          i18n.changeLanguage(i18n.language === "en" ? "pt" : "en");
-        }}
-        data-text={i18n.language === "en" ? "PT" : "EN"}
+        className="absolute right-4 md:static"
+        onClick={() =>
+          i18n.changeLanguage(i18n.language === "en" ? "pt" : "en")
+        }
       >
         {i18n.language?.toUpperCase().split("-")[0]}
       </button>
