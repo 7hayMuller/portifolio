@@ -1,0 +1,28 @@
+<svg
+  viewBox="0 0 300 300"
+  width="300"
+  height="300"
+  xmlns="http://www.w3.org/2000/svg"
+  style="background: none; background-color: transparent;"
+>
+  <defs>
+    <!-- CIRCUNFERÊNCIA MENOR -->
+    <path
+      id="circlePath"
+      d="M150,150 m-110,0 a115,115 0 1,1 230,0 a115,115 0 1,1 -230,0"
+      fill="none"
+    />
+  </defs>
+
+  <text
+    font-family="Akitv Grotesk, system-ui, sans-serif"
+    font-size="20"
+    font-weight="500"
+    letter-spacing="2.5"
+    fill="#ffffff"
+  >
+    <textPath href="#circlePath">
+      Let’s create something cool together • Let’s create something cool •
+    </textPath>
+  </text>
+</svg>

@@ -8,6 +8,22 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        osmoHeroIn: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(8px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+      },
+      animation: {
+        "osmo-hero": "osmoHeroIn 520ms cubic-bezier(0.65, 0, 0.35, 1) forwards",
+        "spin-slower": "spin 30s linear infinite",
+      },
       colors: {
         border: "hsl(var(--border))",
         background: "hsl(var(--background))",

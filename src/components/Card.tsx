@@ -11,7 +11,7 @@ type CardProps = {
   highlight?: boolean;
   onClick?: () => void;
   buttonTitle?: string;
-  previewVideo?: any;
+  previewVideo?: string;
 };
 
 const Card: React.FC<CardProps> = ({
@@ -27,17 +27,29 @@ const Card: React.FC<CardProps> = ({
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleMouseEnter = () => {
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play();
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.currentTime = 0;
+
+    // play() retorna Promise → precisa tratar
+    if (video.paused) {
+      video.play().catch(() => {
+        // ignora AbortError (comportamento normal)
+      });
     }
   };
 
   const handleMouseLeave = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
+    const video = videoRef.current;
+    if (!video) return;
+
+    // só pausa se realmente estiver tocando
+    if (!video.paused) {
+      video.pause();
     }
+
+    video.currentTime = 0;
   };
 
   return (
@@ -57,6 +69,7 @@ const Card: React.FC<CardProps> = ({
             className="w-full h-full object-cover pointer-events-none"
             muted
             loop
+            preload="metadata"
           />
         </div>
       )}
@@ -95,7 +108,7 @@ const Card: React.FC<CardProps> = ({
 
         <a
           href="#"
-          className="bg-gradient-to-r from-[#A27DFB] to-[#6E8CFA] text-white  text-base font-medium px-4 py-2 rounded-md w-fit mt-2 hover:opacity-90 transition"
+          className="bg-gradient-to-r from-[#A27DFB] to-[#6E8CFA] text-white text-base font-medium px-4 py-2 rounded-md w-fit mt-2 hover:opacity-90 transition"
           onClick={onClick}
         >
           <ClientOnly>{buttonTitle}</ClientOnly>

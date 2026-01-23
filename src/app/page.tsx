@@ -22,6 +22,7 @@ import {
 
 import Hero from "../../public/assets/hero.png";
 import HeroMobile from "../../public/assets/hero-mobile.png";
+import RotatingImage from "../../public/assets/rotating-text.svg";
 
 import { anton, pacifico, robotoMono } from "./fonts";
 
@@ -101,7 +102,7 @@ const About = () => {
   const ribbonText = useMemo(() => {
     return `UX/UI DESIGNER → ${t("frontend_developer_text")} → ${t(
       // eslint-disable-next-line prettier/prettier
-      "my_projects"
+      "my_projects",
     )?.toLocaleUpperCase()} → `.repeat(15);
   }, [t]);
 
@@ -304,63 +305,6 @@ const About = () => {
           id="hero"
           className="relative flex justify-center md:flex flex-col md:flex-col mt-[100px]"
         >
-          {/* <motion.div
-            initial={{ opacity: 0, y: -80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: 1.2,
-              ease: [0.25, 1, 0.5, 1],
-            }}
-            className="order-1 flex justify-center items-center w-full lg:w-1/2 min-h-[400px]"
-          >
-            <Image
-              src={Me}
-              alt="side-image"
-              className="w-full max-w-[400px] -mt-[50px] md:max-w-[600px] lg:max-w-[700px] lg:-mt-[100px]"
-              priority
-            />
-          </motion.div> */}
-
-          {/* <motion.div
-            initial={{ opacity: 0, x: -80 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: 1.4,
-              delay: 0.3,
-              ease: [0.25, 1, 0.5, 1],
-            }}
-            //className="order-2 flex flex-1 justify-center items-center w-full lg:justify-end"
-          >
-            <div className="flex flex-col w-full max-w-3xl mt-5 md:mt-[50px] lg:mt-[80px] space-y-6">
-              <span className="text-[#E5E5DD] font-bold text-2xl md:text-3xl lg:text-4xl text-center lg:text-left">
-                <ClientOnly>{t("hello")}</ClientOnly>
-              </span>
-              <span className="text-[#E5E5DD] font-bold text-2xl md:text-3xl lg:text-4xl lg:mb-4 text-center lg:text-left">
-                <ClientOnly>
-                  {t("present")}
-                  {t("present_2")}
-                </ClientOnly>
-              </span>
-
-              <div className="flex justify-center lg:justify-start space-x-10">
-                <button
-                  className="custom-btn btn-7 mt-4"
-                  onClick={() => {
-                    const section = document.getElementById("contact");
-                    if (section) {
-                      section.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
-                >
-                  <span>
-                    <ClientOnly>{t("say_hi")}</ClientOnly>
-                  </span>
-                </button>
-              </div>
-            </div>
-          </motion.div> */}
           <div className="flex flex-col justify-start lg:justify-center items-start lg:items-center px-4">
             <span
               className={`${anton.className} text-white text-[60px] lg:text-[80px] 2xl:text-[100px] uppercase`}
@@ -380,12 +324,21 @@ const About = () => {
             </button>
           </div>
           {isMobile ? (
-            <Image
-              src={HeroMobile}
-              alt="side-image"
-              className="w-full sm:w-[90vw] -mt-[60px] ml-[50px]"
-              priority
-            />
+            <div className="relative w-72 h-72 flex ml-[80px]">
+              <Image
+                src={HeroMobile}
+                alt="Profile image"
+                className="object-cover rounded-full"
+                priority
+              />
+              <Image
+                src={RotatingImage}
+                alt="Let's create something cool"
+                width={300}
+                height={300}
+                className="absolute inset-0 animate-spin-slower pointer-events-none"
+              />
+            </div>
           ) : (
             <Image
               src={Hero}
