@@ -20,8 +20,8 @@ import {
   FaLinkedin,
 } from "react-icons/fa6";
 
-import Hero from "../../public/assets/hero.png";
-import HeroMobile from "../../public/assets/hero-mobile.png";
+import Hero from "../../public/assets/hero.webp";
+import HeroMobile from "../../public/assets/hero-mobile.webp";
 import RotatingImage from "../../public/assets/rotating-text.svg";
 
 import { anton, pacifico, robotoMono } from "./fonts";
@@ -108,37 +108,37 @@ const About = () => {
 
   // Imagens
   const nearbyImages = [
-    { src: "/assets/nearby-splash-mobile.png", width: 500, height: 500 },
-    { src: "/assets/nearby-start-mobile.png", width: 500, height: 500 },
-    { src: "/assets/nearby-home-mobile.png", width: 500, height: 500 },
-    { src: "/assets/nearby-homelist-mobile.png", width: 500, height: 500 },
-    { src: "/assets/nearby-details-mobile.png", width: 500, height: 500 },
+    { src: "/assets/nearby-splash-mobile.webp", width: 500, height: 500 },
+    { src: "/assets/nearby-start-mobile.webp", width: 500, height: 500 },
+    { src: "/assets/nearby-home-mobile.webp", width: 500, height: 500 },
+    { src: "/assets/nearby-homelist-mobile.webp", width: 500, height: 500 },
+    { src: "/assets/nearby-details-mobile.webp", width: 500, height: 500 },
   ];
 
   const remediaImages = [
-    { src: "/assets/remedia1.png", width: 243, height: 150 },
-    { src: "/assets/remedia.png", width: 243, height: 150 },
-    { src: "/assets/remedia2.png", width: 243, height: 150 },
-    { src: "/assets/remedia3.png", width: 243, height: 150 },
-    { src: "/assets/remedia4.png", width: 243, height: 150 },
-    { src: "/assets/remedia5.png", width: 243, height: 150 },
+    { src: "/assets/remedia1.webp", width: 243, height: 150 },
+    { src: "/assets/remedia.webp", width: 243, height: 150 },
+    { src: "/assets/remedia2.webp", width: 243, height: 150 },
+    { src: "/assets/remedia3.webp", width: 243, height: 150 },
+    { src: "/assets/remedia4.webp", width: 243, height: 150 },
+    { src: "/assets/remedia5.webp", width: 243, height: 150 },
   ];
 
   const itauImages = [
-    { src: "/assets/desktop_itau-front.png", width: 243, height: 150 },
-    { src: "/assets/smartphone_itau-portrait.png", width: 243, height: 0 },
-    { src: "/assets/smartwatch_itau-portrait.png", width: 243, height: 150 },
+    { src: "/assets/desktop_itau-front.webp", width: 243, height: 150 },
+    { src: "/assets/smartphone_itau-portrait.webp", width: 243, height: 0 },
+    { src: "/assets/smartwatch_itau-portrait.webp", width: 243, height: 150 },
   ];
 
   const finnyImages = [
-    { src: "/assets/finny_mobile_3.png", width: 300, height: 300 },
-    { src: "/assets/finny_mobile_5.png", width: 300, height: 300 },
-    { src: "/assets/finny_mobile_7.png", width: 300, height: 300 },
+    { src: "/assets/finny_mobile_3.webp", width: 300, height: 300 },
+    { src: "/assets/finny_mobile_5.webp", width: 300, height: 300 },
+    { src: "/assets/finny_mobile_7.webp", width: 300, height: 300 },
   ];
 
   const portfolioImages = [
-    { src: "/assets/portfolio.png", width: 300, height: 300 },
-    { src: "/assets/portfolio_mobile.png", width: 300, height: 300 },
+    { src: "/assets/portfolio.webp", width: 300, height: 300 },
+    { src: "/assets/portfolio_mobile.webp", width: 300, height: 300 },
   ];
 
   const slides = [
@@ -454,13 +454,14 @@ const About = () => {
                   alt="skills"
                   width={2000}
                   height={2000}
+                  priority
                   className="max-w-none h-[100%]"
                 />
               </div>
 
               {/* TEXTO */}
 
-              <div className="w-full lg:w-1/2  lg:pl-12 text-left -mt-[150px] lg:mt-0 flex flex-col justify-center">
+              <div className="w-full lg:w-1/2  lg:pl-12 text-center md:text-left lg:text-left -mt-[150px] lg:mt-0 flex flex-col justify-center">
                 <motion.div
                   initial={{ opacity: 0, y: 25 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -476,7 +477,7 @@ const About = () => {
                     <ClientOnly>{t("i_develop")}</ClientOnly>
                   </h3>
                 </motion.div>
-                <div className="lg:flex lg:flex-row  items-start text-base text-[#E5E5DD]">
+                <div className="lg:flex lg:flex-row items-start text-center lg:text-left text-[#E5E5DD]">
                   <motion.div
                     initial={{ opacity: 0, y: 25 }}
                     whileInView={{ opacity: 1, y: 0 }}
