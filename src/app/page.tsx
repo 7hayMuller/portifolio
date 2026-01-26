@@ -138,7 +138,8 @@ const About = () => {
 
   const portfolioImages = [
     { src: "/assets/portfolio.webp", width: 300, height: 300 },
-    { src: "/assets/portfolio_mobile.webp", width: 300, height: 300 },
+    { src: "/assets/portfolio-mobile.webp", width: 300, height: 300 },
+    { src: "/assets/portfolio-home-mobile.webp", width: 300, height: 300 },
   ];
 
   const slides = [
@@ -448,7 +449,7 @@ const About = () => {
                   style={{ width: 500, height: 500 }}
                 />
               </div>
-              <div className="lg:hidden -ml-[800px] -mt-[150px] flex justify-center items-center">
+              <div className="lg:hidden -ml-[810px] -mt-[150px] flex justify-center items-center">
                 <Image
                   src="/assets/cube.webp"
                   alt="skills"
