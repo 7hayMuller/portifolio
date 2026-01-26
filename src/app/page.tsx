@@ -448,9 +448,9 @@ const About = () => {
                   style={{ width: 500, height: 500 }}
                 />
               </div>
-              <div className="lg:hidden -ml-[820px] -mt-[150px] flex justify-center items-center">
+              <div className="lg:hidden -ml-[800px] -mt-[150px] flex justify-center items-center">
                 <Image
-                  src="/assets/cube.png"
+                  src="/assets/cube.webp"
                   alt="skills"
                   width={2000}
                   height={2000}
