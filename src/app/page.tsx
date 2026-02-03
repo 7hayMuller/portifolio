@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import Image from "next/image";
-import { Trans, useTranslation } from "react-i18next";
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Image from 'next/image';
+import { Trans, useTranslation } from 'react-i18next';
 
-import ClientOnly from "../components/ClientOnly";
+import ClientOnly from '../components/ClientOnly';
 
-import Loading from "../components/Loading";
-import ContactForm from "../components/ContactForm";
-import Card from "../components/Card";
-import ProjectModal from "../components/ProjectModal";
-import Spline from "@splinetool/react-spline";
+import Loading from '../components/Loading';
+import ContactForm from '../components/ContactForm';
+import Card from '../components/Card';
+import ProjectModal from '../components/ProjectModal';
+import Spline from '@splinetool/react-spline';
 
 import {
   FaBehance,
@@ -18,23 +18,23 @@ import {
   FaGithub,
   FaInstagram,
   FaLinkedin,
-} from "react-icons/fa6";
+} from 'react-icons/fa6';
 
-import Hero from "../../public/assets/hero.webp";
-import HeroMobile from "../../public/assets/hero-mobile.webp";
-import RotatingImage from "../../public/assets/rotating-text.svg";
+import Hero from '../../public/assets/hero.webp';
+import HeroMobile from '../../public/assets/hero-mobile.webp';
+import RotatingImage from '../../public/assets/rotating-text.svg';
 
-import { anton, pacifico, robotoMono } from "./fonts";
+import { anton, pacifico, robotoMono } from './fonts';
 
-import { IoArrowForward } from "react-icons/io5";
-import Navbar from "@/components/NavBar";
-import PortfolioSwiper from "../components/Swipper";
-import { motion } from "framer-motion";
+import { IoArrowForward } from 'react-icons/io5';
+import Navbar from '@/components/NavBar';
+import PortfolioSwiper from '../components/Swipper';
+import { motion } from 'framer-motion';
 
 const useDecryptText = (text: string, delay = 50, pause = 2000) => {
-  const [displayed, setDisplayed] = useState("");
+  const [displayed, setDisplayed] = useState('');
   const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*()";
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*()';
 
   const iterationRef = useRef(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -49,12 +49,12 @@ const useDecryptText = (text: string, delay = 50, pause = 2000) => {
     intervalRef.current = setInterval(() => {
       setDisplayed(() => {
         return text
-          .split("")
+          .split('')
           .map((char, i) => {
             if (i < iterationRef.current) return text[i];
             return characters[Math.floor(Math.random() * characters.length)];
           })
-          .join("");
+          .join('');
       });
 
       iterationRef.current += 1;
@@ -93,79 +93,79 @@ const About = () => {
     };
 
     handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const decrypted = useDecryptText(t("get_in_touch"), 200, 1000);
+  const decrypted = useDecryptText(t('get_in_touch'), 200, 1000);
 
   const ribbonText = useMemo(() => {
-    return `UX/UI DESIGNER → ${t("frontend_developer_text")} → ${t(
+    return `UX/UI DESIGNER → ${t('frontend_developer_text')} → ${t(
       // eslint-disable-next-line prettier/prettier
-      "my_projects",
+      'my_projects',
     )?.toLocaleUpperCase()} → `.repeat(15);
   }, [t]);
 
   // Imagens
   const nearbyImages = [
-    { src: "/assets/nearby-splash-mobile.webp", width: 500, height: 500 },
-    { src: "/assets/nearby-start-mobile.webp", width: 500, height: 500 },
-    { src: "/assets/nearby-home-mobile.webp", width: 500, height: 500 },
-    { src: "/assets/nearby-homelist-mobile.webp", width: 500, height: 500 },
-    { src: "/assets/nearby-details-mobile.webp", width: 500, height: 500 },
+    { src: '/assets/nearby-splash-mobile.webp', width: 500, height: 500 },
+    { src: '/assets/nearby-start-mobile.webp', width: 500, height: 500 },
+    { src: '/assets/nearby-home-mobile.webp', width: 500, height: 500 },
+    { src: '/assets/nearby-homelist-mobile.webp', width: 500, height: 500 },
+    { src: '/assets/nearby-details-mobile.webp', width: 500, height: 500 },
   ];
 
   const remediaImages = [
-    { src: "/assets/remedia1.webp", width: 243, height: 150 },
-    { src: "/assets/remedia.webp", width: 243, height: 150 },
-    { src: "/assets/remedia2.webp", width: 243, height: 150 },
-    { src: "/assets/remedia3.webp", width: 243, height: 150 },
-    { src: "/assets/remedia4.webp", width: 243, height: 150 },
-    { src: "/assets/remedia5.webp", width: 243, height: 150 },
+    { src: '/assets/remedia1.webp', width: 243, height: 150 },
+    { src: '/assets/remedia.webp', width: 243, height: 150 },
+    { src: '/assets/remedia2.webp', width: 243, height: 150 },
+    { src: '/assets/remedia3.webp', width: 243, height: 150 },
+    { src: '/assets/remedia4.webp', width: 243, height: 150 },
+    { src: '/assets/remedia5.webp', width: 243, height: 150 },
   ];
 
   const itauImages = [
-    { src: "/assets/desktop_itau-front.webp", width: 243, height: 150 },
-    { src: "/assets/smartphone_itau-portrait.webp", width: 243, height: 0 },
-    { src: "/assets/smartwatch_itau-portrait.webp", width: 243, height: 150 },
+    { src: '/assets/desktop_itau-front.webp', width: 243, height: 150 },
+    { src: '/assets/smartphone_itau-portrait.webp', width: 243, height: 0 },
+    { src: '/assets/smartwatch_itau-portrait.webp', width: 243, height: 150 },
   ];
 
   const finnyImages = [
-    { src: "/assets/finny_mobile_3.webp", width: 300, height: 300 },
-    { src: "/assets/finny_mobile_5.webp", width: 300, height: 300 },
-    { src: "/assets/finny_mobile_7.webp", width: 300, height: 300 },
+    { src: '/assets/finny_mobile_3.webp', width: 300, height: 300 },
+    { src: '/assets/finny_mobile_5.webp', width: 300, height: 300 },
+    { src: '/assets/finny_mobile_7.webp', width: 300, height: 300 },
   ];
 
   const portfolioImages = [
-    { src: "/assets/portfolio.webp", width: 300, height: 300 },
-    { src: "/assets/portfolio-mobile.webp", width: 300, height: 300 },
-    { src: "/assets/portfolio-home-mobile.webp", width: 300, height: 300 },
+    { src: '/assets/portfolio.webp', width: 300, height: 300 },
+    { src: '/assets/portfolio-mobile.webp', width: 300, height: 300 },
+    { src: '/assets/portfolio-home-mobile.webp', width: 300, height: 300 },
   ];
 
   const slides = [
     <div
       className="w-full max-w-[360px] md:w-[320px] lg:w-[340px]"
-      key={"remedia"}
+      key={'remedia'}
     >
       <Card
-        buttonTitle={t("see_studycase")}
+        buttonTitle={t('see_studycase')}
         type="UX/UI + Front-end"
-        intro={t("remedia_intro")}
-        title={t("Remedia")}
+        intro={t('remedia_intro')}
+        title={t('Remedia')}
         previewVideo="/assets/remedia_preview.webm"
         stack="Figma, React Native, Typescript, Expo ..."
         onClick={() => {
           setModalInfo({
             images: remediaImages,
-            key: "remedia_description",
-            tecnologies: ["figma", "React Native", "typescript", "expo"],
+            key: 'remedia_description',
+            tecnologies: ['figma', 'React Native', 'typescript', 'expo'],
             links: [
               {
                 medium:
-                  "https://medium.com/@thaynamuller88/problem-analysis-market-research-3aefb2f3b8cf",
+                  'https://medium.com/@thaynamuller88/problem-analysis-market-research-3aefb2f3b8cf',
               },
               {
-                github: "https://github.com/7hayMuller/nlw-nearby",
+                github: 'https://github.com/7hayMuller/nlw-nearby',
               },
             ],
           });
@@ -175,24 +175,24 @@ const About = () => {
     </div>,
     <div
       className="w-full max-w-[360px] md:w-[320px] lg:w-[340px]"
-      key={"finny"}
+      key={'finny'}
     >
       <Card
-        buttonTitle={t("see_studycase")}
+        buttonTitle={t('see_studycase')}
         type="UX/UI"
-        intro={t("finny_intro")}
-        title={t("Finny Cashback Goals")}
+        intro={t('finny_intro')}
+        title={t('Finny Cashback Goals')}
         previewVideo="/assets/finny_prev.webm"
         stack="Figma"
         onClick={() => {
           setModalInfo({
             images: finnyImages,
-            key: "finny_description",
-            tecnologies: ["figma"],
+            key: 'finny_description',
+            tecnologies: ['figma'],
             links: [
               {
                 medium:
-                  "https://medium.com/@thaynamuller88/finny-cashback-goals-db0509b21a6d",
+                  'https://medium.com/@thaynamuller88/finny-cashback-goals-db0509b21a6d',
               },
             ],
           });
@@ -202,22 +202,22 @@ const About = () => {
     </div>,
     <div
       className="w-full max-w-[360px] md:w-[320px] lg:w-[340px]"
-      key={"nearby"}
+      key={'nearby'}
     >
       <Card
         type="Front-end"
-        title={t("Nearby")}
+        title={t('Nearby')}
         stack="React Native, Typescript, Expo e CSS"
-        intro={t("nearby_intro")}
+        intro={t('nearby_intro')}
         previewVideo="/assets/nearby_prev.webm"
         onClick={() => {
           setModalInfo({
             images: nearbyImages,
-            key: "nearby",
-            tecnologies: ["React Native", "typescript", "expo", "css"],
+            key: 'nearby',
+            tecnologies: ['React Native', 'typescript', 'expo', 'css'],
             links: [
               {
-                github: "https://github.com/7hayMuller/nlw-nearby",
+                github: 'https://github.com/7hayMuller/nlw-nearby',
               },
             ],
           });
@@ -227,28 +227,28 @@ const About = () => {
     </div>,
     <div
       className="w-full max-w-[360px] md:w-[320px] lg:w-[340px] "
-      key={"itau"}
+      key={'itau'}
     >
       <Card
         type="UX/UI"
-        title={t("itau_title")}
-        buttonTitle={t("see_studycase")}
-        intro={t("itau_intro")}
+        title={t('itau_title')}
+        buttonTitle={t('see_studycase')}
+        intro={t('itau_intro')}
         stack="Figma"
         previewVideo="/assets/itau_prev.webm"
         onClick={() => {
           setModalInfo({
             images: itauImages,
-            key: "itau_description",
-            tecnologies: ["figma"],
+            key: 'itau_description',
+            tecnologies: ['figma'],
             links: [
               {
                 figma:
-                  "https://www.figma.com/design/bWyeFyFptVlKsvX6pFO3IC/Ita%C3%BA---Prot%C3%B3tipo%2FCanais?node-id=0-1",
+                  'https://www.figma.com/design/bWyeFyFptVlKsvX6pFO3IC/Ita%C3%BA---Prot%C3%B3tipo%2FCanais?node-id=0-1',
               },
               {
                 behance:
-                  "https://www.behance.net/gallery/218042201/Ecossistema-digital-Itau",
+                  'https://www.behance.net/gallery/218042201/Ecossistema-digital-Itau',
               },
             ],
           });
@@ -258,22 +258,22 @@ const About = () => {
     </div>,
     <div
       className="w-full max-w-[360px] md:w-[320px] lg:w-[340px]"
-      key={"portfolio"}
+      key={'portfolio'}
     >
       <Card
         type="Front-end"
-        intro={t("portfolio_intro")}
-        title={t("this_portfolio")}
+        intro={t('portfolio_intro')}
+        title={t('this_portfolio')}
         stack="Next.js, Typescript e Tailwind"
         previewVideo="/assets/portfolio.webm"
         onClick={() => {
           setModalInfo({
             images: portfolioImages,
-            key: "portfolio_description",
-            tecnologies: ["next", "typescript", "tailwind"],
+            key: 'portfolio_description',
+            tecnologies: ['next', 'typescript', 'tailwind'],
             links: [
               {
-                github: "https://github.com/7hayMuller/portifolio",
+                github: 'https://github.com/7hayMuller/portifolio',
               },
             ],
           });
@@ -304,34 +304,43 @@ const About = () => {
 
         <section
           id="hero"
-          className="relative flex justify-center md:flex flex-col md:flex-col mt-[100px]"
+          className="relative flex justify-center flex-col mt-[100px]"
         >
           <div className="flex flex-col justify-start lg:justify-center items-start lg:items-center px-4">
             <span
               className={`${anton.className} text-white text-[60px] lg:text-[80px] 2xl:text-[100px] uppercase`}
             >
-              {t("front_end_dev")} {t("ux_ui_designer")}
+              {t('front_end_dev')} {t('ux_ui_designer')}
             </span>
+
             <button
               className="flex text-xl xl:text-2xl items-center text-white underline cursor-pointer z-10"
               onClick={() => {
-                const section = document.getElementById("contact");
-                if (section) {
-                  section.scrollIntoView({ behavior: "smooth" });
-                }
+                const section = document.getElementById('contact');
+                section?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              <ClientOnly>{t("say_hi")}</ClientOnly> <IoArrowForward />
+              <ClientOnly>{t('say_hi')}</ClientOnly> <IoArrowForward />
             </button>
           </div>
+
           {isMobile ? (
-            <div className="relative w-72 h-72 flex ml-[80px]">
+            <div
+              className="
+              relative
+              w-72 h-72
+              md:w-96 md:h-96
+              flex
+              mx-auto         
+            "
+            >
               <Image
                 src={HeroMobile}
                 alt="Profile image"
                 className="object-cover rounded-full"
                 priority
               />
+
               <Image
                 src={RotatingImage}
                 alt="Let's create something cool"
@@ -345,13 +354,13 @@ const About = () => {
               src={Hero}
               alt="side-image"
               className="
-              w-full           
-              lg:w-[100vw]
-              xl:w-[100vw]
-              2xl:w-[100vw]
-              max-w-[2600px]                    
-              lg:-ml-[100px]
-              lg:-mt-[50px]"
+              relative 
+              flex 
+              flex-col 
+              lg:flex-row        
+              justify-center 
+              mt-[100px]
+            "
               priority
             />
           )}
@@ -368,21 +377,54 @@ const About = () => {
         {/* 🔹 INTRO SECTION                                        */}
         {/* ------------------------------------------------------- */}
 
-        <div className="bg-gradient-to-b from-[#2a235c] via-[#181629] to-[#05020a]">
+        <div
+          className="
+          bg-[rgb(42,35,92)]
+          bg-[linear-gradient(180deg,
+            rgb(42,35,92) 0%,
+            rgb(24,22,41) 45%,
+            rgb(5,2,10) 100%
+          )]"
+        >
           <section
             id="introduction"
-            className="flex flex-col lg:flex-row md:flex-col items-center justify-center text-center px-6 py-16 mt-[100px] lg:mb-[100px] md:py-16 lg:py-16"
+            className="
+            flex flex-col           
+            lg:flex-row
+            items-center 
+            justify-center 
+            text-center 
+            px-6 
+            py-16 
+            mt-[100px]
+          "
           >
-            <div className="relative mb-[50px] -mt-[60px] lg:mt-10 lg:mb-0 text-[25vw] lg:text-[200px] leading-none font-anton uppercase tracking-tight w-fit">
+            <div
+              className="
+              relative 
+              mb-[50px] 
+              -mt-[60px] 
+              lg:mt-10 
+              lg:mb-0 
+              text-[25vw] 
+              md:text-[12vw]       
+              lg:text-[200px] 
+              leading-none 
+              font-anton 
+              uppercase 
+              tracking-tight 
+              w-fit
+            "
+            >
               <span
                 className={`${anton.className} text-transparent stroke-white absolute top-0 lg:left-1/2 -translate-x-1/2 -translate-y-[0.40em] lg:-translate-y-[0.30em] z-0`}
               >
-                <ClientOnly>{t("about")}</ClientOnly>
+                <ClientOnly>{t('about')}</ClientOnly>
               </span>
               <span
                 className={`${anton.className} text-[#3DF58C] relative z-10 block translate-y-[0.2em] lg:translate-y-[0.1em]`}
               >
-                <ClientOnly>{t("me")}</ClientOnly>
+                <ClientOnly>{t('me')}</ClientOnly>
               </span>
             </div>
 
@@ -449,33 +491,66 @@ const About = () => {
                   style={{ width: 500, height: 500 }}
                 />
               </div>
-              <div className="lg:hidden -ml-[810px] -mt-[150px] flex justify-center items-center">
+
+              {/* IMAGEM – mobile + tablet */}
+              <div
+                className="
+                lg:hidden
+                flex
+                justify-center
+                items-center
+                w-full  
+                mb:-mt-[100px]  
+                mb-20
+                md:mb-0
+              "
+              >
                 <Image
                   src="/assets/cube.webp"
                   alt="skills"
-                  width={2000}
-                  height={2000}
+                  width={1200}
+                  height={1200}
                   priority
-                  className="max-w-none h-[100%]"
+                  className="
+                  w-[400vw]               
+                  md:w-[300vw]          
+                  max-w-none"
                 />
               </div>
 
               {/* TEXTO */}
 
-              <div className="w-full lg:w-1/2  lg:pl-12 text-center md:text-left lg:text-left -mt-[150px] lg:mt-0 flex flex-col justify-center">
+              <div
+                className="
+                w-full 
+                lg:w-1/2 
+                md:w-full          
+                md:pl-0            
+                lg:pl-12 
+                text-center 
+                md:text-center     
+                lg:text-left 
+                -mt-[150px] 
+                md:-mt-[80px]      
+                lg:mt-0 
+                flex 
+                flex-col 
+                justify-center
+              "
+              >
                 <motion.div
                   initial={{ opacity: 0, y: 25 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false, amount: 0.3 }}
                   transition={{
                     duration: 0.55,
-                    ease: "easeOut",
+                    ease: 'easeOut',
                   }}
                 >
                   <h3
                     className={`${pacifico.className} text-6xl lg:text-[100px] mb-5 lg:mb-15 w-full text-[#A27DFB] mr-2 `}
                   >
-                    <ClientOnly>{t("i_develop")}</ClientOnly>
+                    <ClientOnly>{t('i_develop')}</ClientOnly>
                   </h3>
                 </motion.div>
                 <div className="lg:flex lg:flex-row items-start text-center lg:text-left text-[#E5E5DD]">
@@ -485,7 +560,7 @@ const About = () => {
                     viewport={{ once: false, amount: 0.3 }}
                     transition={{
                       duration: 0.55,
-                      ease: "easeOut",
+                      ease: 'easeOut',
                     }}
                   >
                     <span className="text-xl">
@@ -501,7 +576,7 @@ const About = () => {
                   viewport={{ once: false, amount: 0.3 }}
                   transition={{
                     duration: 0.55,
-                    ease: "easeOut",
+                    ease: 'easeOut',
                   }}
                 >
                   <div className="text-[#E5E5DD] text-base mb-4">
@@ -703,7 +778,7 @@ const About = () => {
             <p
               className={`text-[12px] w-[300px] md:w-[300px] mt-6 mb-6 lg:w-full text-[#E5E5DD] opacity-50 ${robotoMono.className}`}
             >
-              <ClientOnly>{t("made_by_me")}</ClientOnly>
+              <ClientOnly>{t('made_by_me')}</ClientOnly>
             </p>
           </div>
         </div>

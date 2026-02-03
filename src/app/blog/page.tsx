@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import Navbar from "@/components/NavBar";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { anton } from "../fonts";
+import Navbar from '@/components/NavBar';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { anton } from '../fonts';
 
 export default function Blog() {
   const [posts, setPosts] = useState<
@@ -17,7 +17,7 @@ export default function Blog() {
   >([]);
 
   useEffect(() => {
-    fetch("/medium-posts.json")
+    fetch('/medium-posts.json')
       .then((res) => res.json())
       .then(setPosts)
       .catch(() => setPosts([]));
@@ -45,7 +45,7 @@ export default function Blog() {
 
         <div className="relative z-10 flex flex-col h-full items-center justify-center">
           <div>
-            {"BLOG".split("").map((l, i) => (
+            {'BLOG'.split('').map((l, i) => (
               <span
                 key={i}
                 className={`
