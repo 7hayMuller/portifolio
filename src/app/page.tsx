@@ -358,9 +358,7 @@ const About = () => {
               flex 
               flex-col 
               lg:flex-row        
-              justify-center 
-              mt-[100px]
-            "
+              justify-center"
               priority
             />
           )}
@@ -377,15 +375,7 @@ const About = () => {
         {/* 🔹 INTRO SECTION                                        */}
         {/* ------------------------------------------------------- */}
 
-        <div
-          className="
-          bg-[rgb(42,35,92)]
-          bg-[linear-gradient(180deg,
-            rgb(42,35,92) 0%,
-            rgb(24,22,41) 45%,
-            rgb(5,2,10) 100%
-          )]"
-        >
+        <div className="bg-[rgb(42,35,92)] bg-[linear-gradient(180deg,rgb(42,35,92)_0%,rgb(24,22,41)_45%,rgb(5,2,10)_100%)]">
           <section
             id="introduction"
             className="
